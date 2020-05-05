@@ -1,0 +1,20 @@
+{
+    "info": {
+        "started": "Application started.",
+        "launchedShard": "Launched Shard {SHARD_ID}.",
+        "login": "Logged in as '{USER_TAG}'!",
+        "updatedServerCount": "Updated server count. Connected to {SERVER_COUNT} total servers.",
+        "updateServerCountSite": "Updated server count on '{BOT_SITE}'."
+    },
+    "warn": {
+        "noShards": "No shards to spawn."
+    },
+    "error": {
+        "retrieveShardCount": "An error occurred while retrieving the recommended shard count.",
+        "spawnShard": "An error occurred while spawning shards.",
+        "retrieveServerCount": "An error occurred while retrieving server count.",
+        "broadcastServerCount": "An error occurred while broadcasting server count.",
+        "updateServerCountSite": "An error occurred while updating the server count on '{BOT_SITE}'.",
+        "login": "An error occurred while the client attempted to login."
+    }
+}

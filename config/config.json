@@ -1,0 +1,34 @@
+{
+    "prefix": "test",
+    "token": "<DISCORD_BOT_TOKEN>",
+    "sharding": {
+        "machineId": 0,
+        "machineCount": 1,
+        "serversPerShard": 1000,
+        "spawnDelay": 5,
+        "spawnTimeout": 60
+    },
+    "updateInterval": 300,
+    "botSites": {
+        "topGg": {
+            "enabled": false,
+            "url": "https://top.gg/api/bots/<BOT_ID>/stats",
+            "token": "<TOKEN>"
+        },
+        "botsOnDiscordXyz": {
+            "enabled": false,
+            "url": "https://bots.ondiscord.xyz/bot-api/bots/<BOT_ID>/guilds",
+            "token": "<TOKEN>"
+        },
+        "discordBotsGg": {
+            "enabled": false,
+            "url": "https://discord.bots.gg/api/v1/bots/<BOT_ID>/stats",
+            "token": "<TOKEN>"
+        },
+        "discordBotListCom": {
+            "enabled": false,
+            "url": "https://discordbotlist.com/api/bots/<BOT_ID>/stats",
+            "token": "Bot <TOKEN>"
+        }
+    }
+}
