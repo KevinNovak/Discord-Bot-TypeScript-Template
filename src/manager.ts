@@ -44,6 +44,7 @@ export class Manager {
         `);
         } catch (error) {
             Logger.error(Logs.error.broadcastServerCount, error);
+            return;
         }
 
         Logger.info(

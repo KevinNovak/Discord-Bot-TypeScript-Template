@@ -29,6 +29,7 @@ export class Bot {
             await this.client.login(token);
         } catch (error) {
             Logger.error(Logs.error.login, error);
+            return;
         }
     }
 
