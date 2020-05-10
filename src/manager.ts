@@ -11,7 +11,6 @@ export class Manager {
     public async start(): Promise<void> {
         this.registerListeners();
         try {
-            // TODO: Place in config variables
             await this.shardManager.spawn(
                 this.shardManager.totalShards,
                 Config.sharding.spawnDelay * 1000,
