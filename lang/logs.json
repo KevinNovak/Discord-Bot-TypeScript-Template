@@ -12,8 +12,7 @@
     "error": {
         "retrieveShardCount": "An error occurred while retrieving the recommended shard count.",
         "spawnShard": "An error occurred while spawning shards.",
-        "retrieveServerCount": "An error occurred while retrieving server count.",
-        "broadcastServerCount": "An error occurred while broadcasting server count.",
+        "updateServerCount": "An error occurred while updating the server count.",
         "updateServerCountSite": "An error occurred while updating the server count on '{BOT_SITE}'.",
         "login": "An error occurred while the client attempted to login."
     }

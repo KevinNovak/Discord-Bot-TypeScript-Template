@@ -20,41 +20,31 @@ export class Manager {
             Logger.error(Logs.error.spawnShard, error);
             return;
         }
-        this.updateServerCount();
+
+        try {
+            await this.updateServerCount();
+        } catch (error) {
+            Logger.error(Logs.error.updateServerCount, error);
+        }
     }
 
     public async updateServerCount(): Promise<void> {
-        let serverCount: number;
-        try {
-            serverCount = await this.retrieveServerCount();
-        } catch (error) {
-            Logger.error(Logs.error.retrieveServerCount, error);
-            return;
-        }
-        try {
-            await this.shardManager.broadcastEval(`
+        let serverCount = await this.retrieveServerCount();
+        await this.shardManager.broadcastEval(`
             this.user.setPresence({
                 activity: {
-                    name: 'to ${serverCount.toLocaleString()} servers',
+                    name: 'QOTD to ${serverCount.toLocaleString()} servers',
                     type: "STREAMING",
                     url: "https://www.twitch.tv/monstercat"
                 }
             });
         `);
-        } catch (error) {
-            Logger.error(Logs.error.broadcastServerCount, error);
-            return;
-        }
 
         Logger.info(
             Logs.info.updatedServerCount.replace('{SERVER_COUNT}', serverCount.toLocaleString())
         );
 
         for (let botSite of this.botSites) {
-            if (!botSite.enabled) {
-                continue;
-            }
-
             try {
                 await botSite.updateServerCount(serverCount);
             } catch (error) {

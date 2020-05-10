@@ -64,17 +64,23 @@ async function start(): Promise<void> {
         shardList: myShardIds,
     });
 
-    let manager = new Manager(shardManager, [
-        topGgSite,
-        botsOnDiscordXyzSite,
-        discordBotsGgSite,
-        discordBotListComSite,
-    ]);
+    let manager = new Manager(
+        shardManager,
+        [topGgSite, botsOnDiscordXyzSite, discordBotsGgSite, discordBotListComSite].filter(
+            botSite => botSite.enabled
+        )
+    );
 
     // Start
     await manager.start();
-    setInterval(() => {
-        manager.updateServerCount();
+
+    // Start schedule to update server count
+    setInterval(async () => {
+        try {
+            await manager.updateServerCount();
+        } catch (error) {
+            Logger.error(Logs.error.updateServerCount, error);
+        }
     }, Config.updateInterval * 1000);
 }
 
