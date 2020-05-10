@@ -1,15 +1,18 @@
 import { ShardingManager } from 'discord.js';
+
 import { Manager } from './manager';
-import { HttpService } from './services/http-service';
-import { Logger } from './services/logger';
-import { BotsOnDiscordXyzSite } from './services/sites/bots-on-discord-xyz-site';
-import { DiscordBotListComSite } from './services/sites/discord-bot-list-com-site';
-import { DiscordBotsGgSite } from './services/sites/discord-bots-gg-site';
-import { TopGgSite } from './services/sites/top-gg-site';
-import { ShardUtils } from './utils/shard-utils';
+import { HttpService, Logger } from './services';
+import {
+    BotsOnDiscordXyzSite,
+    DiscordBotListComSite,
+    DiscordBotsGgSite,
+    TopGgSite,
+} from './services/sites';
+import { ShardUtils } from './utils';
 
 let Config = require('../config/config.json');
 let Logs = require('../lang/logs.json');
+let Debug = require('../config/debug.json');
 
 async function start(): Promise<void> {
     Logger.info(Logs.info.started);
@@ -30,10 +33,13 @@ async function start(): Promise<void> {
     // Sharding
     let totalShards = 0;
     try {
-        totalShards = await ShardUtils.getRecommendedShards(
-            Config.token,
-            Config.sharding.serversPerShard
-        );
+        totalShards =
+            Debug.enabled && Debug.overrideShardCount
+                ? Debug.shardCount
+                : await ShardUtils.getRecommendedShards(
+                      Config.token,
+                      Config.sharding.serversPerShard
+                  );
     } catch (error) {
         Logger.error(Logs.error.retrieveShardCount, error);
         return;

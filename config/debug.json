@@ -1,0 +1,5 @@
+{
+    "enabled": false,
+    "overrideShardCount": false,
+    "shardCount": 2
+}

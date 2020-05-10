@@ -1,4 +1,5 @@
 import { Client } from 'discord.js';
+
 import { Bot } from './bot';
 import { MessageHandler } from './events/message-handler';
 
@@ -6,8 +7,12 @@ let Config = require('../config/config.json');
 
 async function start(): Promise<void> {
     let client = new Client();
+
+    // Events handlers
     let messageHandler = new MessageHandler(Config.prefix);
+
     let bot = new Bot(Config.token, client, messageHandler);
+
     await bot.start();
 }
 

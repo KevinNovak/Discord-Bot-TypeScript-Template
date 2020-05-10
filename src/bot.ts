@@ -1,6 +1,7 @@
 import { Client, Message } from 'discord.js';
+
 import { MessageHandler } from './events/message-handler';
-import { Logger } from './services/logger';
+import { Logger } from './services';
 
 let Logs = require('../lang/logs.json');
 

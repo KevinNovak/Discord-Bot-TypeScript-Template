@@ -1,6 +1,6 @@
 import { Shard, ShardingManager } from 'discord.js';
-import { Logger } from './services/logger';
-import { BotSite } from './services/sites/bot-site';
+import { Logger } from './services';
+import { BotSite } from './services/sites';
 
 let Logs = require('../lang/logs.json');
 let Config = require('../config/config.json');
