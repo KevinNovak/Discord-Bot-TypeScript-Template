@@ -5,11 +5,7 @@ export abstract class ShardUtils {
         token: string,
         serversPerShard: number
     ): Promise<number> {
-        return Math.ceil(
-            await Util.fetchRecommendedShards(token, serversPerShard).catch(error => {
-                throw error;
-            })
-        );
+        return Math.ceil(await Util.fetchRecommendedShards(token, serversPerShard));
     }
 
     public static getMyShardIds(

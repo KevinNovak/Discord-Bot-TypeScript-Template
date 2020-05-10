@@ -71,12 +71,7 @@ export class Manager {
     }
 
     private async retrieveServerCount(): Promise<number> {
-        let shardSizes: number[];
-        try {
-            shardSizes = await this.shardManager.fetchClientValues('guilds.cache.size');
-        } catch (error) {
-            throw error;
-        }
+        let shardSizes = await this.shardManager.fetchClientValues('guilds.cache.size');
         return shardSizes.reduce((prev, val) => prev + val, 0);
     }
 

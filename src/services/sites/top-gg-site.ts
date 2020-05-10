@@ -11,14 +11,10 @@ export class TopGgSite implements BotSite {
     }
 
     public async updateServerCount(serverCount: number): Promise<void> {
-        try {
-            await this.httpService.post(
-                this.config.url,
-                { server_count: serverCount },
-                this.config.token
-            );
-        } catch (error) {
-            throw error;
-        }
+        await this.httpService.post(
+            this.config.url,
+            { server_count: serverCount },
+            this.config.token
+        );
     }
 }
