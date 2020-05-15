@@ -4,7 +4,7 @@
     "jsRules": {},
     "rules": {
         "no-console": false,
-        "no-unused-declaration": true,
+        "no-unused-variable": true,
         "quotemark": [true, "single"],
         "ordered-imports": true,
         "member-ordering": false,
@@ -15,7 +15,8 @@
         "object-literal-sort-keys": false,
         "arrow-parens": false,
         "no-shadowed-variable": false,
-        "radix": false
+        "radix": false,
+        "max-classes-per-file": false
     },
     "rulesDirectory": []
 }
