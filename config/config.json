@@ -1,6 +1,7 @@
 {
     "prefix": "test",
     "token": "<DISCORD_BOT_TOKEN>",
+    "intents": ["GUILDS", "GUILD_MEMBERS", "GUILD_PRESENCES", "GUILD_MESSAGES", "DIRECT_MESSAGES"],
     "sharding": {
         "machineId": 0,
         "machineCount": 1,

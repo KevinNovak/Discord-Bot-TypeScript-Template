@@ -6,7 +6,7 @@ import { MessageHandler } from './events/message-handler';
 let Config = require('../config/config.json');
 
 async function start(): Promise<void> {
-    let client = new Client();
+    let client = new Client({ ws: { intents: Config.intents } });
 
     // Events handlers
     let messageHandler = new MessageHandler(Config.prefix);
