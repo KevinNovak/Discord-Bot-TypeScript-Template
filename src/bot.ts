@@ -1,6 +1,6 @@
-import { Client, Message } from 'discord.js';
+import { Client, Guild, Message } from 'discord.js';
 
-import { MessageHandler } from './events/message-handler';
+import { GuildJoinHandler, GuildLeaveHandler, MessageHandler } from './events';
 import { Logger } from './services';
 
 let Logs = require('../lang/logs.json');
@@ -11,6 +11,8 @@ export class Bot {
     constructor(
         private token: string,
         private client: Client,
+        private guildJoinHandler: GuildJoinHandler,
+        private guildLeaveHandler: GuildLeaveHandler,
         private messageHandler: MessageHandler
     ) {}
 
@@ -22,6 +24,8 @@ export class Bot {
     private registerListeners(): void {
         this.client.on('ready', () => this.onReady());
         this.client.on('shardReady', (shardId: number) => this.onShardReady(shardId));
+        this.client.on('guildCreate', (guild: Guild) => this.onGuildJoin(guild));
+        this.client.on('guildDelete', (guild: Guild) => this.onGuildLeave(guild));
         this.client.on('message', (msg: Message) => this.onMessage(msg));
     }
 
@@ -43,6 +47,22 @@ export class Bot {
 
     private onShardReady(shardId: number): void {
         Logger.setShardId(shardId);
+    }
+
+    private onGuildJoin(guild: Guild): void {
+        if (!this.ready) {
+            return;
+        }
+
+        this.guildJoinHandler.process(guild);
+    }
+
+    private onGuildLeave(guild: Guild): void {
+        if (!this.ready) {
+            return;
+        }
+
+        this.guildLeaveHandler.process(guild);
     }
 
     private onMessage(msg: Message): void {

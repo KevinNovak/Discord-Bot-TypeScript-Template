@@ -1,7 +1,7 @@
 import { Client } from 'discord.js';
 
 import { Bot } from './bot';
-import { MessageHandler } from './events/message-handler';
+import { GuildJoinHandler, GuildLeaveHandler, MessageHandler } from './events';
 
 let Config = require('../config/config.json');
 
@@ -9,9 +9,11 @@ async function start(): Promise<void> {
     let client = new Client({ ws: { intents: Config.intents } });
 
     // Events handlers
+    let guildJoinHandler = new GuildJoinHandler();
+    let guildLeaveHandler = new GuildLeaveHandler();
     let messageHandler = new MessageHandler(Config.prefix);
 
-    let bot = new Bot(Config.token, client, messageHandler);
+    let bot = new Bot(Config.token, client, guildJoinHandler, guildLeaveHandler, messageHandler);
 
     await bot.start();
 }

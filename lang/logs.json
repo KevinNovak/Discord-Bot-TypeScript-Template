@@ -4,7 +4,9 @@
         "launchedShard": "Launched Shard {SHARD_ID}.",
         "login": "Logged in as '{USER_TAG}'!",
         "updatedServerCount": "Updated server count. Connected to {SERVER_COUNT} total servers.",
-        "updateServerCountSite": "Updated server count on '{BOT_SITE}'."
+        "updateServerCountSite": "Updated server count on '{BOT_SITE}'.",
+        "guildJoined": "Guild '{GUILD_NAME}' ({GUILD_ID}) joined.",
+        "guildLeft": "Guild '{GUILD_NAME}' ({GUILD_ID}) left."
     },
     "warn": {
         "noShards": "No shards to spawn."
