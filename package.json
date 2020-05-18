@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "author": "Kevin Novak",
     "description": "A TypeScript Discord bot with multi-machine sharding and bot-site support.",
-    "homepage": "https://github.com/KevinNovak/Discord-TypeScript-Sharding-Template#readme",
     "license": "MIT",
     "engines": {
         "node": ">=12.14.0"
@@ -24,19 +23,10 @@
         "request-promise": "4.2.5"
     },
     "devDependencies": {
-        "@types/moment-timezone": "0.5.13",
-        "@types/mysql": "2.15.10",
         "@types/node": "14.0.1",
-        "@types/request": "2.48.4",
+        "@types/request": "2.48.5",
         "@types/request-promise": "4.1.46",
         "tslint": "^6.1.2",
         "typescript": "^3.9.2"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/KevinNovak/Discord-TypeScript-Sharding-Template.git"
-    },
-    "bugs": {
-        "url": "https://github.com/KevinNovak/Discord-TypeScript-Sharding-Template/issues"
     }
 }
