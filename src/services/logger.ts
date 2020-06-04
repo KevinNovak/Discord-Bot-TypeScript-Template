@@ -27,11 +27,7 @@ export class Logger {
         log += ' ' + message;
         console.error(log);
         if (error) {
-            if (error instanceof Error) {
-                console.error(error.stack);
-            } else {
-                console.error(error);
-            }
+            console.error(error);
         }
     }
 
