@@ -1,3 +1,6 @@
+import { DiscordAPIError } from 'discord.js';
+import { StatusCodeError } from 'request-promise/errors';
+
 export class Logger {
     private static shardTag: string;
 
@@ -20,14 +23,39 @@ export class Logger {
     }
 
     public static error(message: string, error?: any): void {
+        // Log custom error message
         let log = '[Error]';
         if (this.shardTag) {
             log += ' ' + this.shardTag;
         }
         log += ' ' + message;
         console.error(log);
-        if (error) {
-            console.error(error);
+
+        // Log error object if exists
+        if (!error) {
+            return;
+        }
+
+        switch (error.constructor) {
+            case StatusCodeError:
+                console.error({
+                    statusCode: error.statusCode,
+                    stack: error.stack,
+                });
+                break;
+            case DiscordAPIError:
+                console.error({
+                    message: error.message,
+                    code: error.code,
+                    statusCode: error.httpStatus,
+                    method: error.method,
+                    path: error.path,
+                    stack: error.stack,
+                });
+                break;
+            default:
+                console.error(error);
+                break;
         }
     }
 

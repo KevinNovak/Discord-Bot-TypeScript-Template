@@ -2,6 +2,7 @@ import { Client } from 'discord.js';
 
 import { Bot } from './bot';
 import { GuildJoinHandler, GuildLeaveHandler, MessageHandler } from './events';
+import { Logger } from './services';
 
 let Config = require('../config/config.json');
 
@@ -19,12 +20,7 @@ async function start(): Promise<void> {
 }
 
 process.on('unhandledRejection', (reason, promise) => {
-    console.error('Unhandled promise rejection:', promise);
-    if (reason instanceof Error) {
-        console.error(reason.stack);
-    } else {
-        console.error(reason);
-    }
+    Logger.error('Unhandled promise rejection.', reason);
 });
 
 start();
