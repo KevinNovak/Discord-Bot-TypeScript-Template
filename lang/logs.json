@@ -16,6 +16,9 @@
         "spawnShard": "An error occurred while spawning shards.",
         "updateServerCount": "An error occurred while updating the server count.",
         "updateServerCountSite": "An error occurred while updating the server count on '{BOT_SITE}'.",
-        "login": "An error occurred while the client attempted to login."
+        "login": "An error occurred while the client attempted to login.",
+        "guildJoin": "An error occurred while processing a guild join.",
+        "guildLeave": "An error occurred while processing a guild leave.",
+        "message": "An error occurred while processing a message."
     }
 }

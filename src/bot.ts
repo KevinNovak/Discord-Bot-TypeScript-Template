@@ -49,27 +49,39 @@ export class Bot {
         Logger.setShardId(shardId);
     }
 
-    private onGuildJoin(guild: Guild): void {
+    private async onGuildJoin(guild: Guild): Promise<void> {
         if (!this.ready) {
             return;
         }
 
-        this.guildJoinHandler.process(guild);
+        try {
+            await this.guildJoinHandler.process(guild);
+        } catch (error) {
+            Logger.error(Logs.error.guildJoin, error);
+        }
     }
 
-    private onGuildLeave(guild: Guild): void {
+    private async onGuildLeave(guild: Guild): Promise<void> {
         if (!this.ready) {
             return;
         }
 
-        this.guildLeaveHandler.process(guild);
+        try {
+            await this.guildLeaveHandler.process(guild);
+        } catch (error) {
+            Logger.error(Logs.error.guildLeave, error);
+        }
     }
 
-    private onMessage(msg: Message): void {
+    private async onMessage(msg: Message): Promise<void> {
         if (!this.ready) {
             return;
         }
 
-        this.messageHandler.process(msg);
+        try {
+            await this.messageHandler.process(msg);
+        } catch (error) {
+            Logger.error(Logs.error.message, error);
+        }
     }
 }

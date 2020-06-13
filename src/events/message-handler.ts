@@ -5,7 +5,7 @@ export class MessageHandler {
 
     public async process(msg: Message): Promise<void> {
         if (msg.content.toLowerCase().startsWith(this.prefix)) {
-            msg.channel.send('It works!');
+            await msg.channel.send('It works!');
         }
     }
 }
