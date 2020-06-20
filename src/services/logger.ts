@@ -1,5 +1,5 @@
 import { DiscordAPIError } from 'discord.js';
-import { StatusCodeError } from 'request-promise/errors';
+import { RequestError, StatusCodeError } from 'request-promise/errors';
 
 export class Logger {
     private static shardTag: string;
@@ -37,6 +37,12 @@ export class Logger {
         }
 
         switch (error.constructor) {
+            case RequestError:
+                console.error({
+                    cause: error.cause,
+                    stack: error.stack,
+                });
+                break;
             case StatusCodeError:
                 console.error({
                     statusCode: error.statusCode,
