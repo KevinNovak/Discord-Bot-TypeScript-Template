@@ -4,6 +4,7 @@
     "author": "Kevin Novak",
     "description": "A TypeScript Discord bot with multi-machine sharding and bot-site support.",
     "license": "MIT",
+    "private": true,
     "engines": {
         "node": ">=12.14.0"
     },
