@@ -1,7 +1,19 @@
-import * as rp from 'request-promise';
+import fetch, { Response } from 'node-fetch';
 
 export class HttpService {
-    public async post(url: string, body: any, authorization: string): Promise<void> {
-        await rp.post(url, { body, json: true, headers: { Authorization: authorization } });
+    public async post(url: string, body: object, authorization: string): Promise<Response> {
+        let response = await fetch(url, {
+            method: 'post',
+            headers: {
+                Authorization: authorization,
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+            body: JSON.stringify(body),
+        });
+        if (!response.ok) {
+            throw response;
+        }
+        return response;
     }
 }

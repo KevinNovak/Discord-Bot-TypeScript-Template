@@ -1,5 +1,5 @@
 import { DiscordAPIError } from 'discord.js';
-import { RequestError, StatusCodeError } from 'request-promise/errors';
+import { Response } from 'node-fetch';
 
 export class Logger {
     private static shardTag: string;
@@ -22,7 +22,7 @@ export class Logger {
         console.warn(log);
     }
 
-    public static error(message: string, error?: any): void {
+    public static async error(message: string, error?: any): Promise<void> {
         // Log custom error message
         let log = '[Error]';
         if (this.shardTag) {
@@ -37,26 +37,30 @@ export class Logger {
         }
 
         switch (error.constructor) {
-            case RequestError:
+            case Response:
+                let response = error as Response;
+                let responseText: string;
+                try {
+                    responseText = await response.text();
+                } catch {
+                    // Ignore
+                }
                 console.error({
-                    cause: error.cause,
-                    stack: error.stack,
-                });
-                break;
-            case StatusCodeError:
-                console.error({
-                    statusCode: error.statusCode,
-                    stack: error.stack,
+                    path: response.url,
+                    statusCode: response.status,
+                    statusName: response.statusText,
+                    body: responseText,
                 });
                 break;
             case DiscordAPIError:
+                let discordError = error as DiscordAPIError;
                 console.error({
-                    message: error.message,
-                    code: error.code,
-                    statusCode: error.httpStatus,
-                    method: error.method,
-                    path: error.path,
-                    stack: error.stack,
+                    message: discordError.message,
+                    code: discordError.code,
+                    statusCode: discordError.httpStatus,
+                    method: discordError.method,
+                    path: discordError.path,
+                    stack: discordError.stack,
                 });
                 break;
             default:
