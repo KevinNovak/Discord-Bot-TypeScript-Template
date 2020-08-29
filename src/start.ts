@@ -19,7 +19,8 @@ async function start(): Promise<void> {
         client,
         guildJoinHandler,
         guildLeaveHandler,
-        messageHandler
+        messageHandler,
+        []
     );
 
     await bot.start();

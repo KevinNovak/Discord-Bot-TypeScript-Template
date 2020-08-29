@@ -1,6 +1,7 @@
 import { Client, Guild, Message } from 'discord.js';
 
 import { GuildJoinHandler, GuildLeaveHandler, MessageHandler } from './events';
+import { Job } from './jobs';
 import { Logger } from './services';
 
 let Logs = require('../lang/logs.json');
@@ -13,7 +14,8 @@ export class Bot {
         private client: Client,
         private guildJoinHandler: GuildJoinHandler,
         private guildLeaveHandler: GuildLeaveHandler,
-        private messageHandler: MessageHandler
+        private messageHandler: MessageHandler,
+        private jobs: Job[]
     ) {}
 
     public async start(): Promise<void> {
@@ -29,6 +31,12 @@ export class Bot {
         this.client.on('message', (msg: Message) => this.onMessage(msg));
     }
 
+    private startJobs(): void {
+        for (let job of this.jobs) {
+            job.start();
+        }
+    }
+
     private async login(token: string): Promise<void> {
         try {
             await this.client.login(token);
@@ -41,7 +49,7 @@ export class Bot {
     private onReady(): void {
         let userTag = this.client.user.tag;
         Logger.info(Logs.info.login.replace('{USER_TAG}', userTag));
-
+        this.startJobs();
         this.ready = true;
     }
 
