@@ -1,7 +1,20 @@
 {
     "prefix": "test",
-    "token": "<DISCORD_BOT_TOKEN>",
-    "intents": ["GUILDS", "GUILD_MEMBERS", "GUILD_PRESENCES", "GUILD_MESSAGES", "DIRECT_MESSAGES"],
+    "client": {
+        "token": "<DISCORD_BOT_TOKEN>",
+        "intents": [
+            "GUILDS",
+            "GUILD_MEMBERS",
+            "GUILD_PRESENCES",
+            "GUILD_MESSAGES",
+            "DIRECT_MESSAGES"
+        ]
+    },
+    "jobs": {
+        "updateServerCount": {
+            "schedule": "0 */5 * * * *"
+        }
+    },
     "sharding": {
         "machineId": 0,
         "machineCount": 1,
@@ -9,7 +22,9 @@
         "spawnDelay": 5,
         "spawnTimeout": 60
     },
-    "updateInterval": 300,
+    "links": {
+        "stream": "<STREAM_LINK>"
+    },
     "botSites": {
         "topGg": {
             "enabled": false,

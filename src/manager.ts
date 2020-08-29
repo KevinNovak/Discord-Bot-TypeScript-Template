@@ -1,13 +1,13 @@
 import { Shard, ShardingManager } from 'discord.js';
 
+import { Job } from './jobs';
 import { Logger } from './services';
-import { BotSite } from './services/sites';
 
-let Logs = require('../lang/logs.json');
 let Config = require('../config/config.json');
+let Logs = require('../lang/logs.json');
 
 export class Manager {
-    constructor(private shardManager: ShardingManager, private botSites: BotSite[]) {}
+    constructor(private shardManager: ShardingManager, private jobs: Job[]) {}
 
     public async start(): Promise<void> {
         this.registerListeners();
@@ -21,52 +21,17 @@ export class Manager {
             Logger.error(Logs.error.spawnShard, error);
             return;
         }
-
-        try {
-            await this.updateServerCount();
-        } catch (error) {
-            Logger.error(Logs.error.updateServerCount, error);
-        }
-    }
-
-    public async updateServerCount(): Promise<void> {
-        let serverCount = await this.retrieveServerCount();
-        await this.shardManager.broadcastEval(`
-            this.user.setPresence({
-                activity: {
-                    name: 'QOTD to ${serverCount.toLocaleString()} servers',
-                    type: "STREAMING",
-                    url: "https://www.twitch.tv/monstercat"
-                }
-            });
-        `);
-
-        Logger.info(
-            Logs.info.updatedServerCount.replace('{SERVER_COUNT}', serverCount.toLocaleString())
-        );
-
-        for (let botSite of this.botSites) {
-            try {
-                await botSite.updateServerCount(serverCount);
-            } catch (error) {
-                Logger.error(
-                    Logs.error.updateServerCountSite.replace('{BOT_SITE}', botSite.name),
-                    error
-                );
-                continue;
-            }
-
-            Logger.info(Logs.info.updateServerCountSite.replace('{BOT_SITE}', botSite.name));
-        }
-    }
-
-    private async retrieveServerCount(): Promise<number> {
-        let shardSizes = await this.shardManager.fetchClientValues('guilds.cache.size');
-        return shardSizes.reduce((prev, val) => prev + val, 0);
+        this.startJobs();
     }
 
     private registerListeners(): void {
         this.shardManager.on('shardCreate', shard => this.onShardCreate(shard));
+    }
+
+    private startJobs(): void {
+        for (let job of this.jobs) {
+            job.start();
+        }
     }
 
     private onShardCreate(shard: Shard): void {

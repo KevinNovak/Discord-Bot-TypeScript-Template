@@ -1,5 +1,6 @@
 import { ShardingManager } from 'discord.js';
 
+import { UpdateServerCountJob } from './jobs';
 import { Manager } from './manager';
 import { HttpService, Logger } from './services';
 import {
@@ -11,8 +12,8 @@ import {
 import { ShardUtils } from './utils';
 
 let Config = require('../config/config.json');
-let Logs = require('../lang/logs.json');
 let Debug = require('../config/debug.json');
+let Logs = require('../lang/logs.json');
 
 async function start(): Promise<void> {
     Logger.info(Logs.info.started);
@@ -33,13 +34,12 @@ async function start(): Promise<void> {
     // Sharding
     let totalShards = 0;
     try {
-        totalShards =
-            Debug.enabled && Debug.overrideShardCount
-                ? Debug.shardCount
-                : await ShardUtils.getRecommendedShards(
-                      Config.token,
-                      Config.sharding.serversPerShard
-                  );
+        totalShards = Debug.override.shardCount.enabled
+            ? Debug.override.shardCount.value
+            : await ShardUtils.getRecommendedShards(
+                  Config.client.token,
+                  Config.sharding.serversPerShard
+              );
     } catch (error) {
         Logger.error(Logs.error.retrieveShardCount, error);
         return;
@@ -57,31 +57,25 @@ async function start(): Promise<void> {
     }
 
     let shardManager = new ShardingManager('dist/start.js', {
-        token: Config.token,
+        token: Config.client.token,
         mode: 'worker',
         respawn: true,
         totalShards,
         shardList: myShardIds,
     });
 
-    let manager = new Manager(
+    let updateServerCountJob = new UpdateServerCountJob(
+        Config.jobs.updateServerCount.schedule,
         shardManager,
         [topGgSite, botsOnDiscordXyzSite, discordBotsGgSite, discordBotListComSite].filter(
             botSite => botSite.enabled
         )
     );
 
+    let manager = new Manager(shardManager, [updateServerCountJob]);
+
     // Start
     await manager.start();
-
-    // Start schedule to update server count
-    setInterval(async () => {
-        try {
-            await manager.updateServerCount();
-        } catch (error) {
-            Logger.error(Logs.error.updateServerCount, error);
-        }
-    }, Config.updateInterval * 1000);
 }
 
 start();
