@@ -1,4 +1,4 @@
-import { BotSiteConfig } from '../../models/bot-site-config';
+import { BotSiteConfig } from '../../models/config-models';
 import { HttpService } from '../http-service';
 import { BotSite } from './bot-site';
 
