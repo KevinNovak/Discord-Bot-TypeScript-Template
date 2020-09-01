@@ -3,6 +3,7 @@ import schedule from 'node-schedule';
 
 import { Logger } from '../services';
 import { BotSite } from '../services/sites';
+import { ShardUtils } from '../utils';
 import { Job } from './job';
 
 let Config = require('../../config/config.json');
@@ -16,7 +17,7 @@ export class UpdateServerCountJob implements Job {
     ) {}
 
     public async run(): Promise<void> {
-        let serverCount = await this.retrieveServerCount();
+        let serverCount = await ShardUtils.retrieveServerCount(this.shardManager);
         await this.shardManager.broadcastEval(`
             this.user.setPresence({
                 activity: {
@@ -54,10 +55,5 @@ export class UpdateServerCountJob implements Job {
                 Logger.error(Logs.error.updateServerCount, error);
             }
         });
-    }
-
-    private async retrieveServerCount(): Promise<number> {
-        let shardSizes = await this.shardManager.fetchClientValues('guilds.cache.size');
-        return shardSizes.reduce((prev, val) => prev + val, 0);
     }
 }
