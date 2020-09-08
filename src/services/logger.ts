@@ -38,18 +38,18 @@ export class Logger {
 
         switch (error.constructor) {
             case Response:
-                let response = error as Response;
-                let responseText: string;
+                let res = error as Response;
+                let resText: string;
                 try {
-                    responseText = await response.text();
+                    resText = await res.text();
                 } catch {
                     // Ignore
                 }
                 console.error({
-                    path: response.url,
-                    statusCode: response.status,
-                    statusName: response.statusText,
-                    body: responseText,
+                    path: res.url,
+                    statusCode: res.status,
+                    statusName: res.statusText,
+                    body: resText,
                 });
                 break;
             case DiscordAPIError:
