@@ -23,7 +23,7 @@
         "spawnTimeout": 300
     },
     "links": {
-        "stream": "<STREAM_LINK>"
+        "stream": "https://www.twitch.tv/monstercat"
     },
     "botSites": {
         "topGg": {
