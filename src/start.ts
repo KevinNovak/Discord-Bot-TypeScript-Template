@@ -7,7 +7,13 @@ import { Logger } from './services';
 let Config = require('../config/config.json');
 
 async function start(): Promise<void> {
-    let client = new Client({ ws: { intents: Config.client.intents } });
+    let client = new Client({
+        ws: { intents: Config.client.intents },
+        partials: Config.client.partials,
+        messageCacheMaxSize: Config.client.caches.messages.size,
+        messageCacheLifetime: Config.client.caches.messages.lifetime,
+        messageSweepInterval: Config.client.caches.messages.sweepInterval,
+    });
 
     // Events handlers
     let guildJoinHandler = new GuildJoinHandler();

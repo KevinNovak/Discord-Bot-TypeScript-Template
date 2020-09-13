@@ -8,7 +8,15 @@
             "GUILD_PRESENCES",
             "GUILD_MESSAGES",
             "DIRECT_MESSAGES"
-        ]
+        ],
+        "partials": [],
+        "caches": {
+            "messages": {
+                "size": 1,
+                "lifetime": 60,
+                "sweepInterval": 30
+            }
+        }
     },
     "jobs": {
         "updateServerCount": {
