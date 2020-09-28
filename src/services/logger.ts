@@ -49,6 +49,7 @@ export class Logger {
                     path: res.url,
                     statusCode: res.status,
                     statusName: res.statusText,
+                    headers: res.headers.raw(),
                     body: resText,
                 });
                 break;
