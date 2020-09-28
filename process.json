@@ -3,7 +3,8 @@
         {
             "name": "my-bot",
             "script": "dist/app.js",
-            "log_date_format": "YYYY-MM-DD HH:mm:ss"
+            "log_date_format": "YYYY-MM-DD HH:mm:ss",
+            "restart_delay": 10000
         }
     ]
 }
