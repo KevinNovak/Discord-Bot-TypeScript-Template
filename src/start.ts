@@ -1,6 +1,7 @@
 import { Client } from 'discord.js';
 
 import { Bot } from './bot';
+import { HelpCommand, TestCommand } from './commands';
 import { GuildJoinHandler, GuildLeaveHandler, MessageHandler } from './events';
 import { Logger } from './services';
 
@@ -15,10 +16,14 @@ async function start(): Promise<void> {
         messageSweepInterval: Config.client.caches.messages.sweepInterval,
     });
 
+    // Commands
+    let helpCommand = new HelpCommand();
+    let testCommand = new TestCommand();
+
     // Events handlers
     let guildJoinHandler = new GuildJoinHandler();
     let guildLeaveHandler = new GuildLeaveHandler();
-    let messageHandler = new MessageHandler(Config.prefix);
+    let messageHandler = new MessageHandler(Config.prefix, helpCommand, [testCommand]);
 
     let bot = new Bot(
         Config.client.token,

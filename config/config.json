@@ -1,5 +1,5 @@
 {
-    "prefix": "test",
+    "prefix": "bot",
     "client": {
         "token": "<DISCORD_BOT_TOKEN>",
         "intents": [
@@ -22,6 +22,10 @@
         "updateServerCount": {
             "schedule": "0 */5 * * * *"
         }
+    },
+    "colors": {
+        "default": "0x0099ff",
+        "error": "0xff4a4a"
     },
     "sharding": {
         "machineId": 0,
