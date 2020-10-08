@@ -11,7 +11,7 @@
 * Basic command structure.
 * Shows server count in bot presence.
 * Posts bot server counts to popular bot sites.
-* Support for running with the PM2 process manger.
+* Support for running with the [PM2](https://pm2.keymetrics.io/) process manger.
 * Built-in debugging setup for VSCode.
 
 ## Setup
