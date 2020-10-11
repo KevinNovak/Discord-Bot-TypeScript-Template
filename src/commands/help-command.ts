@@ -18,7 +18,8 @@ export class HelpCommand implements Command {
         let embed = new MessageEmbed()
             .setColor(Config.colors.default)
             .setTitle('My Bot - Help')
-            .addField('bot test', 'Run the test command.');
+            .addField('bot test', 'Run the test command.')
+            .addField('bot info', 'More information about My Bot.');
 
         await MessageUtils.send(channel, embed);
     }
