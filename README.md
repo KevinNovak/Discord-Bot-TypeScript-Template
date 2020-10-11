@@ -46,7 +46,19 @@ You can run the bot in 3 different modes:
 
 ## Commands
 
-![Commands](https://i.imgur.com/sIKY9bN.png)
+This bot has a few example commands which can be modified as needed.
+
+### Help Command
+
+![Help Command](https://i.imgur.com/zOSyaNl.png)
+
+### Test Command
+
+![Test Command](https://i.imgur.com/rzpdTVA.png)
+
+### Info Command
+
+![Info Command](https://i.imgur.com/xw2H8th.png)
 
 ## References
 
