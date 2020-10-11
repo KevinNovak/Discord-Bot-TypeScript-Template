@@ -1,9 +1,11 @@
 import { DMChannel, Message, MessageEmbed, TextChannel } from 'discord.js';
 
 import { Command } from '../commands';
+import { Logger } from '../services';
 import { MessageUtils, PermissionUtils } from '../utils';
 
 let Config = require('../../config/config.json');
+let Logs = require('../../lang/logs.json');
 
 export class MessageHandler {
     constructor(
@@ -76,7 +78,46 @@ export class MessageHandler {
             return;
         }
 
-        await command.execute(args, msg, channel);
+        try {
+            await command.execute(args, msg, channel);
+        } catch (error) {
+            // Try to notify sender of command error
+            try {
+                let embed = new MessageEmbed()
+                    .setDescription(`Something went wrong!`)
+                    .addField('Error code', msg.id)
+                    .addField('Contact support', Config.links.support)
+                    .setColor(Config.colors.error);
+                await MessageUtils.send(channel, embed);
+            } catch {
+                // Ignore
+            }
+
+            // Log command error
+            if (channel instanceof DMChannel) {
+                Logger.error(
+                    Logs.error.commandDm
+                        .replace('{MESSAGE_ID}', msg.id)
+                        .replace('{COMMAND_NAME}', command.name)
+                        .replace('{SENDER_TAG}', msg.author.tag)
+                        .replace('{SENDER_ID}', msg.author.id),
+                    error
+                );
+            } else if (channel instanceof TextChannel) {
+                Logger.error(
+                    Logs.error.commandGuild
+                        .replace('{MESSAGE_ID}', msg.id)
+                        .replace('{COMMAND_NAME}', command.name)
+                        .replace('{SENDER_TAG}', msg.author.tag)
+                        .replace('{SENDER_ID}', msg.author.id)
+                        .replace('{CHANNEL_NAME}', channel.name)
+                        .replace('{CHANNEL_ID}', channel.id)
+                        .replace('{GUILD_NAME}', msg.guild.name)
+                        .replace('{GUILD_ID}', msg.guild.id),
+                    error
+                );
+            }
+        }
     }
 
     private findCommand(userCommand: string): Command {

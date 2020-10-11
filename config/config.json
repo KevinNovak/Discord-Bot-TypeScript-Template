@@ -35,6 +35,7 @@
         "spawnTimeout": 300
     },
     "links": {
+        "support": "https://discord.com/",
         "stream": "https://www.twitch.tv/monstercat"
     },
     "botSites": {
