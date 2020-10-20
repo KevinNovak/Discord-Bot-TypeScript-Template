@@ -30,8 +30,12 @@ export abstract class MessageUtils {
         try {
             return await msg.react(emoji);
         } catch (error) {
-            // Error code 90001: "Reaction blocked" (User blocked bot)
-            if (error instanceof DiscordAPIError && error.code === 90001) {
+            // Error code 10008: "Unknown Message" (Message was deleted)
+            // Error code 90001: "Reaction Blocked" (User blocked bot)
+            if (
+                error instanceof DiscordAPIError &&
+                (error.code === 10008 || error.code === 90001)
+            ) {
                 return;
             } else {
                 throw error;
