@@ -36,11 +36,11 @@ You can run the bot in 3 different modes:
     * This runs the bot directly with Node and without shards.
     * Use this mode for general development.
 2. Shard Mode
-    * Type `npm run start-shard`.
+    * Type `npm run start:shard`.
     * This runs the bot directly with Node and with sharding enabled.
     * Use this mode if you are testing sharding.
 3. PM2 Mode
-    * Run by typing `npm run start-pm2`.
+    * Run by typing `npm run start:pm2`.
     * This runs the bot using the process manager [PM2](https://pm2.keymetrics.io/).
     * Use this mode if you require the bot to always be online.
 

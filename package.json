@@ -10,12 +10,13 @@
     },
     "main": "dist/start.js",
     "scripts": {
-        "start": "tsc && node dist/start.js",
-        "start-shard": "tsc && node dist/app.js",
-        "start-pm2": "tsc && pm2 start process.json",
-        "stop-pm2": "pm2 stop process.json",
-        "delete-pm2": "pm2 delete process.json",
-        "build": "tsc"
+        "build": "tsc",
+        "start": "npm run build && node dist/start.js",
+        "start:shard": "npm run build && node dist/app.js",
+        "start:pm2": "npm run build && npm run pm2:start",
+        "pm2:start": "pm2 start process.json",
+        "pm2:stop": "pm2 stop process.json",
+        "pm2:delete": "pm2 delete process.json"
     },
     "dependencies": {
         "discord.js": "12.4.1",
