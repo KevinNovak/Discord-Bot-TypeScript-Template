@@ -37,7 +37,7 @@ export class Logger {
         }
 
         switch (error.constructor) {
-            case Response:
+            case Response: {
                 let res = error as Response;
                 let resText: string;
                 try {
@@ -53,7 +53,8 @@ export class Logger {
                     body: resText,
                 });
                 break;
-            case DiscordAPIError:
+            }
+            case DiscordAPIError: {
                 let discordError = error as DiscordAPIError;
                 console.error({
                     message: discordError.message,
@@ -64,9 +65,11 @@ export class Logger {
                     stack: discordError.stack,
                 });
                 break;
-            default:
+            }
+            default: {
                 console.error(error);
                 break;
+            }
         }
     }
 
