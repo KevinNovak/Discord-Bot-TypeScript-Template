@@ -10,6 +10,7 @@
     },
     "main": "dist/start.js",
     "scripts": {
+        "lint": "tslint --project .",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "build": "tsc",
