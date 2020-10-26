@@ -1,8 +1,8 @@
 import { ShardingManager } from 'discord.js';
 import schedule from 'node-schedule';
 
-import { Logger } from '../services';
-import { BotSite } from '../services/sites';
+import { BotSite } from '../models/config-models';
+import { HttpService, Logger } from '../services';
 import { ShardUtils } from '../utils';
 import { Job } from './job';
 
@@ -10,11 +10,16 @@ let Config = require('../../config/config.json');
 let Logs = require('../../lang/logs.json');
 
 export class UpdateServerCountJob implements Job {
+    private botSites: BotSite[];
+
     constructor(
         public schedule: string,
+        botSites: BotSite[],
         private shardManager: ShardingManager,
-        private botSites: BotSite[]
-    ) {}
+        private httpService: HttpService
+    ) {
+        this.botSites = botSites.filter(botSite => botSite.enabled);
+    }
 
     public async run(): Promise<void> {
         let serverCount = await ShardUtils.retrieveServerCount(this.shardManager);
@@ -34,7 +39,14 @@ export class UpdateServerCountJob implements Job {
 
         for (let botSite of this.botSites) {
             try {
-                await botSite.updateServerCount(serverCount);
+                let body = JSON.parse(
+                    botSite.body.replace('{{SERVER_COUNT}}', serverCount.toString())
+                );
+                let res = await this.httpService.post(botSite.url, botSite.authorization, body);
+
+                if (!res.ok) {
+                    throw res;
+                }
             } catch (error) {
                 Logger.error(
                     Logs.error.updateServerCountSite.replace('{BOT_SITE}', botSite.name),

@@ -1,5 +1,7 @@
-export interface BotSiteConfig {
+export interface BotSite {
+    name: string;
     enabled: boolean;
     url: string;
-    token: string;
+    authorization: string;
+    body: string;
 }

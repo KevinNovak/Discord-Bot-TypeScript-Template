@@ -3,12 +3,6 @@ import { ShardingManager } from 'discord.js';
 import { UpdateServerCountJob } from './jobs';
 import { Manager } from './manager';
 import { HttpService, Logger } from './services';
-import {
-    BotsOnDiscordXyzSite,
-    DiscordBotListComSite,
-    DiscordBotsGgSite,
-    TopGgSite,
-} from './services/sites';
 import { ShardUtils } from './utils';
 
 let Config = require('../config/config.json');
@@ -18,18 +12,6 @@ let Logs = require('../lang/logs.json');
 async function start(): Promise<void> {
     Logger.info(Logs.info.started);
     let httpService = new HttpService();
-
-    // Bot sites
-    let topGgSite = new TopGgSite(Config.botSites.topGg, httpService);
-    let botsOnDiscordXyzSite = new BotsOnDiscordXyzSite(
-        Config.botSites.botsOnDiscordXyz,
-        httpService
-    );
-    let discordBotsGgSite = new DiscordBotsGgSite(Config.botSites.discordBotsGg, httpService);
-    let discordBotListComSite = new DiscordBotListComSite(
-        Config.botSites.discordBotListCom,
-        httpService
-    );
 
     // Sharding
     let totalShards = 0;
@@ -66,10 +48,9 @@ async function start(): Promise<void> {
 
     let updateServerCountJob = new UpdateServerCountJob(
         Config.jobs.updateServerCount.schedule,
+        Config.botSites,
         shardManager,
-        [topGgSite, botsOnDiscordXyzSite, discordBotsGgSite, discordBotListComSite].filter(
-            botSite => botSite.enabled
-        )
+        httpService
     );
 
     let manager = new Manager(shardManager, [updateServerCountJob]);

@@ -38,26 +38,34 @@
         "support": "https://discord.com/",
         "stream": "https://www.twitch.tv/monstercat"
     },
-    "botSites": {
-        "topGg": {
-            "enabled": false,
-            "url": "https://top.gg/api/bots/<BOT_ID>/stats",
-            "token": "<TOKEN>"
-        },
-        "botsOnDiscordXyz": {
+    "botSites": [
+        {
+            "name": "top.gg",
             "enabled": false,
             "url": "https://bots.ondiscord.xyz/bot-api/bots/<BOT_ID>/guilds",
-            "token": "<TOKEN>"
+            "authorization": "<TOKEN>",
+            "body": "{\"server_count\":{{SERVER_COUNT}}}"
         },
-        "discordBotsGg": {
+        {
+            "name": "bots.ondiscord.xyz",
+            "enabled": false,
+            "url": "https://bots.ondiscord.xyz/bot-api/bots/<BOT_ID>/guilds",
+            "authorization": "<TOKEN>",
+            "body": "{\"guildCount\":{{SERVER_COUNT}}}"
+        },
+        {
+            "name": "discord.bots.gg",
             "enabled": false,
             "url": "https://discord.bots.gg/api/v1/bots/<BOT_ID>/stats",
-            "token": "<TOKEN>"
+            "authorization": "<TOKEN>",
+            "body": "{\"guildCount\":{{SERVER_COUNT}}}"
         },
-        "discordBotListCom": {
+        {
+            "name": "discordbotlist.com",
             "enabled": false,
             "url": "https://discordbotlist.com/api/bots/<BOT_ID>/stats",
-            "token": "Bot <TOKEN>"
+            "authorization": "Bot <TOKEN>",
+            "body": "{\"guilds\":{{SERVER_COUNT}}}"
         }
-    }
+    ]
 }
