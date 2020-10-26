@@ -11,8 +11,9 @@
     "main": "dist/start.js",
     "scripts": {
         "lint": "tslint --project .",
-        "format": "prettier --write .",
-        "format:check": "prettier --check .",
+        "lint:fix": "tslint --fix --project .",
+        "format": "prettier --check .",
+        "format:fix": "prettier --write .",
         "build": "tsc",
         "start": "npm run build && node dist/start.js",
         "start:shard": "npm run build && node dist/app.js",
