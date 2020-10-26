@@ -1,3 +1,6 @@
 {
+    "[typescript]": {
+        "editor.formatOnSave": true
+    },
     "cSpell.words": ["parens", "respawn"]
 }
