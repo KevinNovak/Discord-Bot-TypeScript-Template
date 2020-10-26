@@ -42,7 +42,7 @@
         {
             "name": "top.gg",
             "enabled": false,
-            "url": "https://bots.ondiscord.xyz/bot-api/bots/<BOT_ID>/guilds",
+            "url": "https://top.gg/api/bots/<BOT_ID>/stats",
             "authorization": "<TOKEN>",
             "body": "{\"server_count\":{{SERVER_COUNT}}}"
         },
