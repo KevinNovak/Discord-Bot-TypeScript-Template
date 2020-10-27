@@ -15,7 +15,6 @@
         "format": "prettier --check .",
         "format:fix": "prettier --write .",
         "build": "tsc",
-        "postinstall": "tsc",
         "start": "npm run build && node --enable-source-maps dist/start.js",
         "start:shard": "npm run build && node --enable-source-maps dist/app.js",
         "start:pm2": "npm run build && npm run pm2:start",
