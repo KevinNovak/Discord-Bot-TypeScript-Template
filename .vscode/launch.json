@@ -8,7 +8,8 @@
             "skipFiles": ["<node_internals>/**"],
             "program": "${workspaceFolder}\\dist\\start.js",
             "preLaunchTask": "tsc",
-            "internalConsoleOptions": "openOnSessionStart"
+            "internalConsoleOptions": "openOnSessionStart",
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"]
         },
         {
             "type": "node",
@@ -17,7 +18,8 @@
             "skipFiles": ["<node_internals>/**"],
             "program": "${workspaceFolder}\\dist\\app.js",
             "preLaunchTask": "tsc",
-            "internalConsoleOptions": "openOnSessionStart"
+            "internalConsoleOptions": "openOnSessionStart",
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"]
         }
     ]
 }
