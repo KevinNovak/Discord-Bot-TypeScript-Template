@@ -66,6 +66,13 @@
             "url": "https://discordbotlist.com/api/bots/<BOT_ID>/stats",
             "authorization": "Bot <TOKEN>",
             "body": "{\"guilds\":{{SERVER_COUNT}}}"
+        },
+        {
+            "name": "bots.discordlabs.org",
+            "enabled": false,
+            "url": "https://bots.discordlabs.org/v2/bot/<BOT_ID>/stats",
+            "authorization": null,
+            "body": "{\"token\":\"discordlabs.org-<TOKEN>\",\"server_count\":\"{{SERVER_COUNT}}\"}"
         }
     ]
 }
