@@ -8,5 +8,12 @@
     "[typescript]": {
         "editor.formatOnSave": true
     },
-    "cSpell.words": ["parens", "respawn"]
+    "cSpell.words": [
+        "Novak",
+        "discordbotlist",
+        "discordlabs",
+        "ondiscord",
+        "parens",
+        "respawn"
+    ]
 }
