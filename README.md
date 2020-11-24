@@ -9,6 +9,7 @@
 -   Written with TypeScript and [discord.js](https://discord.js.org/).
 -   Multi-machine sharding.
 -   Basic command structure.
+-   Rate limit commands.
 -   Shows server count in bot presence.
 -   Posts bot server counts to popular bot sites.
 -   Support for running with the [PM2](https://pm2.keymetrics.io/) process manger.
