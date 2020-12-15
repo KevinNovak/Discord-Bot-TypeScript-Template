@@ -17,15 +17,19 @@
 
 ## Setup
 
-1. Obtain a bot token.
+1. Copy example config files.
+    - Navigate to the `config` folder of this project.
+    - Copy all files ending in `.example.json` and remove the `.example` from the copied file names.
+        - Ex: `config.example.json` should be copied and renamed as `config.json`.
+2. Obtain a bot token.
     - You'll need to create a new bot in your [Discord Developer Portal](https://discordapp.com/developers/applications/).
         - See [here](https://www.writebots.com/discord-bot-token/) for detailed instructions.
         - At the end you should have a **bot token**.
-2. Modify the config file.
+3. Modify the config file.
     - Open the `config/config.json` file.
     - You'll need to edit the following values:
         - `client.token` - Your discord bot token.
-3. Install packages.
+4. Install packages.
     - Navigate into the downloaded source files and type `npm install`.
 
 ## Start Scripts
