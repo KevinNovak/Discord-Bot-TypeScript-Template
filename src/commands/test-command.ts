@@ -1,9 +1,8 @@
-import { DMChannel, Message, MessageEmbed, TextChannel } from 'discord.js';
+import { DMChannel, Message, TextChannel } from 'discord.js';
+import { Lang } from '../services';
 
 import { MessageUtils } from '../utils';
 import { Command } from './command';
-
-let Config = require('../../config/config.json');
 
 export class TestCommand implements Command {
     public name = 'test';
@@ -15,11 +14,7 @@ export class TestCommand implements Command {
         msg: Message,
         channel: DMChannel | TextChannel
     ): Promise<void> {
-        let embed = new MessageEmbed()
-            .setColor(Config.colors.default)
-            .setTitle('Test Command')
-            .setDescription('Test command works!');
-
+        let embed = Lang.getEmbed('test', 'en');
         await MessageUtils.send(channel, embed);
     }
 }

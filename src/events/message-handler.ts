@@ -1,8 +1,8 @@
-import { DMChannel, Message, MessageEmbed, TextChannel } from 'discord.js';
+import { DMChannel, Message, TextChannel } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { Command } from '../commands';
-import { Logger } from '../services';
+import { Lang, Logger } from '../services';
 import { MessageUtils, PermissionUtils } from '../utils';
 
 let Config = require('../../config/config.json');
@@ -81,11 +81,7 @@ export class MessageHandler {
         }
 
         if (command.requireGuild && !(channel instanceof TextChannel)) {
-            let embed = new MessageEmbed()
-                .setTitle('Server Only Command!')
-                .setDescription(`This command can only be used in a server.`)
-                .setFooter('Please try again in a server!')
-                .setColor(Config.colors.error);
+            let embed = Lang.getEmbed('serverOnly', 'en');
             await MessageUtils.send(channel, embed);
             return;
         }
@@ -95,11 +91,9 @@ export class MessageHandler {
         } catch (error) {
             // Try to notify sender of command error
             try {
-                let embed = new MessageEmbed()
-                    .setDescription(`Something went wrong!`)
-                    .addField('Error code', msg.id)
-                    .addField('Contact support', Config.links.support)
-                    .setColor(Config.colors.error);
+                let embed = Lang.getEmbed('commandError', 'en', {
+                    ERROR_CODE: msg.id,
+                });
                 await MessageUtils.send(channel, embed);
             } catch {
                 // Ignore
