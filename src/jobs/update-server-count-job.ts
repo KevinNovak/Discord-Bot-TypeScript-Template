@@ -6,7 +6,6 @@ import { HttpService, Lang, Logger } from '../services';
 import { ShardUtils } from '../utils';
 import { Job } from './job';
 
-let Config = require('../../config/config.json');
 let BotSites: BotSite[] = require('../../config/bot-sites.json');
 let Logs = require('../../lang/logs.json');
 
