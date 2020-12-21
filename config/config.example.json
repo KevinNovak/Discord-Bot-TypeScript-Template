@@ -29,19 +29,11 @@
             "schedule": "0 */5 * * * *"
         }
     },
-    "colors": {
-        "default": "#0099ff",
-        "error": "#ff4a4a"
-    },
     "sharding": {
         "machineId": 0,
         "machineCount": 1,
         "serversPerShard": 1000,
         "spawnDelay": 5,
         "spawnTimeout": 300
-    },
-    "links": {
-        "support": "https://discord.com/",
-        "stream": "https://www.twitch.tv/monstercat"
     }
 }
