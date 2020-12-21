@@ -51,7 +51,7 @@
     },
     "refs": {
         "colorError": "#ff4a4a",
-        "linkSupport": "https://discord.com/",
+        "linkSupport": "https://support.discord.com/",
         "linkStream": "https://www.twitch.tv/monstercat",
         "missingEmbedPerms": [
             "I don't have all permissions required to send messages here!",
