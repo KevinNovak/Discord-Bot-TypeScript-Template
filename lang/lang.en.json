@@ -47,6 +47,11 @@
     "refs": {
         "colorError": "#ff4a4a",
         "linkSupport": "https://discord.com/",
-        "linkStream": "https://www.twitch.tv/monstercat"
+        "linkStream": "https://www.twitch.tv/monstercat",
+        "missingEmbedPerms": [
+            "I don't have all permissions required to send messages here!",
+            "",
+            "Please allow me to **Read Messages**, **Send Messages**, and **Embed Links** in this channel."
+        ]
     }
 }
