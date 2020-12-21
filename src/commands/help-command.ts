@@ -8,6 +8,7 @@ export class HelpCommand implements Command {
     public name = 'help';
     public aliases = ['?'];
     public requireGuild = false;
+    public requirePerms = [];
 
     public async execute(
         args: string[],

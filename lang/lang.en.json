@@ -23,10 +23,15 @@
                 { "name": "discord.js", "value": "{{DJS_VERSION}}" }
             ]
         },
-        "serverOnly": {
+        "serverOnlyCommand": {
             "title": "Server Only Command!",
             "description": "This command can only be used in a server.",
             "footer": "Please try again in a server!",
+            "color": "{{REF:colorError}}"
+        },
+        "permissionRequired": {
+            "title": "Permission Required!",
+            "description": "You don't have permission to run that command!",
             "color": "{{REF:colorError}}"
         },
         "commandError": {

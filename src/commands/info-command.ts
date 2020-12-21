@@ -11,6 +11,7 @@ export class InfoCommand implements Command {
     public name = 'info';
     public aliases = ['i', 'information'];
     public requireGuild = false;
+    public requirePerms = [];
 
     public async execute(
         args: string[],

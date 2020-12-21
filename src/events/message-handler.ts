@@ -1,4 +1,4 @@
-import { DMChannel, Message, TextChannel } from 'discord.js';
+import { DMChannel, GuildMember, Message, TextChannel } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { Command } from '../commands';
@@ -6,6 +6,7 @@ import { Lang, Logger } from '../services';
 import { MessageUtils, PermissionUtils } from '../utils';
 
 let Config = require('../../config/config.json');
+let Debug = require('../../config/debug.json');
 let Logs = require('../../lang/logs.json');
 
 export class MessageHandler {
@@ -81,13 +82,29 @@ export class MessageHandler {
         }
 
         if (command.requireGuild && !(channel instanceof TextChannel)) {
-            let embed = Lang.getEmbed('serverOnly', 'en');
+            let embed = Lang.getEmbed('serverOnlyCommand', 'en');
             await MessageUtils.send(channel, embed);
             return;
         }
 
         try {
-            await command.execute(args, msg, channel);
+            if (channel instanceof DMChannel) {
+                await command.execute(args, msg, channel);
+                return;
+            }
+
+            if (channel instanceof TextChannel) {
+                // Check if user has permission
+                if (!this.hasPermission(msg.member, command)) {
+                    let embed = Lang.getEmbed('permissionRequired', 'en');
+                    await MessageUtils.send(channel, embed);
+                    return;
+                }
+
+                // Execute the command
+                await command.execute(args, msg, channel);
+                return;
+            }
         } catch (error) {
             // Try to notify sender of command error
             try {
@@ -137,5 +154,17 @@ export class MessageHandler {
                 return command;
             }
         }
+    }
+
+    private hasPermission(member: GuildMember, command: Command): boolean {
+        if (Debug.skipCheck.perms) {
+            return true;
+        }
+
+        if (!member.hasPermission(command.requirePerms)) {
+            return false;
+        }
+
+        return true;
     }
 }

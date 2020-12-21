@@ -8,6 +8,7 @@ export class TestCommand implements Command {
     public name = 'test';
     public aliases = ['t'];
     public requireGuild = false;
+    public requirePerms = [];
 
     public async execute(
         args: string[],
