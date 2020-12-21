@@ -9,6 +9,7 @@
 -   Written with TypeScript and [discord.js](https://discord.js.org/).
 -   Multi-machine sharding.
 -   Basic command structure.
+-   Support for multiple languages.
 -   Rate limit commands.
 -   Shows server count in bot presence.
 -   Posts bot server counts to popular bot sites.
