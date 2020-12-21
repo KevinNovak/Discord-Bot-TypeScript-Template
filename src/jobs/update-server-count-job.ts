@@ -2,7 +2,7 @@ import { ShardingManager } from 'discord.js';
 import schedule from 'node-schedule';
 
 import { BotSite } from '../models/config-models';
-import { HttpService, Logger } from '../services';
+import { HttpService, Lang, Logger } from '../services';
 import { ShardUtils } from '../utils';
 import { Job } from './job';
 
@@ -28,7 +28,7 @@ export class UpdateServerCountJob implements Job {
                 activity: {
                     name: 'to ${serverCount.toLocaleString()} servers',
                     type: "STREAMING",
-                    url: "${Config.links.stream}"
+                    url: "${Lang.getRef('linkStream', 'en')}"
                 }
             });
         `);

@@ -7,6 +7,14 @@ export class Lang {
         path.resolve(__dirname, '../../lang')
     );
 
+    public static getRef(
+        refName: string,
+        langCode: string,
+        variables?: { [name: string]: string }
+    ): string {
+        return this.multilingualService.getRef(refName, langCode, variables);
+    }
+
     public static getEmbed(
         embedName: string,
         langCode: string,
