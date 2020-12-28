@@ -9,7 +9,7 @@ import {
     User,
 } from 'discord.js';
 
-export abstract class MessageUtils {
+export class MessageUtils {
     public static async send(
         target: User | DMChannel | TextChannel,
         content: StringResolvable

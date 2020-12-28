@@ -1,6 +1,6 @@
 import { Permissions, TextChannel } from 'discord.js';
 
-export abstract class PermissionUtils {
+export class PermissionUtils {
     public static canSend(channel: TextChannel): boolean {
         let channelPerms = channel.permissionsFor(channel.client.user);
         if (!channelPerms) {
