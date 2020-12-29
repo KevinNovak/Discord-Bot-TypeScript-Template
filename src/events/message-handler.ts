@@ -56,7 +56,7 @@ export class MessageHandler {
         }
 
         // Check if I have permission to send a message
-        if (channel instanceof TextChannel && !PermissionUtils.canSendEmbed(channel)) {
+        if (!PermissionUtils.canSendEmbed(channel)) {
             // No permission to send message
             if (PermissionUtils.canSend(channel)) {
                 let message = Lang.getRef('missingEmbedPerms', 'en');
