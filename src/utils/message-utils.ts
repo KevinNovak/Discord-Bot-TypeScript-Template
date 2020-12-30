@@ -4,6 +4,7 @@ import {
     EmojiResolvable,
     Message,
     MessageReaction,
+    NewsChannel,
     StringResolvable,
     TextChannel,
     User,
@@ -11,7 +12,7 @@ import {
 
 export class MessageUtils {
     public static async send(
-        target: User | DMChannel | TextChannel,
+        target: User | DMChannel | TextChannel | NewsChannel,
         content: StringResolvable
     ): Promise<Message> {
         try {
