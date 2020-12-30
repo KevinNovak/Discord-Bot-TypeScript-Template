@@ -1,4 +1,4 @@
-import { DMChannel, GuildMember, Message, TextChannel } from 'discord.js';
+import { DMChannel, GuildMember, Message, Permissions, TextChannel } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { Command } from '../commands';
@@ -157,10 +157,17 @@ export class MessageHandler {
     }
 
     private hasPermission(member: GuildMember, command: Command): boolean {
+        // Debug option to bypass permission checks
         if (Debug.skipCheck.perms) {
             return true;
         }
 
+        // Members with "Manage Server" have permission for all commands
+        if (member.hasPermission(Permissions.FLAGS.MANAGE_GUILD)) {
+            return true;
+        }
+
+        // Check if member has required permissions for command
         if (!member.hasPermission(command.requirePerms)) {
             return false;
         }
