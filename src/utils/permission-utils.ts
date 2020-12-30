@@ -1,7 +1,7 @@
-import { DMChannel, Permissions, TextChannel } from 'discord.js';
+import { DMChannel, NewsChannel, Permissions, TextChannel } from 'discord.js';
 
 export class PermissionUtils {
-    public static canSend(channel: DMChannel | TextChannel): boolean {
+    public static canSend(channel: DMChannel | TextChannel | NewsChannel): boolean {
         // Bot always has permission in direct message
         if (channel instanceof DMChannel) {
             return true;
@@ -18,7 +18,7 @@ export class PermissionUtils {
         return channelPerms.has([Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.SEND_MESSAGES]);
     }
 
-    public static canSendEmbed(channel: DMChannel | TextChannel): boolean {
+    public static canSendEmbed(channel: DMChannel | TextChannel | NewsChannel): boolean {
         // Bot always has permission in direct message
         if (channel instanceof DMChannel) {
             return true;
