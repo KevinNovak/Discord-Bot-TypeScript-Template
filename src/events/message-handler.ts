@@ -72,8 +72,7 @@ export class MessageHandler {
         }
 
         // Try to find the command the user wants
-        let userCommand = args[1];
-        let command = this.findCommand(userCommand);
+        let command = this.findCommand(args[1]);
 
         // If no command found, run the help command
         if (!command) {
@@ -143,17 +142,12 @@ export class MessageHandler {
         }
     }
 
-    private findCommand(userCommand: string): Command {
-        userCommand = userCommand.toLowerCase();
-        for (let command of this.commands) {
-            if (command.name === userCommand) {
-                return command;
-            }
-
-            if (command.aliases.includes(userCommand)) {
-                return command;
-            }
-        }
+    private findCommand(input: string): Command {
+        input = input.toLowerCase();
+        return (
+            this.commands.find(command => command.name === input) ??
+            this.commands.find(command => command.aliases.includes(input))
+        );
     }
 
     private hasPermission(member: GuildMember, command: Command): boolean {
