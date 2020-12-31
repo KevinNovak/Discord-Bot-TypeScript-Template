@@ -22,18 +22,13 @@ export class MessageHandler {
     ) {}
 
     public async process(msg: Message): Promise<void> {
-        // Check if the message is a partial
-        if (msg.partial) {
+        // Don't respond to partial messages, system messages, or bots
+        if (msg.partial || msg.system || msg.author.bot) {
             return;
         }
 
         // Only handle messages from text or DM channels
         if (!(msg.channel instanceof TextChannel || msg.channel instanceof DMChannel)) {
-            return;
-        }
-
-        // Don't respond to bots
-        if (msg.author.bot) {
             return;
         }
 
