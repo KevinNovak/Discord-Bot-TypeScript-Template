@@ -19,7 +19,7 @@ export class MessageUtils {
             return await target.send(content);
         } catch (error) {
             // Error code 50007: "Cannot send messages to this user" (User blocked bot or DM disabled)
-            if (error instanceof DiscordAPIError && error.code === 50007) {
+            if (error instanceof DiscordAPIError && [50007].includes(error.code)) {
                 return;
             } else {
                 throw error;
@@ -33,10 +33,7 @@ export class MessageUtils {
         } catch (error) {
             // Error code 10008: "Unknown Message" (Message was deleted)
             // Error code 90001: "Reaction Blocked" (User blocked bot)
-            if (
-                error instanceof DiscordAPIError &&
-                (error.code === 10008 || error.code === 90001)
-            ) {
+            if (error instanceof DiscordAPIError && [10008, 90001].includes(error.code)) {
                 return;
             } else {
                 throw error;
