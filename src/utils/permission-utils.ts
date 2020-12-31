@@ -39,4 +39,61 @@ export class PermissionUtils {
             Permissions.FLAGS.EMBED_LINKS,
         ]);
     }
+
+    public static canMention(channel: DMChannel | TextChannel | NewsChannel): boolean {
+        // Bot always has permission in direct message
+        if (channel instanceof DMChannel) {
+            return true;
+        }
+
+        let channelPerms = channel.permissionsFor(channel.client.user);
+        if (!channelPerms) {
+            // This can happen if the guild disconnected while a collector is running
+            return false;
+        }
+
+        // VIEW_CHANNEL - Needed to view the channel
+        // MENTION_EVERYONE - Needed to mention @everyone, @here, and all roles
+        return channelPerms.has([
+            Permissions.FLAGS.VIEW_CHANNEL,
+            Permissions.FLAGS.MENTION_EVERYONE,
+        ]);
+    }
+
+    public static canReact(channel: DMChannel | TextChannel | NewsChannel): boolean {
+        // Bot always has permission in direct message
+        if (channel instanceof DMChannel) {
+            return true;
+        }
+
+        let channelPerms = channel.permissionsFor(channel.client.user);
+        if (!channelPerms) {
+            // This can happen if the guild disconnected while a collector is running
+            return false;
+        }
+
+        // VIEW_CHANNEL - Needed to view the channel
+        // ADD_REACTIONS - Needed to add new reactions to messages
+        return channelPerms.has([Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.ADD_REACTIONS]);
+    }
+
+    public static canPin(channel: DMChannel | TextChannel | NewsChannel): boolean {
+        // Bot always has permission in direct message
+        if (channel instanceof DMChannel) {
+            return true;
+        }
+
+        let channelPerms = channel.permissionsFor(channel.client.user);
+        if (!channelPerms) {
+            // This can happen if the guild disconnected while a collector is running
+            return false;
+        }
+
+        // VIEW_CHANNEL - Needed to view the channel
+        // MANAGE_MESSAGES - Needed to pin messages
+        return channelPerms.has([
+            Permissions.FLAGS.VIEW_CHANNEL,
+            Permissions.FLAGS.MANAGE_MESSAGES,
+        ]);
+    }
 }
