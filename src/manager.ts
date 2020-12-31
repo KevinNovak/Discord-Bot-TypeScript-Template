@@ -12,6 +12,12 @@ export class Manager {
     public async start(): Promise<void> {
         this.registerListeners();
         try {
+            Logger.info(
+                Logs.info.spawningShards.replace(
+                    '{SHARD_COUNT}',
+                    this.shardManager.totalShards.toLocaleString()
+                )
+            );
             await this.shardManager.spawn(
                 this.shardManager.totalShards,
                 Config.sharding.spawnDelay * 1000,
