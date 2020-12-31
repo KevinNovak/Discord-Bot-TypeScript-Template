@@ -60,7 +60,10 @@ export class PermissionUtils {
         ]);
     }
 
-    public static canReact(channel: DMChannel | TextChannel | NewsChannel): boolean {
+    public static canReact(
+        channel: DMChannel | TextChannel | NewsChannel,
+        removeOthers: boolean = false
+    ): boolean {
         // Bot always has permission in direct message
         if (channel instanceof DMChannel) {
             return true;
@@ -74,10 +77,18 @@ export class PermissionUtils {
 
         // VIEW_CHANNEL - Needed to view the channel
         // ADD_REACTIONS - Needed to add new reactions to messages
-        return channelPerms.has([Permissions.FLAGS.VIEW_CHANNEL, Permissions.FLAGS.ADD_REACTIONS]);
+        // MANAGE_MESSAGES - Needed to remove others reactions
+        return channelPerms.has([
+            Permissions.FLAGS.VIEW_CHANNEL,
+            Permissions.FLAGS.ADD_REACTIONS,
+            ...(removeOthers ? [Permissions.FLAGS.MANAGE_MESSAGES] : []),
+        ]);
     }
 
-    public static canPin(channel: DMChannel | TextChannel | NewsChannel): boolean {
+    public static canPin(
+        channel: DMChannel | TextChannel | NewsChannel,
+        unpinOld: boolean = false
+    ): boolean {
         // Bot always has permission in direct message
         if (channel instanceof DMChannel) {
             return true;
@@ -91,9 +102,11 @@ export class PermissionUtils {
 
         // VIEW_CHANNEL - Needed to view the channel
         // MANAGE_MESSAGES - Needed to pin messages
+        // READ_MESSAGE_HISTORY - Needed to find old pins to unpin
         return channelPerms.has([
             Permissions.FLAGS.VIEW_CHANNEL,
             Permissions.FLAGS.MANAGE_MESSAGES,
+            ...(unpinOld ? [Permissions.FLAGS.READ_MESSAGE_HISTORY] : []),
         ]);
     }
 }
