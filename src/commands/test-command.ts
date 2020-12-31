@@ -1,6 +1,6 @@
-import { DMChannel, Message, TextChannel } from 'discord.js';
-import { Lang } from '../services';
+import { Message } from 'discord.js';
 
+import { Lang } from '../services';
 import { MessageUtils } from '../utils';
 import { Command } from './command';
 
@@ -10,12 +10,8 @@ export class TestCommand implements Command {
     public requireGuild = false;
     public requirePerms = [];
 
-    public async execute(
-        args: string[],
-        msg: Message,
-        channel: DMChannel | TextChannel
-    ): Promise<void> {
+    public async execute(msg: Message, args: string[]): Promise<void> {
         let embed = Lang.getEmbed('test', 'en');
-        await MessageUtils.send(channel, embed);
+        await MessageUtils.send(msg.channel, embed);
     }
 }

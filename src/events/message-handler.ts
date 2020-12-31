@@ -27,10 +27,8 @@ export class MessageHandler {
             return;
         }
 
-        let channel = msg.channel;
-
         // Only handle messages from text or DM channels
-        if (!(channel instanceof TextChannel || channel instanceof DMChannel)) {
+        if (!(msg.channel instanceof TextChannel || msg.channel instanceof DMChannel)) {
             return;
         }
 
@@ -56,18 +54,18 @@ export class MessageHandler {
         }
 
         // Check if I have permission to send a message
-        if (!PermissionUtils.canSendEmbed(channel)) {
+        if (!PermissionUtils.canSendEmbed(msg.channel)) {
             // No permission to send message
-            if (PermissionUtils.canSend(channel)) {
+            if (PermissionUtils.canSend(msg.channel)) {
                 let message = Lang.getRef('missingEmbedPerms', 'en');
-                await MessageUtils.send(channel, message);
+                await MessageUtils.send(msg.channel, message);
             }
             return;
         }
 
         // If only a prefix, run the help command
         if (args.length === 1) {
-            await this.helpCommand.execute(args, msg, channel);
+            await this.helpCommand.execute(msg, args);
             return;
         }
 
@@ -76,32 +74,32 @@ export class MessageHandler {
 
         // If no command found, run the help command
         if (!command) {
-            await this.helpCommand.execute(args, msg, channel);
+            await this.helpCommand.execute(msg, args);
             return;
         }
 
-        if (command.requireGuild && !(channel instanceof TextChannel)) {
+        if (command.requireGuild && !(msg.channel instanceof TextChannel)) {
             let embed = Lang.getEmbed('serverOnlyCommand', 'en');
-            await MessageUtils.send(channel, embed);
+            await MessageUtils.send(msg.channel, embed);
             return;
         }
 
         try {
-            if (channel instanceof DMChannel) {
-                await command.execute(args, msg, channel);
+            if (msg.channel instanceof DMChannel) {
+                await command.execute(msg, args);
                 return;
             }
 
-            if (channel instanceof TextChannel) {
+            if (msg.channel instanceof TextChannel) {
                 // Check if user has permission
                 if (!this.hasPermission(msg.member, command)) {
                     let embed = Lang.getEmbed('permissionRequired', 'en');
-                    await MessageUtils.send(channel, embed);
+                    await MessageUtils.send(msg.channel, embed);
                     return;
                 }
 
                 // Execute the command
-                await command.execute(args, msg, channel);
+                await command.execute(msg, args);
                 return;
             }
         } catch (error) {
@@ -110,13 +108,13 @@ export class MessageHandler {
                 let embed = Lang.getEmbed('commandError', 'en', {
                     ERROR_CODE: msg.id,
                 });
-                await MessageUtils.send(channel, embed);
+                await MessageUtils.send(msg.channel, embed);
             } catch {
                 // Ignore
             }
 
             // Log command error
-            if (channel instanceof DMChannel) {
+            if (msg.channel instanceof DMChannel) {
                 Logger.error(
                     Logs.error.commandDm
                         .replace('{MESSAGE_ID}', msg.id)
@@ -125,15 +123,15 @@ export class MessageHandler {
                         .replace('{SENDER_ID}', msg.author.id),
                     error
                 );
-            } else if (channel instanceof TextChannel) {
+            } else if (msg.channel instanceof TextChannel) {
                 Logger.error(
                     Logs.error.commandGuild
                         .replace('{MESSAGE_ID}', msg.id)
                         .replace('{COMMAND_NAME}', command.name)
                         .replace('{SENDER_TAG}', msg.author.tag)
                         .replace('{SENDER_ID}', msg.author.id)
-                        .replace('{CHANNEL_NAME}', channel.name)
-                        .replace('{CHANNEL_ID}', channel.id)
+                        .replace('{CHANNEL_NAME}', msg.channel.name)
+                        .replace('{CHANNEL_ID}', msg.channel.id)
                         .replace('{GUILD_NAME}', msg.guild.name)
                         .replace('{GUILD_ID}', msg.guild.id),
                     error

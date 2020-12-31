@@ -1,4 +1,4 @@
-import djs, { DMChannel, Message, TextChannel } from 'discord.js';
+import djs, { Message } from 'discord.js';
 import typescript from 'typescript';
 
 import { Lang } from '../services';
@@ -13,17 +13,13 @@ export class InfoCommand implements Command {
     public requireGuild = false;
     public requirePerms = [];
 
-    public async execute(
-        args: string[],
-        msg: Message,
-        channel: DMChannel | TextChannel
-    ): Promise<void> {
+    public async execute(msg: Message, args: string[]): Promise<void> {
         let embed = Lang.getEmbed('info', 'en', {
             NODE_VERSION: process.version,
             TS_VERSION: `v${typescript.version}`,
             ES_VERSION: TsConfig.compilerOptions.target,
             DJS_VERSION: `v${djs.version}`,
         });
-        await MessageUtils.send(channel, embed);
+        await MessageUtils.send(msg.channel, embed);
     }
 }
