@@ -52,8 +52,7 @@ export class MessageHandler {
         if (!PermissionUtils.canSendEmbed(msg.channel)) {
             // No permission to send message
             if (PermissionUtils.canSend(msg.channel)) {
-                let message = Lang.getRef('missingEmbedPerms', 'en');
-                await MessageUtils.send(msg.channel, message);
+                await MessageUtils.send(msg.channel, Lang.getRef('missingEmbedPerms', 'en'));
             }
             return;
         }
@@ -74,8 +73,7 @@ export class MessageHandler {
         }
 
         if (command.requireGuild && !(msg.channel instanceof TextChannel)) {
-            let embed = Lang.getEmbed('serverOnlyCommand', 'en');
-            await MessageUtils.send(msg.channel, embed);
+            await MessageUtils.send(msg.channel, Lang.getEmbed('serverOnlyCommand', 'en'));
             return;
         }
 
@@ -88,8 +86,7 @@ export class MessageHandler {
             if (msg.channel instanceof TextChannel) {
                 // Check if user has permission
                 if (!this.hasPermission(msg.member, command)) {
-                    let embed = Lang.getEmbed('permissionRequired', 'en');
-                    await MessageUtils.send(msg.channel, embed);
+                    await MessageUtils.send(msg.channel, Lang.getEmbed('permissionRequired', 'en'));
                     return;
                 }
 
@@ -100,10 +97,12 @@ export class MessageHandler {
         } catch (error) {
             // Try to notify sender of command error
             try {
-                let embed = Lang.getEmbed('commandError', 'en', {
-                    ERROR_CODE: msg.id,
-                });
-                await MessageUtils.send(msg.channel, embed);
+                await MessageUtils.send(
+                    msg.channel,
+                    Lang.getEmbed('commandError', 'en', {
+                        ERROR_CODE: msg.id,
+                    })
+                );
             } catch {
                 // Ignore
             }
