@@ -1,6 +1,7 @@
 import { MessageEmbed } from 'discord.js';
 import { MultilingualService } from 'discord.js-multilingual-utils';
 import path from 'path';
+import { LangCode } from '../models/enums';
 
 export class Lang {
     private static multilingualService: MultilingualService = new MultilingualService(
@@ -9,17 +10,17 @@ export class Lang {
 
     public static getRef(
         refName: string,
-        langCode: string,
+        langCode: LangCode,
         variables?: { [name: string]: string }
     ): string {
-        return this.multilingualService.getRef(refName, langCode, variables);
+        return this.multilingualService.getRef(refName, langCode.toLowerCase(), variables);
     }
 
     public static getEmbed(
         embedName: string,
-        langCode: string,
+        langCode: LangCode,
         variables?: { [name: string]: string }
     ): MessageEmbed {
-        return this.multilingualService.getEmbed(embedName, langCode, variables);
+        return this.multilingualService.getEmbed(embedName, langCode.toLowerCase(), variables);
     }
 }

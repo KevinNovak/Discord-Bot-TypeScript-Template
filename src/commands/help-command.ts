@@ -1,5 +1,6 @@
 import { Message } from 'discord.js';
 
+import { LangCode } from '../models/enums';
 import { Lang } from '../services';
 import { MessageUtils } from '../utils';
 import { Command } from './command';
@@ -11,6 +12,6 @@ export class HelpCommand implements Command {
     public requirePerms = [];
 
     public async execute(msg: Message, args: string[]): Promise<void> {
-        await MessageUtils.send(msg.channel, Lang.getEmbed('help', 'en'));
+        await MessageUtils.send(msg.channel, Lang.getEmbed('help', LangCode.EN));
     }
 }

@@ -2,6 +2,7 @@ import { DMChannel, GuildMember, Message, Permissions, TextChannel } from 'disco
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { Command } from '../commands';
+import { LangCode } from '../models/enums';
 import { Lang, Logger } from '../services';
 import { MessageUtils, PermissionUtils } from '../utils';
 
@@ -52,7 +53,7 @@ export class MessageHandler {
         if (!PermissionUtils.canSendEmbed(msg.channel)) {
             // No permission to send message
             if (PermissionUtils.canSend(msg.channel)) {
-                await MessageUtils.send(msg.channel, Lang.getRef('missingEmbedPerms', 'en'));
+                await MessageUtils.send(msg.channel, Lang.getRef('missingEmbedPerms', LangCode.EN));
             }
             return;
         }
@@ -73,7 +74,7 @@ export class MessageHandler {
         }
 
         if (command.requireGuild && !(msg.channel instanceof TextChannel)) {
-            await MessageUtils.send(msg.channel, Lang.getEmbed('serverOnlyCommand', 'en'));
+            await MessageUtils.send(msg.channel, Lang.getEmbed('serverOnlyCommand', LangCode.EN));
             return;
         }
 
@@ -86,7 +87,10 @@ export class MessageHandler {
             if (msg.channel instanceof TextChannel) {
                 // Check if user has permission
                 if (!this.hasPermission(msg.member, command)) {
-                    await MessageUtils.send(msg.channel, Lang.getEmbed('permissionRequired', 'en'));
+                    await MessageUtils.send(
+                        msg.channel,
+                        Lang.getEmbed('permissionRequired', LangCode.EN)
+                    );
                     return;
                 }
 
@@ -99,7 +103,7 @@ export class MessageHandler {
             try {
                 await MessageUtils.send(
                     msg.channel,
-                    Lang.getEmbed('commandError', 'en', {
+                    Lang.getEmbed('commandError', LangCode.EN, {
                         ERROR_CODE: msg.id,
                     })
                 );
