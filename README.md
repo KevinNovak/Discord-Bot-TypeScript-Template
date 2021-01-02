@@ -1,6 +1,6 @@
 # Discord TypeScript Sharding Template
 
-[![discord.js](https://img.shields.io/github/package-json/dependency-version/KevinNovak/Discord-TypeScript-Sharding-Template/discord.js)](https://discord.js.org/)
+[![discord.js](https://img.shields.io/github/package-json/dependency-version/KevinNovak/Discord-TypeScript-Sharding-Template/discord.js)](https://discord.js.org/)[![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
 
 **Discord bot** - A TypeScript Discord bot template with multi-machine sharding and other features.
 
