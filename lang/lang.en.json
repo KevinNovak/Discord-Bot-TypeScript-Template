@@ -4,10 +4,10 @@
     },
     "embeds": {
         "help": {
-            "title": "My Bot - Help",
+            "title": "{{REF:botName}} - Help",
             "fields": [
                 { "name": "bot test", "value": "Run the test command." },
-                { "name": "bot info", "value": "More information about My Bot." }
+                { "name": "bot info", "value": "More information about {{REF:botName}}." }
             ]
         },
         "test": {
@@ -15,7 +15,7 @@
             "description": "Test command works!"
         },
         "info": {
-            "title": "My Bot - Info",
+            "title": "{{REF:botName}} - Info",
             "fields": [
                 { "name": "Node.js", "value": "{{NODE_VERSION}}" },
                 { "name": "TypeScript", "value": "{{TS_VERSION}}" },
@@ -53,6 +53,7 @@
         "colorError": "#ff4a4a",
         "linkSupport": "https://support.discord.com/",
         "linkStream": "https://www.twitch.tv/monstercat",
+        "botName": "My Bot",
         "missingEmbedPerms": [
             "I don't have all permissions required to send messages here!",
             "",
