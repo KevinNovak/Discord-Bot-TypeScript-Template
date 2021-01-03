@@ -13,14 +13,14 @@ For help using this template, feel free to [join our support server](https://dis
 ## Features
 
 -   Written with TypeScript and [discord.js](https://discord.js.org/).
--   [Sharding](https://discordjs.guide/sharding/) across multiple machines.
 -   Basic command structure.
--   Support for multiple languages.
--   Rate limit commands.
+-   Rate limits for commands.
 -   Shows server count in bot status.
 -   Posts server count to popular bot list websites.
--   Support for running with the [PM2](https://pm2.keymetrics.io/) process manger.
+-   Support for multiple languages.
+-   [Sharding](https://discordjs.guide/sharding/) across multiple machines.
 -   Built-in debugging setup for VSCode.
+-   Support for running with the [PM2](https://pm2.keymetrics.io/) process manger.
 
 ## Setup
 
