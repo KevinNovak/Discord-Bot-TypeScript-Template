@@ -2,7 +2,7 @@
     "name": "my-bot",
     "version": "1.0.0",
     "author": "Kevin Novak",
-    "description": "A TypeScript Discord bot template with multi-machine sharding and other features.",
+    "description": "A discord.js bot template written with TypeScript",
     "license": "MIT",
     "private": true,
     "engines": {
