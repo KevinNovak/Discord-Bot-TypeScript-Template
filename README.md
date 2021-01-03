@@ -62,15 +62,21 @@ This bot has a few example commands which can be modified as needed.
 
 ### Help Command
 
-![Help Command](https://i.imgur.com/zOSyaNl.png)
+A help command with a bot description, list of commands, and important links.
+
+![Help Command](https://i.imgur.com/t8qcA6w.png)
 
 ### Test Command
 
-![Test Command](https://i.imgur.com/rzpdTVA.png)
+A generic command, which can be copied to create additional commands.
+
+![Test Command](https://i.imgur.com/eRwUPVJ.png)
 
 ### Info Command
 
-![Info Command](https://i.imgur.com/xw2H8th.png)
+An info command, which shows more detailed information about the bot.
+
+![Info Command](https://i.imgur.com/pKJmdca.png)
 
 ## Bots Using This Template
 
