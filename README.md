@@ -13,7 +13,7 @@ For help using this template, feel free to [join our support server](https://dis
 ## Features
 
 -   Written with TypeScript and [discord.js](https://discord.js.org/).
--   Multi-machine sharding.
+-   Sharding across multiple machines.
 -   Basic command structure.
 -   Support for multiple languages.
 -   Rate limit commands.
