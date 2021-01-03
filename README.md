@@ -4,6 +4,12 @@
 
 **Discord bot** - A discord.js bot template written with TypeScript.
 
+## Introduction
+
+This template was created to give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can focus on the main bot features. Bot developers can simply copy this repo, follow the [setup instructions](#setup) below, and have a working bot with many [boilerplate features](#features) already included!
+
+For help using this template, feel free to [join our support server](https://discord.gg/Vyf6fEWbVr)!
+
 ## Features
 
 -   Written with TypeScript and [discord.js](https://discord.js.org/).
