@@ -5,9 +5,14 @@
     "embeds": {
         "help": {
             "title": "{{REF:botName}} - Help",
-            "fields": [
-                { "name": "bot test", "value": "Run the test command." },
-                { "name": "bot info", "value": "More information about {{REF:botName}}." }
+            "description": [
+                "{{REF:botDescription}}",
+                "",
+                "**bot test** - Run the test command.",
+                "**bot info** - More information about {{REF:botName}}.",
+                "",
+                "{{REF:linkSupportEmbed}}",
+                "{{REF:linkInviteEmbed}}"
             ]
         },
         "test": {
@@ -20,7 +25,15 @@
                 { "name": "Node.js", "value": "{{NODE_VERSION}}" },
                 { "name": "TypeScript", "value": "{{TS_VERSION}}" },
                 { "name": "ECMAScript", "value": "{{ES_VERSION}}" },
-                { "name": "discord.js", "value": "{{DJS_VERSION}}" }
+                { "name": "discord.js", "value": "{{DJS_VERSION}}" },
+                {
+                    "name": "Created With",
+                    "value": ["{{REF:linkTemplateEmbed}}"]
+                },
+                {
+                    "name": "Links",
+                    "value": ["{{REF:linkSupportEmbed}}", "{{REF:linkInviteEmbed}}"]
+                }
             ]
         },
         "serverOnlyCommand": {
@@ -50,10 +63,16 @@
         }
     },
     "refs": {
-        "colorError": "#ff4a4a",
-        "linkSupport": "https://support.discord.com/",
-        "linkStream": "https://www.twitch.tv/monstercat",
         "botName": "My Bot",
+        "botDescription": "Discord Bot TypeScript Template helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features.",
+        "colorError": "#ff4a4a",
+        "linkInvite": "https://discord.com/",
+        "linkInviteEmbed": "[Invite {{REF:botName}} to a Server!]({{REF:linkInvite}})",
+        "linkSupport": "https://support.discord.com/",
+        "linkSupportEmbed": "[Join Support Server]({{REF:linkSupport}})",
+        "linkStream": "https://www.twitch.tv/monstercat",
+        "linkTemplate": "https://github.com/KevinNovak/Discord-Bot-TypeScript-Template",
+        "linkTemplateEmbed": "[Discord Bot TypeScript Template]({{REF:linkTemplate}})",
         "missingEmbedPerms": [
             "I don't have all permissions required to send messages here!",
             "",
