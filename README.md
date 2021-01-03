@@ -30,7 +30,7 @@ This bot has a few example commands which can be modified as needed.
 
 A help command with a bot description, list of commands, and important links.
 
-![Help Command](https://i.imgur.com/H4sBlcp.png)
+![Help Command](https://i.imgur.com/zGf5ZVy.png)
 
 ### Test Command
 

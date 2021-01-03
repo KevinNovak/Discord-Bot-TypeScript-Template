@@ -5,14 +5,19 @@
     "embeds": {
         "help": {
             "title": "{{REF:botName}} - Help",
-            "description": [
-                "{{REF:botDescription}}",
-                "",
-                "**bot test** - Run the test command.",
-                "**bot info** - More information about {{REF:botName}}.",
-                "",
-                "{{REF:linkSupportEmbed}}",
-                "{{REF:linkInviteEmbed}}"
+            "description": "{{REF:botDescription}}",
+            "fields": [
+                {
+                    "name": "Commands",
+                    "value": [
+                        "**bot test** - Run the test command.",
+                        "**bot info** - More information about {{REF:botName}}."
+                    ]
+                },
+                {
+                    "name": "Links",
+                    "value": ["{{REF:linkSupportEmbed}}", "{{REF:linkInviteEmbed}}"]
+                }
             ]
         },
         "test": {
