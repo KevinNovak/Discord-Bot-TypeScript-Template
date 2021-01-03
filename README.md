@@ -72,6 +72,16 @@ This bot has a few example commands which can be modified as needed.
 
 ![Info Command](https://i.imgur.com/xw2H8th.png)
 
+## Bots Using This Template
+
+A list of Discord bots using this template.
+
+-   [Birthday Bot](https://top.gg/bot/656621136808902656) ![](https://top.gg/api/widget/servers/656621136808902656.svg?noavatar=true)
+-   [Friend Time](https://top.gg/bot/471091072546766849) ![](https://top.gg/api/widget/servers/471091072546766849.svg?noavatar=true)
+-   [QOTD Bot](https://top.gg/bot/713586207119900693) ![](https://top.gg/api/widget/servers/713586207119900693.svg?noavatar=true)
+
+Don't see your bot listed? [Contact us](https://discord.gg/Vyf6fEWbVr) to have your bot added!
+
 ## References
 
 -   [discord.js](https://discord.js.org/) - A powerful JavaScript library for interacting with the Discord API.
