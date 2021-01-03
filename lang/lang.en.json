@@ -64,7 +64,7 @@
     },
     "refs": {
         "botName": "My Bot",
-        "botDescription": "Discord Bot TypeScript Template helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features.",
+        "botDescription": "{{REF:linkTemplateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features.",
         "colorError": "#ff4a4a",
         "linkInvite": "https://discord.com/",
         "linkInviteEmbed": "[Invite {{REF:botName}} to a Server!]({{REF:linkInvite}})",
