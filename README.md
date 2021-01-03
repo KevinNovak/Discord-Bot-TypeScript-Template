@@ -22,6 +22,28 @@ For help using this template, feel free to [join our support server](https://dis
 -   Built-in debugging setup for VSCode.
 -   Support for running with the [PM2](https://pm2.keymetrics.io/) process manger.
 
+## Commands
+
+This bot has a few example commands which can be modified as needed.
+
+### Help Command
+
+A help command with a bot description, list of commands, and important links.
+
+![Help Command](https://i.imgur.com/H4sBlcp.png)
+
+### Test Command
+
+A generic command, which can be copied to create additional commands.
+
+![Test Command](https://i.imgur.com/eRwUPVJ.png)
+
+### Info Command
+
+An info command, which shows more detailed information about the bot.
+
+![Info Command](https://i.imgur.com/pKJmdca.png)
+
 ## Setup
 
 1. Copy example config files.
@@ -55,28 +77,6 @@ You can run the bot in 3 different modes:
     - Run by typing `npm run start:pm2`.
     - This runs the bot using the process manager [PM2](https://pm2.keymetrics.io/).
     - Use this mode if you require the bot to always be online.
-
-## Commands
-
-This bot has a few example commands which can be modified as needed.
-
-### Help Command
-
-A help command with a bot description, list of commands, and important links.
-
-![Help Command](https://i.imgur.com/H4sBlcp.png)
-
-### Test Command
-
-A generic command, which can be copied to create additional commands.
-
-![Test Command](https://i.imgur.com/eRwUPVJ.png)
-
-### Info Command
-
-An info command, which shows more detailed information about the bot.
-
-![Info Command](https://i.imgur.com/pKJmdca.png)
 
 ## Bots Using This Template
 
