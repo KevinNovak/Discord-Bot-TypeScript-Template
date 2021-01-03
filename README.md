@@ -17,8 +17,8 @@ For help using this template, feel free to [join our support server](https://dis
 -   Basic command structure.
 -   Support for multiple languages.
 -   Rate limit commands.
--   Shows server count in bot presence.
--   Posts bot server counts to popular bot sites.
+-   Shows server count in bot status.
+-   Posts server count to popular bot list websites.
 -   Support for running with the [PM2](https://pm2.keymetrics.io/) process manger.
 -   Built-in debugging setup for VSCode.
 
