@@ -63,17 +63,22 @@ An info command, which shows more detailed information about the bot.
 
 ## Start Scripts
 
-You can run the bot in 3 different modes:
+You can run the bot in 4 different modes:
 
-1. Non-Shard Mode
+1. Dev Mode
+    - Type `npm start:dev`.
+    - This runs the bot with [ts-node-dev](https://www.npmjs.com/package/ts-node-dev).
+    - Use this mode for general development.
+    - TypeScript files are compiled automatically as they are changed.
+1. Normal Mode
     - Type `npm start`.
     - This runs the bot directly with Node and without shards.
-    - Use this mode for general development.
-2. Shard Mode
+    - Use this mode if you don't need sharding.
+1. Shard Mode
     - Type `npm run start:shard`.
     - This runs the bot directly with Node and with sharding enabled.
-    - Use this mode if you are testing sharding.
-3. PM2 Mode
+    - Use this mode if you need sharding.
+1. PM2 Mode
     - Run by typing `npm run start:pm2`.
     - This runs the bot using the process manager [PM2](https://pm2.keymetrics.io/).
     - Use this mode if you require the bot to always be online.
