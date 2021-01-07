@@ -11,8 +11,8 @@
                     {
                         "name": "Commands",
                         "value": [
-                            "**bot test** - Run the test command.",
-                            "**bot info** - More information about {{REF:bot.name}}."
+                            "**{{REF:bot.prefix}} {{REF:commands.test}}** - Run the test command.",
+                            "**{{REF:bot.prefix}} {{REF:commands.info}}** - More information about {{REF:bot.name}}."
                         ]
                     },
                     {
@@ -76,10 +76,15 @@
     "refs": {
         "bot": {
             "name": "My Bot",
-            "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features."
+            "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features.",
+            "prefix": "bot"
         },
         "colors": {
             "error": "#ff4a4a"
+        },
+        "commands": {
+            "test": "test",
+            "info": "info"
         },
         "links": {
             "invite": "https://discord.com/",
