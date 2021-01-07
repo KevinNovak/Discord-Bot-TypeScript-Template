@@ -1,87 +1,101 @@
 {
-    "default": {
+    "defaultEmbed": {
         "color": "#0099ff"
     },
     "embeds": {
-        "help": {
-            "title": "{{REF:botName}} - Help",
-            "description": "{{REF:botDescription}}",
-            "fields": [
-                {
-                    "name": "Commands",
-                    "value": [
-                        "**bot test** - Run the test command.",
-                        "**bot info** - More information about {{REF:botName}}."
-                    ]
-                },
-                {
-                    "name": "Links",
-                    "value": ["{{REF:linkSupportEmbed}}", "{{REF:linkInviteEmbed}}"]
-                }
-            ]
+        "commands": {
+            "help": {
+                "title": "{{REF:bot.name}} - Help",
+                "description": "{{REF:bot.description}}",
+                "fields": [
+                    {
+                        "name": "Commands",
+                        "value": [
+                            "**bot test** - Run the test command.",
+                            "**bot info** - More information about {{REF:bot.name}}."
+                        ]
+                    },
+                    {
+                        "name": "Links",
+                        "value": ["{{REF:links.supportEmbed}}", "{{REF:links.inviteEmbed}}"]
+                    }
+                ]
+            },
+            "test": {
+                "title": "Test Command",
+                "description": "Test command works!"
+            },
+            "info": {
+                "title": "{{REF:bot.name}} - Info",
+                "fields": [
+                    { "name": "Node.js", "value": "{{NODE_VERSION}}" },
+                    { "name": "TypeScript", "value": "{{TS_VERSION}}" },
+                    { "name": "ECMAScript", "value": "{{ES_VERSION}}" },
+                    { "name": "discord.js", "value": "{{DJS_VERSION}}" },
+                    {
+                        "name": "Created With",
+                        "value": ["{{REF:links.templateEmbed}}"]
+                    },
+                    {
+                        "name": "Links",
+                        "value": ["{{REF:links.supportEmbed}}", "{{REF:links.inviteEmbed}}"]
+                    }
+                ]
+            }
         },
-        "test": {
-            "title": "Test Command",
-            "description": "Test command works!"
+        "validation": {
+            "serverOnlyCommand": {
+                "title": "Server Only Command!",
+                "description": "This command can only be used in a server.",
+                "footer": "Please try again in a server!",
+                "color": "{{REF:colors.error}}"
+            },
+            "permissionRequired": {
+                "title": "Permission Required!",
+                "description": "You don't have permission to run that command!",
+                "color": "{{REF:colors.error}}"
+            }
         },
-        "info": {
-            "title": "{{REF:botName}} - Info",
-            "fields": [
-                { "name": "Node.js", "value": "{{NODE_VERSION}}" },
-                { "name": "TypeScript", "value": "{{TS_VERSION}}" },
-                { "name": "ECMAScript", "value": "{{ES_VERSION}}" },
-                { "name": "discord.js", "value": "{{DJS_VERSION}}" },
-                {
-                    "name": "Created With",
-                    "value": ["{{REF:linkTemplateEmbed}}"]
-                },
-                {
-                    "name": "Links",
-                    "value": ["{{REF:linkSupportEmbed}}", "{{REF:linkInviteEmbed}}"]
-                }
-            ]
-        },
-        "serverOnlyCommand": {
-            "title": "Server Only Command!",
-            "description": "This command can only be used in a server.",
-            "footer": "Please try again in a server!",
-            "color": "{{REF:colorError}}"
-        },
-        "permissionRequired": {
-            "title": "Permission Required!",
-            "description": "You don't have permission to run that command!",
-            "color": "{{REF:colorError}}"
-        },
-        "commandError": {
-            "description": "Something went wrong!",
-            "fields": [
-                {
-                    "name": "Error code",
-                    "value": "{{ERROR_CODE}}"
-                },
-                {
-                    "name": "Contact support",
-                    "value": "{{REF:linkSupport}}"
-                }
-            ],
-            "color": "{{REF:colorError}}"
+        "errors": {
+            "command": {
+                "description": "Something went wrong!",
+                "fields": [
+                    {
+                        "name": "Error code",
+                        "value": "{{ERROR_CODE}}"
+                    },
+                    {
+                        "name": "Contact support",
+                        "value": "{{REF:links.support}}"
+                    }
+                ],
+                "color": "{{REF:colors.error}}"
+            }
         }
     },
     "refs": {
-        "botName": "My Bot",
-        "botDescription": "{{REF:linkTemplateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features.",
-        "colorError": "#ff4a4a",
-        "linkInvite": "https://discord.com/",
-        "linkInviteEmbed": "[Invite {{REF:botName}} to a Server!]({{REF:linkInvite}})",
-        "linkSupport": "https://support.discord.com/",
-        "linkSupportEmbed": "[Join Support Server]({{REF:linkSupport}})",
-        "linkStream": "https://www.twitch.tv/monstercat",
-        "linkTemplate": "https://github.com/KevinNovak/Discord-Bot-TypeScript-Template",
-        "linkTemplateEmbed": "[Discord Bot TypeScript Template]({{REF:linkTemplate}})",
-        "missingEmbedPerms": [
-            "I don't have all permissions required to send messages here!",
-            "",
-            "Please allow me to **Read Messages**, **Send Messages**, and **Embed Links** in this channel."
-        ]
+        "bot": {
+            "name": "My Bot",
+            "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features."
+        },
+        "colors": {
+            "error": "#ff4a4a"
+        },
+        "links": {
+            "invite": "https://discord.com/",
+            "inviteEmbed": "[Invite {{REF:bot.name}} to a Server!]({{REF:links.invite}})",
+            "support": "https://support.discord.com/",
+            "supportEmbed": "[Join Support Server]({{REF:links.support}})",
+            "stream": "https://www.twitch.tv/monstercat",
+            "template": "https://github.com/KevinNovak/Discord-Bot-TypeScript-Template",
+            "templateEmbed": "[Discord Bot TypeScript Template]({{REF:links.template}})"
+        },
+        "messages": {
+            "missingEmbedPerms": [
+                "I don't have all permissions required to send messages here!",
+                "",
+                "Please allow me to **Read Messages**, **Send Messages**, and **Embed Links** in this channel."
+            ]
+        }
     }
 }

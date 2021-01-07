@@ -12,6 +12,6 @@ export class TestCommand implements Command {
     public requirePerms = [];
 
     public async execute(msg: Message, args: string[]): Promise<void> {
-        await MessageUtils.send(msg.channel, Lang.getEmbed('test', LangCode.EN));
+        await MessageUtils.send(msg.channel, Lang.getEmbed('commands.test', LangCode.EN));
     }
 }

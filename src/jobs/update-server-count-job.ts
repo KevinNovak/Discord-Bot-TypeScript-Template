@@ -28,7 +28,7 @@ export class UpdateServerCountJob implements Job {
                 activity: {
                     name: 'to ${serverCount.toLocaleString()} servers',
                     type: "STREAMING",
-                    url: "${Lang.getRef('linkStream', LangCode.EN)}"
+                    url: "${Lang.getRef('links.stream', LangCode.EN)}"
                 }
             });
         `);

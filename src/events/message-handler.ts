@@ -53,7 +53,10 @@ export class MessageHandler {
         if (!PermissionUtils.canSendEmbed(msg.channel)) {
             // No permission to send message
             if (PermissionUtils.canSend(msg.channel)) {
-                await MessageUtils.send(msg.channel, Lang.getRef('missingEmbedPerms', LangCode.EN));
+                await MessageUtils.send(
+                    msg.channel,
+                    Lang.getRef('messages.missingEmbedPerms', LangCode.EN)
+                );
             }
             return;
         }
@@ -74,7 +77,10 @@ export class MessageHandler {
         }
 
         if (command.requireGuild && !(msg.channel instanceof TextChannel)) {
-            await MessageUtils.send(msg.channel, Lang.getEmbed('serverOnlyCommand', LangCode.EN));
+            await MessageUtils.send(
+                msg.channel,
+                Lang.getEmbed('validation.serverOnlyCommand', LangCode.EN)
+            );
             return;
         }
 
@@ -89,7 +95,7 @@ export class MessageHandler {
                 if (!this.hasPermission(msg.member, command)) {
                     await MessageUtils.send(
                         msg.channel,
-                        Lang.getEmbed('permissionRequired', LangCode.EN)
+                        Lang.getEmbed('validation.permissionRequired', LangCode.EN)
                     );
                     return;
                 }
@@ -103,7 +109,7 @@ export class MessageHandler {
             try {
                 await MessageUtils.send(
                     msg.channel,
-                    Lang.getEmbed('commandError', LangCode.EN, {
+                    Lang.getEmbed('errors.command', LangCode.EN, {
                         ERROR_CODE: msg.id,
                     })
                 );
