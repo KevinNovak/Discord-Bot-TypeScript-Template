@@ -8,7 +8,11 @@
             "protocol": "inspector",
             "cwd": "${workspaceRoot}",
             "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/ts-node-dev",
-            "args": ["--watch", "config/**/*.json,lang/**/*.json", "${workspaceRoot}/src/start.ts"],
+            "args": [
+                "--watch",
+                "src/**/*.ts,config/**/*.json,lang/**/*.json",
+                "${workspaceRoot}/src/start.ts"
+            ],
             "restart": true,
             "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"]
         },
