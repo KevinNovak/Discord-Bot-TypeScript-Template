@@ -1,4 +1,4 @@
-import { Client, Guild, Message } from 'discord.js';
+import { Client, Constants, Guild, Message } from 'discord.js';
 
 import { GuildJoinHandler, GuildLeaveHandler, MessageHandler } from './events';
 import { Job } from './jobs';
@@ -24,11 +24,13 @@ export class Bot {
     }
 
     private registerListeners(): void {
-        this.client.on('ready', () => this.onReady());
-        this.client.on('shardReady', (shardId: number) => this.onShardReady(shardId));
-        this.client.on('guildCreate', (guild: Guild) => this.onGuildJoin(guild));
-        this.client.on('guildDelete', (guild: Guild) => this.onGuildLeave(guild));
-        this.client.on('message', (msg: Message) => this.onMessage(msg));
+        this.client.on(Constants.Events.CLIENT_READY, () => this.onReady());
+        this.client.on(Constants.Events.SHARD_READY, (shardId: number) =>
+            this.onShardReady(shardId)
+        );
+        this.client.on(Constants.Events.GUILD_CREATE, (guild: Guild) => this.onGuildJoin(guild));
+        this.client.on(Constants.Events.GUILD_DELETE, (guild: Guild) => this.onGuildLeave(guild));
+        this.client.on(Constants.Events.MESSAGE_CREATE, (msg: Message) => this.onMessage(msg));
     }
 
     private startJobs(): void {
