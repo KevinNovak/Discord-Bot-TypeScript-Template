@@ -1,4 +1,4 @@
-import { Client, Constants, Guild, Message } from 'discord.js';
+import { Client, Constants, Guild, Message, RateLimitData } from 'discord.js';
 
 import { GuildJoinHandler, GuildLeaveHandler, MessageHandler } from './events';
 import { Job } from './jobs';
@@ -31,6 +31,9 @@ export class Bot {
         this.client.on(Constants.Events.GUILD_CREATE, (guild: Guild) => this.onGuildJoin(guild));
         this.client.on(Constants.Events.GUILD_DELETE, (guild: Guild) => this.onGuildLeave(guild));
         this.client.on(Constants.Events.MESSAGE_CREATE, (msg: Message) => this.onMessage(msg));
+        this.client.on(Constants.Events.RATE_LIMIT, (rateLimitData: RateLimitData) =>
+            this.onRateLimit(rateLimitData)
+        );
     }
 
     private startJobs(): void {
@@ -93,5 +96,9 @@ export class Bot {
         } catch (error) {
             Logger.error(Logs.error.message, error);
         }
+    }
+
+    private async onRateLimit(rateLimitData: RateLimitData): Promise<void> {
+        Logger.error(Logs.error.rateLimit, rateLimitData);
     }
 }
