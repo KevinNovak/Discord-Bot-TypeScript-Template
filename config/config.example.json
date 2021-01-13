@@ -35,5 +35,10 @@
         "serversPerShard": 1000,
         "spawnDelay": 5,
         "spawnTimeout": 300
+    },
+    "logging": {
+        "rateLimit": {
+            "minTimeout": 30
+        }
     }
 }

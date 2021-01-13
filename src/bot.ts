@@ -4,6 +4,7 @@ import { GuildJoinHandler, GuildLeaveHandler, MessageHandler } from './events';
 import { Job } from './jobs';
 import { Logger } from './services';
 
+let Config = require('../config/config.json');
 let Logs = require('../lang/logs.json');
 
 export class Bot {
@@ -99,6 +100,8 @@ export class Bot {
     }
 
     private async onRateLimit(rateLimitData: RateLimitData): Promise<void> {
-        Logger.error(Logs.error.rateLimit, rateLimitData);
+        if (rateLimitData.timeout >= Config.logging.rateLimit.minTimeout * 1000) {
+            Logger.error(Logs.error.rateLimit, rateLimitData);
+        }
     }
 }
