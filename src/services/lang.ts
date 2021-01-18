@@ -8,19 +8,23 @@ export class Lang {
         path.resolve(__dirname, '../../lang')
     );
 
-    public static getRef(
-        refName: string,
-        langCode: LangCode,
-        variables?: { [name: string]: string }
-    ): string {
-        return this.multilingualService.getRef(refName, langCode.toLowerCase(), variables);
-    }
-
     public static getEmbed(
         embedName: string,
         langCode: LangCode,
         variables?: { [name: string]: string }
     ): MessageEmbed {
         return this.multilingualService.getEmbed(embedName, langCode.toLowerCase(), variables);
+    }
+
+    public static getRegex(regexName: string, langCode: LangCode): RegExp {
+        return this.multilingualService.getRegex(regexName, langCode.toLowerCase());
+    }
+
+    public static getRef(
+        refName: string,
+        langCode: LangCode,
+        variables?: { [name: string]: string }
+    ): string {
+        return this.multilingualService.getRef(refName, langCode.toLowerCase(), variables);
     }
 }

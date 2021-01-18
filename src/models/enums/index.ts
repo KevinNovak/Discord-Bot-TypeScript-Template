@@ -1,1 +1,1 @@
-export { LangCode } from './lang-code';
+export { LangCode } from './language';
