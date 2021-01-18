@@ -73,6 +73,13 @@
             }
         }
     },
+    "regexes": {
+        "commands": {
+            "help": "/\\b(help|h|\\?)\\b/i",
+            "info": "/\\b(info|i|information)\\b/i",
+            "test": "/\\b(test|t)\\b/i"
+        }
+    },
     "refs": {
         "meta": {
             "language": "English"
@@ -86,8 +93,9 @@
             "error": "#ff4a4a"
         },
         "commands": {
-            "test": "test",
-            "info": "info"
+            "help": "help",
+            "info": "info",
+            "test": "test"
         },
         "links": {
             "invite": "https://discord.com/",

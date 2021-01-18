@@ -72,7 +72,7 @@ export class MessageHandler {
         }
 
         // Try to find the command the user wants
-        let command = this.findCommand(args[1]);
+        let command = this.findCommand(args[1], data.lang);
 
         // If no command found, run the help command
         if (!command) {
@@ -126,7 +126,7 @@ export class MessageHandler {
                 Logger.error(
                     Logs.error.commandDm
                         .replace('{MESSAGE_ID}', msg.id)
-                        .replace('{COMMAND_NAME}', command.name)
+                        .replace('{COMMAND_NAME}', command.keyword(LangCode.EN))
                         .replace('{SENDER_TAG}', msg.author.tag)
                         .replace('{SENDER_ID}', msg.author.id),
                     error
@@ -135,7 +135,7 @@ export class MessageHandler {
                 Logger.error(
                     Logs.error.commandGuild
                         .replace('{MESSAGE_ID}', msg.id)
-                        .replace('{COMMAND_NAME}', command.name)
+                        .replace('{COMMAND_NAME}', command.keyword(LangCode.EN))
                         .replace('{SENDER_TAG}', msg.author.tag)
                         .replace('{SENDER_ID}', msg.author.id)
                         .replace('{CHANNEL_NAME}', msg.channel.name)
@@ -148,12 +148,8 @@ export class MessageHandler {
         }
     }
 
-    private findCommand(input: string): Command {
-        input = input.toLowerCase();
-        return (
-            this.commands.find(command => command.name === input) ??
-            this.commands.find(command => command.aliases.includes(input))
-        );
+    private findCommand(input: string, langCode: LangCode): Command {
+        return this.commands.find(command => command.regex(langCode).test(input));
     }
 
     private hasPermission(member: GuildMember, command: Command): boolean {

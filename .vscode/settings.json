@@ -9,5 +9,13 @@
         "editor.formatOnSave": true
     },
     "cSpell.enabled": true,
-    "cSpell.words": ["Novak", "discordbotlist", "discordlabs", "ondiscord", "parens", "respawn"]
+    "cSpell.words": [
+        "Novak",
+        "discordbotlist",
+        "discordlabs",
+        "ondiscord",
+        "parens",
+        "regexes",
+        "respawn"
+    ]
 }
