@@ -3,6 +3,7 @@ import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { Command } from '../commands';
 import { LangCode } from '../models/enums';
+import { EventData } from '../models/internal-models';
 import { Lang, Logger } from '../services';
 import { MessageUtils, PermissionUtils } from '../utils';
 
@@ -49,13 +50,16 @@ export class MessageHandler {
             return;
         }
 
+        // Get data from database
+        let data = new EventData();
+
         // Check if I have permission to send a message
         if (!PermissionUtils.canSendEmbed(msg.channel)) {
             // No permission to send message
             if (PermissionUtils.canSend(msg.channel)) {
                 await MessageUtils.send(
                     msg.channel,
-                    Lang.getRef('messages.missingEmbedPerms', LangCode.EN)
+                    Lang.getRef('messages.missingEmbedPerms', data.lang)
                 );
             }
             return;
@@ -63,7 +67,7 @@ export class MessageHandler {
 
         // If only a prefix, run the help command
         if (args.length === 1) {
-            await this.helpCommand.execute(msg, args);
+            await this.helpCommand.execute(msg, args, data);
             return;
         }
 
@@ -72,21 +76,21 @@ export class MessageHandler {
 
         // If no command found, run the help command
         if (!command) {
-            await this.helpCommand.execute(msg, args);
+            await this.helpCommand.execute(msg, args, data);
             return;
         }
 
         if (command.requireGuild && !(msg.channel instanceof TextChannel)) {
             await MessageUtils.send(
                 msg.channel,
-                Lang.getEmbed('validation.serverOnlyCommand', LangCode.EN)
+                Lang.getEmbed('validation.serverOnlyCommand', data.lang)
             );
             return;
         }
 
         try {
             if (msg.channel instanceof DMChannel) {
-                await command.execute(msg, args);
+                await command.execute(msg, args, data);
                 return;
             }
 
@@ -95,13 +99,13 @@ export class MessageHandler {
                 if (!this.hasPermission(msg.member, command)) {
                     await MessageUtils.send(
                         msg.channel,
-                        Lang.getEmbed('validation.permissionRequired', LangCode.EN)
+                        Lang.getEmbed('validation.permissionRequired', data.lang)
                     );
                     return;
                 }
 
                 // Execute the command
-                await command.execute(msg, args);
+                await command.execute(msg, args, data);
                 return;
             }
         } catch (error) {
@@ -109,7 +113,7 @@ export class MessageHandler {
             try {
                 await MessageUtils.send(
                     msg.channel,
-                    Lang.getEmbed('errors.command', LangCode.EN, {
+                    Lang.getEmbed('errors.command', data.lang, {
                         ERROR_CODE: msg.id,
                     })
                 );
