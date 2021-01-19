@@ -24,8 +24,8 @@ export class MessageHandler {
     ) {}
 
     public async process(msg: Message): Promise<void> {
-        // Don't respond to partial messages, system messages, or bots
-        if (msg.partial || msg.system || msg.author.bot) {
+        // Don't respond to partial messages, system messages, self, or other bots
+        if (msg.partial || msg.system || msg.author.id === msg.client.user.id || msg.author.bot) {
             return;
         }
 
