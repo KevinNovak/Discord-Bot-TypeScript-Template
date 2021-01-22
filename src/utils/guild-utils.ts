@@ -11,8 +11,9 @@ export class GuildUtils {
                 return (await guild.members.fetch({ query: input, limit: 1 })).first();
             }
         } catch (error) {
+            // Error code 10007: "Unknown Member"
             // Error code 10013: "Unknown User"
-            if (error instanceof DiscordAPIError && [10013].includes(error.code)) {
+            if (error instanceof DiscordAPIError && [10007, 10013].includes(error.code)) {
                 return;
             } else {
                 throw error;
