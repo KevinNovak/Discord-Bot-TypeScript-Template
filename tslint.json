@@ -16,7 +16,8 @@
         "arrow-parens": false,
         "no-shadowed-variable": false,
         "radix": false,
-        "max-classes-per-file": false
+        "max-classes-per-file": false,
+        "typedef": [true, "call-signature", "parameter", "property-declaration"]
     },
     "rulesDirectory": []
 }
