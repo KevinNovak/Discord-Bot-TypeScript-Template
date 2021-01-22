@@ -1,7 +1,20 @@
-import { DiscordAPIError, Guild, GuildMember } from 'discord.js';
+import { Client, DiscordAPIError, Guild, GuildMember, User } from 'discord.js';
 import { RegexUtils } from '.';
 
-export class GuildUtils {
+export class ClientUtils {
+    public static async getUser(client: Client, discordId: string): Promise<User> {
+        try {
+            return await client.users.fetch(discordId);
+        } catch (error) {
+            // Error code 10013: "Unknown User"
+            if (error instanceof DiscordAPIError && [10013].includes(error.code)) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
     public static async findMember(guild: Guild, input: string): Promise<GuildMember> {
         let discordId = RegexUtils.discordId(input);
         try {
