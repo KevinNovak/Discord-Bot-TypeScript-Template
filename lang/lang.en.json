@@ -22,7 +22,6 @@
                 ]
             },
             "test": {
-                "title": "Test Command",
                 "description": "Test command works!"
             },
             "info": {
@@ -45,13 +44,10 @@
         },
         "validation": {
             "serverOnlyCommand": {
-                "title": "Server Only Command!",
                 "description": "This command can only be used in a server.",
-                "footer": "Please try again in a server!",
                 "color": "{{REF:colors.error}}"
             },
             "permissionRequired": {
-                "title": "Permission Required!",
                 "description": "You don't have permission to run that command!",
                 "color": "{{REF:colors.error}}"
             }
