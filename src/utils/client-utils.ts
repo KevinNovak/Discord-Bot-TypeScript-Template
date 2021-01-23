@@ -3,6 +3,11 @@ import { RegexUtils } from '.';
 
 export class ClientUtils {
     public static async getUser(client: Client, discordId: string): Promise<User> {
+        discordId = RegexUtils.discordId(discordId);
+        if (!discordId) {
+            return;
+        }
+
         try {
             return await client.users.fetch(discordId);
         } catch (error) {
