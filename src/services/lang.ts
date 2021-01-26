@@ -13,11 +13,11 @@ export class Lang {
         langCode: LangCode,
         variables?: { [name: string]: string }
     ): MessageEmbed {
-        return this.multilingualService.getEmbed(embedName, langCode.toLowerCase(), variables);
+        return this.multilingualService.getEmbed(embedName, langCode, variables);
     }
 
     public static getRegex(regexName: string, langCode: LangCode): RegExp {
-        return this.multilingualService.getRegex(regexName, langCode.toLowerCase());
+        return this.multilingualService.getRegex(regexName, langCode);
     }
 
     public static getRef(
@@ -25,6 +25,6 @@ export class Lang {
         langCode: LangCode,
         variables?: { [name: string]: string }
     ): string {
-        return this.multilingualService.getRef(refName, langCode.toLowerCase(), variables);
+        return this.multilingualService.getRef(refName, langCode, variables);
     }
 }

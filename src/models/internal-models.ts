@@ -5,6 +5,6 @@ export class EventData {
     public lang: LangCode;
 
     constructor() {
-        this.lang = LangCode.EN;
+        this.lang = LangCode.EN_US;
     }
 }

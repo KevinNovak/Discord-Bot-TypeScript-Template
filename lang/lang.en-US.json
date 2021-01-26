@@ -70,6 +70,9 @@
         }
     },
     "regexes": {
+        "meta": {
+            "language": "/\\b(en-US|en|en US|English)\\b/i"
+        },
         "commands": {
             "help": "/\\b(help|h|\\?)\\b/i",
             "info": "/\\b(info|i|information)\\b/i",
@@ -78,7 +81,8 @@
     },
     "refs": {
         "meta": {
-            "language": "English"
+            "language": "en-US",
+            "languageDisplay": "English"
         },
         "bot": {
             "name": "My Bot",
