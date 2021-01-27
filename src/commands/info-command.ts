@@ -24,7 +24,7 @@ export class InfoCommand implements Command {
     public async execute(msg: Message, args: string[], data: EventData): Promise<void> {
         await MessageUtils.send(
             msg.channel,
-            Lang.getEmbed('commands.info', data.lang, {
+            Lang.getEmbed('commands.info', data.lang(), {
                 NODE_VERSION: process.version,
                 TS_VERSION: `v${typescript.version}`,
                 ES_VERSION: TsConfig.compilerOptions.target,

@@ -59,7 +59,7 @@ export class MessageHandler {
             if (PermissionUtils.canSend(msg.channel)) {
                 await MessageUtils.send(
                     msg.channel,
-                    Lang.getRef('messages.missingEmbedPerms', data.lang)
+                    Lang.getRef('messages.missingEmbedPerms', data.lang())
                 );
             }
             return;
@@ -72,7 +72,7 @@ export class MessageHandler {
         }
 
         // Try to find the command the user wants
-        let command = this.findCommand(args[1], data.lang);
+        let command = this.findCommand(args[1], data.lang());
 
         // If no command found, run the help command
         if (!command) {
@@ -83,7 +83,7 @@ export class MessageHandler {
         if (command.requireGuild && !(msg.channel instanceof TextChannel)) {
             await MessageUtils.send(
                 msg.channel,
-                Lang.getEmbed('validation.serverOnlyCommand', data.lang)
+                Lang.getEmbed('validation.serverOnlyCommand', data.lang())
             );
             return;
         }
@@ -99,7 +99,7 @@ export class MessageHandler {
                 if (!this.hasPermission(msg.member, command)) {
                     await MessageUtils.send(
                         msg.channel,
-                        Lang.getEmbed('validation.permissionRequired', data.lang)
+                        Lang.getEmbed('validation.permissionRequired', data.lang())
                     );
                     return;
                 }
@@ -113,7 +113,7 @@ export class MessageHandler {
             try {
                 await MessageUtils.send(
                     msg.channel,
-                    Lang.getEmbed('errors.command', data.lang, {
+                    Lang.getEmbed('errors.command', data.lang(), {
                         ERROR_CODE: msg.id,
                     })
                 );
