@@ -6,35 +6,45 @@
             "type": "node",
             "request": "launch",
             "protocol": "inspector",
-            "cwd": "${workspaceRoot}",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/ts-node-dev",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ts-node-dev",
             "args": [
                 "--watch",
                 "src/**/*.ts,config/**/*.json,lang/**/*.json",
-                "${workspaceRoot}/src/start.ts"
+                "${workspaceFolder}/src/start.ts"
             ],
-            "restart": true,
-            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"]
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+            "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": ["<node_internals>/**"],
+            "restart": true
         },
         {
-            "type": "node",
-            "request": "launch",
             "name": "Start",
-            "skipFiles": ["<node_internals>/**"],
-            "program": "${workspaceFolder}\\dist\\start.js",
-            "preLaunchTask": "tsc",
-            "internalConsoleOptions": "openOnSessionStart",
-            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"]
-        },
-        {
             "type": "node",
             "request": "launch",
-            "name": "Start Shard",
-            "skipFiles": ["<node_internals>/**"],
-            "program": "${workspaceFolder}\\dist\\app.js",
+            "protocol": "inspector",
             "preLaunchTask": "tsc",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "node",
+            "program": "${workspaceFolder}\\dist\\start.js",
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
             "internalConsoleOptions": "openOnSessionStart",
-            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"]
+            "skipFiles": ["<node_internals>/**"],
+            "restart": true
+        },
+        {
+            "name": "Start Shard",
+            "type": "node",
+            "request": "launch",
+            "protocol": "inspector",
+            "preLaunchTask": "tsc",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "node",
+            "program": "${workspaceFolder}\\dist\\app.js",
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+            "skipFiles": ["<node_internals>/**"],
+            "internalConsoleOptions": "openOnSessionStart",
+            "restart": true
         }
     ]
 }
