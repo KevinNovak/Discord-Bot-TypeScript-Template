@@ -27,10 +27,6 @@
             "info": {
                 "title": "{{REF:bot.name}} - Info",
                 "fields": [
-                    { "name": "Node.js", "value": "{{NODE_VERSION}}" },
-                    { "name": "TypeScript", "value": "{{TS_VERSION}}" },
-                    { "name": "ECMAScript", "value": "{{ES_VERSION}}" },
-                    { "name": "discord.js", "value": "{{DJS_VERSION}}" },
                     {
                         "name": "Created With",
                         "value": ["{{REF:links.templateEmbed}}"]
@@ -38,6 +34,36 @@
                     {
                         "name": "Links",
                         "value": ["{{REF:links.supportEmbed}}", "{{REF:links.inviteEmbed}}"]
+                    }
+                ]
+            },
+            "dev": {
+                "title": "{{REF:bot.name}} - Developer Info",
+                "fields": [
+                    {
+                        "name": "Versions",
+                        "value": [
+                            "**Node.js**: {{NODE_VERSION}}",
+                            "**TypeScript**: {{TS_VERSION}}",
+                            "**ECMAScript**: {{ES_VERSION}}",
+                            "**discord.js**: {{DJS_VERSION}}"
+                        ]
+                    },
+                    {
+                        "name": "Memory",
+                        "value": [
+                            "**RSS**: {{RSS_SIZE}}",
+                            "**Heap Total**: {{HEAP_TOTAL_SIZE}}",
+                            "**Heap Used**: {{HEAP_USED_SIZE}}"
+                        ]
+                    },
+                    {
+                        "name": "IDs",
+                        "value": [
+                            "**Shard ID**: {{SHARD_ID}}",
+                            "**Server ID**: {{SERVER_ID}}",
+                            "**User ID**: {{USER_ID}}"
+                        ]
                     }
                 ]
             }
@@ -74,6 +100,7 @@
             "language": "/\\b(en-US|en|en US|English)\\b/i"
         },
         "commands": {
+            "dev": "/\\b(dev|d|developer|usage|memory|mem)\\b/i",
             "help": "/\\b(help|h|\\?)\\b/i",
             "info": "/\\b(info|i|information)\\b/i",
             "test": "/\\b(test|t)\\b/i"
@@ -93,9 +120,13 @@
             "error": "#ff4a4a"
         },
         "commands": {
+            "dev": "dev",
             "help": "help",
             "info": "info",
             "test": "test"
+        },
+        "other": {
+            "na": "N/A"
         },
         "links": {
             "invite": "https://discord.com/",
