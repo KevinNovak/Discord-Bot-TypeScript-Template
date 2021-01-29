@@ -27,13 +27,14 @@
             "info": {
                 "title": "{{REF:bot.name}} - Info",
                 "fields": [
-                    {
-                        "name": "Created With",
-                        "value": ["{{REF:links.templateEmbed}}"]
-                    },
+                    { "name": "Author", "value": "{{REF:links.authorEmbed}}" },
                     {
                         "name": "Links",
                         "value": ["{{REF:links.supportEmbed}}", "{{REF:links.inviteEmbed}}"]
+                    },
+                    {
+                        "name": "Created With",
+                        "value": ["{{REF:links.templateEmbed}}"]
                     }
                 ]
             },
@@ -134,6 +135,8 @@
             "support": "https://support.discord.com/",
             "supportEmbed": "[Join Support Server]({{REF:links.support}})",
             "stream": "https://www.twitch.tv/monstercat",
+            "author": "https://github.com/",
+            "authorEmbed": "[My Name]({{REF:links.author}})",
             "template": "https://github.com/KevinNovak/Discord-Bot-TypeScript-Template",
             "templateEmbed": "[Discord Bot TypeScript Template]({{REF:links.template}})"
         },
