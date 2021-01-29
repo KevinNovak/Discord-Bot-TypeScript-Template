@@ -4,7 +4,7 @@ import typescript from 'typescript';
 import { LangCode } from '../models/enums';
 import { EventData } from '../models/internal-models';
 import { Lang } from '../services';
-import { MessageUtils } from '../utils';
+import { MathUtils, MessageUtils } from '../utils';
 import { Command } from './command';
 
 let TsConfig = require('../../tsconfig.json');
@@ -33,14 +33,10 @@ export class DevCommand implements Command {
                 SHARD_ID: (msg.guild?.shardID ?? 0).toString(),
                 SERVER_ID: msg.guild?.id ?? Lang.getRef('other.na', data.lang()),
                 USER_ID: msg.author.id,
-                RSS_SIZE: `${this.bytesToMB(memory.rss)} MB`,
-                HEAP_TOTAL_SIZE: `${this.bytesToMB(memory.heapTotal)} MB`,
-                HEAP_USED_SIZE: `${this.bytesToMB(memory.heapUsed)} MB`,
+                RSS_SIZE: `${MathUtils.bytesToMB(memory.rss)} MB`,
+                HEAP_TOTAL_SIZE: `${MathUtils.bytesToMB(memory.heapTotal)} MB`,
+                HEAP_USED_SIZE: `${MathUtils.bytesToMB(memory.heapUsed)} MB`,
             })
         );
-    }
-
-    private bytesToMB(bytes: number): number {
-        return Math.round((bytes / 1024 / 1024) * 100) / 100;
     }
 }
