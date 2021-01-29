@@ -1,13 +1,10 @@
-import djs, { Message } from 'discord.js';
-import typescript from 'typescript';
+import { Message } from 'discord.js';
 
 import { LangCode } from '../models/enums';
 import { EventData } from '../models/internal-models';
 import { Lang } from '../services';
 import { MessageUtils } from '../utils';
 import { Command } from './command';
-
-let TsConfig = require('../../tsconfig.json');
 
 export class InfoCommand implements Command {
     public requireGuild = false;
