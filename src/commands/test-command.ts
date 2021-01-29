@@ -19,6 +19,6 @@ export class TestCommand implements Command {
     }
 
     public async execute(msg: Message, args: string[], data: EventData): Promise<void> {
-        await MessageUtils.send(msg.channel, Lang.getEmbed('commands.test', data.lang()));
+        await MessageUtils.send(msg.channel, Lang.getEmbed('displays.test', data.lang()));
     }
 }

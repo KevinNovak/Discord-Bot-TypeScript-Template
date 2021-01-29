@@ -25,7 +25,7 @@ export class DevCommand implements Command {
         let memory = process.memoryUsage();
         await MessageUtils.send(
             msg.channel,
-            Lang.getEmbed('commands.dev', data.lang(), {
+            Lang.getEmbed('displays.dev', data.lang(), {
                 NODE_VERSION: process.version,
                 TS_VERSION: `v${typescript.version}`,
                 ES_VERSION: TsConfig.compilerOptions.target,

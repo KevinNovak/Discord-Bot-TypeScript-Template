@@ -19,6 +19,6 @@ export class HelpCommand implements Command {
     }
 
     public async execute(msg: Message, args: string[], data: EventData): Promise<void> {
-        await MessageUtils.send(msg.channel, Lang.getEmbed('commands.help', data.lang()));
+        await MessageUtils.send(msg.channel, Lang.getEmbed('displays.help', data.lang()));
     }
 }

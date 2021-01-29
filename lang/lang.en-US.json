@@ -3,7 +3,7 @@
         "color": "#0099ff"
     },
     "embeds": {
-        "commands": {
+        "displays": {
             "help": {
                 "title": "{{REF:bot.name}} - Help",
                 "description": "{{REF:bot.description}}",

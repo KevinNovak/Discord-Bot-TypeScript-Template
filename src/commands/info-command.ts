@@ -19,6 +19,6 @@ export class InfoCommand implements Command {
     }
 
     public async execute(msg: Message, args: string[], data: EventData): Promise<void> {
-        await MessageUtils.send(msg.channel, Lang.getEmbed('commands.info', data.lang()));
+        await MessageUtils.send(msg.channel, Lang.getEmbed('displays.info', data.lang()));
     }
 }
