@@ -22,7 +22,7 @@ export class DevCommand implements Command {
     }
 
     public async execute(msg: Message, args: string[], data: EventData): Promise<void> {
-        let memoryUsage = process.memoryUsage();
+        let memory = process.memoryUsage();
         await MessageUtils.send(
             msg.channel,
             Lang.getEmbed('commands.dev', data.lang(), {
@@ -33,9 +33,9 @@ export class DevCommand implements Command {
                 SHARD_ID: (msg.guild?.shardID ?? 0).toString(),
                 SERVER_ID: msg.guild?.id ?? Lang.getRef('other.na', data.lang()),
                 USER_ID: msg.author.id,
-                RSS_SIZE: `${this.bytesToMB(memoryUsage.rss)} MB`,
-                HEAP_TOTAL_SIZE: `${this.bytesToMB(memoryUsage.heapTotal)} MB`,
-                HEAP_USED_SIZE: `${this.bytesToMB(memoryUsage.heapUsed)} MB`,
+                RSS_SIZE: `${this.bytesToMB(memory.rss)} MB`,
+                HEAP_TOTAL_SIZE: `${this.bytesToMB(memory.heapTotal)} MB`,
+                HEAP_USED_SIZE: `${this.bytesToMB(memory.heapUsed)} MB`,
             })
         );
     }
