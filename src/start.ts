@@ -1,8 +1,7 @@
 import { Client } from 'discord.js';
 
 import { Bot } from './bot';
-import { HelpCommand, InfoCommand, TestCommand } from './commands';
-import { DevCommand } from './commands/dev-command';
+import { DevCommand, HelpCommand, InfoCommand, TestCommand } from './commands';
 import { GuildJoinHandler, GuildLeaveHandler, MessageHandler } from './events';
 import { Logger } from './services';
 
