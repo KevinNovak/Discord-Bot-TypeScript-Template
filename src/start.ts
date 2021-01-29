@@ -2,6 +2,7 @@ import { Client } from 'discord.js';
 
 import { Bot } from './bot';
 import { HelpCommand, InfoCommand, TestCommand } from './commands';
+import { DevCommand } from './commands/dev-command';
 import { GuildJoinHandler, GuildLeaveHandler, MessageHandler } from './events';
 import { Logger } from './services';
 
@@ -17,6 +18,7 @@ async function start(): Promise<void> {
     });
 
     // Commands
+    let devCommand = new DevCommand();
     let helpCommand = new HelpCommand();
     let infoCommand = new InfoCommand();
     let testCommand = new TestCommand();
@@ -24,7 +26,11 @@ async function start(): Promise<void> {
     // Events handlers
     let guildJoinHandler = new GuildJoinHandler();
     let guildLeaveHandler = new GuildLeaveHandler();
-    let messageHandler = new MessageHandler(Config.prefix, helpCommand, [infoCommand, testCommand]);
+    let messageHandler = new MessageHandler(Config.prefix, helpCommand, [
+        devCommand,
+        infoCommand,
+        testCommand,
+    ]);
 
     let bot = new Bot(
         Config.client.token,
