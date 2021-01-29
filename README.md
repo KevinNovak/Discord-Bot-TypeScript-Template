@@ -30,19 +30,25 @@ This bot has a few example commands which can be modified as needed.
 
 A help command with a bot description, list of commands, and important links.
 
-![Help Command](https://i.imgur.com/zGf5ZVy.png)
+![Help Command](https://i.imgur.com/N7LfacD.png)
 
 ### Test Command
 
 A generic command, which can be copied to create additional commands.
 
-![Test Command](https://i.imgur.com/eRwUPVJ.png)
+![Test Command](https://i.imgur.com/bYKEizS.png)
 
 ### Info Command
 
-An info command, which shows more detailed information about the bot.
+An info command, which shows more information and relevant links.
 
-![Info Command](https://i.imgur.com/pKJmdca.png)
+![Info Command](https://i.imgur.com/wIlKnBD.png)
+
+### Dev Command
+
+A dev command, which shows detailed information that may be helpful to developers.
+
+![Dev Command](https://i.imgur.com/DCETd7P.png)
 
 ## Setup
 
