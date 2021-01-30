@@ -67,6 +67,7 @@
                         "value": [
                             "**Shard ID**: {{SHARD_ID}}",
                             "**Server ID**: {{SERVER_ID}}",
+                            "**Bot ID**: {{BOT_ID}}",
                             "**User ID**: {{USER_ID}}"
                         ]
                     }
