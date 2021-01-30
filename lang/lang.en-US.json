@@ -51,11 +51,15 @@
                         ]
                     },
                     {
+                        "name": "Stats",
+                        "value": ["**Shards**: {{SHARD_COUNT}}", "**Servers**: {{SERVER_COUNT}}"]
+                    },
+                    {
                         "name": "Memory",
                         "value": [
-                            "**RSS**: {{RSS_SIZE}}",
-                            "**Heap Total**: {{HEAP_TOTAL_SIZE}}",
-                            "**Heap Used**: {{HEAP_USED_SIZE}}"
+                            "**RSS**: {{RSS_SIZE}} ({{RSS_SIZE_PER_SERVER}}/Server)",
+                            "**Heap**: {{HEAP_TOTAL_SIZE}} ({{HEAP_TOTAL_SIZE_PER_SERVER}}/Server)",
+                            "**Used**: {{HEAP_USED_SIZE}} ({{HEAP_USED_SIZE_PER_SERVER}}/Server)"
                         ]
                     },
                     {
@@ -92,6 +96,10 @@
                         "value": "{{REF:links.support}}"
                     }
                 ],
+                "color": "{{REF:colors.error}}"
+            },
+            "shardingInProcess": {
+                "description": "Sharding is in process. Try again later.",
                 "color": "{{REF:colors.error}}"
             }
         }
