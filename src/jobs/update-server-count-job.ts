@@ -1,4 +1,4 @@
-import { ShardingManager } from 'discord.js';
+import { ShardingManager } from 'discord.js-light';
 import schedule from 'node-schedule';
 
 import { BotSite } from '../models/config-models';

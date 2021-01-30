@@ -3,8 +3,15 @@
     "client": {
         "token": "<DISCORD_BOT_TOKEN>",
         "intents": ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "DIRECT_MESSAGES"],
+        "disabledEvents": [],
         "partials": [],
         "caches": {
+            "guilds": true,
+            "roles": true,
+            "emojis": false,
+            "channels": true,
+            "overwrites": true,
+            "presences": false,
             "messages": {
                 "size": 0,
                 "lifetime": 0,

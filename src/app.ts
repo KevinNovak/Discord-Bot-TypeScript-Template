@@ -1,4 +1,4 @@
-import { ShardingManager } from 'discord.js';
+import { ShardingManager } from 'discord.js-light';
 
 import { UpdateServerCountJob } from './jobs';
 import { Manager } from './manager';

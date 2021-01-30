@@ -1,4 +1,4 @@
-import { DMChannel, GuildMember, Message, Permissions, TextChannel } from 'discord.js';
+import { DMChannel, GuildMember, Message, Permissions, TextChannel } from 'discord.js-light';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { Command } from '../commands';
