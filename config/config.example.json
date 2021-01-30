@@ -2,13 +2,7 @@
     "prefix": "bot",
     "client": {
         "token": "<DISCORD_BOT_TOKEN>",
-        "intents": [
-            "GUILDS",
-            "GUILD_MEMBERS",
-            "GUILD_PRESENCES",
-            "GUILD_MESSAGES",
-            "DIRECT_MESSAGES"
-        ],
+        "intents": ["GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "DIRECT_MESSAGES"],
         "partials": [],
         "caches": {
             "messages": {
