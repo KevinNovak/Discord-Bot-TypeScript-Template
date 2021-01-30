@@ -5,6 +5,7 @@ import { Job } from './jobs';
 import { Logger } from './services';
 
 let Config = require('../config/config.json');
+let Debug = require('../config/debug.json');
 let Logs = require('../lang/logs.json');
 
 export class Bot {
@@ -55,6 +56,11 @@ export class Bot {
     private onReady(): void {
         let userTag = this.client.user.tag;
         Logger.info(Logs.info.login.replace('{USER_TAG}', userTag));
+
+        if (Debug.dummyMode) {
+            return;
+        }
+
         this.startJobs();
         this.ready = true;
     }

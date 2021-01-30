@@ -11,5 +11,6 @@
             "enabled": false,
             "value": 2
         }
-    }
+    },
+    "dummyMode": false
 }

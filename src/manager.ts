@@ -4,6 +4,7 @@ import { Job } from './jobs';
 import { Logger } from './services';
 
 let Config = require('../config/config.json');
+let Debug = require('../config/debug.json');
 let Logs = require('../lang/logs.json');
 
 export class Manager {
@@ -11,6 +12,7 @@ export class Manager {
 
     public async start(): Promise<void> {
         this.registerListeners();
+
         try {
             Logger.info(
                 Logs.info.spawningShards.replace(
@@ -27,6 +29,11 @@ export class Manager {
             Logger.error(Logs.error.spawnShard, error);
             return;
         }
+
+        if (Debug.dummyMode) {
+            return;
+        }
+
         this.startJobs();
     }
 
