@@ -30,7 +30,7 @@ export class Manager {
             return;
         }
 
-        if (Debug.dummyMode) {
+        if (Debug.dummyMode.enabled) {
             return;
         }
 
