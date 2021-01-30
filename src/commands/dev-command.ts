@@ -33,9 +33,9 @@ export class DevCommand implements Command {
                 SHARD_ID: (msg.guild?.shardID ?? 0).toString(),
                 SERVER_ID: msg.guild?.id ?? Lang.getRef('other.na', data.lang()),
                 USER_ID: msg.author.id,
-                RSS_SIZE: `${MathUtils.bytesToMB(memory.rss)} MB`,
-                HEAP_TOTAL_SIZE: `${MathUtils.bytesToMB(memory.heapTotal)} MB`,
-                HEAP_USED_SIZE: `${MathUtils.bytesToMB(memory.heapUsed)} MB`,
+                RSS_SIZE: `${MathUtils.bytesToMB(memory.rss).toLocaleString()} MB`,
+                HEAP_TOTAL_SIZE: `${MathUtils.bytesToMB(memory.heapTotal).toLocaleString()} MB`,
+                HEAP_USED_SIZE: `${MathUtils.bytesToMB(memory.heapUsed).toLocaleString()} MB`,
             })
         );
     }
