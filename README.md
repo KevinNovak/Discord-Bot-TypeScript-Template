@@ -102,8 +102,3 @@ A list of Discord bots using this template.
 | [QOTD Bot](https://top.gg/bot/713586207119900693)     | ![](https://top.gg/api/widget/servers/713586207119900693.svg) |
 
 Don't see your bot listed? [Contact us](https://discord.gg/Vyf6fEWbVr) to have your bot added!
-
-## References
-
--   [discord.js](https://discord.js.org/) - A powerful JavaScript library for interacting with the Discord API.
--   [Node Schedule](https://github.com/node-schedule/node-schedule) - A cron-like job scheduler for Node.
