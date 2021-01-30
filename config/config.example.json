@@ -6,9 +6,9 @@
         "partials": [],
         "caches": {
             "messages": {
-                "size": 1,
-                "lifetime": 60,
-                "sweepInterval": 30
+                "size": 0,
+                "lifetime": 0,
+                "sweepInterval": 0
             }
         }
     },
