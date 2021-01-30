@@ -1,6 +1,6 @@
 # Discord Bot TypeScript Template
 
-[![discord.js](https://img.shields.io/github/package-json/dependency-version/KevinNovak/Discord-Bot-TypeScript-Template/discord.js)](https://discord.js.org/)[![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
+[![discord.js](https://img.shields.io/github/package-json/dependency-version/KevinNovak/Discord-Bot-TypeScript-Template/discord.js-light)](https://github.com/timotejroiko/discord.js-light)[![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
 
 **Discord bot** - A discord.js bot template written with TypeScript.
 
@@ -12,7 +12,9 @@ For help using this template, feel free to [join our support server](https://dis
 
 ## Features
 
--   Written with TypeScript and [discord.js](https://discord.js.org/).
+-   Written with TypeScript.
+-   Uses the [discord.js-light](https://github.com/timotejroiko/discord.js-light) framework.
+    -   Based on [discord.js](https://discord.js.org/), but more memory efficient.
 -   Basic command structure.
 -   Rate limits for commands.
 -   Shows server count in bot status.

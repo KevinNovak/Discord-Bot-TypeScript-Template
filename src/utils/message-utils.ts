@@ -8,7 +8,7 @@ import {
     StringResolvable,
     TextChannel,
     User,
-} from 'discord.js';
+} from 'discord.js-light';
 
 export class MessageUtils {
     public static async send(

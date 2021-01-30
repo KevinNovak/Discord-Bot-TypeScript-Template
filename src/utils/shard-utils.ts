@@ -1,4 +1,4 @@
-import { ShardClientUtil, ShardingManager, Util } from 'discord.js';
+import { ShardClientUtil, ShardingManager, Util } from 'discord.js-light';
 
 export class ShardUtils {
     public static async getRecommendedShards(

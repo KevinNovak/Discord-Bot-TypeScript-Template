@@ -1,4 +1,4 @@
-import { MessageEmbed } from 'discord.js';
+import { MessageEmbed } from 'discord.js-light';
 import { MultilingualService } from 'discord.js-multilingual-utils';
 import path from 'path';
 

@@ -1,4 +1,4 @@
-import { Shard, ShardingManager } from 'discord.js';
+import { Shard, ShardingManager } from 'discord.js-light';
 
 import { Job } from './jobs';
 import { Logger } from './services';
