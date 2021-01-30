@@ -50,7 +50,7 @@ An info command, which shows more information and relevant links.
 
 A dev command, which shows detailed information that may be helpful to developers.
 
-![Dev Command](https://i.imgur.com/Zyw9MCG.png)
+![Dev Command](https://i.imgur.com/PKiur9p.png)
 
 ## Setup
 
