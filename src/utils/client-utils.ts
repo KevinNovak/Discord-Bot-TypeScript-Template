@@ -1,4 +1,5 @@
-import { Client, DiscordAPIError, Guild, GuildMember, User } from 'discord.js-light';
+import { Client } from 'discord.js';
+import { DiscordAPIError, Guild, GuildMember, User } from 'discord.js-light';
 import { RegexUtils } from '.';
 
 export class ClientUtils {
