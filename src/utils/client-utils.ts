@@ -24,11 +24,9 @@ export class ClientUtils {
     public static async findMember(guild: Guild, input: string): Promise<GuildMember> {
         let discordId = RegexUtils.discordId(input);
         try {
-            if (discordId) {
-                return await guild.members.fetch(discordId);
-            } else {
-                return (await guild.members.fetch({ query: input, limit: 1 })).first();
-            }
+            return discordId
+                ? await guild.members.fetch(discordId)
+                : (await guild.members.fetch({ query: input, limit: 1 })).first();
         } catch (error) {
             // Error code 10007: "Unknown Member"
             // Error code 10013: "Unknown User"
