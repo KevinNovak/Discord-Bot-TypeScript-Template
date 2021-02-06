@@ -1,5 +1,15 @@
+import { Guild } from 'discord.js-light';
+
 export class FormatUtils {
-    public static roleMention(discordId: string): string {
+    public static roleMention(guild: Guild, discordId: string): string {
+        if (discordId === '@here') {
+            return discordId;
+        }
+
+        if (discordId === guild.id) {
+            return '@everyone';
+        }
+
         return `<@&${discordId}>`;
     }
 
