@@ -12,7 +12,7 @@ export class ClientUtils {
         try {
             return await client.users.fetch(discordId);
         } catch (error) {
-            // Error code 10013: "Unknown User"
+            // 10013: "Unknown User"
             if (error instanceof DiscordAPIError && [10013].includes(error.code)) {
                 return;
             } else {
@@ -28,8 +28,8 @@ export class ClientUtils {
                 ? await guild.members.fetch(discordId)
                 : (await guild.members.fetch({ query: input, limit: 1 })).first();
         } catch (error) {
-            // Error code 10007: "Unknown Member"
-            // Error code 10013: "Unknown User"
+            // 10007: "Unknown Member"
+            // 10013: "Unknown User"
             if (error instanceof DiscordAPIError && [10007, 10013].includes(error.code)) {
                 return;
             } else {
