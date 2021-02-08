@@ -18,8 +18,14 @@ export class MessageUtils {
         try {
             return await target.send(content);
         } catch (error) {
+            // 10003: "Unknown channel"
+            // 10004: "Unknown guild"
+            // 10013: "Unknown user"
             // 50007: "Cannot send messages to this user" (User blocked bot or DM disabled)
-            if (error instanceof DiscordAPIError && [50007].includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                [10003, 10004, 10013, 50007].includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;
