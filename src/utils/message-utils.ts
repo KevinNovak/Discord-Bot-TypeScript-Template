@@ -74,4 +74,18 @@ export class MessageUtils {
             }
         }
     }
+
+    public static async delete(msg: Message): Promise<Message> {
+        try {
+            return await msg.delete();
+        } catch (error) {
+            // 10008: "Unknown Message" (Message was deleted)
+            // 50007: "Cannot send messages to this user" (User blocked bot or DM disabled)
+            if (error instanceof DiscordAPIError && [10008, 50007].includes(error.code)) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
 }
