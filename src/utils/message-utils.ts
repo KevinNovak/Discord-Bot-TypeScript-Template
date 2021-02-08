@@ -47,6 +47,20 @@ export class MessageUtils {
         }
     }
 
+    public static async edit(msg: Message, content: StringResolvable): Promise<Message> {
+        try {
+            return await msg.edit(content);
+        } catch (error) {
+            // 10008: "Unknown Message" (Message was deleted)
+            // 50007: "Cannot send messages to this user" (User blocked bot or DM disabled)
+            if (error instanceof DiscordAPIError && [10008, 50007].includes(error.code)) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
     public static async react(msg: Message, emoji: EmojiResolvable): Promise<MessageReaction> {
         try {
             return await msg.react(emoji);
