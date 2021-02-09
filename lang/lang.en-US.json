@@ -4,6 +4,20 @@
     },
     "embeds": {
         "displays": {
+            "welcome": {
+                "title": "Thank you for using {{REF:bot.name}}!",
+                "description": ["{{REF:bot.description}}"],
+                "fields": [
+                    {
+                        "name": "Getting Started",
+                        "value": ["**{{REF:bot.prefix}} {{REF:commands.help}}** - View bot help."]
+                    },
+                    {
+                        "name": "Links",
+                        "value": ["{{REF:links.supportEmbed}}", "{{REF:links.inviteEmbed}}"]
+                    }
+                ]
+            },
             "help": {
                 "title": "{{REF:bot.name}} - Help",
                 "description": "{{REF:bot.description}}",
@@ -108,6 +122,9 @@
     "regexes": {
         "meta": {
             "language": "/\\b(en-US|en|en US|English)\\b/i"
+        },
+        "channels": {
+            "bot": "/bot|command|cmd/i"
         },
         "commands": {
             "dev": "/\\b(dev|d|developer|usage|memory|mem)\\b/i",
