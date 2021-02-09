@@ -25,6 +25,7 @@ export class Manager {
                 Config.sharding.spawnDelay * 1000,
                 Config.sharding.spawnTimeout * 1000
             );
+            Logger.info(Logs.info.allShardsSpawned);
         } catch (error) {
             Logger.error(Logs.error.spawnShard, error);
             return;

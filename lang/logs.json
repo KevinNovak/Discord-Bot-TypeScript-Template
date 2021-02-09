@@ -4,6 +4,7 @@
         "spawningShards": "Spawning {SHARD_COUNT} shards.",
         "launchedShard": "Launched Shard {SHARD_ID}.",
         "login": "Logged in as '{USER_TAG}'!",
+        "allShardsSpawned": "All shards have been spawned.",
         "updatedServerCount": "Updated server count. Connected to {SERVER_COUNT} total servers.",
         "updateServerCountSite": "Updated server count on '{BOT_SITE}'.",
         "guildJoined": "Guild '{GUILD_NAME}' ({GUILD_ID}) joined.",
