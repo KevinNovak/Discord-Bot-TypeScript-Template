@@ -17,6 +17,7 @@ For help using this template, feel free to [join our support server](https://dis
     -   Based on [discord.js](https://discord.js.org/), but more memory efficient.
 -   Basic command structure.
 -   Rate limits for commands.
+-   Welcome message when joining a server.
 -   Shows server count in bot status.
 -   Posts server count to popular bot list websites.
 -   Support for multiple languages.
@@ -51,6 +52,12 @@ An info command, which shows more information and relevant links.
 A dev command, which shows detailed information that may be helpful to developers.
 
 ![Dev Command](https://i.imgur.com/PKiur9p.png)
+
+### Welcome Message
+
+A welcome message is also sent to the server and owner when the bot is added.
+
+![Welcome Message](https://i.imgur.com/00mXi0O.png)
 
 ## Setup
 
