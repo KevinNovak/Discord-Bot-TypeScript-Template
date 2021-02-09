@@ -37,7 +37,7 @@ export class GuildJoinHandler implements EventHandler {
             await MessageUtils.send(
                 guild.owner.user,
                 await MessageUtils.send(
-                    notifyChannel,
+                    guild.owner.user,
                     Lang.getEmbed('displays.welcome', data.lang()).setAuthor(
                         guild.name,
                         guild.iconURL()
