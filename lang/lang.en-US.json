@@ -9,7 +9,7 @@
                 "description": ["{{REF:bot.description}}"],
                 "fields": [
                     {
-                        "name": "Getting Started",
+                        "name": "Important Commands",
                         "value": ["**{{REF:bot.prefix}} {{REF:commands.help}}** - View bot help."]
                     },
                     {
