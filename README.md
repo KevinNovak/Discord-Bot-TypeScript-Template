@@ -66,7 +66,7 @@ A welcome message is also sent to the server and owner when the bot is added.
     - Copy all files ending in `.example.json` and remove the `.example` from the copied file names.
         - Ex: `config.example.json` should be copied and renamed as `config.json`.
 2. Obtain a bot token.
-    - You'll need to create a new bot in your [Discord Developer Portal](https://discordapp.com/developers/applications/).
+    - You'll need to create a new bot in your [Discord Developer Portal](https://discord.com/developers/applications/).
         - See [here](https://www.writebots.com/discord-bot-token/) for detailed instructions.
         - At the end you should have a **bot token**.
 3. Modify the config file.
