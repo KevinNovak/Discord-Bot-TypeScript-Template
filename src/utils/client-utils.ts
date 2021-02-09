@@ -44,8 +44,9 @@ export class ClientUtils {
 
     public static async findNotifyChannel(guild: Guild, langCode: LangCode): Promise<TextChannel> {
         // Prefer the system channel
-        if (guild.systemChannel && PermissionUtils.canSendEmbed(guild.systemChannel)) {
-            return guild.systemChannel;
+        let systemChannel = guild.systemChannel;
+        if (systemChannel && PermissionUtils.canSendEmbed(systemChannel)) {
+            return systemChannel;
         }
 
         // Otherwise look for a bot channel
