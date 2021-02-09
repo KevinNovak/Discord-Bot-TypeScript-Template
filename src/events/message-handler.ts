@@ -50,7 +50,7 @@ export class MessageHandler {
             return;
         }
 
-        // Get data from database
+        // TODO: Get data from database
         let data = new EventData();
 
         // Check if I have permission to send a message

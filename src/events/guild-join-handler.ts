@@ -1,6 +1,6 @@
 import { Guild } from 'discord.js-light';
-import { LangCode } from '../models/enums';
 
+import { EventData } from '../models/internal-models';
 import { Lang, Logger } from '../services';
 import { ClientUtils, MessageUtils } from '../utils';
 import { EventHandler } from './event-handler';
@@ -15,22 +15,35 @@ export class GuildJoinHandler implements EventHandler {
                 .replace('{GUILD_ID}', guild.id)
         );
 
-        // Get welcome message
-        // TODO: Get appropriate language if we have the data, guild lang? owner lang?
-        let embed = Lang.getEmbed('displays.welcome', LangCode.EN_US).setAuthor(
-            guild.name,
-            guild.iconURL()
-        );
+        // TODO: Get data from database
+        let data = new EventData();
 
-        // Send to notify channel
-        let notifyChannel = await ClientUtils.findNotifyChannel(guild);
+        // Send welcome message to notify channel
+        // TODO: Replace "data.lang()" here with the server's language
+        let notifyChannel = await ClientUtils.findNotifyChannel(guild, data.lang());
         if (notifyChannel) {
-            await MessageUtils.send(notifyChannel, embed);
+            await MessageUtils.send(
+                notifyChannel,
+                Lang.getEmbed('displays.welcome', data.lang()).setAuthor(
+                    guild.name,
+                    guild.iconURL()
+                )
+            );
         }
 
-        // Send to owner
+        // Send welcome message to owner
+        // TODO: Replace "data.lang()" here with the user's language
         if (guild.owner) {
-            await MessageUtils.send(guild.owner.user, embed);
+            await MessageUtils.send(
+                guild.owner.user,
+                await MessageUtils.send(
+                    notifyChannel,
+                    Lang.getEmbed('displays.welcome', data.lang()).setAuthor(
+                        guild.name,
+                        guild.iconURL()
+                    )
+                )
+            );
         }
     }
 }

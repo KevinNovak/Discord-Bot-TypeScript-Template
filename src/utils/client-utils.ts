@@ -1,5 +1,6 @@
-import { Client, TextChannel } from 'discord.js';
-import { DiscordAPIError, Guild, GuildMember, User } from 'discord.js-light';
+import { Client } from 'discord.js';
+import { DiscordAPIError, Guild, GuildMember, TextChannel, User } from 'discord.js-light';
+
 import { RegexUtils } from '.';
 import { LangCode } from '../models/enums';
 import { Lang } from '../services';
@@ -41,7 +42,7 @@ export class ClientUtils {
         }
     }
 
-    public static async findNotifyChannel(guild: Guild): Promise<TextChannel> {
+    public static async findNotifyChannel(guild: Guild, langCode: LangCode): Promise<TextChannel> {
         // Prefer the system channel
         if (guild.systemChannel && PermissionUtils.canSendEmbed(guild.systemChannel)) {
             return guild.systemChannel;
@@ -52,7 +53,7 @@ export class ClientUtils {
             channel =>
                 channel instanceof TextChannel &&
                 PermissionUtils.canSendEmbed(channel) &&
-                Lang.getRegex('channels.bot', LangCode.EN_US).test(channel.name)
+                Lang.getRegex('channels.bot', langCode).test(channel.name)
         ) as TextChannel;
     }
 }
