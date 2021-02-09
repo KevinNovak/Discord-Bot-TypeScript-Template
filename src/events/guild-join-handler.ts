@@ -18,21 +18,8 @@ export class GuildJoinHandler implements EventHandler {
         // TODO: Get data from database
         let data = new EventData();
 
-        // Send welcome message to notify channel
-        // TODO: Replace "data.lang()" here with the server's language
-        let notifyChannel = await ClientUtils.findNotifyChannel(guild, data.lang());
-        if (notifyChannel) {
-            await MessageUtils.send(
-                notifyChannel,
-                Lang.getEmbed('displays.welcome', data.lang()).setAuthor(
-                    guild.name,
-                    guild.iconURL()
-                )
-            );
-        }
-
         // Send welcome message to owner
-        // TODO: Replace "data.lang()" here with the user's language
+        // TODO: Replace "data.lang()" here with the owner's language
         if (guild.owner) {
             await MessageUtils.send(
                 guild.owner.user,
@@ -42,6 +29,19 @@ export class GuildJoinHandler implements EventHandler {
                         guild.name,
                         guild.iconURL()
                     )
+                )
+            );
+        }
+
+        // Send welcome message to notify channel
+        // TODO: Replace "data.lang()" here with the server's language
+        let notifyChannel = await ClientUtils.findNotifyChannel(guild, data.lang());
+        if (notifyChannel) {
+            await MessageUtils.send(
+                notifyChannel,
+                Lang.getEmbed('displays.welcome', data.lang()).setAuthor(
+                    guild.name,
+                    guild.iconURL()
                 )
             );
         }
