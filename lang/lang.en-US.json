@@ -86,6 +86,18 @@
                         ]
                     }
                 ]
+            },
+            "invite": {
+                "description": "{{REF:links.inviteEmbed}}"
+            },
+            "docs": {
+                "description": "{{REF:links.docsEmbed}}"
+            },
+            "vote": {
+                "description": "{{REF:links.voteEmbed}}"
+            },
+            "support": {
+                "description": "{{REF:links.supportEmbed}}"
             }
         },
         "validation": {
@@ -127,10 +139,14 @@
             "bot": "/bot|command|cmd/i"
         },
         "commands": {
-            "dev": "/\\b(dev|d|developer|usage|memory|mem)\\b/i",
+            "dev": "/\\b(dev|developer|usage|memory|mem)\\b/i",
+            "docs": "/\\b(docs|d|documentation|readme|website|site)\\b/i",
             "help": "/\\b(help|h|\\?)\\b/i",
             "info": "/\\b(info|i|information)\\b/i",
-            "test": "/\\b(test|t)\\b/i"
+            "invite": "/\\b(invite)\\b/i",
+            "support": "/\\b(support|s)\\b/i",
+            "test": "/\\b(test|t)\\b/i",
+            "vote": "/\\b(vote|v)\\b/i"
         }
     },
     "refs": {
@@ -148,9 +164,13 @@
         },
         "commands": {
             "dev": "dev",
+            "docs": "docs",
             "help": "help",
             "info": "info",
-            "test": "test"
+            "invite": "invite",
+            "support": "support",
+            "test": "test",
+            "vote": "vote"
         },
         "other": {
             "na": "N/A"
@@ -158,6 +178,10 @@
         "links": {
             "invite": "https://discord.com/",
             "inviteEmbed": "[Invite {{REF:bot.name}} to a Server!]({{REF:links.invite}})",
+            "docs": "https://top.gg/",
+            "docsEmbed": "[View Bot Documentation]({{REF:links.docs}})",
+            "vote": "https://top.gg/",
+            "voteEmbed": "[Vote for {{REF:bot.name}}!]({{REF:links.vote}})",
             "support": "https://support.discord.com/",
             "supportEmbed": "[Join Support Server]({{REF:links.support}})",
             "stream": "https://www.twitch.tv/monstercat",

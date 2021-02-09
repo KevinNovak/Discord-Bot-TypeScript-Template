@@ -1,7 +1,16 @@
 import { Client } from 'discord.js-light';
 
 import { Bot } from './bot';
-import { DevCommand, HelpCommand, InfoCommand, TestCommand } from './commands';
+import {
+    DevCommand,
+    DocsCommand,
+    HelpCommand,
+    InfoCommand,
+    InviteCommand,
+    SupportCommand,
+    TestCommand,
+    VoteCommand,
+} from './commands';
 import { GuildJoinHandler, GuildLeaveHandler, MessageHandler } from './events';
 import { Logger } from './services';
 
@@ -28,17 +37,25 @@ async function start(): Promise<void> {
 
     // Commands
     let devCommand = new DevCommand();
+    let docsCommand = new DocsCommand();
     let helpCommand = new HelpCommand();
     let infoCommand = new InfoCommand();
+    let inviteCommand = new InviteCommand();
+    let supportCommand = new SupportCommand();
     let testCommand = new TestCommand();
+    let voteCommand = new VoteCommand();
 
     // Events handlers
     let guildJoinHandler = new GuildJoinHandler();
     let guildLeaveHandler = new GuildLeaveHandler();
     let messageHandler = new MessageHandler(Config.prefix, helpCommand, [
         devCommand,
+        docsCommand,
         infoCommand,
+        inviteCommand,
+        supportCommand,
         testCommand,
+        voteCommand,
     ]);
 
     let bot = new Bot(

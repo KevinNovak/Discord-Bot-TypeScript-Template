@@ -53,9 +53,15 @@ A dev command, which shows detailed information that may be helpful to developer
 
 ![Dev Command](https://i.imgur.com/PKiur9p.png)
 
+### Misc Commands
+
+There are additional commands built-in that simply provide relevant links (`invite`, `docs`, `support`, `vote`).
+
+![Misc Commands](https://i.imgur.com/Q2aYa5U.png)
+
 ### Welcome Message
 
-A welcome message is also sent to the server and owner when the bot is added.
+A welcome message is sent to the server and owner when the bot is added.
 
 ![Welcome Message](https://i.imgur.com/00mXi0O.png)
 
