@@ -82,8 +82,8 @@ export class PermissionUtils {
         // MANAGE_MESSAGES - Needed to remove others reactions
         return channelPerms.has([
             Permissions.FLAGS.VIEW_CHANNEL,
-            Permissions.FLAGS.READ_MESSAGE_HISTORY,
             Permissions.FLAGS.ADD_REACTIONS,
+            Permissions.FLAGS.READ_MESSAGE_HISTORY,
             ...(removeOthers ? [Permissions.FLAGS.MANAGE_MESSAGES] : []),
         ]);
     }
