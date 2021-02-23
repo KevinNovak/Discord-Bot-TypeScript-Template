@@ -18,8 +18,7 @@ export class Language {
     }
 
     public static find(input: string): LangCode {
-        for (let key of Object.keys(LangCode)) {
-            let langCode: LangCode = LangCode[key];
+        for (let langCode of Object.values(LangCode)) {
             if (this.regex(langCode).test(input)) {
                 return langCode;
             }
