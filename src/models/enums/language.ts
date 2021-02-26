@@ -5,8 +5,8 @@ export enum LangCode {
 }
 
 export class Language {
-    public static keyword(langCode: LangCode): RegExp {
-        return Lang.getRegex('meta.language', langCode);
+    public static keyword(langCode: LangCode): string {
+        return Lang.getRef('meta.language', langCode);
     }
 
     public static regex(langCode: LangCode): RegExp {
