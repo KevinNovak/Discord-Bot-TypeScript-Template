@@ -6,6 +6,8 @@ import { LangCode } from '../models/enums';
 import { Lang } from '../services';
 import { PermissionUtils } from './permission-utils';
 
+const FETCH_MEMBER_LIMIT = 20;
+
 export class ClientUtils {
     public static async getUser(client: Client, discordId: string): Promise<User> {
         discordId = RegexUtils.discordId(discordId);
@@ -26,11 +28,20 @@ export class ClientUtils {
     }
 
     public static async findMember(guild: Guild, input: string): Promise<GuildMember> {
-        let discordId = RegexUtils.discordId(input);
         try {
-            return discordId
-                ? await guild.members.fetch(discordId)
-                : (await guild.members.fetch({ query: input, limit: 1 })).first();
+            let discordId = RegexUtils.discordId(input);
+            if (discordId) {
+                return await guild.members.fetch(discordId);
+            }
+
+            let tag = RegexUtils.tag(input);
+            if (tag) {
+                return (
+                    await guild.members.fetch({ query: tag.username, limit: FETCH_MEMBER_LIMIT })
+                ).find(member => member.user.discriminator === tag.discriminator);
+            }
+
+            return (await guild.members.fetch({ query: input, limit: 1 })).first();
         } catch (error) {
             // 10007: "Unknown Member"
             // 10013: "Unknown User"
