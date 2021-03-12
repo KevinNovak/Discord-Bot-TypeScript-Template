@@ -153,21 +153,21 @@
     },
     "regexes": {
         "meta": {
-            "language": "/\\b(en-Pirate|en Pirate|Pirate)\\b/i"
+            "language": "/\\b({{REF:meta.language}}|en Pirate|Pirate)\\b/i"
         },
         "channels": {
             "bot": "/bot|command|cmd/i"
         },
         "commands": {
-            "dev": "/\\b(dev|developer|usage|memory|mem)\\b/i",
-            "docs": "/\\b(docs|d|documentation|readme|website|site)\\b/i",
-            "help": "/\\b(help|h|\\?)\\b/i",
-            "info": "/\\b(info|i|information)\\b/i",
-            "invite": "/\\b(invite)\\b/i",
-            "support": "/\\b(support|s)\\b/i",
-            "test": "/\\b(test|t)\\b/i",
-            "translate": "/\\b(translate|t|translation|translations|lang|langs|language|languages)\\b/i",
-            "vote": "/\\b(vote|v)\\b/i"
+            "dev": "/\\b({{REF:commands.dev}}|developer|usage|memory|mem)\\b/i",
+            "docs": "/\\b({{REF:commands.docs}}|d|documentation|readme|website|site)\\b/i",
+            "help": "/\\b({{REF:commands.help}}|h|\\?)\\b/i",
+            "info": "/\\b({{REF:commands.info}}|i|information)\\b/i",
+            "invite": "/\\b({{REF:commands.invite}})\\b/i",
+            "support": "/\\b({{REF:commands.support}}|s)\\b/i",
+            "test": "/\\b({{REF:commands.test}}|t)\\b/i",
+            "translate": "/\\b({{REF:commands.translate}}|t|translation|translations|lang|langs|language|languages)\\b/i",
+            "vote": "/\\b({{REF:commands.vote}}|v)\\b/i"
         }
     },
     "refs": {
