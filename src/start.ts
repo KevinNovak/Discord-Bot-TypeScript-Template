@@ -9,9 +9,17 @@ import {
     InviteCommand,
     SupportCommand,
     TestCommand,
+    TranslateCommand,
     VoteCommand,
 } from './commands';
-import { GuildJoinHandler, GuildLeaveHandler, MessageHandler } from './events';
+import {
+    CommandHandler,
+    GuildJoinHandler,
+    GuildLeaveHandler,
+    MessageHandler,
+    ReactionHandler,
+    TriggerHandler,
+} from './events';
 import { Logger } from './services';
 
 let Config = require('../config/config.json');
@@ -43,20 +51,25 @@ async function start(): Promise<void> {
     let inviteCommand = new InviteCommand();
     let supportCommand = new SupportCommand();
     let testCommand = new TestCommand();
+    let translateCommand = new TranslateCommand();
     let voteCommand = new VoteCommand();
 
-    // Events handlers
+    // Event handlers
     let guildJoinHandler = new GuildJoinHandler();
     let guildLeaveHandler = new GuildLeaveHandler();
-    let messageHandler = new MessageHandler(Config.prefix, helpCommand, [
+    let commandHandler = new CommandHandler(Config.prefix, helpCommand, [
         devCommand,
         docsCommand,
         infoCommand,
         inviteCommand,
         supportCommand,
         testCommand,
+        translateCommand,
         voteCommand,
     ]);
+    let triggerHandler = new TriggerHandler([]);
+    let messageHandler = new MessageHandler(commandHandler, triggerHandler);
+    let reactionHandler = new ReactionHandler([]);
 
     let bot = new Bot(
         Config.client.token,
@@ -64,6 +77,7 @@ async function start(): Promise<void> {
         guildJoinHandler,
         guildLeaveHandler,
         messageHandler,
+        reactionHandler,
         []
     );
 

@@ -1,8 +1,18 @@
-import { Client, Constants, Guild, Message, RateLimitData } from 'discord.js-light';
+import {
+    Client,
+    Constants,
+    Guild,
+    Message,
+    MessageReaction,
+    RateLimitData,
+    User,
+} from 'discord.js-light';
 
 import { GuildJoinHandler, GuildLeaveHandler, MessageHandler } from './events';
+import { ReactionHandler } from './events/reaction-handler';
 import { Job } from './jobs';
 import { Logger } from './services';
+import { PartialUtils } from './utils';
 
 let Config = require('../config/config.json');
 let Debug = require('../config/debug.json');
@@ -17,6 +27,7 @@ export class Bot {
         private guildJoinHandler: GuildJoinHandler,
         private guildLeaveHandler: GuildLeaveHandler,
         private messageHandler: MessageHandler,
+        private reactionHandler: ReactionHandler,
         private jobs: Job[]
     ) {}
 
@@ -33,6 +44,10 @@ export class Bot {
         this.client.on(Constants.Events.GUILD_CREATE, (guild: Guild) => this.onGuildJoin(guild));
         this.client.on(Constants.Events.GUILD_DELETE, (guild: Guild) => this.onGuildLeave(guild));
         this.client.on(Constants.Events.MESSAGE_CREATE, (msg: Message) => this.onMessage(msg));
+        this.client.on(
+            Constants.Events.MESSAGE_REACTION_ADD,
+            (messageReaction: MessageReaction, user: User) => this.onReaction(messageReaction, user)
+        );
         this.client.on(Constants.Events.RATE_LIMIT, (rateLimitData: RateLimitData) =>
             this.onRateLimit(rateLimitData)
         );
@@ -100,10 +115,35 @@ export class Bot {
             return;
         }
 
+        msg = await PartialUtils.fillMessage(msg);
+        if (!msg) {
+            return;
+        }
+
         try {
             await this.messageHandler.process(msg);
         } catch (error) {
             Logger.error(Logs.error.message, error);
+        }
+    }
+
+    private async onReaction(msgReaction: MessageReaction, reactor: User): Promise<void> {
+        if (
+            !this.ready ||
+            (Debug.dummyMode.enabled && !Debug.dummyMode.whitelist.includes(reactor.id))
+        ) {
+            return;
+        }
+
+        msgReaction = await PartialUtils.fillReaction(msgReaction);
+        if (!msgReaction) {
+            return;
+        }
+
+        try {
+            await this.reactionHandler.process(msgReaction, reactor);
+        } catch (error) {
+            Logger.error(Logs.error.reaction, error);
         }
     }
 

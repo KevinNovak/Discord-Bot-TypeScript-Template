@@ -11,12 +11,14 @@
     "cSpell.enabled": true,
     "cSpell.words": [
         "Novak",
+        "bot's",
         "discordbotlist",
         "discordlabs",
         "filesize",
         "ondiscord",
         "parens",
         "regexes",
-        "respawn"
+        "respawn",
+        "varchar"
     ]
 }

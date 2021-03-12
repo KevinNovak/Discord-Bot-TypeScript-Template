@@ -153,7 +153,7 @@
     },
     "regexes": {
         "meta": {
-            "language": "/\\b(en-US|en US|English)\\b/i"
+            "language": "/\\b(en-Pirate|en Pirate|Pirate)\\b/i"
         },
         "channels": {
             "bot": "/bot|command|cmd/i"
@@ -172,8 +172,8 @@
     },
     "refs": {
         "meta": {
-            "language": "en-US",
-            "languageDisplay": "English",
+            "language": "en-Pirate",
+            "languageDisplay": "Pirate",
             "translators": "[TranslatorName#1234](https://github.com/)"
         },
         "bot": {

@@ -2,9 +2,15 @@
     "prefix": "bot",
     "client": {
         "token": "<DISCORD_BOT_TOKEN>",
-        "intents": ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES"],
+        "intents": [
+            "GUILDS",
+            "GUILD_MESSAGES",
+            "GUILD_MESSAGE_REACTIONS",
+            "DIRECT_MESSAGES",
+            "DIRECT_MESSAGE_REACTIONS"
+        ],
         "disabledEvents": [],
-        "partials": [],
+        "partials": ["MESSAGE", "CHANNEL", "REACTION"],
         "caches": {
             "guilds": true,
             "roles": true,
@@ -21,6 +27,14 @@
     },
     "rateLimiting": {
         "commands": {
+            "amount": 10,
+            "interval": 30
+        },
+        "triggers": {
+            "amount": 10,
+            "interval": 30
+        },
+        "reactions": {
             "amount": 10,
             "interval": 30
         }

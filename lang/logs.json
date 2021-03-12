@@ -22,6 +22,7 @@
         "guildJoin": "An error occurred while processing a guild join.",
         "guildLeave": "An error occurred while processing a guild leave.",
         "message": "An error occurred while processing a message.",
+        "reaction": "An error occurred while processing a reaction.",
         "rateLimit": "A rate limit was hit while making a request.",
         "commandDm": "[{MESSAGE_ID}] An error occurred while executing the '{COMMAND_KEYWORD}' command for user '{SENDER_TAG}' ({SENDER_ID}) in direct message.",
         "commandGuild": "[{MESSAGE_ID}] An error occurred while executing the '{COMMAND_KEYWORD}' command for user '{SENDER_TAG}' ({SENDER_ID}) in channel '{CHANNEL_NAME}' ({CHANNEL_ID}) in guild '{GUILD_NAME}' ({GUILD_ID})."
