@@ -27,7 +27,7 @@ export class DevCommand implements Command {
         let serverCount: number;
         if (msg.client.shard) {
             try {
-                serverCount = await ShardUtils.retrieveServerCount(msg.client.shard);
+                serverCount = await ShardUtils.serverCount(msg.client.shard);
             } catch (error) {
                 // SHARDING_IN_PROCESS: Shards are still being spawned.
                 if (error.name.includes('SHARDING_IN_PROCESS')) {

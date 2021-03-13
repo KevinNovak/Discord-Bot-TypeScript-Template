@@ -1,5 +1,6 @@
 export { ClientUtils } from './client-utils';
 export { FormatUtils } from './format-utils';
+export { MathUtils } from './math-utils';
 export { MessageUtils } from './message-utils';
 export { PartialUtils } from './partial-utils';
 export { PermissionUtils } from './permission-utils';

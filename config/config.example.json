@@ -25,6 +25,18 @@
             }
         }
     },
+    "sharding": {
+        "clusterId": 0,
+        "shardsPerCluster": 16,
+        "serversPerShard": 1000,
+        "spawnDelay": 5,
+        "spawnTimeout": 300
+    },
+    "jobs": {
+        "updateServerCount": {
+            "schedule": "0 */5 * * * *"
+        }
+    },
     "rateLimiting": {
         "commands": {
             "amount": 10,
@@ -38,18 +50,6 @@
             "amount": 10,
             "interval": 30
         }
-    },
-    "jobs": {
-        "updateServerCount": {
-            "schedule": "0 */5 * * * *"
-        }
-    },
-    "sharding": {
-        "machineId": 0,
-        "machineCount": 1,
-        "serversPerShard": 1000,
-        "spawnDelay": 5,
-        "spawnTimeout": 300
     },
     "logging": {
         "rateLimit": {

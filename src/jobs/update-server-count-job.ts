@@ -22,7 +22,7 @@ export class UpdateServerCountJob implements Job {
     }
 
     public async run(): Promise<void> {
-        let serverCount = await ShardUtils.retrieveServerCount(this.shardManager);
+        let serverCount = await ShardUtils.serverCount(this.shardManager);
         await this.shardManager.broadcastEval(`
             this.user.setPresence({
                 activity: {

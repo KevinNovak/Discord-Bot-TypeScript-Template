@@ -1,33 +1,26 @@
 import { ShardClientUtil, ShardingManager, Util } from 'discord.js-light';
+import { MathUtils } from '.';
 
 export class ShardUtils {
-    public static async getRecommendedShards(
+    public static async recommendedShards(
         token: string,
-        serversPerShard: number
+        serversPerShard: number,
+        shardsPerCluster: number
     ): Promise<number> {
-        return Math.ceil(await Util.fetchRecommendedShards(token, serversPerShard));
+        let recommendedShards = await Util.fetchRecommendedShards(token, serversPerShard);
+        return MathUtils.ceilToMultiple(recommendedShards, shardsPerCluster);
     }
 
-    public static getMyShardIds(
-        totalShards: number,
-        machineId: number,
-        totalMachines: number
-    ): number[] {
-        let myShardIds: number[] = [];
-        for (let shardId = 0; shardId < totalShards; shardId++) {
-            if (shardId % totalMachines === machineId) {
-                myShardIds.push(shardId);
-            }
-        }
-        return myShardIds;
+    public static myShardIds(clusterId: number, shardsPerCluster: number): number[] {
+        return MathUtils.range(clusterId * shardsPerCluster, shardsPerCluster);
     }
 
-    public static async retrieveServerCount(
+    public static async serverCount(
         shardInterface: ShardingManager | ShardClientUtil
     ): Promise<number> {
         let shardGuildCounts: number[] = await shardInterface.fetchClientValues(
             'guilds.cache.size'
         );
-        return shardGuildCounts.reduce((prev, val) => prev + val, 0);
+        return MathUtils.sum(shardGuildCounts);
     }
 }

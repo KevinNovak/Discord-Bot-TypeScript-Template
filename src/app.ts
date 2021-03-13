@@ -3,7 +3,7 @@ import { ShardingManager } from 'discord.js-light';
 import { UpdateServerCountJob } from './jobs';
 import { Manager } from './manager';
 import { HttpService, Logger } from './services';
-import { ShardUtils } from './utils';
+import { MathUtils, ShardUtils } from './utils';
 
 let Config = require('../config/config.json');
 let Debug = require('../config/debug.json');
@@ -18,20 +18,19 @@ async function start(): Promise<void> {
     try {
         totalShards = Debug.override.shardCount.enabled
             ? Debug.override.shardCount.value
-            : await ShardUtils.getRecommendedShards(
+            : await ShardUtils.recommendedShards(
                   Config.client.token,
-                  Config.sharding.serversPerShard
+                  Config.sharding.serversPerShard,
+                  Config.sharding.shardsPerCluster
               );
     } catch (error) {
         Logger.error(Logs.error.retrieveShardCount, error);
         return;
     }
 
-    let myShardIds = ShardUtils.getMyShardIds(
-        totalShards,
-        Config.sharding.machineId,
-        Config.sharding.machineCount
-    );
+    let myShardIds = Debug.override.shardCount.enabled
+        ? MathUtils.range(0, Debug.override.shardCount.value)
+        : ShardUtils.myShardIds(Config.sharding.clusterId, Config.sharding.shardsPerCluster);
 
     if (myShardIds.length === 0) {
         Logger.warn(Logs.warn.noShards);
