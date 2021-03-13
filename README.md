@@ -24,6 +24,7 @@ For help using this template, feel free to [join our support server](https://dis
 -   [Sharding](https://discordjs.guide/sharding/) across multiple machines.
 -   Built-in debugging setup for VSCode.
 -   Support for running with the [PM2](https://pm2.keymetrics.io/) process manger.
+-   Support for running with [Docker](https://www.docker.com/).
 
 ## Commands
 
