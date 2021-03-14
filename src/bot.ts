@@ -8,8 +8,7 @@ import {
     User,
 } from 'discord.js-light';
 
-import { GuildJoinHandler, GuildLeaveHandler, MessageHandler } from './events';
-import { ReactionHandler } from './events/reaction-handler';
+import { GuildJoinHandler, GuildLeaveHandler, MessageHandler, ReactionHandler } from './events';
 import { Job } from './jobs';
 import { Logger } from './services';
 import { PartialUtils } from './utils';
