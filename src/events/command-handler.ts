@@ -112,7 +112,7 @@ export class CommandHandler {
                 Logger.error(
                     Logs.error.commandDm
                         .replace('{MESSAGE_ID}', msg.id)
-                        .replace('{COMMAND_KEYWORD}', command.keyword(LangCode.EN_US))
+                        .replace('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
                         .replace('{SENDER_TAG}', msg.author.tag)
                         .replace('{SENDER_ID}', msg.author.id),
                     error
@@ -121,7 +121,7 @@ export class CommandHandler {
                 Logger.error(
                     Logs.error.commandGuild
                         .replace('{MESSAGE_ID}', msg.id)
-                        .replace('{COMMAND_KEYWORD}', command.keyword(LangCode.EN_US))
+                        .replace('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
                         .replace('{SENDER_TAG}', msg.author.tag)
                         .replace('{SENDER_ID}', msg.author.id)
                         .replace('{CHANNEL_NAME}', msg.channel.name)

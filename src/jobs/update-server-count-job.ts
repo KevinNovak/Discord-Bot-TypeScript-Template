@@ -2,7 +2,6 @@ import { ShardingManager } from 'discord.js-light';
 import schedule from 'node-schedule';
 
 import { BotSite } from '../models/config-models';
-import { LangCode } from '../models/enums';
 import { HttpService, Lang, Logger } from '../services';
 import { ShardUtils } from '../utils';
 import { Job } from './job';
@@ -28,7 +27,7 @@ export class UpdateServerCountJob implements Job {
                 activity: {
                     name: 'to ${serverCount.toLocaleString()} servers',
                     type: "STREAMING",
-                    url: "${Lang.getRef('links.stream', LangCode.EN_US)}"
+                    url: "${Lang.getRef('links.stream', Lang.Default)}"
                 }
             });
         `);
