@@ -30,7 +30,7 @@
             "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
             "internalConsoleOptions": "openOnSessionStart",
             "skipFiles": ["<node_internals>/**"],
-            "restart": true
+            "restart": false
         },
         {
             "name": "Start Shard",
@@ -44,7 +44,7 @@
             "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
             "skipFiles": ["<node_internals>/**"],
             "internalConsoleOptions": "openOnSessionStart",
-            "restart": true
+            "restart": false
         }
     ]
 }
