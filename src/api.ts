@@ -1,4 +1,4 @@
-import express, { ErrorRequestHandler, Express } from 'express';
+import express, { ErrorRequestHandler, Express, RequestHandler } from 'express';
 import util from 'util';
 
 import { Controller } from './controllers';
@@ -13,6 +13,8 @@ export class Api {
     constructor(public controllers: Controller[]) {
         this.app = express();
         this.app.use(express.json());
+        this.app.use(this.checkAuth);
+        this.app.use(this.handleError);
         this.setupControllers();
     }
 
@@ -24,10 +26,17 @@ export class Api {
 
     private setupControllers(): void {
         for (let controller of this.controllers) {
-            controller.router.use(this.handleError);
             this.app.use('/', controller.router);
         }
     }
+
+    private checkAuth: RequestHandler = (req, res, next) => {
+        if (req.headers.authorization !== Config.api.secret) {
+            res.sendStatus(401);
+            return;
+        }
+        next();
+    };
 
     private handleError: ErrorRequestHandler = (error, req, res, next) => {
         Logger.error(
