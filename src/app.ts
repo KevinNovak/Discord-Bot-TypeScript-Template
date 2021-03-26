@@ -57,7 +57,7 @@ async function start(): Promise<void> {
 
     // API
     let rootController = new RootController();
-    let infoController = new InfoController();
+    let infoController = new InfoController(shardManager);
     let api = new Api([rootController, infoController]);
 
     // Start
