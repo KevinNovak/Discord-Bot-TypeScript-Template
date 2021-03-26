@@ -32,6 +32,9 @@
         "spawnDelay": 5,
         "spawnTimeout": 300
     },
+    "api": {
+        "port": 8080
+    },
     "jobs": {
         "updateServerCount": {
             "schedule": "0 */5 * * * *"
