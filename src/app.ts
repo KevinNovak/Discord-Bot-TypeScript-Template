@@ -4,7 +4,7 @@ import { Api } from './api';
 import { InfoController, PresenceController, RootController } from './controllers';
 import { UpdateServerCountJob } from './jobs';
 import { Manager } from './manager';
-import { HttpService, Logger } from './services';
+import { HttpService, Logger, MasterService } from './services';
 import { MathUtils, ShardUtils } from './utils';
 
 let Config = require('../config/config.json');
@@ -27,8 +27,9 @@ async function start(): Promise<void> {
         return;
     }
 
+    // TODO: What if master service call fails
     let myShardIds = Config.clustering.enabled
-        ? ShardUtils.myShardIds(Config.clustering.clusterId, Config.clustering.shardsPerCluster)
+        ? await MasterService.myShardIds(Config.clustering.clusterId, Config.clustering.shardCount)
         : MathUtils.range(0, recommendedShards);
 
     if (myShardIds.length === 0) {
@@ -36,11 +37,16 @@ async function start(): Promise<void> {
         return;
     }
 
+    // TODO: Is this "Math.max + 1" going to cause issues?
+    let totalShardCount = Config.clustering.enabled
+        ? Math.max(...myShardIds) + 1
+        : recommendedShards;
+
     let shardManager = new ShardingManager('dist/start.js', {
         token: Config.client.token,
         mode: Debug.override.shardMode.enabled ? Debug.override.shardMode.value : 'worker',
         respawn: true,
-        totalShards: Config.clustering.enabled ? 'auto' : recommendedShards,
+        totalShards: totalShardCount,
         shardList: myShardIds,
     });
 

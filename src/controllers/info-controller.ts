@@ -14,7 +14,7 @@ export class InfoController implements Controller {
     }
 
     private async get(req: Request, res: Response): Promise<void> {
-        let shardIds = this.shardManager.shards.map(shard => shard.id);
+        let shardIds = ShardUtils.shardIds(this.shardManager);
         let serverCount = await ShardUtils.serverCount(this.shardManager);
         let uptimeSecs = Math.floor(process.uptime());
         res.status(200).json({ shardIds, serverCount, uptimeSecs });

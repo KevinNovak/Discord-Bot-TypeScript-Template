@@ -33,7 +33,7 @@
     "clustering": {
         "enabled": false,
         "clusterId": 0,
-        "shardsPerCluster": 16
+        "shardCount": 16
     },
     "api": {
         "port": 8080,

@@ -6,8 +6,12 @@ export class ShardUtils {
         return Math.ceil(await Util.fetchRecommendedShards(token, serversPerShard));
     }
 
-    public static myShardIds(clusterId: number, shardsPerCluster: number): number[] {
-        return MathUtils.range(clusterId * shardsPerCluster, shardsPerCluster);
+    public static shardIds(shardInterface: ShardingManager | ShardClientUtil): number[] {
+        if (shardInterface instanceof ShardingManager) {
+            return shardInterface.shards.map(shard => shard.id);
+        } else if (shardInterface instanceof ShardClientUtil) {
+            return shardInterface.ids;
+        }
     }
 
     public static async serverCount(
