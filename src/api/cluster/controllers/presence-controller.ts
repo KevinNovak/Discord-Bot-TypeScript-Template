@@ -2,7 +2,7 @@ import { ActivityType, ShardingManager } from 'discord.js-light';
 import { Request, Response, Router } from 'express';
 import router from 'express-promise-router';
 
-import { Controller } from './controller';
+import { Controller } from '../../common/controllers';
 
 export class PresenceController implements Controller {
     public path = '/presence';
