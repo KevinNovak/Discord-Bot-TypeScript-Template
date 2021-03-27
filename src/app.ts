@@ -1,7 +1,7 @@
 import { ShardingManager } from 'discord.js-light';
 
-import { ClusterApi } from './api/cluster/cluster-api';
-import { InfoController, PresenceController, RootController } from './api/cluster/controllers';
+import { Api } from './api';
+import { InfoController, PresenceController, RootController } from './controllers';
 import { UpdateServerCountJob } from './jobs';
 import { Manager } from './manager';
 import { HttpService, Logger, MasterService } from './services';
@@ -72,7 +72,7 @@ async function start(): Promise<void> {
     let rootController = new RootController();
     let infoController = new InfoController(shardManager);
     let presenceController = new PresenceController(shardManager);
-    let api = new ClusterApi([rootController, infoController, presenceController]);
+    let api = new Api([rootController, infoController, presenceController]);
 
     // Start
     await manager.start();

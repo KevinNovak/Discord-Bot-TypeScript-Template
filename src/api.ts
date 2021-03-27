@@ -1,13 +1,13 @@
 import express, { ErrorRequestHandler, Express, RequestHandler } from 'express';
 import util from 'util';
 
-import { Logger } from '../../services';
-import { Controller } from '../common/controllers';
+import { Controller } from './controllers';
+import { Logger } from './services';
 
 let Config = require('../config/config.json');
 let Logs = require('../lang/logs.json');
 
-export class ClusterApi {
+export class Api {
     private app: Express;
 
     constructor(public controllers: Controller[]) {
