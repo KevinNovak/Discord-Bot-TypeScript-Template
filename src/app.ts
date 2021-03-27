@@ -13,7 +13,10 @@ let Logs = require('../lang/logs.json');
 
 async function start(): Promise<void> {
     Logger.info(Logs.info.started);
+
+    // Dependencies
     let httpService = new HttpService();
+    let masterService = new MasterService(httpService);
 
     // Sharding
     let recommendedShards = 0;
@@ -29,7 +32,7 @@ async function start(): Promise<void> {
 
     // TODO: What if master service call fails
     let myShardIds = Config.clustering.enabled
-        ? await MasterService.myShardIds(Config.clustering.clusterId, Config.clustering.shardCount)
+        ? await masterService.myShardIds()
         : MathUtils.range(0, recommendedShards);
 
     if (myShardIds.length === 0) {

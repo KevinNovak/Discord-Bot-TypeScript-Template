@@ -32,8 +32,13 @@
     },
     "clustering": {
         "enabled": false,
+        "masterApi": {
+            "url": "http://0.0.0.0:8080/",
+            "token": "00000000-0000-0000-0000-000000000000"
+        },
         "clusterId": 0,
-        "shardCount": 16
+        "shardCount": 16,
+        "callbackUrl": "http://0.0.0.0:8080/"
     },
     "api": {
         "port": 8080,
