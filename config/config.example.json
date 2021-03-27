@@ -31,6 +31,7 @@
         "serversPerShard": 1000
     },
     "clustering": {
+        "enabled": false,
         "clusterId": 0,
         "shardsPerCluster": 16
     },

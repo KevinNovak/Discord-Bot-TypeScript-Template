@@ -16,23 +16,20 @@ async function start(): Promise<void> {
     let httpService = new HttpService();
 
     // Sharding
-    let totalShards = 0;
+    let recommendedShards = 0;
     try {
-        totalShards = Debug.override.shardCount.enabled
-            ? Debug.override.shardCount.value
-            : await ShardUtils.recommendedShards(
-                  Config.client.token,
-                  Config.sharding.serversPerShard,
-                  Config.clustering.shardsPerCluster
-              );
+        recommendedShards = await ShardUtils.recommendedShards(
+            Config.client.token,
+            Config.sharding.serversPerShard
+        );
     } catch (error) {
         Logger.error(Logs.error.retrieveShardCount, error);
         return;
     }
 
-    let myShardIds = Debug.override.shardCount.enabled
-        ? MathUtils.range(0, Debug.override.shardCount.value)
-        : ShardUtils.myShardIds(Config.clustering.clusterId, Config.clustering.shardsPerCluster);
+    let myShardIds = Config.clustering.enabled
+        ? ShardUtils.myShardIds(Config.clustering.clusterId, Config.clustering.shardsPerCluster)
+        : MathUtils.range(0, recommendedShards);
 
     if (myShardIds.length === 0) {
         Logger.warn(Logs.warn.noShards);
@@ -43,7 +40,7 @@ async function start(): Promise<void> {
         token: Config.client.token,
         mode: Debug.override.shardMode.enabled ? Debug.override.shardMode.value : 'worker',
         respawn: true,
-        totalShards,
+        totalShards: Config.clustering.enabled ? 'auto' : recommendedShards,
         shardList: myShardIds,
     });
 
