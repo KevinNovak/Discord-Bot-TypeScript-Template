@@ -26,11 +26,13 @@
         }
     },
     "sharding": {
-        "clusterId": 0,
-        "shardsPerCluster": 16,
-        "serversPerShard": 1000,
         "spawnDelay": 5,
-        "spawnTimeout": 300
+        "spawnTimeout": 300,
+        "serversPerShard": 1000
+    },
+    "clustering": {
+        "clusterId": 0,
+        "shardsPerCluster": 16
     },
     "api": {
         "port": 8080,

@@ -23,7 +23,7 @@ async function start(): Promise<void> {
             : await ShardUtils.recommendedShards(
                   Config.client.token,
                   Config.sharding.serversPerShard,
-                  Config.sharding.shardsPerCluster
+                  Config.clustering.shardsPerCluster
               );
     } catch (error) {
         Logger.error(Logs.error.retrieveShardCount, error);
@@ -32,7 +32,7 @@ async function start(): Promise<void> {
 
     let myShardIds = Debug.override.shardCount.enabled
         ? MathUtils.range(0, Debug.override.shardCount.value)
-        : ShardUtils.myShardIds(Config.sharding.clusterId, Config.sharding.shardsPerCluster);
+        : ShardUtils.myShardIds(Config.clustering.clusterId, Config.clustering.shardsPerCluster);
 
     if (myShardIds.length === 0) {
         Logger.warn(Logs.warn.noShards);
