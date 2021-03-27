@@ -30,17 +30,24 @@ async function start(): Promise<void> {
         return;
     }
 
-    // TODO: What if master service call fails
-    let myShardIds = Config.clustering.enabled
-        ? await masterService.myShardIds()
-        : MathUtils.range(0, recommendedShards);
+    let myShardIds: number[] = [];
+    if (Config.clustering.enabled) {
+        try {
+            myShardIds = await masterService.myShardIds();
+        } catch (error) {
+            Logger.error(Logs.error.retrieveShardIds, error);
+            return;
+        }
+    } else {
+        myShardIds = MathUtils.range(0, recommendedShards);
+    }
 
     if (myShardIds.length === 0) {
         Logger.warn(Logs.warn.noShards);
         return;
     }
 
-    // TODO: Is this "Math.max + 1" going to cause issues?
+    // TODO: Is this "Math.max + 1" going to cause issues? Does it really need the accurate total?
     let totalShardCount = Config.clustering.enabled
         ? Math.max(...myShardIds) + 1
         : recommendedShards;
