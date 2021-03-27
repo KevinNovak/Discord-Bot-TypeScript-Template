@@ -4,8 +4,8 @@ import util from 'util';
 import { Logger } from '../../services';
 import { Controller } from '../common/controllers';
 
-let Config = require('../config/config.json');
-let Logs = require('../lang/logs.json');
+let Master = require('../../../config/master.json');
+let Logs = require('../../../lang/logs.json');
 
 export class MasterApi {
     private app: Express;
@@ -20,8 +20,8 @@ export class MasterApi {
 
     public async start(): Promise<void> {
         let listen = util.promisify(this.app.listen.bind(this.app));
-        await listen(Config.api.port);
-        Logger.info(Logs.info.apiStarted.replace('{PORT}', Config.api.port));
+        await listen(Master.port);
+        Logger.info(Logs.info.apiStarted.replace('{PORT}', Master.port));
     }
 
     private setupControllers(): void {
@@ -31,7 +31,7 @@ export class MasterApi {
     }
 
     private checkAuth: RequestHandler = (req, res, next) => {
-        if (req.headers.authorization !== Config.api.secret) {
+        if (req.headers.authorization !== Master.secret) {
             res.sendStatus(401);
             return;
         }

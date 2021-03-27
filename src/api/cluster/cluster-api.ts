@@ -4,8 +4,8 @@ import util from 'util';
 import { Logger } from '../../services';
 import { Controller } from '../common/controllers';
 
-let Config = require('../config/config.json');
-let Logs = require('../lang/logs.json');
+let Config = require('../../../config/config.json');
+let Logs = require('../../../lang/logs.json');
 
 export class ClusterApi {
     private app: Express;

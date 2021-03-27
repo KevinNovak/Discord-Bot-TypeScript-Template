@@ -19,6 +19,7 @@
         "start": "npm run build && node --enable-source-maps dist/start.js",
         "start:shard": "npm run build && node --enable-source-maps dist/app.js",
         "start:pm2": "npm run build && npm run pm2:start",
+        "start:master": "npm run build && node --enable-source-maps dist/master.js",
         "pm2:start": "pm2 start process.json",
         "pm2:stop": "pm2 stop process.json",
         "pm2:delete": "pm2 delete process.json"
