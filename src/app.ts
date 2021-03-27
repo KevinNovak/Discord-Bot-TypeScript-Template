@@ -61,10 +61,10 @@ async function start(): Promise<void> {
     let manager = new Manager(shardManager, [updateServerCountJob]);
 
     // API
-    let rootController = new RootController();
     let infoController = new InfoController(shardManager);
     let presenceController = new PresenceController(shardManager);
-    let api = new Api([rootController, infoController, presenceController]);
+    let rootController = new RootController();
+    let api = new Api([infoController, presenceController, rootController]);
 
     // Start
     await manager.start();
