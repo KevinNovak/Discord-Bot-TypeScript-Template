@@ -9,10 +9,10 @@ export class PresenceController implements Controller {
     public router: Router = router();
 
     constructor(private shardManager: ShardingManager) {
-        this.router.put(this.path, (req, res) => this.put(req, res));
+        this.router.put(this.path, (req, res) => this.updatePresence(req, res));
     }
 
-    private async put(req: Request, res: Response): Promise<void> {
+    private async updatePresence(req: Request, res: Response): Promise<void> {
         let type = req.body.type as ActivityType;
         let name: string = req.body.name;
         let url: string = req.body.url;

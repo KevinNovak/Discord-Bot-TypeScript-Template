@@ -10,10 +10,10 @@ export class InfoController implements Controller {
     public router: Router = router();
 
     constructor(private shardManager: ShardingManager) {
-        this.router.get(this.path, (req, res) => this.get(req, res));
+        this.router.get(this.path, (req, res) => this.getInfo(req, res));
     }
 
-    private async get(req: Request, res: Response): Promise<void> {
+    private async getInfo(req: Request, res: Response): Promise<void> {
         let shardIds = ShardUtils.shardIds(this.shardManager);
         let serverCount = await ShardUtils.serverCount(this.shardManager);
         let uptimeSecs = Math.floor(process.uptime());
