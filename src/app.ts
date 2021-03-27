@@ -62,8 +62,8 @@ async function start(): Promise<void> {
     let api = new Api([rootController, infoController, presenceController]);
 
     // Start
-    await api.start();
     await manager.start();
+    await api.start();
 }
 
 start();
