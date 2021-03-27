@@ -19,45 +19,37 @@ async function start(): Promise<void> {
     let masterService = new MasterService(httpService);
 
     // Sharding
-    let recommendedShards = 0;
+    let shardList: number[];
+    let totalShards: number;
     try {
-        recommendedShards = await ShardUtils.recommendedShards(
-            Config.client.token,
-            Config.sharding.serversPerShard
-        );
+        if (Config.clustering.enabled) {
+            let loginResponse = await masterService.login();
+            shardList = loginResponse.shardList;
+            totalShards = loginResponse.totalShards;
+        } else {
+            let recommendedShards = await ShardUtils.recommendedShards(
+                Config.client.token,
+                Config.sharding.serversPerShard
+            );
+            shardList = MathUtils.range(0, recommendedShards);
+            totalShards = recommendedShards;
+        }
     } catch (error) {
-        Logger.error(Logs.error.retrieveShardCount, error);
+        Logger.error(Logs.error.retrieveShards, error);
         return;
     }
 
-    let myShardIds: number[] = [];
-    if (Config.clustering.enabled) {
-        try {
-            myShardIds = await masterService.myShardIds();
-        } catch (error) {
-            Logger.error(Logs.error.retrieveShardIds, error);
-            return;
-        }
-    } else {
-        myShardIds = MathUtils.range(0, recommendedShards);
-    }
-
-    if (myShardIds.length === 0) {
+    if (shardList.length === 0) {
         Logger.warn(Logs.warn.noShards);
         return;
     }
-
-    // TODO: Is this "Math.max + 1" going to cause issues? Does it really need the accurate total?
-    let totalShardCount = Config.clustering.enabled
-        ? Math.max(...myShardIds) + 1
-        : recommendedShards;
 
     let shardManager = new ShardingManager('dist/start.js', {
         token: Config.client.token,
         mode: Debug.override.shardMode.enabled ? Debug.override.shardMode.value : 'worker',
         respawn: true,
-        totalShards: totalShardCount,
-        shardList: myShardIds,
+        totalShards,
+        shardList,
     });
 
     let updateServerCountJob = new UpdateServerCountJob(

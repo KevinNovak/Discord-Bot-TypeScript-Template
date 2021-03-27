@@ -15,8 +15,7 @@
         "noShards": "No shards to spawn."
     },
     "error": {
-        "retrieveShardCount": "An error occurred while retrieving the recommended shard count.",
-        "retrieveShardIds": "An error occurred while retrieving the cluster's shard IDs.",
+        "retrieveShards": "An error occurred while retrieving which shards to spawn.",
         "spawnShard": "An error occurred while spawning shards.",
         "updateServerCount": "An error occurred while updating the server count.",
         "updateServerCountSite": "An error occurred while updating the server count on '{BOT_SITE}'.",
