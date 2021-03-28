@@ -23,9 +23,9 @@ async function start(): Promise<void> {
     let totalShards: number;
     try {
         if (Config.clustering.enabled) {
-            let loginResponse = await masterService.login();
-            shardList = loginResponse.shardList;
-            totalShards = loginResponse.totalShards;
+            let resBody = await masterService.login();
+            shardList = resBody.shardList;
+            totalShards = resBody.totalShards;
         } else {
             let recommendedShards = await ShardUtils.recommendedShards(
                 Config.client.token,

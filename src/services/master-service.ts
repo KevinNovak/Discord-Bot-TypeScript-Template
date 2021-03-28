@@ -9,18 +9,18 @@ export class MasterService {
     constructor(private httpService: HttpService) {}
 
     public async login(): Promise<LoginResponse> {
-        let body: LoginRequest = {
+        let reqBody: LoginRequest = {
+            shardCount: Config.clustering.shardCount,
             callback: {
                 url: Config.clustering.callbackUrl,
                 token: Config.api.secret,
             },
-            shardCount: Config.clustering.shardCount,
         };
 
         let res = await this.httpService.post(
             new URL(`/clusters/${Config.clustering.clusterId}`, Config.clustering.masterApi.url),
             Config.clustering.masterApi.token,
-            body
+            reqBody
         );
 
         if (!res.ok) {

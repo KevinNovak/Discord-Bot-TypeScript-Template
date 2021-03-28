@@ -1,9 +1,9 @@
 export interface LoginRequest {
+    shardCount: number;
     callback: {
         url: string;
         token: string;
     };
-    shardCount: number;
 }
 
 export interface LoginResponse {
