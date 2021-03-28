@@ -1,15 +1,15 @@
 import { URL } from 'url';
 
 import { HttpService } from '.';
-import { LoginRequest, LoginResponse } from '../models/master-api/clusters';
+import { LoginClusterRequest, LoginClusterResponse } from '../models/master-api/clusters';
 
 let Config = require('../../config/config.json');
 
 export class MasterApiService {
     constructor(private httpService: HttpService) {}
 
-    public async login(): Promise<LoginResponse> {
-        let reqBody: LoginRequest = {
+    public async login(): Promise<LoginClusterResponse> {
+        let reqBody: LoginClusterRequest = {
             shardCount: Config.clustering.shardCount,
             callback: {
                 url: Config.clustering.callbackUrl,
