@@ -20,7 +20,7 @@ import {
     ReactionHandler,
     TriggerHandler,
 } from './events';
-import { Logger } from './services';
+import { JobService, Logger } from './services';
 
 let Config = require('../config/config.json');
 
@@ -78,7 +78,7 @@ async function start(): Promise<void> {
         guildLeaveHandler,
         messageHandler,
         reactionHandler,
-        []
+        new JobService([])
     );
 
     await bot.start();

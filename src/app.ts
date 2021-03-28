@@ -2,7 +2,7 @@ import { ShardingManager } from 'discord.js-light';
 
 import { UpdateServerCountJob } from './jobs';
 import { Manager } from './manager';
-import { HttpService, Logger } from './services';
+import { HttpService, JobService, Logger } from './services';
 import { MathUtils, ShardUtils } from './utils';
 
 let Config = require('../config/config.json');
@@ -45,13 +45,11 @@ async function start(): Promise<void> {
         shardList: myShardIds,
     });
 
-    let updateServerCountJob = new UpdateServerCountJob(
-        Config.jobs.updateServerCount.schedule,
-        shardManager,
-        httpService
-    );
+    let jobService = new JobService([
+        new UpdateServerCountJob(Config.jobs.updateServerCount.schedule, shardManager, httpService),
+    ]);
 
-    let manager = new Manager(shardManager, [updateServerCountJob]);
+    let manager = new Manager(shardManager, jobService);
 
     // Start
     await manager.start();

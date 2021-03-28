@@ -1,14 +1,13 @@
 import { Shard, ShardingManager } from 'discord.js-light';
 
-import { Job } from './jobs';
-import { Logger } from './services';
+import { JobService, Logger } from './services';
 
 let Config = require('../config/config.json');
 let Debug = require('../config/debug.json');
 let Logs = require('../lang/logs.json');
 
 export class Manager {
-    constructor(private shardManager: ShardingManager, private jobs: Job[]) {}
+    constructor(private shardManager: ShardingManager, private jobService: JobService) {}
 
     public async start(): Promise<void> {
         this.registerListeners();
@@ -35,17 +34,11 @@ export class Manager {
             return;
         }
 
-        this.startJobs();
+        this.jobService.start();
     }
 
     private registerListeners(): void {
         this.shardManager.on('shardCreate', shard => this.onShardCreate(shard));
-    }
-
-    private startJobs(): void {
-        for (let job of this.jobs) {
-            job.start();
-        }
     }
 
     private onShardCreate(shard: Shard): void {

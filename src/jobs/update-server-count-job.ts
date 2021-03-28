@@ -1,5 +1,4 @@
 import { ShardingManager } from 'discord.js-light';
-import schedule from 'node-schedule';
 
 import { BotSite } from '../models/config-models';
 import { HttpService, Lang, Logger } from '../services';
@@ -10,6 +9,8 @@ let BotSites: BotSite[] = require('../../config/bot-sites.json');
 let Logs = require('../../lang/logs.json');
 
 export class UpdateServerCountJob implements Job {
+    public name = 'Update Server Count';
+
     private botSites: BotSite[];
 
     constructor(
@@ -56,15 +57,5 @@ export class UpdateServerCountJob implements Job {
 
             Logger.info(Logs.info.updateServerCountSite.replace('{BOT_SITE}', botSite.name));
         }
-    }
-
-    public start(): void {
-        schedule.scheduleJob(this.schedule, async () => {
-            try {
-                await this.run();
-            } catch (error) {
-                Logger.error(Logs.error.updateServerCount, error);
-            }
-        });
     }
 }
