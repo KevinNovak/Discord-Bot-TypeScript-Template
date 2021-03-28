@@ -4,7 +4,7 @@ import { Api } from './api';
 import { InfoController, PresenceController, RootController } from './controllers';
 import { UpdateServerCountJob } from './jobs';
 import { Manager } from './manager';
-import { HttpService, Logger, MasterApiService } from './services';
+import { HttpService, JobService, Logger, MasterApiService } from './services';
 import { MathUtils, ShardUtils } from './utils';
 
 let Config = require('../config/config.json');
@@ -52,13 +52,11 @@ async function start(): Promise<void> {
         shardList,
     });
 
-    let updateServerCountJob = new UpdateServerCountJob(
-        Config.jobs.updateServerCount.schedule,
-        shardManager,
-        httpService
-    );
+    let jobService = new JobService([
+        new UpdateServerCountJob(Config.jobs.updateServerCount.schedule, shardManager, httpService),
+    ]);
 
-    let manager = new Manager(shardManager, [updateServerCountJob]);
+    let manager = new Manager(shardManager, jobService);
 
     // API
     let infoController = new InfoController(shardManager);

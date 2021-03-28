@@ -9,8 +9,7 @@ import {
 } from 'discord.js-light';
 
 import { GuildJoinHandler, GuildLeaveHandler, MessageHandler, ReactionHandler } from './events';
-import { Job } from './jobs';
-import { Logger } from './services';
+import { JobService, Logger } from './services';
 import { PartialUtils } from './utils';
 
 let Config = require('../config/config.json');
@@ -27,7 +26,7 @@ export class Bot {
         private guildLeaveHandler: GuildLeaveHandler,
         private messageHandler: MessageHandler,
         private reactionHandler: ReactionHandler,
-        private jobs: Job[]
+        private jobService: JobService
     ) {}
 
     public async start(): Promise<void> {
@@ -52,12 +51,6 @@ export class Bot {
         );
     }
 
-    private startJobs(): void {
-        for (let job of this.jobs) {
-            job.start();
-        }
-    }
-
     private async login(token: string): Promise<void> {
         try {
             await this.client.login(token);
@@ -72,7 +65,7 @@ export class Bot {
         Logger.info(Logs.info.login.replace('{USER_TAG}', userTag));
 
         if (!Debug.dummyMode.enabled) {
-            this.startJobs();
+            this.jobService.start();
         }
 
         this.ready = true;

@@ -6,6 +6,9 @@
         "launchedShard": "Launched Shard {SHARD_ID}.",
         "login": "Logged in as '{USER_TAG}'!",
         "allShardsSpawned": "All shards have been spawned.",
+        "jobScheduled": "Scheduled job '{JOB}' for '{SCHEDULE}'.",
+        "jobRun": "Running job '{JOB}'.",
+        "jobCompleted": "Job '{JOB}' completed.",
         "updatedServerCount": "Updated server count. Connected to {SERVER_COUNT} total servers.",
         "updateServerCountSite": "Updated server count on '{BOT_SITE}'.",
         "guildJoined": "Guild '{GUILD_NAME}' ({GUILD_ID}) joined.",
@@ -17,7 +20,7 @@
     "error": {
         "retrieveShards": "An error occurred while retrieving which shards to spawn.",
         "spawnShard": "An error occurred while spawning shards.",
-        "updateServerCount": "An error occurred while updating the server count.",
+        "job": "An error occurred while running the '{JOB}' job.",
         "updateServerCountSite": "An error occurred while updating the server count on '{BOT_SITE}'.",
         "login": "An error occurred while the client attempted to login.",
         "guildJoin": "An error occurred while processing a guild join.",
