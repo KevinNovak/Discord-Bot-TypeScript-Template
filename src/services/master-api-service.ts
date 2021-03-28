@@ -1,11 +1,11 @@
 import { URL } from 'url';
 
 import { HttpService } from '.';
-import { LoginRequest, LoginResponse } from '../models/master-models';
+import { LoginRequest, LoginResponse } from '../models/master-api/clusters';
 
 let Config = require('../../config/config.json');
 
-export class MasterService {
+export class MasterApiService {
     constructor(private httpService: HttpService) {}
 
     public async login(): Promise<LoginResponse> {

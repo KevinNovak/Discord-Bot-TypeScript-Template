@@ -4,7 +4,7 @@ import { Api } from './api';
 import { InfoController, PresenceController, RootController } from './controllers';
 import { UpdateServerCountJob } from './jobs';
 import { Manager } from './manager';
-import { HttpService, Logger, MasterService } from './services';
+import { HttpService, Logger, MasterApiService } from './services';
 import { MathUtils, ShardUtils } from './utils';
 
 let Config = require('../config/config.json');
@@ -16,14 +16,14 @@ async function start(): Promise<void> {
 
     // Dependencies
     let httpService = new HttpService();
-    let masterService = new MasterService(httpService);
+    let masterApiService = new MasterApiService(httpService);
 
     // Sharding
     let shardList: number[];
     let totalShards: number;
     try {
         if (Config.clustering.enabled) {
-            let resBody = await masterService.login();
+            let resBody = await masterApiService.login();
             shardList = resBody.shardList;
             totalShards = resBody.totalShards;
         } else {
