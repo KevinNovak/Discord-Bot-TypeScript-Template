@@ -1,1 +1,1 @@
-export { InfoResponse } from './info';
+export { GetInfoResponse } from './info';
