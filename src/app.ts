@@ -45,9 +45,7 @@ async function start(): Promise<void> {
         shardList: myShardIds,
     });
 
-    let jobService = new JobService([
-        new UpdateServerCountJob(Config.jobs.updateServerCount.schedule, shardManager, httpService),
-    ]);
+    let jobService = new JobService([new UpdateServerCountJob(shardManager, httpService)]);
 
     let manager = new Manager(shardManager, jobService);
 
