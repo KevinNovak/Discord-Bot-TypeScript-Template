@@ -1,8 +1,8 @@
 import { ShardingManager } from 'discord.js-light';
 import { Request, Response, Router } from 'express';
 import router from 'express-promise-router';
-import { GetInfoResponse } from '../models/cluster-api';
 
+import { GetInfoResponse } from '../models/cluster-api';
 import { ShardUtils } from '../utils';
 import { Controller } from './controller';
 

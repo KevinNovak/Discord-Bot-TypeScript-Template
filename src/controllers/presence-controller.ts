@@ -1,7 +1,8 @@
-import { ActivityType, ShardingManager } from 'discord.js-light';
+import { ShardingManager } from 'discord.js-light';
 import { Request, Response, Router } from 'express';
 import router from 'express-promise-router';
 
+import { UpdatePresenceRequest } from '../models/cluster-api';
 import { Controller } from './controller';
 
 export class PresenceController implements Controller {
@@ -13,17 +14,11 @@ export class PresenceController implements Controller {
     }
 
     private async updatePresence(req: Request, res: Response): Promise<void> {
-        let type = req.body.type as ActivityType;
-        let name: string = req.body.name;
-        let url: string = req.body.url;
-
-        if (!(name && type && url)) {
-            res.sendStatus(400);
-        }
+        let reqBody = req.body as UpdatePresenceRequest;
 
         await this.shardManager.broadcastEval(`
             (async () => {
-                return await this.setPresence('${type}', '${name}', '${url}');
+                return await this.setPresence('${reqBody.type}', '${reqBody.name}', '${reqBody.url}');
             })();
         `);
 
