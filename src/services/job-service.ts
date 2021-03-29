@@ -12,9 +12,15 @@ export class JobService {
         for (let job of this.jobs) {
             schedule.scheduleJob(job.schedule, async () => {
                 try {
-                    Logger.info(Logs.info.jobRun.replace('{JOB}', job.name));
+                    if (job.log) {
+                        Logger.info(Logs.info.jobRun.replace('{JOB}', job.name));
+                    }
+
                     await job.run();
-                    Logger.info(Logs.info.jobCompleted.replace('{JOB}', job.name));
+
+                    if (job.log) {
+                        Logger.info(Logs.info.jobCompleted.replace('{JOB}', job.name));
+                    }
                 } catch (error) {
                     Logger.error(Logs.error.job.replace('{JOB}', job.name), error);
                 }
