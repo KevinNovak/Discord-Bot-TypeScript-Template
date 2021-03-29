@@ -1,11 +1,3 @@
-export interface GetClustersResponse {
-    clusters: {
-        clusterId: number;
-        shardCount: number;
-        shardList: number[];
-    }[];
-}
-
 export interface LoginClusterRequest {
     shardCount: number;
     callback: {
