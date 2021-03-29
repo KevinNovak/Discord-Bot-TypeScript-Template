@@ -1,6 +1,7 @@
 import { ShardingManager } from 'discord.js-light';
 import { Request, Response, Router } from 'express';
 import router from 'express-promise-router';
+import { InfoResponse } from '../models/cluster-api';
 
 import { ShardUtils } from '../utils';
 import { Controller } from './controller';
@@ -17,6 +18,8 @@ export class InfoController implements Controller {
         let shardIds = ShardUtils.shardIds(this.shardManager);
         let serverCount = await ShardUtils.serverCount(this.shardManager);
         let uptimeSecs = Math.floor(process.uptime());
-        res.status(200).json({ shardIds, serverCount, uptimeSecs });
+
+        let resBody: InfoResponse = { shardIds, serverCount, uptimeSecs };
+        res.status(200).json(resBody);
     }
 }
