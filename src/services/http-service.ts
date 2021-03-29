@@ -23,4 +23,32 @@ export class HttpService {
             body: body ? JSON.stringify(body) : null,
         });
     }
+
+    public async put(url: string | URL, authorization: string, body?: object): Promise<Response> {
+        return await fetch(url, {
+            method: 'put',
+            headers: {
+                Authorization: authorization,
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+            body: body ? JSON.stringify(body) : null,
+        });
+    }
+
+    public async delete(
+        url: string | URL,
+        authorization: string,
+        body?: object
+    ): Promise<Response> {
+        return await fetch(url, {
+            method: 'delete',
+            headers: {
+                Authorization: authorization,
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+            },
+            body: body ? JSON.stringify(body) : null,
+        });
+    }
 }
