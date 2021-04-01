@@ -20,6 +20,7 @@
     "error": {
         "retrieveShards": "An error occurred while retrieving which shards to spawn.",
         "spawnShard": "An error occurred while spawning shards.",
+        "shardInfo": "An error occurred while retrieving shard info.",
         "job": "An error occurred while running the '{JOB}' job.",
         "updateServerCountSite": "An error occurred while updating the server count on '{BOT_SITE}'.",
         "login": "An error occurred while the client attempted to login.",

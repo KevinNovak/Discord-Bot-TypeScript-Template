@@ -8,6 +8,7 @@ import { MathUtils } from '../utils';
 import { Controller } from './controller';
 
 let Config = require('../../config/config.json');
+let Logs = require('../../lang/logs.json');
 
 export class InfoController implements Controller {
     public path = '/info';
@@ -32,8 +33,7 @@ export class InfoController implements Controller {
                         uptimeSecs: Math.floor((await shard.fetchClientValue('uptime')) / 1000),
                     });
                 } catch (error) {
-                    // TODO: Message
-                    Logger.error('An error occurred while getting shard info.', error);
+                    Logger.error(Logs.error.shardInfo, error);
                     shardInfo.error = true;
                 }
 
