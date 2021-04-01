@@ -13,6 +13,7 @@ export interface ClusterStats {
 export interface ShardInfo {
     id: number;
     ready: boolean;
-    serverCount: number;
-    uptimeSecs: number;
+    error: boolean;
+    serverCount?: number;
+    uptimeSecs?: number;
 }

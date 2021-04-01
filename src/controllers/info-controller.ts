@@ -3,6 +3,7 @@ import { Request, Response, Router } from 'express';
 import router from 'express-promise-router';
 
 import { ClusterStats, GetInfoResponse, ShardInfo } from '../models/cluster-api';
+import { Logger } from '../services';
 import { MathUtils } from '../utils';
 import { Controller } from './controller';
 
@@ -19,18 +20,32 @@ export class InfoController implements Controller {
     private async getInfo(req: Request, res: Response): Promise<void> {
         let shardDatas = await Promise.all(
             this.shardManager.shards.map(async shard => {
-                return {
+                let shardInfo: ShardInfo = {
                     id: shard.id,
                     ready: shard.ready,
-                    serverCount: await shard.fetchClientValue('guilds.cache.size'),
-                    uptimeSecs: Math.floor((await shard.fetchClientValue('uptime')) / 1000),
-                } as ShardInfo;
+                    error: false,
+                };
+
+                try {
+                    Object.assign(shardInfo, {
+                        serverCount: await shard.fetchClientValue('guilds.cache.size'),
+                        uptimeSecs: Math.floor((await shard.fetchClientValue('uptime')) / 1000),
+                    });
+                } catch (error) {
+                    // TODO: Message
+                    Logger.error('An error occurred while getting shard info.', error);
+                    shardInfo.error = true;
+                }
+
+                return shardInfo;
             })
         );
 
         let stats: ClusterStats = {
             shardCount: this.shardManager.shards.size,
-            serverCount: MathUtils.sum(shardDatas.map(data => data.serverCount)),
+            serverCount: MathUtils.sum(
+                shardDatas.filter(data => data.ready && !data.error).map(data => data.serverCount)
+            ),
             uptimeSecs: Math.floor(process.uptime()),
         };
 
