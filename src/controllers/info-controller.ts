@@ -4,7 +4,6 @@ import router from 'express-promise-router';
 
 import { ClusterStats, GetInfoResponse, ShardInfo } from '../models/cluster-api';
 import { Logger } from '../services';
-import { MathUtils } from '../utils';
 import { Controller } from './controller';
 
 let Config = require('../../config/config.json');
