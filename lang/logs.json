@@ -1,7 +1,7 @@
 {
     "info": {
         "started": "Application started.",
-        "spawningShards": "Spawning {SHARD_COUNT} shards.",
+        "spawningShards": "Spawning {SHARD_COUNT} shards: [{SHARD_LIST}].",
         "launchedShard": "Launched Shard {SHARD_ID}.",
         "login": "Logged in as '{USER_TAG}'!",
         "allShardsSpawned": "All shards have been spawned.",
