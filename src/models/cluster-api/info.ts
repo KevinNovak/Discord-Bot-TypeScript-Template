@@ -6,7 +6,6 @@ export interface GetInfoResponse {
 
 export interface ClusterStats {
     shardCount: number;
-    serverCount: number;
     uptimeSecs: number;
 }
 
@@ -14,6 +13,6 @@ export interface ShardInfo {
     id: number;
     ready: boolean;
     error: boolean;
-    serverCount?: number;
     uptimeSecs?: number;
+    guilds?: string[];
 }

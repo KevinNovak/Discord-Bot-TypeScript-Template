@@ -28,10 +28,10 @@ export class InfoController implements Controller {
                 };
 
                 try {
-                    Object.assign(shardInfo, {
-                        serverCount: await shard.fetchClientValue('guilds.cache.size'),
-                        uptimeSecs: Math.floor((await shard.fetchClientValue('uptime')) / 1000),
-                    });
+                    shardInfo.uptimeSecs = Math.floor(
+                        (await shard.fetchClientValue('uptime')) / 1000
+                    );
+                    shardInfo.guilds = await shard.eval('this.guilds.cache.keyArray()');
                 } catch (error) {
                     Logger.error(Logs.error.shardInfo, error);
                     shardInfo.error = true;
@@ -43,9 +43,6 @@ export class InfoController implements Controller {
 
         let stats: ClusterStats = {
             shardCount: this.shardManager.shards.size,
-            serverCount: MathUtils.sum(
-                shardDatas.filter(data => data.ready && !data.error).map(data => data.serverCount)
-            ),
             uptimeSecs: Math.floor(process.uptime()),
         };
 
