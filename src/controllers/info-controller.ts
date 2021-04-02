@@ -30,7 +30,6 @@ export class InfoController implements Controller {
                     shardInfo.uptimeSecs = Math.floor(
                         (await shard.fetchClientValue('uptime')) / 1000
                     );
-                    shardInfo.guilds = await shard.eval('this.guilds.cache.keyArray()');
                 } catch (error) {
                     Logger.error(Logs.error.shardInfo, error);
                     shardInfo.error = true;

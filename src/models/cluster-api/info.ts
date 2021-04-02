@@ -14,5 +14,4 @@ export interface ShardInfo {
     ready: boolean;
     error: boolean;
     uptimeSecs?: number;
-    guilds?: string[];
 }
