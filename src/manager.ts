@@ -12,12 +12,15 @@ export class Manager {
     public async start(): Promise<void> {
         this.registerListeners();
 
+        // TODO: Refactor this once DJS fixes their typings
+        // tslint:disable-next-line:no-string-literal
+        let shardList: number[] = this.shardManager['shardList'];
+
         try {
             Logger.info(
-                Logs.info.spawningShards.replace(
-                    '{SHARD_COUNT}',
-                    this.shardManager.totalShards.toLocaleString()
-                )
+                Logs.info.spawningShards
+                    .replace('{SHARD_COUNT}', shardList.length.toLocaleString())
+                    .replace('{SHARD_LIST}', shardList.join(', '))
             );
             await this.shardManager.spawn(
                 this.shardManager.totalShards,
