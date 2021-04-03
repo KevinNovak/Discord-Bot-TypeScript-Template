@@ -1,10 +1,10 @@
-export interface GetInfoResponse {
+export interface GetShardsResponse {
     id: number;
     shards: ShardInfo[];
-    stats: ClusterStats;
+    stats: ShardStats;
 }
 
-export interface ClusterStats {
+export interface ShardStats {
     shardCount: number;
     uptimeSecs: number;
 }
@@ -14,4 +14,10 @@ export interface ShardInfo {
     ready: boolean;
     error: boolean;
     uptimeSecs?: number;
+}
+
+export interface SetShardPresencesRequest {
+    type: string;
+    name: string;
+    url: string;
 }

@@ -2,22 +2,28 @@ import { ShardingManager } from 'discord.js-light';
 import { Request, Response, Router } from 'express';
 import router from 'express-promise-router';
 
-import { ClusterStats, GetInfoResponse, ShardInfo } from '../models/cluster-api';
+import {
+    GetShardsResponse,
+    SetShardPresencesRequest,
+    ShardInfo,
+    ShardStats,
+} from '../models/cluster-api';
 import { Logger } from '../services';
 import { Controller } from './controller';
 
 let Config = require('../../config/config.json');
 let Logs = require('../../lang/logs.json');
 
-export class InfoController implements Controller {
-    public path = '/info';
+export class ShardsController implements Controller {
+    public path = '/shards';
     public router: Router = router();
 
     constructor(private shardManager: ShardingManager) {
-        this.router.get(this.path, (req, res) => this.getInfo(req, res));
+        this.router.get(this.path, (req, res) => this.getShards(req, res));
+        this.router.put(`${this.path}/presence`, (req, res) => this.setShardPresences(req, res));
     }
 
-    private async getInfo(req: Request, res: Response): Promise<void> {
+    private async getShards(req: Request, res: Response): Promise<void> {
         let shardDatas = await Promise.all(
             this.shardManager.shards.map(async shard => {
                 let shardInfo: ShardInfo = {
@@ -39,16 +45,28 @@ export class InfoController implements Controller {
             })
         );
 
-        let stats: ClusterStats = {
+        let stats: ShardStats = {
             shardCount: this.shardManager.shards.size,
             uptimeSecs: Math.floor(process.uptime()),
         };
 
-        let resBody: GetInfoResponse = {
+        let resBody: GetShardsResponse = {
             id: Config.clustering.clusterId,
             shards: shardDatas,
             stats,
         };
         res.status(200).json(resBody);
+    }
+
+    private async setShardPresences(req: Request, res: Response): Promise<void> {
+        let reqBody = req.body as SetShardPresencesRequest;
+
+        await this.shardManager.broadcastEval(`
+            (async () => {
+                return await this.setPresence('${reqBody.type}', '${reqBody.name}', '${reqBody.url}');
+            })();
+        `);
+
+        res.sendStatus(200);
     }
 }

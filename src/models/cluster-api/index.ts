@@ -1,3 +1,2 @@
 export { GetGuildsResponse } from './guilds';
-export { GetInfoResponse, ShardInfo, ClusterStats } from './info';
-export { UpdatePresenceRequest } from './presence';
+export { GetShardsResponse, ShardInfo, ShardStats, SetShardPresencesRequest } from './shards';
