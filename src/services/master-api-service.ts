@@ -1,15 +1,21 @@
 import { URL } from 'url';
 
 import { HttpService } from '.';
-import { LoginClusterRequest, LoginClusterResponse } from '../models/master-api/clusters';
+import {
+    LoginClusterResponse,
+    RegisterClusterRequest,
+    RegisterClusterResponse,
+} from '../models/master-api';
 
 let Config = require('../../config/config.json');
 
 export class MasterApiService {
+    private clusterId: string;
+
     constructor(private httpService: HttpService) {}
 
-    public async login(): Promise<LoginClusterResponse> {
-        let reqBody: LoginClusterRequest = {
+    public async register(): Promise<void> {
+        let reqBody: RegisterClusterRequest = {
             shardCount: Config.clustering.shardCount,
             callback: {
                 url: Config.clustering.callbackUrl,
@@ -18,7 +24,7 @@ export class MasterApiService {
         };
 
         let res = await this.httpService.post(
-            new URL(`/clusters/${Config.clustering.clusterId}`, Config.clustering.masterApi.url),
+            new URL('/clusters', Config.clustering.masterApi.url),
             Config.clustering.masterApi.token,
             reqBody
         );
@@ -27,6 +33,31 @@ export class MasterApiService {
             throw res;
         }
 
+        let resBody: RegisterClusterResponse = await res.json();
+        this.clusterId = resBody.id;
+    }
+
+    public async login(): Promise<LoginClusterResponse> {
+        let res = await this.httpService.put(
+            new URL(`/clusters/${this.clusterId}/login`, Config.clustering.masterApi.url),
+            Config.clustering.masterApi.token
+        );
+
+        if (!res.ok) {
+            throw res;
+        }
+
         return await res.json();
+    }
+
+    public async ready(): Promise<void> {
+        let res = await this.httpService.put(
+            new URL(`/clusters/${this.clusterId}/ready`, Config.clustering.masterApi.url),
+            Config.clustering.masterApi.token
+        );
+
+        if (!res.ok) {
+            throw res;
+        }
     }
 }

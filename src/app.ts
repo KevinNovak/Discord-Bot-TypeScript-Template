@@ -22,6 +22,7 @@ async function start(): Promise<void> {
     // Dependencies
     let httpService = new HttpService();
     let masterApiService = new MasterApiService(httpService);
+    await masterApiService.register();
 
     // Sharding
     let shardList: number[];
@@ -71,6 +72,7 @@ async function start(): Promise<void> {
     // Start
     await manager.start();
     await api.start();
+    await masterApiService.ready();
 }
 
 start();

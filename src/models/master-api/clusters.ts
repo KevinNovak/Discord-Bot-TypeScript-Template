@@ -1,9 +1,13 @@
-export interface LoginClusterRequest {
+export interface RegisterClusterRequest {
     shardCount: number;
     callback: {
         url: string;
         token: string;
     };
+}
+
+export interface RegisterClusterResponse {
+    id: string;
 }
 
 export interface LoginClusterResponse {
