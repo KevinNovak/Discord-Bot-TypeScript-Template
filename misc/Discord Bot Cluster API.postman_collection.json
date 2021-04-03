@@ -75,6 +75,20 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Get Root",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}",
+					"host": [
+						"{{BASE_URL}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
