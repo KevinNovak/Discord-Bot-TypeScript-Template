@@ -25,6 +25,10 @@
             }
         }
     },
+    "api": {
+        "port": 8080,
+        "secret": "00000000-0000-0000-0000-000000000000"
+    },
     "sharding": {
         "spawnDelay": 5,
         "spawnTimeout": 300,
@@ -32,17 +36,12 @@
     },
     "clustering": {
         "enabled": false,
+        "shardCount": 16,
+        "callbackUrl": "http://localhost:8080/",
         "masterApi": {
             "url": "http://localhost:8081/",
             "token": "00000000-0000-0000-0000-000000000000"
-        },
-        "clusterId": 0,
-        "shardCount": 16,
-        "callbackUrl": "http://localhost:8080/"
-    },
-    "api": {
-        "port": 8080,
-        "secret": "00000000-0000-0000-0000-000000000000"
+        }
     },
     "jobs": {
         "updateServerCount": {
