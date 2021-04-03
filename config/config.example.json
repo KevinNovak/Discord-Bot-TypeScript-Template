@@ -39,7 +39,7 @@
         "shardCount": 16,
         "callbackUrl": "http://localhost:8080/",
         "masterApi": {
-            "url": "http://localhost:8081/",
+            "url": "http://localhost:5000/",
             "token": "00000000-0000-0000-0000-000000000000"
         }
     },
