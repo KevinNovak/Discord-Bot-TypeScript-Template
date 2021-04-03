@@ -12,6 +12,6 @@ export class RootController implements Controller {
     }
 
     private async get(req: Request, res: Response): Promise<void> {
-        res.status(200).json({ message: 'Hello World!' });
+        res.status(200).json({ name: 'Discord Bot Cluster API', author: 'Kevin Novak' });
     }
 }
