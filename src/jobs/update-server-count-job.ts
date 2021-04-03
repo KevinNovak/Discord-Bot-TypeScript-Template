@@ -25,8 +25,8 @@ export class UpdateServerCountJob implements Job {
         await this.shardManager.broadcastEval(`
             this.user.setPresence({
                 activity: {
-                    name: 'to ${serverCount.toLocaleString()} servers',
                     type: "STREAMING",
+                    name: 'to ${serverCount.toLocaleString()} servers',
                     url: "${Lang.getRef('links.stream', Lang.Default)}"
                 }
             });
