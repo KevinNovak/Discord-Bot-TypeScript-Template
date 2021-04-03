@@ -4,4 +4,4 @@ npm-debug.log
 dist
 docs
 misc
-caches
+.cache
