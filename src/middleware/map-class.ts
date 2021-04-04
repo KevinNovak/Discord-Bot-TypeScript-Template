@@ -2,10 +2,10 @@ import { ClassConstructor, plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 
-export function mapClass(cls: ClassConstructor<unknown>): RequestHandler {
+export function mapClass<T>(cls: ClassConstructor<T>): RequestHandler {
     return async (req: Request, res: Response, next: NextFunction) => {
         // Map to class
-        let object: any = plainToClass(cls, req.body);
+        let object: T = plainToClass(cls, req.body);
 
         // Validate class
         let errors = await validate(object, { skipMissingProperties: true });
