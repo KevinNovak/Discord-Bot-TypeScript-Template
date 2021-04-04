@@ -12,6 +12,7 @@ export function mapClass<T>(cls: ClassConstructor<T>): RequestHandler {
             skipMissingProperties: true,
             forbidUnknownValues: true,
             whitelist: true,
+            forbidNonWhitelisted: true,
         });
         if (errors.length > 0) {
             let errorItems = errors.map(error => ({
