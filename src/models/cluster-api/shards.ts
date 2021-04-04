@@ -1,4 +1,4 @@
-import { Allow, IsUrl } from 'class-validator';
+import { Allow, IsDefined, IsUrl } from 'class-validator';
 
 export interface GetShardsResponse {
     id: number;
@@ -19,12 +19,15 @@ export interface ShardInfo {
 }
 
 export class SetShardPresencesRequest {
+    @IsDefined()
     @Allow()
     type: string;
 
+    @IsDefined()
     @Allow()
     name: string;
 
+    @IsDefined()
     @IsUrl()
     url: string;
 }

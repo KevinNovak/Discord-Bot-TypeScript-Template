@@ -9,7 +9,7 @@ export function mapClass<T>(cls: ClassConstructor<T>): RequestHandler {
 
         // Validate class
         let errors = await validate(object, {
-            skipMissingProperties: true,
+            skipMissingProperties: false,
             forbidUnknownValues: true,
             whitelist: true,
             forbidNonWhitelisted: true,
