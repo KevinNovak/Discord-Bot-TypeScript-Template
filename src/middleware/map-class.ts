@@ -14,7 +14,7 @@ export function mapClass(cls: ClassConstructor<unknown>): RequestHandler {
                 property: error.property,
                 constraints: error.constraints,
             }));
-            res.status(400).send(errorItems);
+            res.status(400).send({ error: true, errors: errorItems });
             return;
         }
 
