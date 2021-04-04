@@ -1,3 +1,5 @@
+import { IsUrl } from 'class-validator';
+
 export interface GetShardsResponse {
     id: number;
     shards: ShardInfo[];
@@ -16,8 +18,11 @@ export interface ShardInfo {
     uptimeSecs?: number;
 }
 
-export interface SetShardPresencesRequest {
+export class SetShardPresencesRequest {
     type: string;
+
     name: string;
+
+    @IsUrl()
     url: string;
 }
