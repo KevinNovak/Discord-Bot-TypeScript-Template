@@ -1,4 +1,4 @@
-import { IsUrl } from 'class-validator';
+import { Allow, IsUrl } from 'class-validator';
 
 export interface GetShardsResponse {
     id: number;
@@ -19,8 +19,10 @@ export interface ShardInfo {
 }
 
 export class SetShardPresencesRequest {
+    @Allow()
     type: string;
 
+    @Allow()
     name: string;
 
     @IsUrl()

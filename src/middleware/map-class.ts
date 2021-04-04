@@ -8,7 +8,11 @@ export function mapClass<T>(cls: ClassConstructor<T>): RequestHandler {
         let object: T = plainToClass(cls, req.body);
 
         // Validate class
-        let errors = await validate(object, { skipMissingProperties: true });
+        let errors = await validate(object, {
+            skipMissingProperties: true,
+            forbidUnknownValues: true,
+            whitelist: true,
+        });
         if (errors.length > 0) {
             let errorItems = errors.map(error => ({
                 property: error.property,
