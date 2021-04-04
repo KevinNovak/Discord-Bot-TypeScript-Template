@@ -10,12 +10,11 @@ export function mapClass(cls: ClassConstructor<unknown>): RequestHandler {
         // Validate class
         let errors = await validate(object, { skipMissingProperties: false });
         if (errors.length > 0) {
-            let errorTexts = Array();
-            for (const errorItem of errors) {
-                errorTexts = errorTexts.concat(errorItem.constraints);
-            }
-
-            res.status(400).send(errorTexts);
+            let errorItems = errors.map(error => ({
+                property: error.property,
+                constraints: error.constraints,
+            }));
+            res.status(400).send(errorItems);
             return;
         }
 
