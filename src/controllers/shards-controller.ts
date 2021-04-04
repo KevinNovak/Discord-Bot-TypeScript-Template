@@ -2,6 +2,7 @@ import { ShardingManager } from 'discord.js-light';
 import { Request, Response, Router } from 'express';
 import router from 'express-promise-router';
 
+import { mapClass } from '../middleware';
 import {
     GetShardsResponse,
     SetShardPresencesRequest,
@@ -20,7 +21,9 @@ export class ShardsController implements Controller {
 
     constructor(private shardManager: ShardingManager) {
         this.router.get(this.path, (req, res) => this.getShards(req, res));
-        this.router.put(`${this.path}/presence`, (req, res) => this.setShardPresences(req, res));
+        this.router.put(`${this.path}/presence`, mapClass(SetShardPresencesRequest), (req, res) =>
+            this.setShardPresences(req, res)
+        );
     }
 
     private async getShards(req: Request, res: Response): Promise<void> {
@@ -59,7 +62,7 @@ export class ShardsController implements Controller {
     }
 
     private async setShardPresences(req: Request, res: Response): Promise<void> {
-        let reqBody = req.body as SetShardPresencesRequest;
+        let reqBody: SetShardPresencesRequest = res.locals.input;
 
         await this.shardManager.broadcastEval(`
             (async () => {
