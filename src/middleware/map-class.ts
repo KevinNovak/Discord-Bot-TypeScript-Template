@@ -5,10 +5,10 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
 export function mapClass(cls: ClassConstructor<unknown>): RequestHandler {
     return async (req: Request, res: Response, next: NextFunction) => {
         // Map to class
-        let output: any = plainToClass(cls, req.body);
+        let object: any = plainToClass(cls, req.body);
 
         // Validate class
-        let errors = await validate(output, { skipMissingProperties: false });
+        let errors = await validate(object, { skipMissingProperties: false });
         if (errors.length > 0) {
             let errorTexts = Array();
             for (const errorItem of errors) {
@@ -20,7 +20,7 @@ export function mapClass(cls: ClassConstructor<unknown>): RequestHandler {
         }
 
         // Set validated class to locals
-        res.locals.input = output;
+        res.locals.input = object;
         next();
     };
 }
