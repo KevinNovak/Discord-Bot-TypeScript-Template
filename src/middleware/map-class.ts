@@ -15,6 +15,7 @@ export function mapClass<T>(cls: ClassConstructor<T>): RequestHandler {
             forbidNonWhitelisted: true,
         });
         if (errors.length > 0) {
+            // TODO: Map recursively for nested errors
             let errorItems = errors.map(error => ({
                 property: error.property,
                 constraints: error.constraints,
