@@ -20,12 +20,10 @@ export interface ShardInfo {
 
 export class SetShardPresencesRequest {
     @IsDefined()
-    @Allow()
     @IsEnum(Constants.ActivityTypes)
     type: string;
 
     @IsDefined()
-    @Allow()
     name: string;
 
     @IsDefined()
