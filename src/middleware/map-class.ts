@@ -15,7 +15,6 @@ export function mapClass(cls: ClassConstructor<object>): RequestHandler {
             forbidUnknownValues: true,
         });
         if (errors.length > 0) {
-            // TODO: Map recursively for nested errors
             res.status(400).send({ error: true, errors: mapValidationErrors(errors) });
             return;
         }
