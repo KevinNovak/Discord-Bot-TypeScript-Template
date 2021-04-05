@@ -1,4 +1,4 @@
-import { IsDefined, IsEnum, IsUrl } from 'class-validator';
+import { IsDefined, IsEnum, IsString, IsUrl } from 'class-validator';
 import { Constants } from 'discord.js';
 
 export interface GetShardsResponse {
@@ -24,6 +24,7 @@ export class SetShardPresencesRequest {
     type: string;
 
     @IsDefined()
+    @IsString()
     name: string;
 
     @IsDefined()
