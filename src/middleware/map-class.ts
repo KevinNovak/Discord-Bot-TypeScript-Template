@@ -15,7 +15,7 @@ export function mapClass(cls: ClassConstructor<object>): RequestHandler {
             forbidUnknownValues: true,
         });
         if (errors.length > 0) {
-            res.status(400).send({ error: true, errors: mapValidationErrors(errors) });
+            res.status(400).send({ error: true, errors: formatValidationErrors(errors) });
             return;
         }
 
@@ -31,10 +31,10 @@ interface ValidationErrorLog {
     children?: ValidationErrorLog[];
 }
 
-function mapValidationErrors(errors: ValidationError[]): ValidationErrorLog[] {
+function formatValidationErrors(errors: ValidationError[]): ValidationErrorLog[] {
     return errors.map(error => ({
         property: error.property,
         constraints: error.constraints,
-        children: error.children?.length > 0 ? mapValidationErrors(error.children) : undefined,
+        children: error.children?.length > 0 ? formatValidationErrors(error.children) : undefined,
     }));
 }
