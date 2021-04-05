@@ -33,7 +33,7 @@ For help using this template, feel free to [join our support server](https://dis
 ### Scales as Your Bot Grows:
 
 -   Supports [sharding](https://discordjs.guide/sharding/) which is required when your bot is in 2500+ servers.
--   Supports [clustering](https://github.com/KevinNovak/Discord-Bot-TypeScript-Template-Master-Api) which allows your to run your bot on multiple machines.
+-   Supports [clustering](https://github.com/KevinNovak/Discord-Bot-TypeScript-Template-Master-Api) which allows you to run your bot on multiple machines.
 
 ## Commands
 
