@@ -54,7 +54,6 @@ export class ShardsController implements Controller {
         };
 
         let resBody: GetShardsResponse = {
-            id: Config.clustering.clusterId,
             shards: shardDatas,
             stats,
         };
