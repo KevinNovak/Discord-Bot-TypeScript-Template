@@ -12,19 +12,28 @@ For help using this template, feel free to [join our support server](https://dis
 
 ## Features
 
--   Written with TypeScript.
--   Uses the [discord.js-light](https://github.com/timotejroiko/discord.js-light) framework.
-    -   Based on [discord.js](https://discord.js.org/), but more memory efficient.
+### Built-In Bot Features:
+
 -   Basic command structure.
 -   Rate limits for commands.
 -   Welcome message when joining a server.
 -   Shows server count in bot status.
 -   Posts server count to popular bot list websites.
 -   Support for multiple languages.
--   [Sharding](https://discordjs.guide/sharding/) across multiple machines.
+
+### Developer Friendly:
+
+-   Written with TypeScript.
+-   Uses the [discord.js-light](https://github.com/timotejroiko/discord.js-light) framework.
+    -   Based on [discord.js](https://discord.js.org/), but more memory efficient.
 -   Built-in debugging setup for VSCode.
 -   Support for running with the [PM2](https://pm2.keymetrics.io/) process manger.
 -   Support for running with [Docker](https://www.docker.com/).
+
+### Scales as Your Bot Grows:
+
+-   Supports [sharding](https://discordjs.guide/sharding/) which is required when your bot is in 2500+ servers.
+-   Supports [clustering](https://github.com/KevinNovak/Discord-Bot-TypeScript-Template-Master-Api) which allows your to run your bot on multiple machines.
 
 ## Commands
 
