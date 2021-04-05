@@ -15,5 +15,8 @@ COPY . .
 # Build the project
 RUN npm run build
 
+# Expose ports
+EXPOSE 8080
+
 # Run the application
 CMD [ "node", "dist/app.js" ]
