@@ -10,9 +10,9 @@ export function mapClass<T>(cls: ClassConstructor<T>): RequestHandler {
         // Validate class
         let errors = await validate(object, {
             skipMissingProperties: true,
-            forbidUnknownValues: true,
             whitelist: true,
-            forbidNonWhitelisted: true,
+            forbidNonWhitelisted: false,
+            forbidUnknownValues: true,
         });
         if (errors.length > 0) {
             // TODO: Map recursively for nested errors
