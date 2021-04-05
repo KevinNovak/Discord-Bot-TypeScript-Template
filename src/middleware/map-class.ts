@@ -1,5 +1,5 @@
 import { ClassConstructor, plainToClass } from 'class-transformer';
-import { validate } from 'class-validator';
+import { validate, ValidationError } from 'class-validator';
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 
 export function mapClass(cls: ClassConstructor<object>): RequestHandler {
@@ -16,11 +16,7 @@ export function mapClass(cls: ClassConstructor<object>): RequestHandler {
         });
         if (errors.length > 0) {
             // TODO: Map recursively for nested errors
-            let errorItems = errors.map(error => ({
-                property: error.property,
-                constraints: error.constraints,
-            }));
-            res.status(400).send({ error: true, errors: errorItems });
+            res.status(400).send({ error: true, errors: mapValidationErrors(errors) });
             return;
         }
 
@@ -28,4 +24,18 @@ export function mapClass(cls: ClassConstructor<object>): RequestHandler {
         res.locals.input = obj;
         next();
     };
+}
+
+interface ValidationErrorLog {
+    property: string;
+    constraints?: { [type: string]: string };
+    children?: ValidationErrorLog[];
+}
+
+function mapValidationErrors(errors: ValidationError[]): ValidationErrorLog[] {
+    return errors.map(error => ({
+        property: error.property,
+        constraints: error.constraints,
+        children: error.children?.length > 0 ? mapValidationErrors(error.children) : undefined,
+    }));
 }
