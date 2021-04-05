@@ -1,4 +1,5 @@
 import { ShardingManager } from 'discord.js-light';
+import 'reflect-metadata';
 
 import { Api } from './api';
 import { GuildsController, RootController, ShardsController } from './controllers';

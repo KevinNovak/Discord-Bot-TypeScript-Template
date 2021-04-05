@@ -12,7 +12,7 @@ export function mapClass(cls: ClassConstructor<object>): RequestHandler {
             skipMissingProperties: true,
             whitelist: true,
             forbidNonWhitelisted: false,
-            forbidUnknownValues: false,
+            forbidUnknownValues: true,
         });
         if (errors.length > 0) {
             // TODO: Map recursively for nested errors
