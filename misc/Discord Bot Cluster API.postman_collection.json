@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "d37e9bae-0a24-4940-af63-2716ab3bb660",
+		"name": "Discord Bot Cluster API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Shards",
+			"item": [
+				{
+					"name": "Get Shards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/shards",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"shards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Shard Presences",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"STREAMING\",\r\n    \"name\": \"to 1,000,000 servers\",\r\n    \"url\": \"https://www.twitch.tv/novakevin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/shards/presence",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"shards",
+								"presence"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Guilds",
+			"item": [
+				{
+					"name": "Get Guilds",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/guilds",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"guilds"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Root",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}",
+					"host": [
+						"{{BASE_URL}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "Authorization",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "00000000-0000-0000-0000-000000000000",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "localhost:8080"
+		}
+	]
+}

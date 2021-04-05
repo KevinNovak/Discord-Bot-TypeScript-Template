@@ -1,4 +1,4 @@
-import { ShardingManager } from 'discord.js-light';
+import { ActivityType, ShardingManager } from 'discord.js-light';
 
 import { BotSite } from '../models/config-models';
 import { HttpService, Lang, Logger } from '../services';
@@ -22,14 +22,15 @@ export class UpdateServerCountJob implements Job {
 
     public async run(): Promise<void> {
         let serverCount = await ShardUtils.serverCount(this.shardManager);
+
+        let type: ActivityType = 'STREAMING';
+        let name = `to ${serverCount.toLocaleString()} servers`;
+        let url = Lang.getRef('links.stream', Lang.Default);
+
         await this.shardManager.broadcastEval(`
-            this.user.setPresence({
-                activity: {
-                    type: "STREAMING",
-                    name: 'to ${serverCount.toLocaleString()} servers',
-                    url: "${Lang.getRef('links.stream', Lang.Default)}"
-                }
-            });
+            (async () => {
+                return await this.setPresence('${type}', '${name}', '${url}');
+            })();
         `);
 
         Logger.info(

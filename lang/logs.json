@@ -1,6 +1,7 @@
 {
     "info": {
         "started": "Application started.",
+        "apiStarted": "API started on port {PORT}.",
         "spawningShards": "Spawning {SHARD_COUNT} shards: [{SHARD_LIST}].",
         "launchedShard": "Launched Shard {SHARD_ID}.",
         "login": "Logged in as '{USER_TAG}'!",
@@ -17,8 +18,9 @@
         "noShards": "No shards to spawn."
     },
     "error": {
-        "retrieveShardCount": "An error occurred while retrieving the recommended shard count.",
+        "retrieveShards": "An error occurred while retrieving which shards to spawn.",
         "spawnShard": "An error occurred while spawning shards.",
+        "shardInfo": "An error occurred while retrieving shard info.",
         "job": "An error occurred while running the '{JOB}' job.",
         "updateServerCountSite": "An error occurred while updating the server count on '{BOT_SITE}'.",
         "login": "An error occurred while the client attempted to login.",
@@ -28,6 +30,7 @@
         "reaction": "An error occurred while processing a reaction.",
         "rateLimit": "A rate limit was hit while making a request.",
         "commandDm": "[{MESSAGE_ID}] An error occurred while executing the '{COMMAND_KEYWORD}' command for user '{SENDER_TAG}' ({SENDER_ID}) in direct message.",
-        "commandGuild": "[{MESSAGE_ID}] An error occurred while executing the '{COMMAND_KEYWORD}' command for user '{SENDER_TAG}' ({SENDER_ID}) in channel '{CHANNEL_NAME}' ({CHANNEL_ID}) in guild '{GUILD_NAME}' ({GUILD_ID})."
+        "commandGuild": "[{MESSAGE_ID}] An error occurred while executing the '{COMMAND_KEYWORD}' command for user '{SENDER_TAG}' ({SENDER_ID}) in channel '{CHANNEL_NAME}' ({CHANNEL_ID}) in guild '{GUILD_NAME}' ({GUILD_ID}).",
+        "apiRequest": "An error occurred while processing a '{HTTP_METHOD}' request to '{URL}'."
     }
 }
