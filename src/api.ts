@@ -15,8 +15,8 @@ export class Api {
         this.app = express();
         this.app.use(express.json());
         this.app.use(checkAuth(Config.api.secret));
-        this.app.use(handleError());
         this.setupControllers();
+        this.app.use(handleError());
     }
 
     public async start(): Promise<void> {
