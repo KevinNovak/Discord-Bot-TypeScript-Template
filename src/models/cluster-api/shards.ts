@@ -1,4 +1,4 @@
-import { IsDefined, IsEnum, IsString, IsUrl, MinLength } from 'class-validator';
+import { IsDefined, IsEnum, IsString, IsUrl, Length } from 'class-validator';
 import { Constants } from 'discord.js';
 
 export interface GetShardsResponse {
@@ -25,7 +25,7 @@ export class SetShardPresencesRequest {
 
     @IsDefined()
     @IsString()
-    @MinLength(2)
+    @Length(1, 128)
     name: string;
 
     @IsDefined()
