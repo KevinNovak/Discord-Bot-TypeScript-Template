@@ -145,12 +145,12 @@ export class CommandHandler {
         }
 
         // Members with "Manage Server" have permission for all commands
-        if (member.hasPermission(Permissions.FLAGS.MANAGE_GUILD)) {
+        if (member.permissions.has(Permissions.FLAGS.MANAGE_GUILD)) {
             return true;
         }
 
         // Check if member has required permissions for command
-        if (!member.hasPermission(command.requirePerms)) {
+        if (!member.permissions.has(command.requirePerms)) {
             return false;
         }
 

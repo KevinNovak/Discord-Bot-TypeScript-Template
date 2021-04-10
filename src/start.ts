@@ -26,7 +26,7 @@ let Config = require('../config/config.json');
 async function start(): Promise<void> {
     let client = new CustomClient({
         // discord.js Options
-        ws: { intents: Config.client.intents },
+        intents: Config.client.intents,
         partials: Config.client.partials,
         messageCacheMaxSize: Config.client.caches.messages.size,
         messageCacheLifetime: Config.client.caches.messages.lifetime,
