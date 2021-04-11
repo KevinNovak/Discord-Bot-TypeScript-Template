@@ -59,6 +59,7 @@ async function start(): Promise<void> {
     let commandHandler = new CommandHandler([
         devCommand,
         docsCommand,
+        helpCommand,
         infoCommand,
         inviteCommand,
         supportCommand,
