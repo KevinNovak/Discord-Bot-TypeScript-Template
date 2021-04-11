@@ -10,7 +10,7 @@
                 "fields": [
                     {
                         "name": "Important {{REF:fields.commands}}",
-                        "value": ["**{{REF:bot.prefix}} {{REF:commands.help}}** - View bot help."]
+                        "value": ["**/{{REF:commands.help}}** - View bot help."]
                     },
                     {
                         "name": "{{REF:fields.links}}",
@@ -29,8 +29,8 @@
                     {
                         "name": "{{REF:fields.commands}}",
                         "value": [
-                            "**{{REF:bot.prefix}} {{REF:commands.test}}** - Run the test command.",
-                            "**{{REF:bot.prefix}} {{REF:commands.info}}** - More information about {{REF:bot.name}}."
+                            "**/{{REF:commands.test}}** - Run the test command.",
+                            "**/{{REF:commands.info}}** - More information about {{REF:bot.name}}."
                         ]
                     },
                     {
@@ -171,8 +171,7 @@
         },
         "bot": {
             "name": "My Bot",
-            "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features.",
-            "prefix": "bot"
+            "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features."
         },
         "colors": {
             "success": "00ff83",
