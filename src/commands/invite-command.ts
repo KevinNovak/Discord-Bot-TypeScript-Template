@@ -7,7 +7,7 @@ import { Command } from './command';
 
 export class InviteCommand implements Command {
     public info: ApplicationCommandData = {
-        name: 'invite',
+        name: Lang.getRef('commands.invite', Lang.Default),
         description: 'Invite bot.',
     };
     public requireGuild = false;
