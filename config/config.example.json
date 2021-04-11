@@ -1,5 +1,4 @@
 {
-    "prefix": "bot",
     "client": {
         "token": "<DISCORD_BOT_TOKEN>",
         "intents": [
