@@ -7,7 +7,7 @@ import { Command } from './command';
 
 export class VoteCommand implements Command {
     public info: ApplicationCommandData = {
-        name: Lang.getRef('commands.vote', Lang.Default),
+        name: 'vote',
         description: 'Vote for bot.',
     };
     public requireGuild = false;

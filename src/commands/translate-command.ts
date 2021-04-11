@@ -8,7 +8,7 @@ import { Command } from './command';
 
 export class TranslateCommand implements Command {
     public info: ApplicationCommandData = {
-        name: Lang.getRef('commands.translate', Lang.Default),
+        name: 'translate',
         description: 'View translation info.',
     };
     public requireGuild = false;
