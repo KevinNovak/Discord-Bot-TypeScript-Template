@@ -1,9 +1,9 @@
-import { Message, PermissionResolvable } from 'discord.js-light';
-import { Keyword } from '../models/common';
+import { ApplicationCommandData, CommandInteraction, PermissionResolvable } from 'discord.js-light';
 import { EventData } from '../models/internal-models';
 
-export interface Command extends Keyword {
+export interface Command {
+    info: ApplicationCommandData;
     requireGuild: boolean;
     requirePerms: PermissionResolvable[];
-    execute(msg: Message, args: string[], data: EventData): Promise<void>;
+    execute(intr: CommandInteraction, data: EventData): Promise<void>;
 }

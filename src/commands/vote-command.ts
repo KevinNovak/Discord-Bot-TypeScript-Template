@@ -1,24 +1,19 @@
-import { Message } from 'discord.js-light';
+import { ApplicationCommandData, CommandInteraction } from 'discord.js-light';
 
-import { LangCode } from '../models/enums';
 import { EventData } from '../models/internal-models';
 import { Lang } from '../services';
 import { MessageUtils } from '../utils';
 import { Command } from './command';
 
 export class VoteCommand implements Command {
+    public info: ApplicationCommandData = {
+        name: 'vote',
+        description: 'Vote for bot.',
+    };
     public requireGuild = false;
     public requirePerms = [];
 
-    public keyword(langCode: LangCode): string {
-        return Lang.getRef('commands.vote', langCode);
-    }
-
-    public regex(langCode: LangCode): RegExp {
-        return Lang.getRegex('commands.vote', langCode);
-    }
-
-    public async execute(msg: Message, args: string[], data: EventData): Promise<void> {
-        await MessageUtils.send(msg.channel, Lang.getEmbed('displays.vote', data.lang()));
+    public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
+        await MessageUtils.replyIntr(intr, Lang.getEmbed('displays.vote', data.lang()));
     }
 }

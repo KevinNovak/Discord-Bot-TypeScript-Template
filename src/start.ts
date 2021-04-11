@@ -56,7 +56,7 @@ async function start(): Promise<void> {
     // Event handlers
     let guildJoinHandler = new GuildJoinHandler();
     let guildLeaveHandler = new GuildLeaveHandler();
-    let commandHandler = new CommandHandler(Config.prefix, helpCommand, [
+    let commandHandler = new CommandHandler([
         devCommand,
         docsCommand,
         infoCommand,
@@ -67,7 +67,7 @@ async function start(): Promise<void> {
         voteCommand,
     ]);
     let triggerHandler = new TriggerHandler([]);
-    let messageHandler = new MessageHandler(commandHandler, triggerHandler);
+    let messageHandler = new MessageHandler(triggerHandler);
     let reactionHandler = new ReactionHandler([]);
 
     let bot = new Bot(
@@ -76,6 +76,7 @@ async function start(): Promise<void> {
         guildJoinHandler,
         guildLeaveHandler,
         messageHandler,
+        commandHandler,
         reactionHandler,
         new JobService([])
     );

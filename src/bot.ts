@@ -2,13 +2,20 @@ import {
     Client,
     Constants,
     Guild,
+    Interaction,
     Message,
     MessageReaction,
     RateLimitData,
     User,
 } from 'discord.js-light';
 
-import { GuildJoinHandler, GuildLeaveHandler, MessageHandler, ReactionHandler } from './events';
+import {
+    CommandHandler,
+    GuildJoinHandler,
+    GuildLeaveHandler,
+    MessageHandler,
+    ReactionHandler,
+} from './events';
 import { JobService, Logger } from './services';
 import { PartialUtils } from './utils';
 
@@ -25,6 +32,7 @@ export class Bot {
         private guildJoinHandler: GuildJoinHandler,
         private guildLeaveHandler: GuildLeaveHandler,
         private messageHandler: MessageHandler,
+        private commandHandler: CommandHandler,
         private reactionHandler: ReactionHandler,
         private jobService: JobService
     ) {}
@@ -42,6 +50,9 @@ export class Bot {
         this.client.on(Constants.Events.GUILD_CREATE, (guild: Guild) => this.onGuildJoin(guild));
         this.client.on(Constants.Events.GUILD_DELETE, (guild: Guild) => this.onGuildLeave(guild));
         this.client.on(Constants.Events.MESSAGE_CREATE, (msg: Message) => this.onMessage(msg));
+        this.client.on(Constants.Events.INTERACTION_CREATE, (intr: Interaction) =>
+            this.onInteraction(intr)
+        );
         this.client.on(
             Constants.Events.MESSAGE_REACTION_ADD,
             (messageReaction: MessageReaction, user: User) => this.onReaction(messageReaction, user)
@@ -60,9 +71,19 @@ export class Bot {
         }
     }
 
-    private onReady(): void {
+    private async registerCommands(): Promise<void> {
+        let commandInfos = this.commandHandler.commands.map(command => command.info);
+        for (let commandInfo of commandInfos) {
+            await this.client.application.commands.create(commandInfo);
+        }
+    }
+
+    private async onReady(): Promise<void> {
         let userTag = this.client.user.tag;
         Logger.info(Logs.info.login.replace('{USER_TAG}', userTag));
+
+        // TODO: Add log
+        await this.registerCommands();
 
         if (!Debug.dummyMode.enabled) {
             this.jobService.start();
@@ -115,6 +136,23 @@ export class Bot {
         try {
             await this.messageHandler.process(msg);
         } catch (error) {
+            Logger.error(Logs.error.message, error);
+        }
+    }
+
+    private async onInteraction(intr: Interaction): Promise<void> {
+        if (
+            !intr.isCommand() ||
+            !this.ready ||
+            (Debug.dummyMode.enabled && !Debug.dummyMode.whitelist.includes(intr.user.id))
+        ) {
+            return;
+        }
+
+        try {
+            await this.commandHandler.process(intr);
+        } catch (error) {
+            // TODO: Log
             Logger.error(Logs.error.message, error);
         }
     }

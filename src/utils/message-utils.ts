@@ -1,4 +1,6 @@
 import {
+    Channel,
+    CommandInteraction,
     DiscordAPIError,
     DMChannel,
     EmojiResolvable,
@@ -11,12 +13,16 @@ import {
 } from 'discord.js-light';
 
 export class MessageUtils {
-    public static async send(
-        target: User | DMChannel | TextChannel | NewsChannel,
-        content: StringResolvable
-    ): Promise<Message> {
+    public static async send(target: User | Channel, content: StringResolvable): Promise<Message> {
         try {
-            return await target.send(content);
+            if (
+                target instanceof User ||
+                target instanceof TextChannel ||
+                target instanceof NewsChannel ||
+                target instanceof DMChannel
+            ) {
+                return await target.send(content);
+            }
         } catch (error) {
             // 10003: "Unknown channel"
             // 10004: "Unknown guild"
@@ -33,7 +39,29 @@ export class MessageUtils {
         }
     }
 
-    public static async reply(msg: Message, content: StringResolvable): Promise<Message> {
+    public static async replyIntr(
+        intr: CommandInteraction,
+        content: StringResolvable
+    ): Promise<void> {
+        try {
+            await intr.reply(content);
+        } catch (error) {
+            // 10003: "Unknown channel"
+            // 10004: "Unknown guild"
+            // 10013: "Unknown user"
+            // 50007: "Cannot send messages to this user" (User blocked bot or DM disabled)
+            if (
+                error instanceof DiscordAPIError &&
+                [10003, 10004, 10013, 50007].includes(error.code)
+            ) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    public static async replyMsg(msg: Message, content: StringResolvable): Promise<Message> {
         try {
             return await msg.reply(content);
         } catch (error) {

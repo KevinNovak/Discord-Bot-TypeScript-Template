@@ -1,4 +1,10 @@
-import { DMChannel, GuildMember, Message, Permissions, TextChannel } from 'discord.js-light';
+import {
+    CommandInteraction,
+    DMChannel,
+    GuildMember,
+    Permissions,
+    TextChannel,
+} from 'discord.js-light';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { Command } from '../commands';
@@ -17,23 +23,11 @@ export class CommandHandler {
         Config.rateLimiting.commands.interval * 1000
     );
 
-    constructor(
-        private prefix: string,
-        private helpCommand: Command,
-        private commands: Command[]
-    ) {}
+    constructor(public commands: Command[]) {}
 
-    public shouldHandle(msg: Message, args: string[]): boolean {
-        return (
-            [this.prefix, `<@${msg.client.user.id}>`, `<@!${msg.client.user.id}>`].includes(
-                args[0].toLowerCase()
-            ) && !msg.author.bot
-        );
-    }
-
-    public async process(msg: Message, args: string[]): Promise<void> {
+    public async process(intr: CommandInteraction): Promise<void> {
         // Check if user is rate limited
-        let limited = this.rateLimiter.take(msg.author.id);
+        let limited = this.rateLimiter.take(intr.user.id);
         if (limited) {
             return;
         }
@@ -42,65 +36,63 @@ export class CommandHandler {
         let data = new EventData();
 
         // Check if I have permission to send a message
-        if (!PermissionUtils.canSendEmbed(msg.channel)) {
+        // TODO: Temp fix until we can have a DM channel in the interaction
+        let channel = await intr.client.channels.fetch(intr.channelID);
+        if (!PermissionUtils.canSendEmbed(channel)) {
             // No permission to send message
-            if (PermissionUtils.canSend(msg.channel)) {
+            if (PermissionUtils.canSend(channel)) {
                 let message = Lang.getRef('messages.missingEmbedPerms', data.lang());
-                await MessageUtils.send(msg.channel, message);
+                await MessageUtils.replyIntr(intr, message);
             }
             return;
         }
 
-        // If only a prefix, run the help command
-        if (args.length === 1) {
-            await this.helpCommand.execute(msg, args, data);
-            return;
-        }
-
         // Try to find the command the user wants
-        let command = this.find(args[1], data.lang());
+        let command = this.find(intr.commandName, data.lang());
 
         // If no command found, run the help command
-        if (!command) {
-            await this.helpCommand.execute(msg, args, data);
-            return;
-        }
 
-        if (command.requireGuild && !(msg.channel instanceof TextChannel)) {
-            await MessageUtils.send(
-                msg.channel,
+        // TODO: What if no command found
+        // if (!command) {
+        //     await this.helpCommand.execute(msg, args, data);
+        //     return;
+        // }
+
+        if (command.requireGuild && !(channel instanceof TextChannel)) {
+            await MessageUtils.replyIntr(
+                intr,
                 Lang.getEmbed('validation.serverOnlyCommand', data.lang())
             );
             return;
         }
 
         try {
-            if (msg.channel instanceof DMChannel) {
-                await command.execute(msg, args, data);
+            if (channel instanceof DMChannel) {
+                await command.execute(intr, data);
                 return;
             }
 
-            if (msg.channel instanceof TextChannel) {
+            if (channel instanceof TextChannel) {
                 // Check if user has permission
-                if (!this.hasPermission(msg.member, command)) {
-                    await MessageUtils.send(
-                        msg.channel,
+                if (!this.hasPermission(intr.member, command)) {
+                    await MessageUtils.replyIntr(
+                        intr,
                         Lang.getEmbed('validation.permissionRequired', data.lang())
                     );
                     return;
                 }
 
                 // Execute the command
-                await command.execute(msg, args, data);
+                await command.execute(intr, data);
                 return;
             }
         } catch (error) {
             // Try to notify sender of command error
             try {
-                await MessageUtils.send(
-                    msg.channel,
+                await MessageUtils.replyIntr(
+                    intr,
                     Lang.getEmbed('errors.commandError', data.lang(), {
-                        ERROR_CODE: msg.id,
+                        ERROR_CODE: intr.id,
                     })
                 );
             } catch {
@@ -108,26 +100,26 @@ export class CommandHandler {
             }
 
             // Log command error
-            if (msg.channel instanceof DMChannel) {
+            if (channel instanceof DMChannel) {
                 Logger.error(
                     Logs.error.commandDm
-                        .replace('{MESSAGE_ID}', msg.id)
-                        .replace('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
-                        .replace('{SENDER_TAG}', msg.author.tag)
-                        .replace('{SENDER_ID}', msg.author.id),
+                        .replace('{MESSAGE_ID}', intr.id)
+                        .replace('{COMMAND_KEYWORD}', command.info.name)
+                        .replace('{SENDER_TAG}', intr.user.tag)
+                        .replace('{SENDER_ID}', intr.user.id),
                     error
                 );
-            } else if (msg.channel instanceof TextChannel) {
+            } else if (channel instanceof TextChannel) {
                 Logger.error(
                     Logs.error.commandGuild
-                        .replace('{MESSAGE_ID}', msg.id)
-                        .replace('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
-                        .replace('{SENDER_TAG}', msg.author.tag)
-                        .replace('{SENDER_ID}', msg.author.id)
-                        .replace('{CHANNEL_NAME}', msg.channel.name)
-                        .replace('{CHANNEL_ID}', msg.channel.id)
-                        .replace('{GUILD_NAME}', msg.guild.name)
-                        .replace('{GUILD_ID}', msg.guild.id),
+                        .replace('{MESSAGE_ID}', intr.id)
+                        .replace('{COMMAND_KEYWORD}', command.info.name)
+                        .replace('{SENDER_TAG}', intr.user.tag)
+                        .replace('{SENDER_ID}', intr.user.id)
+                        .replace('{CHANNEL_NAME}', channel.name)
+                        .replace('{CHANNEL_ID}', channel.id)
+                        .replace('{GUILD_NAME}', intr.guild.name)
+                        .replace('{GUILD_ID}', intr.guild.id),
                     error
                 );
             }
@@ -135,7 +127,7 @@ export class CommandHandler {
     }
 
     private find(input: string, langCode: LangCode): Command {
-        return this.commands.find(command => command.regex(langCode).test(input));
+        return this.commands.find(command => command.info.name === input);
     }
 
     private hasPermission(member: GuildMember, command: Command): boolean {
