@@ -7,7 +7,7 @@ import { Command } from './command';
 
 export class InfoCommand implements Command {
     public info: ApplicationCommandData = {
-        name: 'info',
+        name: Lang.getRef('commands.info', Lang.Default),
         description: 'Show more information.',
     };
     public requireGuild = false;

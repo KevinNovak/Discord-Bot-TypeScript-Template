@@ -7,7 +7,7 @@ import { Command } from './command';
 
 export class DocsCommand implements Command {
     public info: ApplicationCommandData = {
-        name: 'docs',
+        name: Lang.getRef('commands.docs', Lang.Default),
         description: 'Show bot documentation.',
     };
     public requireGuild = false;

@@ -11,7 +11,7 @@ let TsConfig = require('../../tsconfig.json');
 
 export class DevCommand implements Command {
     public info: ApplicationCommandData = {
-        name: 'dev',
+        name: Lang.getRef('commands.dev', Lang.Default),
         description: 'Show developer info.',
     };
     public requireGuild = false;
