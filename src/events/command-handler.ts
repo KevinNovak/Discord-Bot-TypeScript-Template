@@ -53,14 +53,10 @@ export class CommandHandler implements EventHandler {
 
         // Try to find the command the user wants
         let command = this.find(intr.commandName, data.lang());
-
-        // If no command found, run the help command
-
-        // TODO: What if no command found
-        // if (!command) {
-        //     await this.helpCommand.execute(msg, args, data);
-        //     return;
-        // }
+        if (!command) {
+            // TODO: Reply to interaction
+            return;
+        }
 
         if (command.requireGuild && !(channel instanceof TextChannel)) {
             await MessageUtils.sendIntr(
