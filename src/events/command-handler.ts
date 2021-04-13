@@ -12,12 +12,13 @@ import { LangCode } from '../models/enums';
 import { EventData } from '../models/internal-models';
 import { Lang, Logger } from '../services';
 import { MessageUtils, PermissionUtils } from '../utils';
+import { EventHandler } from './event-handler';
 
 let Config = require('../../config/config.json');
 let Debug = require('../../config/debug.json');
 let Logs = require('../../lang/logs.json');
 
-export class CommandHandler {
+export class CommandHandler implements EventHandler {
     private rateLimiter = new RateLimiter(
         Config.rateLimiting.commands.amount,
         Config.rateLimiting.commands.interval * 1000
