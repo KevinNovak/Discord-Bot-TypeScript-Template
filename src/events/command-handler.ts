@@ -26,14 +26,14 @@ export class CommandHandler {
     constructor(public commands: Command[]) {}
 
     public async process(intr: CommandInteraction): Promise<void> {
-        // Defer interaction
-        await intr.defer();
-
         // Check if user is rate limited
         let limited = this.rateLimiter.take(intr.user.id);
         if (limited) {
             return;
         }
+
+        // Defer interaction
+        await intr.defer();
 
         // TODO: Get data from database
         let data = new EventData();
