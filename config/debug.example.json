@@ -1,6 +1,6 @@
 {
-    "skipCheck": {
-        "perms": false
+    "skip": {
+        "checkPerms": false
     },
     "override": {
         "shardMode": {
