@@ -1,7 +1,6 @@
 import { DMChannel, Message, TextChannel } from 'discord.js-light';
 
-import { TriggerHandler } from '.';
-import { EventHandler } from './event-handler';
+import { EventHandler, TriggerHandler } from '.';
 
 export class MessageHandler implements EventHandler {
     constructor(private triggerHandler: TriggerHandler) {}

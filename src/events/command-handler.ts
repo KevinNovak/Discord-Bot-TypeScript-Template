@@ -7,12 +7,12 @@ import {
 } from 'discord.js-light';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
+import { EventHandler } from '.';
 import { Command } from '../commands';
 import { LangCode } from '../models/enums';
 import { EventData } from '../models/internal-models';
 import { Lang, Logger } from '../services';
 import { MessageUtils, PermissionUtils } from '../utils';
-import { EventHandler } from './event-handler';
 
 let Config = require('../../config/config.json');
 let Debug = require('../../config/debug.json');
