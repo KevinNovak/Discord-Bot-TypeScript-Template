@@ -2,6 +2,7 @@ import {
     CommandInteraction,
     DMChannel,
     GuildMember,
+    NewsChannel,
     Permissions,
     TextChannel,
 } from 'discord.js-light';
@@ -9,7 +10,6 @@ import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { EventHandler } from '.';
 import { Command } from '../commands';
-import { LangCode } from '../models/enums';
 import { EventData } from '../models/internal-models';
 import { Lang, Logger } from '../services';
 import { MessageUtils, PermissionUtils } from '../utils';
@@ -58,7 +58,7 @@ export class CommandHandler implements EventHandler {
             return;
         }
 
-        if (command.requireGuild && !(channel instanceof TextChannel)) {
+        if (command.requireGuild && !intr.guild) {
             await MessageUtils.sendIntr(
                 intr,
                 Lang.getEmbed('validation.serverOnlyCommand', data.lang())
@@ -66,26 +66,17 @@ export class CommandHandler implements EventHandler {
             return;
         }
 
+        if (intr.member && !this.hasPermission(intr.member, command)) {
+            await MessageUtils.sendIntr(
+                intr,
+                Lang.getEmbed('validation.permissionRequired', data.lang())
+            );
+            return;
+        }
+
+        // Execute the command
         try {
-            if (channel instanceof DMChannel) {
-                await command.execute(intr, data);
-                return;
-            }
-
-            if (channel instanceof TextChannel) {
-                // Check if user has permission
-                if (!this.hasPermission(intr.member, command)) {
-                    await MessageUtils.sendIntr(
-                        intr,
-                        Lang.getEmbed('validation.permissionRequired', data.lang())
-                    );
-                    return;
-                }
-
-                // Execute the command
-                await command.execute(intr, data);
-                return;
-            }
+            await command.execute(intr, data);
         } catch (error) {
             // Try to notify sender of command error
             try {
@@ -109,7 +100,7 @@ export class CommandHandler implements EventHandler {
                         .replace('{SENDER_ID}', intr.user.id),
                     error
                 );
-            } else if (channel instanceof TextChannel) {
+            } else if (channel instanceof TextChannel || channel instanceof NewsChannel) {
                 Logger.error(
                     Logs.error.commandGuild
                         .replace('{MESSAGE_ID}', intr.id)
