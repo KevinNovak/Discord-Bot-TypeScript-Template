@@ -152,8 +152,7 @@ export class Bot {
         try {
             await this.commandHandler.process(intr);
         } catch (error) {
-            // TODO: Log
-            Logger.error(Logs.error.message, error);
+            Logger.error(Logs.error.command, error);
         }
     }
 
