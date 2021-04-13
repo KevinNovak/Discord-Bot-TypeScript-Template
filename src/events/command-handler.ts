@@ -132,7 +132,7 @@ export class CommandHandler {
 
     private hasPermission(member: GuildMember, command: Command): boolean {
         // Debug option to bypass permission checks
-        if (Debug.skipCheck.perms) {
+        if (Debug.skip.checkPerms) {
             return true;
         }
 

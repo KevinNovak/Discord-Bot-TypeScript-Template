@@ -80,8 +80,10 @@ export class Bot {
         let userTag = this.client.user.tag;
         Logger.info(Logs.info.login.replace('{USER_TAG}', userTag));
 
-        // TODO: Add log
-        await this.registerCommands();
+        if (!Debug.skip.registerCommands) {
+            // TODO: Add log
+            await this.registerCommands();
+        }
 
         if (!Debug.dummyMode.enabled) {
             this.jobService.start();
