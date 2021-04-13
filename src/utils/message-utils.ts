@@ -1,4 +1,5 @@
 import {
+    Channel,
     DiscordAPIError,
     DMChannel,
     EmojiResolvable,
@@ -11,12 +12,16 @@ import {
 } from 'discord.js-light';
 
 export class MessageUtils {
-    public static async send(
-        target: User | DMChannel | TextChannel | NewsChannel,
-        content: StringResolvable
-    ): Promise<Message> {
+    public static async send(target: User | Channel, content: StringResolvable): Promise<Message> {
         try {
-            return await target.send(content);
+            if (
+                target instanceof User ||
+                target instanceof TextChannel ||
+                target instanceof NewsChannel ||
+                target instanceof DMChannel
+            ) {
+                return await target.send(content);
+            }
         } catch (error) {
             // 10003: "Unknown channel"
             // 10004: "Unknown guild"
