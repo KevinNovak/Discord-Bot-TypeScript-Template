@@ -52,7 +52,7 @@ export class CommandHandler implements EventHandler {
         }
 
         // Try to find the command the user wants
-        let command = this.find(intr.commandName, data.lang());
+        let command = this.commands.find(command => command.info.name === intr.commandName);
         if (!command) {
             // TODO: Reply to interaction
             return;
@@ -124,10 +124,6 @@ export class CommandHandler implements EventHandler {
                 );
             }
         }
-    }
-
-    private find(input: string, langCode: LangCode): Command {
-        return this.commands.find(command => command.info.name === input);
     }
 
     private hasPermission(member: GuildMember, command: Command): boolean {
