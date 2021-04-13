@@ -58,7 +58,7 @@ export class CommandHandler implements EventHandler {
             return;
         }
 
-        if (command.requireGuild && !intr.guild) {
+        if (command.requireGuild && !(intr.channel instanceof TextChannel)) {
             await MessageUtils.sendIntr(
                 intr,
                 Lang.getEmbed('validation.serverOnlyCommand', data.lang())
