@@ -73,19 +73,7 @@ export class Bot {
 
     private async registerCommands(): Promise<void> {
         let cmdInfos = this.commandHandler.commands.map(command => command.info);
-        let cmdNames = cmdInfos.map(cmdInfo => cmdInfo.name);
-
-        // Remove any old commands that no longer exist
-        let existingCmds = await this.client.application.commands.fetch();
-        let oldCmds = existingCmds.filter(cmd => !cmdNames.includes(cmd.name));
-        for (let oldCmd of oldCmds.array()) {
-            await oldCmd.delete();
-        }
-
-        // Create or overwrite commands
-        for (let cmdInfo of cmdInfos) {
-            await this.client.application.commands.create(cmdInfo);
-        }
+        this.client.application.commands.set(cmdInfos);
     }
 
     private async onReady(): Promise<void> {
