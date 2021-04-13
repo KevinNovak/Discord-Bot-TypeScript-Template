@@ -26,6 +26,9 @@ export class CommandHandler {
     constructor(public commands: Command[]) {}
 
     public async process(intr: CommandInteraction): Promise<void> {
+        // Defer interaction
+        await intr.defer();
+
         // Check if user is rate limited
         let limited = this.rateLimiter.take(intr.user.id);
         if (limited) {
@@ -42,7 +45,7 @@ export class CommandHandler {
             // No permission to send message
             if (PermissionUtils.canSend(channel)) {
                 let message = Lang.getRef('messages.missingEmbedPerms', data.lang());
-                await MessageUtils.replyIntr(intr, message);
+                await MessageUtils.sendIntr(intr, message);
             }
             return;
         }
@@ -59,7 +62,7 @@ export class CommandHandler {
         // }
 
         if (command.requireGuild && !(channel instanceof TextChannel)) {
-            await MessageUtils.replyIntr(
+            await MessageUtils.sendIntr(
                 intr,
                 Lang.getEmbed('validation.serverOnlyCommand', data.lang())
             );
@@ -75,7 +78,7 @@ export class CommandHandler {
             if (channel instanceof TextChannel) {
                 // Check if user has permission
                 if (!this.hasPermission(intr.member, command)) {
-                    await MessageUtils.replyIntr(
+                    await MessageUtils.sendIntr(
                         intr,
                         Lang.getEmbed('validation.permissionRequired', data.lang())
                     );
@@ -89,7 +92,7 @@ export class CommandHandler {
         } catch (error) {
             // Try to notify sender of command error
             try {
-                await MessageUtils.replyIntr(
+                await MessageUtils.sendIntr(
                     intr,
                     Lang.getEmbed('errors.commandError', data.lang(), {
                         ERROR_CODE: intr.id,

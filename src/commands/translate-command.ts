@@ -19,6 +19,6 @@ export class TranslateCommand implements Command {
         for (let langCode of Object.values(LangCode)) {
             embed.addField(Language.displayName(langCode), Language.translators(langCode));
         }
-        await MessageUtils.replyIntr(intr, embed);
+        await MessageUtils.sendIntr(intr, embed);
     }
 }

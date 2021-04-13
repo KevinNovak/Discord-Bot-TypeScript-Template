@@ -39,12 +39,12 @@ export class MessageUtils {
         }
     }
 
-    public static async replyIntr(
+    public static async sendIntr(
         intr: CommandInteraction,
         content: StringResolvable
     ): Promise<void> {
         try {
-            await intr.reply(content);
+            await intr.webhook.send(content);
         } catch (error) {
             // 10003: "Unknown channel"
             // 10004: "Unknown guild"

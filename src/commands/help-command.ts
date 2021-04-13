@@ -14,6 +14,6 @@ export class HelpCommand implements Command {
     public requirePerms = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
-        await MessageUtils.replyIntr(intr, Lang.getEmbed('displays.help', data.lang()));
+        await MessageUtils.sendIntr(intr, Lang.getEmbed('displays.help', data.lang()));
     }
 }

@@ -26,7 +26,7 @@ export class DevCommand implements Command {
             } catch (error) {
                 // SHARDING_IN_PROCESS: Shards are still being spawned.
                 if (error.name.includes('SHARDING_IN_PROCESS')) {
-                    await MessageUtils.replyIntr(
+                    await MessageUtils.sendIntr(
                         intr,
                         Lang.getEmbed('errors.startupInProcess', data.lang())
                     );
@@ -40,7 +40,7 @@ export class DevCommand implements Command {
         }
 
         let memory = process.memoryUsage();
-        await MessageUtils.replyIntr(
+        await MessageUtils.sendIntr(
             intr,
             Lang.getEmbed('displays.dev', data.lang(), {
                 NODE_VERSION: process.version,

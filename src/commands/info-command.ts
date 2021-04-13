@@ -14,6 +14,6 @@ export class InfoCommand implements Command {
     public requirePerms = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
-        await MessageUtils.replyIntr(intr, Lang.getEmbed('displays.info', data.lang()));
+        await MessageUtils.sendIntr(intr, Lang.getEmbed('displays.info', data.lang()));
     }
 }
