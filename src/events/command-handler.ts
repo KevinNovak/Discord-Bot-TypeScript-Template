@@ -74,26 +74,17 @@ export class CommandHandler {
             return;
         }
 
+        if (msg.channel instanceof TextChannel && !this.hasPermission(msg.member, command)) {
+            await MessageUtils.send(
+                msg.channel,
+                Lang.getEmbed('validation.permissionRequired', data.lang())
+            );
+            return;
+        }
+
+        // Execute the command
         try {
-            if (msg.channel instanceof DMChannel) {
-                await command.execute(msg, args, data);
-                return;
-            }
-
-            if (msg.channel instanceof TextChannel) {
-                // Check if user has permission
-                if (!this.hasPermission(msg.member, command)) {
-                    await MessageUtils.send(
-                        msg.channel,
-                        Lang.getEmbed('validation.permissionRequired', data.lang())
-                    );
-                    return;
-                }
-
-                // Execute the command
-                await command.execute(msg, args, data);
-                return;
-            }
+            await command.execute(msg, args, data);
         } catch (error) {
             // Try to notify sender of command error
             try {
