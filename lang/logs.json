@@ -1,36 +1,37 @@
 {
     "info": {
-        "started": "Application started.",
+        "appStarted": "Application started.",
         "apiStarted": "API started on port {PORT}.",
-        "spawningShards": "Spawning {SHARD_COUNT} shards: [{SHARD_LIST}].",
-        "launchedShard": "Launched Shard {SHARD_ID}.",
-        "login": "Logged in as '{USER_TAG}'!",
-        "allShardsSpawned": "All shards have been spawned.",
+        "managerSpawningShards": "Spawning {SHARD_COUNT} shards: [{SHARD_LIST}].",
+        "managerLaunchedShard": "Launched Shard {SHARD_ID}.",
+        "managerAllShardsSpawned": "All shards have been spawned.",
+        "clientLogin": "Client logged in as '{USER_TAG}'.",
+        "clientReady": "Client is ready!",
         "jobScheduled": "Scheduled job '{JOB}' for '{SCHEDULE}'.",
         "jobRun": "Running job '{JOB}'.",
         "jobCompleted": "Job '{JOB}' completed.",
         "updatedServerCount": "Updated server count. Connected to {SERVER_COUNT} total servers.",
-        "updateServerCountSite": "Updated server count on '{BOT_SITE}'.",
+        "updatedServerCountSite": "Updated server count on '{BOT_SITE}'.",
         "guildJoined": "Guild '{GUILD_NAME}' ({GUILD_ID}) joined.",
         "guildLeft": "Guild '{GUILD_NAME}' ({GUILD_ID}) left."
     },
     "warn": {
-        "noShards": "No shards to spawn."
+        "managerNoShards": "No shards to spawn."
     },
     "error": {
         "retrieveShards": "An error occurred while retrieving which shards to spawn.",
-        "spawnShard": "An error occurred while spawning shards.",
-        "shardInfo": "An error occurred while retrieving shard info.",
+        "managerSpawnShard": "An error occurred while spawning shards.",
+        "managerShardInfo": "An error occurred while retrieving shard info.",
+        "clientLogin": "An error occurred while the client attempted to login.",
         "job": "An error occurred while running the '{JOB}' job.",
-        "updateServerCountSite": "An error occurred while updating the server count on '{BOT_SITE}'.",
-        "login": "An error occurred while the client attempted to login.",
+        "updatedServerCountSite": "An error occurred while updating the server count on '{BOT_SITE}'.",
         "guildJoin": "An error occurred while processing a guild join.",
         "guildLeave": "An error occurred while processing a guild leave.",
         "message": "An error occurred while processing a message.",
         "reaction": "An error occurred while processing a reaction.",
         "commandGuild": "[{MESSAGE_ID}] An error occurred while executing the '{COMMAND_KEYWORD}' command for user '{USER_TAG}' ({USER_ID}) in channel '{CHANNEL_NAME}' ({CHANNEL_ID}) in guild '{GUILD_NAME}' ({GUILD_ID}).",
         "commandOther": "[{MESSAGE_ID}] An error occurred while executing the '{COMMAND_KEYWORD}' command for user '{USER_TAG}' ({USER_ID}).",
-        "rateLimit": "A rate limit was hit while making a request.",
-        "apiRequest": "An error occurred while processing a '{HTTP_METHOD}' request to '{URL}'."
+        "apiRequest": "An error occurred while processing a '{HTTP_METHOD}' request to '{URL}'.",
+        "apiRateLimit": "A rate limit was hit while making a request."
     }
 }

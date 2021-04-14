@@ -13,7 +13,7 @@ let Debug = require('../config/debug.json');
 let Logs = require('../lang/logs.json');
 
 async function start(): Promise<void> {
-    Logger.info(Logs.info.started);
+    Logger.info(Logs.info.appStarted);
 
     // Dependencies
     let httpService = new HttpService();
@@ -44,7 +44,7 @@ async function start(): Promise<void> {
     }
 
     if (shardList.length === 0) {
-        Logger.warn(Logs.warn.noShards);
+        Logger.warn(Logs.warn.managerNoShards);
         return;
     }
 

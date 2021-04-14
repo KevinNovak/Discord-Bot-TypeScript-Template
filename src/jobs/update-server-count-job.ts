@@ -49,13 +49,13 @@ export class UpdateServerCountJob implements Job {
                 }
             } catch (error) {
                 Logger.error(
-                    Logs.error.updateServerCountSite.replace('{BOT_SITE}', botSite.name),
+                    Logs.error.updatedServerCountSite.replace('{BOT_SITE}', botSite.name),
                     error
                 );
                 continue;
             }
 
-            Logger.info(Logs.info.updateServerCountSite.replace('{BOT_SITE}', botSite.name));
+            Logger.info(Logs.info.updatedServerCountSite.replace('{BOT_SITE}', botSite.name));
         }
     }
 }
