@@ -56,7 +56,12 @@ export class CommandHandler implements EventHandler {
         // Try to find the command the user wants
         let command = this.commands.find(command => command.info.name === intr.commandName);
         if (!command) {
-            // TODO: Reply to interaction            return;
+            await this.sendError(intr, data);
+            Logger.error(
+                Logs.error.commandNotFound
+                    .replace('{INTERACTION_ID}', intr.id)
+                    .replace('{COMMAND_NAME}', command.info.name)
+            );
             return;
         }
 
@@ -80,17 +85,7 @@ export class CommandHandler implements EventHandler {
         try {
             await command.execute(intr, data);
         } catch (error) {
-            // Try to notify sender of command error
-            try {
-                await MessageUtils.sendIntr(
-                    intr,
-                    Lang.getEmbed('errors.commandError', data.lang(), {
-                        ERROR_CODE: intr.id,
-                    })
-                );
-            } catch {
-                // Ignore
-            }
+            await this.sendError(intr, data);
 
             // Log command error
             Logger.error(
@@ -131,5 +126,18 @@ export class CommandHandler implements EventHandler {
         }
 
         return true;
+    }
+
+    private async sendError(intr: CommandInteraction, data: EventData): Promise<void> {
+        try {
+            await MessageUtils.sendIntr(
+                intr,
+                Lang.getEmbed('errors.commandError', data.lang(), {
+                    ERROR_CODE: intr.id,
+                })
+            );
+        } catch {
+            // Ignore
+        }
     }
 }
