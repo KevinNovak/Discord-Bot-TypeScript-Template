@@ -142,7 +142,7 @@ export class Bot {
 
     private async onRateLimit(rateLimitData: RateLimitData): Promise<void> {
         if (rateLimitData.timeout >= Config.logging.rateLimit.minTimeout * 1000) {
-            Logger.error(Logs.error.rateLimit, rateLimitData);
+            Logger.error(Logs.error.apiRateLimit, rateLimitData);
         }
     }
 }

@@ -39,7 +39,7 @@ export class ShardsController implements Controller {
                         (await shard.fetchClientValue('uptime')) / 1000
                     );
                 } catch (error) {
-                    Logger.error(Logs.error.shardInfo, error);
+                    Logger.error(Logs.error.managerShardInfo, error);
                     shardInfo.error = true;
                 }
 
