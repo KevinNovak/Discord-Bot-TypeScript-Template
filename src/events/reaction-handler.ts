@@ -1,4 +1,4 @@
-import { DMChannel, MessageReaction, TextChannel, User } from 'discord.js-light';
+import { DMChannel, MessageReaction, NewsChannel, TextChannel, User } from 'discord.js-light';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { EventHandler } from '.';
@@ -23,8 +23,14 @@ export class ReactionHandler implements EventHandler {
             return;
         }
 
-        // Only handle messages from text or DM channels
-        if (!(msg.channel instanceof TextChannel || msg.channel instanceof DMChannel)) {
+        // Only handle messages from the following channel types
+        if (
+            !(
+                msg.channel instanceof DMChannel ||
+                msg.channel instanceof TextChannel ||
+                msg.channel instanceof NewsChannel
+            )
+        ) {
             return;
         }
 
@@ -34,7 +40,7 @@ export class ReactionHandler implements EventHandler {
             return;
         }
 
-        if (reaction.requireGuild && !(msg.channel instanceof TextChannel)) {
+        if (reaction.requireGuild && !msg.guild) {
             return;
         }
 

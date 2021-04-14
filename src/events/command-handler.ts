@@ -1,4 +1,4 @@
-import { DMChannel, GuildMember, Message, Permissions, TextChannel } from 'discord.js-light';
+import { GuildMember, Message, NewsChannel, Permissions, TextChannel } from 'discord.js-light';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { Command } from '../commands';
@@ -66,7 +66,7 @@ export class CommandHandler {
             return;
         }
 
-        if (command.requireGuild && !(msg.channel instanceof TextChannel)) {
+        if (command.requireGuild && !msg.guild) {
             await MessageUtils.send(
                 msg.channel,
                 Lang.getEmbed('validation.serverOnlyCommand', data.lang())
@@ -74,26 +74,17 @@ export class CommandHandler {
             return;
         }
 
+        if (msg.member && !this.hasPermission(msg.member, command)) {
+            await MessageUtils.send(
+                msg.channel,
+                Lang.getEmbed('validation.permissionRequired', data.lang())
+            );
+            return;
+        }
+
+        // Execute the command
         try {
-            if (msg.channel instanceof DMChannel) {
-                await command.execute(msg, args, data);
-                return;
-            }
-
-            if (msg.channel instanceof TextChannel) {
-                // Check if user has permission
-                if (!this.hasPermission(msg.member, command)) {
-                    await MessageUtils.send(
-                        msg.channel,
-                        Lang.getEmbed('validation.permissionRequired', data.lang())
-                    );
-                    return;
-                }
-
-                // Execute the command
-                await command.execute(msg, args, data);
-                return;
-            }
+            await command.execute(msg, args, data);
         } catch (error) {
             // Try to notify sender of command error
             try {
@@ -108,29 +99,24 @@ export class CommandHandler {
             }
 
             // Log command error
-            if (msg.channel instanceof DMChannel) {
-                Logger.error(
-                    Logs.error.commandDm
-                        .replace('{MESSAGE_ID}', msg.id)
-                        .replace('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
-                        .replace('{SENDER_TAG}', msg.author.tag)
-                        .replace('{SENDER_ID}', msg.author.id),
-                    error
-                );
-            } else if (msg.channel instanceof TextChannel) {
-                Logger.error(
-                    Logs.error.commandGuild
-                        .replace('{MESSAGE_ID}', msg.id)
-                        .replace('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
-                        .replace('{SENDER_TAG}', msg.author.tag)
-                        .replace('{SENDER_ID}', msg.author.id)
-                        .replace('{CHANNEL_NAME}', msg.channel.name)
-                        .replace('{CHANNEL_ID}', msg.channel.id)
-                        .replace('{GUILD_NAME}', msg.guild.name)
-                        .replace('{GUILD_ID}', msg.guild.id),
-                    error
-                );
-            }
+            Logger.error(
+                msg.channel instanceof TextChannel || msg.channel instanceof NewsChannel
+                    ? Logs.error.commandGuild
+                          .replace('{MESSAGE_ID}', msg.id)
+                          .replace('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
+                          .replace('{SENDER_TAG}', msg.author.tag)
+                          .replace('{SENDER_ID}', msg.author.id)
+                          .replace('{CHANNEL_NAME}', msg.channel.name)
+                          .replace('{CHANNEL_ID}', msg.channel.id)
+                          .replace('{GUILD_NAME}', msg.guild.name)
+                          .replace('{GUILD_ID}', msg.guild.id)
+                    : Logs.error.commandOther
+                          .replace('{MESSAGE_ID}', msg.id)
+                          .replace('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
+                          .replace('{SENDER_TAG}', msg.author.tag)
+                          .replace('{SENDER_ID}', msg.author.id),
+                error
+            );
         }
     }
 
