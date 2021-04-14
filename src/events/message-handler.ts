@@ -1,4 +1,4 @@
-import { DMChannel, GuildChannel, Message, TextBasedChannel } from 'discord.js-light';
+import { DMChannel, Message, NewsChannel, TextChannel } from 'discord.js-light';
 
 import { EventHandler, TriggerHandler } from '.';
 
@@ -15,7 +15,8 @@ export class MessageHandler implements EventHandler {
         if (
             !(
                 msg.channel instanceof DMChannel ||
-                msg.channel instanceof TextBasedChannel(GuildChannel)
+                msg.channel instanceof TextChannel ||
+                msg.channel instanceof NewsChannel
             )
         ) {
             return;

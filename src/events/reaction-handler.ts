@@ -1,4 +1,4 @@
-import { DMChannel, GuildChannel, MessageReaction, TextBasedChannel, User } from 'discord.js-light';
+import { DMChannel, MessageReaction, NewsChannel, TextChannel, User } from 'discord.js-light';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { EventHandler } from '.';
@@ -27,7 +27,8 @@ export class ReactionHandler implements EventHandler {
         if (
             !(
                 msg.channel instanceof DMChannel ||
-                msg.channel instanceof TextBasedChannel(GuildChannel)
+                msg.channel instanceof TextChannel ||
+                msg.channel instanceof NewsChannel
             )
         ) {
             return;

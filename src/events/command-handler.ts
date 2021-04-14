@@ -1,9 +1,9 @@
 import {
     CommandInteraction,
-    GuildChannel,
     GuildMember,
+    NewsChannel,
     Permissions,
-    TextBasedChannel,
+    TextChannel,
 } from 'discord.js-light';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
@@ -89,7 +89,7 @@ export class CommandHandler implements EventHandler {
 
             // Log command error
             Logger.error(
-                intr.channel instanceof TextBasedChannel(GuildChannel)
+                intr.channel instanceof TextChannel || intr.channel instanceof NewsChannel
                     ? Logs.error.commandGuild
                           .replace('{INTERACTION_ID}', intr.id)
                           .replace('{COMMAND_NAME}', command.info.name)

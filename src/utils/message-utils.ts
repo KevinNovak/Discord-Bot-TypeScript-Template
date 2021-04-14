@@ -4,11 +4,11 @@ import {
     DiscordAPIError,
     DMChannel,
     EmojiResolvable,
-    GuildChannel,
     Message,
     MessageReaction,
+    NewsChannel,
     StringResolvable,
-    TextBasedChannel,
+    TextChannel,
     User,
 } from 'discord.js-light';
 
@@ -18,7 +18,8 @@ export class MessageUtils {
             if (
                 target instanceof User ||
                 target instanceof DMChannel ||
-                target instanceof TextBasedChannel(GuildChannel)
+                target instanceof TextChannel ||
+                target instanceof NewsChannel
             ) {
                 return await target.send(content);
             }
