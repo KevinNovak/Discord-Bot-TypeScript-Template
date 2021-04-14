@@ -104,8 +104,8 @@ export class CommandHandler {
                     ? Logs.error.commandGuild
                           .replace('{MESSAGE_ID}', msg.id)
                           .replace('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
-                          .replace('{SENDER_TAG}', msg.author.tag)
-                          .replace('{SENDER_ID}', msg.author.id)
+                          .replace('{USER_TAG}', msg.author.tag)
+                          .replace('{USER_ID}', msg.author.id)
                           .replace('{CHANNEL_NAME}', msg.channel.name)
                           .replace('{CHANNEL_ID}', msg.channel.id)
                           .replace('{GUILD_NAME}', msg.guild.name)
@@ -113,8 +113,8 @@ export class CommandHandler {
                     : Logs.error.commandOther
                           .replace('{MESSAGE_ID}', msg.id)
                           .replace('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
-                          .replace('{SENDER_TAG}', msg.author.tag)
-                          .replace('{SENDER_ID}', msg.author.id),
+                          .replace('{USER_TAG}', msg.author.tag)
+                          .replace('{USER_ID}', msg.author.id),
                 error
             );
         }
