@@ -1,10 +1,4 @@
-import {
-    GuildChannel,
-    GuildMember,
-    Message,
-    Permissions,
-    TextBasedChannel,
-} from 'discord.js-light';
+import { GuildMember, Message, NewsChannel, Permissions, TextChannel } from 'discord.js-light';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { Command } from '../commands';
@@ -106,7 +100,7 @@ export class CommandHandler {
 
             // Log command error
             Logger.error(
-                msg.channel instanceof TextBasedChannel(GuildChannel)
+                msg.channel instanceof TextChannel || msg.channel instanceof NewsChannel
                     ? Logs.error.commandGuild
                           .replace('{MESSAGE_ID}', msg.id)
                           .replace('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
