@@ -1,8 +1,8 @@
 import { DMChannel, Message, NewsChannel, TextChannel } from 'discord.js-light';
 
-import { CommandHandler, TriggerHandler } from '.';
+import { CommandHandler, EventHandler, TriggerHandler } from '.';
 
-export class MessageHandler {
+export class MessageHandler implements EventHandler {
     constructor(private commandHandler: CommandHandler, private triggerHandler: TriggerHandler) {}
 
     public async process(msg: Message): Promise<void> {
