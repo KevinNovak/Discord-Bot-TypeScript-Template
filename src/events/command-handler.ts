@@ -48,6 +48,8 @@ export class CommandHandler implements EventHandler {
                 let message = Lang.getRef('messages.missingEmbedPerms', data.lang());
                 await MessageUtils.sendIntr(intr, message);
             }
+
+            // TODO: This could be a problem, we need to send a response back but have no permission
             return;
         }
 
