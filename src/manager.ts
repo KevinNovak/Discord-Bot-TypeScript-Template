@@ -29,7 +29,7 @@ export class Manager {
             );
             Logger.info(Logs.info.managerAllShardsSpawned);
         } catch (error) {
-            Logger.error(Logs.error.managerSpawnShard, error);
+            Logger.error(Logs.error.managerSpawningShards, error);
             return;
         }
 
