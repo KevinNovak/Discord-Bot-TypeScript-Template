@@ -56,7 +56,7 @@ export class CommandHandler implements EventHandler {
         // Try to find the command the user wants
         let command = this.commands.find(command => command.info.name === intr.commandName);
         if (!command) {
-            // TODO: Reply to interaction
+            // TODO: Reply to interaction            return;
             return;
         }
 
@@ -96,19 +96,19 @@ export class CommandHandler implements EventHandler {
             Logger.error(
                 intr.channel instanceof TextChannel || intr.channel instanceof NewsChannel
                     ? Logs.error.commandGuild
-                          .replace('{MESSAGE_ID}', intr.id)
-                          .replace('{COMMAND_KEYWORD}', command.info.name)
-                          .replace('{SENDER_TAG}', intr.user.tag)
-                          .replace('{SENDER_ID}', intr.user.id)
+                          .replace('{INTERACTION_ID}', intr.id)
+                          .replace('{COMMAND_NAME}', command.info.name)
+                          .replace('{USER_TAG}', intr.user.tag)
+                          .replace('{USER_ID}', intr.user.id)
                           .replace('{CHANNEL_NAME}', intr.channel.name)
                           .replace('{CHANNEL_ID}', intr.channel.id)
                           .replace('{GUILD_NAME}', intr.guild.name)
                           .replace('{GUILD_ID}', intr.guild.id)
                     : Logs.error.commandOther
-                          .replace('{MESSAGE_ID}', intr.id)
-                          .replace('{COMMAND_KEYWORD}', command.info.name)
-                          .replace('{SENDER_TAG}', intr.user.tag)
-                          .replace('{SENDER_ID}', intr.user.id),
+                          .replace('{INTERACTION_ID}', intr.id)
+                          .replace('{COMMAND_NAME}', command.info.name)
+                          .replace('{USER_TAG}', intr.user.tag)
+                          .replace('{USER_ID}', intr.user.id),
                 error
             );
         }
