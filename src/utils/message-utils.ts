@@ -61,7 +61,7 @@ export class MessageUtils {
         }
     }
 
-    public static async replyMsg(msg: Message, content: StringResolvable): Promise<Message> {
+    public static async reply(msg: Message, content: StringResolvable): Promise<Message> {
         try {
             return await msg.reply(content);
         } catch (error) {
