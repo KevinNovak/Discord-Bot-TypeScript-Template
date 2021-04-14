@@ -55,20 +55,21 @@ export class Bot {
         try {
             await this.client.login(token);
         } catch (error) {
-            Logger.error(Logs.error.login, error);
+            Logger.error(Logs.error.clientLogin, error);
             return;
         }
     }
 
     private onReady(): void {
         let userTag = this.client.user.tag;
-        Logger.info(Logs.info.login.replace('{USER_TAG}', userTag));
+        Logger.info(Logs.info.clientLogin.replace('{USER_TAG}', userTag));
 
         if (!Debug.dummyMode.enabled) {
             this.jobService.start();
         }
 
         this.ready = true;
+        Logger.info(Logs.info.clientReady);
     }
 
     private onShardReady(shardId: number): void {
