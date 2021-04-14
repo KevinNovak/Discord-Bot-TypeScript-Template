@@ -1,4 +1,4 @@
-import { DMChannel, Message, TextChannel } from 'discord.js-light';
+import { DMChannel, Message, NewsChannel, TextChannel } from 'discord.js-light';
 
 import { CommandHandler, TriggerHandler } from '.';
 
@@ -11,8 +11,14 @@ export class MessageHandler {
             return;
         }
 
-        // Only handle messages from text or DM channels
-        if (!(msg.channel instanceof TextChannel || msg.channel instanceof DMChannel)) {
+        // Only handle messages from the following channel types
+        if (
+            !(
+                msg.channel instanceof DMChannel ||
+                msg.channel instanceof TextChannel ||
+                msg.channel instanceof NewsChannel
+            )
+        ) {
             return;
         }
 
