@@ -73,7 +73,7 @@ export class Bot {
 
     private async registerCommands(): Promise<void> {
         let cmdInfos = this.commandHandler.commands.map(command => command.info);
-        this.client.application.commands.set(cmdInfos);
+        await this.client.application.commands.set(cmdInfos);
     }
 
     private async onReady(): Promise<void> {
