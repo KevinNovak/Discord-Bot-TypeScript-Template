@@ -1,6 +1,5 @@
 import {
     CommandInteraction,
-    DMChannel,
     GuildMember,
     NewsChannel,
     Permissions,
@@ -58,7 +57,7 @@ export class CommandHandler implements EventHandler {
             return;
         }
 
-        if (command.requireGuild && !(intr.channel instanceof TextChannel)) {
+        if (command.requireGuild && !intr.guild) {
             await MessageUtils.sendIntr(
                 intr,
                 Lang.getEmbed('validation.serverOnlyCommand', data.lang())
@@ -91,29 +90,24 @@ export class CommandHandler implements EventHandler {
             }
 
             // Log command error
-            if (channel instanceof DMChannel) {
-                Logger.error(
-                    Logs.error.commandDm
-                        .replace('{MESSAGE_ID}', intr.id)
-                        .replace('{COMMAND_KEYWORD}', command.info.name)
-                        .replace('{SENDER_TAG}', intr.user.tag)
-                        .replace('{SENDER_ID}', intr.user.id),
-                    error
-                );
-            } else if (channel instanceof TextChannel || channel instanceof NewsChannel) {
-                Logger.error(
-                    Logs.error.commandGuild
-                        .replace('{MESSAGE_ID}', intr.id)
-                        .replace('{COMMAND_KEYWORD}', command.info.name)
-                        .replace('{SENDER_TAG}', intr.user.tag)
-                        .replace('{SENDER_ID}', intr.user.id)
-                        .replace('{CHANNEL_NAME}', channel.name)
-                        .replace('{CHANNEL_ID}', channel.id)
-                        .replace('{GUILD_NAME}', intr.guild.name)
-                        .replace('{GUILD_ID}', intr.guild.id),
-                    error
-                );
-            }
+            Logger.error(
+                intr.channel instanceof TextChannel || intr.channel instanceof NewsChannel
+                    ? Logs.error.commandGuild
+                          .replace('{MESSAGE_ID}', intr.id)
+                          .replace('{COMMAND_KEYWORD}', command.info.name)
+                          .replace('{SENDER_TAG}', intr.user.tag)
+                          .replace('{SENDER_ID}', intr.user.id)
+                          .replace('{CHANNEL_NAME}', intr.channel.name)
+                          .replace('{CHANNEL_ID}', intr.channel.id)
+                          .replace('{GUILD_NAME}', intr.guild.name)
+                          .replace('{GUILD_ID}', intr.guild.id)
+                    : Logs.error.commandOther
+                          .replace('{MESSAGE_ID}', intr.id)
+                          .replace('{COMMAND_KEYWORD}', command.info.name)
+                          .replace('{SENDER_TAG}', intr.user.tag)
+                          .replace('{SENDER_ID}', intr.user.id),
+                error
+            );
         }
     }
 

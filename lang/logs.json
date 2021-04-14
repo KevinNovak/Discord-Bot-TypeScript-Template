@@ -29,8 +29,8 @@
         "message": "An error occurred while processing a message.",
         "reaction": "An error occurred while processing a reaction.",
         "command": "An error occurred while processing a command interaction.",
-        "commandDm": "[{MESSAGE_ID}] An error occurred while executing the '{COMMAND_KEYWORD}' command for user '{SENDER_TAG}' ({SENDER_ID}) in direct message.",
         "commandGuild": "[{MESSAGE_ID}] An error occurred while executing the '{COMMAND_KEYWORD}' command for user '{SENDER_TAG}' ({SENDER_ID}) in channel '{CHANNEL_NAME}' ({CHANNEL_ID}) in guild '{GUILD_NAME}' ({GUILD_ID}).",
+        "commandOther": "[{MESSAGE_ID}] An error occurred while executing the '{COMMAND_KEYWORD}' command for user '{SENDER_TAG}' ({SENDER_ID}).",
         "rateLimit": "A rate limit was hit while making a request.",
         "apiRequest": "An error occurred while processing a '{HTTP_METHOD}' request to '{URL}'."
     }
