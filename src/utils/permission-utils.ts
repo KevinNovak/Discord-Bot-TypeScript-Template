@@ -1,10 +1,10 @@
-import { Channel, DMChannel, NewsChannel, Permissions, TextChannel } from 'discord.js-light';
+import { Channel, DMChannel, GuildChannel, Permissions, TextBasedChannel } from 'discord.js-light';
 
 export class PermissionUtils {
     public static canSend(channel: Channel): boolean {
         if (channel instanceof DMChannel) {
             return true;
-        } else if (channel instanceof TextChannel || channel instanceof NewsChannel) {
+        } else if (channel instanceof TextBasedChannel(GuildChannel)) {
             let channelPerms = channel.permissionsFor(channel.client.user);
             if (!channelPerms) {
                 // This can happen if the guild disconnected while a collector is running
@@ -25,7 +25,7 @@ export class PermissionUtils {
     public static canSendEmbed(channel: Channel): boolean {
         if (channel instanceof DMChannel) {
             return true;
-        } else if (channel instanceof TextChannel || channel instanceof NewsChannel) {
+        } else if (channel instanceof TextBasedChannel(GuildChannel)) {
             let channelPerms = channel.permissionsFor(channel.client.user);
             if (!channelPerms) {
                 // This can happen if the guild disconnected while a collector is running
@@ -48,7 +48,7 @@ export class PermissionUtils {
     public static canMention(channel: Channel): boolean {
         if (channel instanceof DMChannel) {
             return true;
-        } else if (channel instanceof TextChannel || channel instanceof NewsChannel) {
+        } else if (channel instanceof TextBasedChannel(GuildChannel)) {
             let channelPerms = channel.permissionsFor(channel.client.user);
             if (!channelPerms) {
                 // This can happen if the guild disconnected while a collector is running
@@ -69,7 +69,7 @@ export class PermissionUtils {
     public static canReact(channel: Channel, removeOthers: boolean = false): boolean {
         if (channel instanceof DMChannel) {
             return true;
-        } else if (channel instanceof TextChannel || channel instanceof NewsChannel) {
+        } else if (channel instanceof TextBasedChannel(GuildChannel)) {
             let channelPerms = channel.permissionsFor(channel.client.user);
             if (!channelPerms) {
                 // This can happen if the guild disconnected while a collector is running
@@ -95,7 +95,7 @@ export class PermissionUtils {
     public static canPin(channel: Channel, unpinOld: boolean = false): boolean {
         if (channel instanceof DMChannel) {
             return true;
-        } else if (channel instanceof TextChannel || channel instanceof NewsChannel) {
+        } else if (channel instanceof TextBasedChannel(GuildChannel)) {
             let channelPerms = channel.permissionsFor(channel.client.user);
             if (!channelPerms) {
                 // This can happen if the guild disconnected while a collector is running
