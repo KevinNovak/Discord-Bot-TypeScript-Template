@@ -18,7 +18,7 @@ export class Manager {
 
         try {
             Logger.info(
-                Logs.info.spawningShards
+                Logs.info.managerSpawningShards
                     .replace('{SHARD_COUNT}', shardList.length.toLocaleString())
                     .replace('{SHARD_LIST}', shardList.join(', '))
             );
@@ -27,9 +27,9 @@ export class Manager {
                 Config.sharding.spawnDelay * 1000,
                 Config.sharding.spawnTimeout * 1000
             );
-            Logger.info(Logs.info.allShardsSpawned);
+            Logger.info(Logs.info.managerAllShardsSpawned);
         } catch (error) {
-            Logger.error(Logs.error.spawnShard, error);
+            Logger.error(Logs.error.managerSpawnShard, error);
             return;
         }
 
@@ -45,6 +45,6 @@ export class Manager {
     }
 
     private onShardCreate(shard: Shard): void {
-        Logger.info(Logs.info.launchedShard.replace('{SHARD_ID}', shard.id.toString()));
+        Logger.info(Logs.info.managerLaunchedShard.replace('{SHARD_ID}', shard.id.toString()));
     }
 }
