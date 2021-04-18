@@ -90,7 +90,7 @@ export class CommandHandler {
             try {
                 await MessageUtils.send(
                     msg.channel,
-                    Lang.getEmbed('errors.commandError', data.lang(), {
+                    Lang.getEmbed('errors.command', data.lang(), {
                         ERROR_CODE: msg.id,
                     })
                 );
