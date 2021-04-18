@@ -12,9 +12,7 @@ export class Manager {
     public async start(): Promise<void> {
         this.registerListeners();
 
-        // TODO: Refactor this once DJS fixes their typings
-        // tslint:disable-next-line:no-string-literal
-        let shardList: number[] = this.shardManager['shardList'];
+        let shardList: number[] = this.shardManager.shardList as number[];
 
         try {
             Logger.info(
