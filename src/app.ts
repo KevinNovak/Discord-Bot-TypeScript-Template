@@ -78,4 +78,6 @@ async function start(): Promise<void> {
     }
 }
 
-start();
+start().catch(error => {
+    Logger.error(Logs.error.unspecified, error);
+});

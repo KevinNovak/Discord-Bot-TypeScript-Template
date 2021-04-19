@@ -5,18 +5,18 @@ import {
     IsPositive,
     IsString,
     IsUrl,
-    MinLength,
+    Length,
     ValidateNested,
 } from 'class-validator';
 
 export class Callback {
     @IsDefined()
-    @IsUrl()
+    @IsUrl({ require_tld: false })
     url: string;
 
     @IsDefined()
     @IsString()
-    @MinLength(5)
+    @Length(5, 2000)
     token: string;
 }
 
