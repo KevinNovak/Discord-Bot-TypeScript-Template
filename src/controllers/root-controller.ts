@@ -7,7 +7,7 @@ export class RootController implements Controller {
     public path = '/';
     public router: Router = router();
 
-    constructor() {
+    public register(): void {
         this.router.get(this.path, (req, res) => this.get(req, res));
     }
 
