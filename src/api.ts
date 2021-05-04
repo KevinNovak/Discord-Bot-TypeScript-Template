@@ -30,7 +30,7 @@ export class Api {
                 controller.router.use(controller.path, checkAuth(controller.authToken));
             }
             controller.register();
-            this.app.use('/', controller.router);
+            this.app.use(controller.path, controller.router);
         }
     }
 }

@@ -15,7 +15,7 @@ export class GuildsController implements Controller {
     constructor(private shardManager: ShardingManager) {}
 
     public register(): void {
-        this.router.get(this.path, (req, res) => this.getGuilds(req, res));
+        this.router.get('/', (req, res) => this.getGuilds(req, res));
     }
 
     private async getGuilds(req: Request, res: Response): Promise<void> {

@@ -8,7 +8,7 @@ export class RootController implements Controller {
     public router: Router = router();
 
     public register(): void {
-        this.router.get(this.path, (req, res) => this.get(req, res));
+        this.router.get('/', (req, res) => this.get(req, res));
     }
 
     private async get(req: Request, res: Response): Promise<void> {
