@@ -29,9 +29,10 @@ async function start(): Promise<void> {
         if (Config.clustering.enabled) {
             let resBody = await masterApiService.login();
             shardList = resBody.shardList;
-            totalShards = resBody.totalShards;
+            let requiredShards = await ShardUtils.requiredShardCount(Config.client.token);
+            totalShards = Math.max(requiredShards, resBody.totalShards);
         } else {
-            let recommendedShards = await ShardUtils.recommendedShards(
+            let recommendedShards = await ShardUtils.recommendedShardCount(
                 Config.client.token,
                 Config.sharding.serversPerShard
             );
