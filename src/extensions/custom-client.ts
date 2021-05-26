@@ -7,11 +7,13 @@ export class CustomClient extends Client {
 
     public async setPresence(type: ActivityType, name: string, url: string): Promise<Presence> {
         return await this.user?.setPresence({
-            activity: {
-                type,
-                name,
-                url,
-            },
+            activities: [
+                {
+                    type,
+                    name,
+                    url,
+                },
+            ],
         });
     }
 }

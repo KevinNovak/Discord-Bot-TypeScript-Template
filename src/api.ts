@@ -14,7 +14,6 @@ export class Api {
     constructor(public controllers: Controller[]) {
         this.app = express();
         this.app.use(express.json());
-        this.app.use(checkAuth(Config.api.secret));
         this.setupControllers();
         this.app.use(handleError());
     }
@@ -27,7 +26,11 @@ export class Api {
 
     private setupControllers(): void {
         for (let controller of this.controllers) {
-            this.app.use('/', controller.router);
+            if (controller.authToken) {
+                controller.router.use(controller.path, checkAuth(controller.authToken));
+            }
+            controller.register();
+            this.app.use(controller.path, controller.router);
         }
     }
 }

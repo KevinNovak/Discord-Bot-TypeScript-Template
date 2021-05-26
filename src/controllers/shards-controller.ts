@@ -12,15 +12,19 @@ import {
 import { Logger } from '../services';
 import { Controller } from './controller';
 
+let Config = require('../../config/config.json');
 let Logs = require('../../lang/logs.json');
 
 export class ShardsController implements Controller {
     public path = '/shards';
     public router: Router = router();
+    public authToken: string = Config.api.secret;
 
-    constructor(private shardManager: ShardingManager) {
-        this.router.get(this.path, (req, res) => this.getShards(req, res));
-        this.router.put(`${this.path}/presence`, mapClass(SetShardPresencesRequest), (req, res) =>
+    constructor(private shardManager: ShardingManager) {}
+
+    public register(): void {
+        this.router.get('/', (req, res) => this.getShards(req, res));
+        this.router.put('/presence', mapClass(SetShardPresencesRequest), (req, res) =>
             this.setShardPresences(req, res)
         );
     }

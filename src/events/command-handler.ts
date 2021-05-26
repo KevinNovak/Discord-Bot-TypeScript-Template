@@ -132,7 +132,7 @@ export class CommandHandler implements EventHandler {
         try {
             await MessageUtils.sendIntr(
                 intr,
-                Lang.getEmbed('errors.commandError', data.lang(), {
+                Lang.getEmbed('errors.command', data.lang(), {
                     ERROR_CODE: intr.id,
                 })
             );

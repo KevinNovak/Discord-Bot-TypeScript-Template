@@ -22,6 +22,7 @@ import { CustomClient } from './extensions';
 import { JobService, Logger } from './services';
 
 let Config = require('../config/config.json');
+let Logs = require('../lang/logs.json');
 
 async function start(): Promise<void> {
     let client = new CustomClient({
@@ -86,7 +87,9 @@ async function start(): Promise<void> {
 }
 
 process.on('unhandledRejection', (reason, promise) => {
-    Logger.error('Unhandled promise rejection.', reason);
+    Logger.error(Logs.error.unhandledRejection, reason);
 });
 
-start();
+start().catch(error => {
+    Logger.error(Logs.error.unspecified, error);
+});
