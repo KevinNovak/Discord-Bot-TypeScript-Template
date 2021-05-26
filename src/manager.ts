@@ -20,11 +20,11 @@ export class Manager {
                     .replace('{SHARD_COUNT}', shardList.length.toLocaleString())
                     .replace('{SHARD_LIST}', shardList.join(', '))
             );
-            await this.shardManager.spawn(
-                this.shardManager.totalShards,
-                Config.sharding.spawnDelay * 1000,
-                Config.sharding.spawnTimeout * 1000
-            );
+            await this.shardManager.spawn({
+                amount: this.shardManager.totalShards,
+                delay: Config.sharding.spawnDelay * 1000,
+                timeout: Config.sharding.spawnTimeout * 1000,
+            });
             Logger.info(Logs.info.managerAllShardsSpawned);
         } catch (error) {
             Logger.error(Logs.error.managerSpawningShards, error);

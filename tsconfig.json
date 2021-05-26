@@ -9,6 +9,7 @@
         "moduleResolution": "node",
         "esModuleInterop": true,
         "emitDecoratorMetadata": true,
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "skipLibCheck": true
     }
 }
