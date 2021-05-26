@@ -23,8 +23,8 @@ export class ShardsController implements Controller {
     constructor(private shardManager: ShardingManager) {}
 
     public register(): void {
-        this.router.get(this.path, (req, res) => this.getShards(req, res));
-        this.router.put(`${this.path}/presence`, mapClass(SetShardPresencesRequest), (req, res) =>
+        this.router.get('/', (req, res) => this.getShards(req, res));
+        this.router.put('/presence', mapClass(SetShardPresencesRequest), (req, res) =>
             this.setShardPresences(req, res)
         );
     }
