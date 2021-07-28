@@ -2,9 +2,10 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "tsc",
+            "label": "build",
             "type": "shell",
-            "command": "${workspaceFolder}\\node_modules\\.bin\\tsc"
+            "command": "${workspaceFolder}\\node_modules\\.bin\\tsc",
+            "args": ["--project", "${workspaceFolder}\\tsconfig.json"]
         }
     ],
     "windows": {
