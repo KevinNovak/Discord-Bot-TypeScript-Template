@@ -32,7 +32,8 @@
     "sharding": {
         "spawnDelay": 5,
         "spawnTimeout": 300,
-        "serversPerShard": 1000
+        "guildsPerShard": 1000,
+        "multipleOf": 1
     },
     "clustering": {
         "enabled": false,

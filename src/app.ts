@@ -1,12 +1,13 @@
-import { ShardingManager } from 'discord.js-light';
 import 'reflect-metadata';
 
-import { Api } from './api';
 import { GuildsController, RootController, ShardsController } from './controllers';
-import { UpdateServerCountJob } from './jobs';
-import { Manager } from './manager';
 import { HttpService, JobService, Logger, MasterApiService } from './services';
 import { MathUtils, ShardUtils } from './utils';
+
+import { Api } from './api';
+import { Manager } from './manager';
+import { ShardingManager } from 'discord.js-light';
+import { UpdateServerCountJob } from './jobs';
 
 let Config = require('../config/config.json');
 let Debug = require('../config/debug.json');
@@ -34,7 +35,8 @@ async function start(): Promise<void> {
         } else {
             let recommendedShards = await ShardUtils.recommendedShardCount(
                 Config.client.token,
-                Config.sharding.serversPerShard
+                Config.sharding.guildsPerShard,
+                Config.sharding.multipleOf
             );
             shardList = MathUtils.range(0, recommendedShards);
             totalShards = recommendedShards;
