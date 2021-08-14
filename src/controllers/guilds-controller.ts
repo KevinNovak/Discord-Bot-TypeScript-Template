@@ -1,4 +1,4 @@
-import { ShardingManager } from 'discord.js-light';
+import { ShardingManager } from 'discord.js';
 import { Request, Response, Router } from 'express';
 import router from 'express-promise-router';
 
@@ -21,7 +21,9 @@ export class GuildsController implements Controller {
     private async getGuilds(req: Request, res: Response): Promise<void> {
         let guilds: string[] = [
             ...new Set(
-                (await this.shardManager.broadcastEval('this.guilds.cache.keyArray()')).flat()
+                (
+                    await this.shardManager.broadcastEval(client => [...client.guilds.cache.keys()])
+                ).flat()
             ),
         ];
 

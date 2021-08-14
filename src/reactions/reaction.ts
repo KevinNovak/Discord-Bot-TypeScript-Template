@@ -1,4 +1,4 @@
-import { MessageReaction, User } from 'discord.js-light';
+import { MessageReaction, User } from 'discord.js';
 
 import { EventData } from '../models/internal-models';
 

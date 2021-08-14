@@ -1,4 +1,11 @@
-import { DMChannel, MessageReaction, NewsChannel, TextChannel, User } from 'discord.js-light';
+import {
+    DMChannel,
+    MessageReaction,
+    NewsChannel,
+    TextChannel,
+    ThreadChannel,
+    User,
+} from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { EventHandler } from '.';
@@ -28,7 +35,8 @@ export class ReactionHandler implements EventHandler {
             !(
                 msg.channel instanceof DMChannel ||
                 msg.channel instanceof TextChannel ||
-                msg.channel instanceof NewsChannel
+                msg.channel instanceof NewsChannel ||
+                msg.channel instanceof ThreadChannel
             )
         ) {
             return;

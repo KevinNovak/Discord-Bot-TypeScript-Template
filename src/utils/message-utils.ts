@@ -1,27 +1,23 @@
 import {
-    Channel,
     DiscordAPIError,
-    DMChannel,
     EmojiResolvable,
     Message,
+    MessageEmbed,
     MessageReaction,
-    NewsChannel,
-    StringResolvable,
-    TextChannel,
+    TextBasedChannels,
     User,
-} from 'discord.js-light';
+} from 'discord.js';
 
 export class MessageUtils {
-    public static async send(target: User | Channel, content: StringResolvable): Promise<Message> {
+    public static async send(
+        target: User | TextBasedChannels,
+        content: string | MessageEmbed
+    ): Promise<Message> {
         try {
-            if (
-                target instanceof User ||
-                target instanceof DMChannel ||
-                target instanceof TextChannel ||
-                target instanceof NewsChannel
-            ) {
-                return await target.send(content);
-            }
+            return await target.send({
+                embeds: content instanceof MessageEmbed ? [content] : undefined,
+                content: typeof content === 'string' ? content : undefined,
+            });
         } catch (error) {
             // 10003: "Unknown channel"
             // 10004: "Unknown guild"
@@ -38,9 +34,12 @@ export class MessageUtils {
         }
     }
 
-    public static async reply(msg: Message, content: StringResolvable): Promise<Message> {
+    public static async reply(msg: Message, content: string | MessageEmbed): Promise<Message> {
         try {
-            return await msg.reply(content);
+            return await msg.reply({
+                embeds: content instanceof MessageEmbed ? [content] : undefined,
+                content: typeof content === 'string' ? content : undefined,
+            });
         } catch (error) {
             // 10008: "Unknown Message" (Message was deleted)
             // 50007: "Cannot send messages to this user" (User blocked bot or DM disabled)
@@ -52,9 +51,12 @@ export class MessageUtils {
         }
     }
 
-    public static async edit(msg: Message, content: StringResolvable): Promise<Message> {
+    public static async edit(msg: Message, content: string | MessageEmbed): Promise<Message> {
         try {
-            return await msg.edit(content);
+            return await msg.edit({
+                embeds: content instanceof MessageEmbed ? [content] : undefined,
+                content: typeof content === 'string' ? content : undefined,
+            });
         } catch (error) {
             // 10008: "Unknown Message" (Message was deleted)
             // 50007: "Cannot send messages to this user" (User blocked bot or DM disabled)

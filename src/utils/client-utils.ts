@@ -1,5 +1,5 @@
 import { Client } from 'discord.js';
-import { DiscordAPIError, Guild, GuildMember, TextChannel, User } from 'discord.js-light';
+import { DiscordAPIError, Guild, GuildMember, TextChannel, User } from 'discord.js';
 
 import { PermissionUtils, RegexUtils } from '.';
 import { LangCode } from '../models/enums';

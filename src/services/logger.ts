@@ -1,4 +1,4 @@
-import { DiscordAPIError } from 'discord.js-light';
+import { DiscordAPIError } from 'discord.js';
 import { Response } from 'node-fetch';
 
 export class Logger {

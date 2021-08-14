@@ -1,3 +1,5 @@
+import { Options } from 'discord.js';
+
 import { Bot } from './bot';
 import {
     DevCommand,
@@ -26,21 +28,14 @@ let Logs = require('../lang/logs.json');
 
 async function start(): Promise<void> {
     let client = new CustomClient({
-        // discord.js Options
-        ws: { intents: Config.client.intents },
+        intents: Config.client.intents,
         partials: Config.client.partials,
-        messageCacheMaxSize: Config.client.caches.messages.size,
-        messageCacheLifetime: Config.client.caches.messages.lifetime,
-        messageSweepInterval: Config.client.caches.messages.sweepInterval,
-
-        // discord.js-light Options
-        cacheGuilds: Config.client.caches.guilds,
-        cacheRoles: Config.client.caches.roles,
-        cacheEmojis: Config.client.caches.emojis,
-        cacheChannels: Config.client.caches.channels,
-        cacheOverwrites: Config.client.caches.overwrites,
-        cachePresences: Config.client.caches.presences,
-        disabledEvents: Config.client.disabledEvents,
+        makeCache: Options.cacheWithLimits({
+            // Keep default caching behavior
+            ...Options.defaultMakeCacheSettings,
+            // Override specific options from config
+            ...Config.caches,
+        }),
     });
 
     // Commands
