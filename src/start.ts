@@ -1,3 +1,5 @@
+import { Options } from 'discord.js';
+
 import { Bot } from './bot';
 import {
     DevCommand,
@@ -28,6 +30,12 @@ async function start(): Promise<void> {
     let client = new CustomClient({
         intents: Config.client.intents,
         partials: Config.client.partials,
+        makeCache: Options.cacheWithLimits({
+            // Keep default caching behavior
+            ...Options.defaultMakeCacheSettings,
+            // Override specific options from config
+            ...Config.caches,
+        }),
     });
 
     // Commands

@@ -9,7 +9,8 @@
             "DIRECT_MESSAGES",
             "DIRECT_MESSAGE_REACTIONS"
         ],
-        "partials": ["MESSAGE", "CHANNEL", "REACTION"]
+        "partials": ["MESSAGE", "CHANNEL", "REACTION"],
+        "caches": {}
     },
     "api": {
         "port": 8080,
