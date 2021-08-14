@@ -21,7 +21,9 @@ export class GuildsController implements Controller {
     private async getGuilds(req: Request, res: Response): Promise<void> {
         let guilds: string[] = [
             ...new Set(
-                (await this.shardManager.broadcastEval('this.guilds.cache.keyArray()')).flat()
+                (
+                    await this.shardManager.broadcastEval(client => [...client.guilds.cache.keys()])
+                ).flat()
             ),
         ];
 
