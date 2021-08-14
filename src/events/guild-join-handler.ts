@@ -31,9 +31,10 @@ export class GuildJoinHandler implements EventHandler {
         // Send welcome message to owner
         // TODO: Replace "Lang.Default" here with the owner's language
         let ownerLang = Lang.Default;
-        if (guild.owner) {
+        let owner = await guild.fetchOwner();
+        if (owner) {
             await MessageUtils.send(
-                guild.owner.user,
+                owner.user,
                 Lang.getEmbed('displays.welcome', ownerLang).setAuthor(guild.name, guild.iconURL())
             );
         }

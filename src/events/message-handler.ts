@@ -1,4 +1,4 @@
-import { DMChannel, Message, NewsChannel, TextChannel } from 'discord.js';
+import { DMChannel, Message, NewsChannel, TextChannel, ThreadChannel } from 'discord.js';
 
 import { CommandHandler, EventHandler, TriggerHandler } from '.';
 
@@ -16,7 +16,8 @@ export class MessageHandler implements EventHandler {
             !(
                 msg.channel instanceof DMChannel ||
                 msg.channel instanceof TextChannel ||
-                msg.channel instanceof NewsChannel
+                msg.channel instanceof NewsChannel ||
+                msg.channel instanceof ThreadChannel
             )
         ) {
             return;

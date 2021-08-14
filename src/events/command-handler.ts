@@ -1,4 +1,11 @@
-import { GuildMember, Message, NewsChannel, Permissions, TextChannel } from 'discord.js';
+import {
+    GuildMember,
+    Message,
+    NewsChannel,
+    Permissions,
+    TextChannel,
+    ThreadChannel,
+} from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { Command } from '../commands';
@@ -100,7 +107,9 @@ export class CommandHandler {
 
             // Log command error
             Logger.error(
-                msg.channel instanceof TextChannel || msg.channel instanceof NewsChannel
+                msg.channel instanceof TextChannel ||
+                    msg.channel instanceof NewsChannel ||
+                    msg.channel instanceof ThreadChannel
                     ? Logs.error.commandGuild
                           .replace('{MESSAGE_ID}', msg.id)
                           .replace('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
@@ -131,12 +140,12 @@ export class CommandHandler {
         }
 
         // Members with "Manage Server" have permission for all commands
-        if (member.hasPermission(Permissions.FLAGS.MANAGE_GUILD)) {
+        if (member.permissions.has(Permissions.FLAGS.MANAGE_GUILD)) {
             return true;
         }
 
         // Check if member has required permissions for command
-        if (!member.hasPermission(command.requirePerms)) {
+        if (!member.permissions.has(command.requirePerms)) {
             return false;
         }
 
