@@ -6,7 +6,7 @@
     "license": "MIT",
     "private": true,
     "engines": {
-        "node": ">=15.0.0"
+        "node": ">=16.6.0"
     },
     "main": "dist/start.js",
     "scripts": {
@@ -26,9 +26,9 @@
     "dependencies": {
         "class-transformer": "0.4.0",
         "class-validator": "0.13.1",
-        "discord.js-light": "3.5.11",
-        "discord.js-multilingual-utils": "1.6.5",
-        "discord.js-rate-limiter": "1.1.0",
+        "discord.js": "13.1.0",
+        "discord.js-multilingual-utils": "1.7.0",
+        "discord.js-rate-limiter": "1.2.0",
         "express": "4.17.1",
         "express-promise-router": "4.1.0",
         "filesize": "7.0.0",
@@ -40,7 +40,7 @@
     },
     "devDependencies": {
         "@types/express": "4.17.13",
-        "@types/node": "16.4.10",
+        "@types/node": "16.6.1",
         "@types/node-fetch": "2.5.12",
         "@types/node-schedule": "1.3.2",
         "@types/remove-markdown": "0.3.1",

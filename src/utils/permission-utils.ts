@@ -1,4 +1,4 @@
-import { Channel, DMChannel, NewsChannel, Permissions, TextChannel } from 'discord.js-light';
+import { Channel, DMChannel, NewsChannel, Permissions, TextChannel } from 'discord.js';
 
 export class PermissionUtils {
     public static canSend(channel: Channel): boolean {

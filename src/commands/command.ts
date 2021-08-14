@@ -1,4 +1,4 @@
-import { Message, PermissionResolvable } from 'discord.js-light';
+import { Message, PermissionResolvable } from 'discord.js';
 import { Keyword } from '../models/common';
 import { EventData } from '../models/internal-models';
 

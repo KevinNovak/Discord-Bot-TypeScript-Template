@@ -1,4 +1,4 @@
-import { ShardingManager } from 'discord.js-light';
+import { ShardingManager } from 'discord.js';
 import { Request, Response, Router } from 'express';
 import router from 'express-promise-router';
 

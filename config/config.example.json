@@ -9,21 +9,7 @@
             "DIRECT_MESSAGES",
             "DIRECT_MESSAGE_REACTIONS"
         ],
-        "disabledEvents": [],
-        "partials": ["MESSAGE", "CHANNEL", "REACTION"],
-        "caches": {
-            "guilds": true,
-            "roles": true,
-            "emojis": false,
-            "channels": true,
-            "overwrites": true,
-            "presences": false,
-            "messages": {
-                "size": 0,
-                "lifetime": 0,
-                "sweepInterval": 0
-            }
-        }
+        "partials": ["MESSAGE", "CHANNEL", "REACTION"]
     },
     "api": {
         "port": 8080,

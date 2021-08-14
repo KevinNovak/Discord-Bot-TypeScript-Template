@@ -9,7 +9,7 @@ import {
     StringResolvable,
     TextChannel,
     User,
-} from 'discord.js-light';
+} from 'discord.js';
 
 export class MessageUtils {
     public static async send(target: User | Channel, content: StringResolvable): Promise<Message> {

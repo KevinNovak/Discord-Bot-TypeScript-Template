@@ -1,4 +1,4 @@
-import { ActivityType, ShardingManager } from 'discord.js-light';
+import { ActivityType, ShardingManager } from 'discord.js';
 
 import { BotSite } from '../models/config-models';
 import { HttpService, Lang, Logger } from '../services';

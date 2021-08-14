@@ -1,4 +1,4 @@
-import { DMChannel, Message, NewsChannel, TextChannel } from 'discord.js-light';
+import { DMChannel, Message, NewsChannel, TextChannel } from 'discord.js';
 
 import { CommandHandler, EventHandler, TriggerHandler } from '.';
 

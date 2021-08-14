@@ -1,4 +1,4 @@
-import { Message } from 'discord.js-light';
+import { Message } from 'discord.js';
 
 import { LangCode, Language } from '../models/enums';
 import { EventData } from '../models/internal-models';

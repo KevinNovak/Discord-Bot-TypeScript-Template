@@ -1,4 +1,4 @@
-import { DMChannel, MessageReaction, NewsChannel, TextChannel, User } from 'discord.js-light';
+import { DMChannel, MessageReaction, NewsChannel, TextChannel, User } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { EventHandler } from '.';

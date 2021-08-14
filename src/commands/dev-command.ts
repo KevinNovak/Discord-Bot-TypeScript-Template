@@ -1,4 +1,4 @@
-import djs, { Message } from 'discord.js-light';
+import djs, { Message } from 'discord.js';
 import fileSize from 'filesize';
 import typescript from 'typescript';
 

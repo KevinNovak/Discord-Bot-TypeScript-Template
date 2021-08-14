@@ -6,7 +6,7 @@ import {
     MessageReaction,
     RateLimitData,
     User,
-} from 'discord.js-light';
+} from 'discord.js';
 
 import { GuildJoinHandler, GuildLeaveHandler, MessageHandler, ReactionHandler } from './events';
 import { JobService, Logger } from './services';

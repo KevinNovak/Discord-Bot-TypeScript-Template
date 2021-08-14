@@ -1,4 +1,4 @@
-import { ActivityType, Client, ClientOptions, Presence } from 'discord.js-light';
+import { ActivityType, Client, ClientOptions, Presence } from 'discord.js';
 
 export class CustomClient extends Client {
     constructor(clientOptions: ClientOptions) {
