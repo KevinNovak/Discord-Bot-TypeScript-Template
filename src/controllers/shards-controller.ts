@@ -67,10 +67,13 @@ export class ShardsController implements Controller {
     private async setShardPresences(req: Request, res: Response): Promise<void> {
         let reqBody: SetShardPresencesRequest = res.locals.input;
 
-        await this.shardManager.broadcastEval(async client => {
-            let customClient = client as CustomClient;
-            return await customClient.setPresence(reqBody.type, reqBody.name, reqBody.url);
-        });
+        await this.shardManager.broadcastEval(
+            async (client, context) => {
+                let customClient = client as CustomClient;
+                return await customClient.setPresence(context.type, context.name, context.url);
+            },
+            { context: { type: reqBody.type, name: reqBody.name, url: reqBody.url } }
+        );
 
         res.sendStatus(200);
     }

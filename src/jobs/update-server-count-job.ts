@@ -28,10 +28,13 @@ export class UpdateServerCountJob implements Job {
         let name = `to ${serverCount.toLocaleString()} servers`;
         let url = Lang.getRef('links.stream', Lang.Default);
 
-        await this.shardManager.broadcastEval(async client => {
-            let customClient = client as CustomClient;
-            return await customClient.setPresence(type, name, url);
-        });
+        await this.shardManager.broadcastEval(
+            async (client, context) => {
+                let customClient = client as CustomClient;
+                return await customClient.setPresence(context.type, context.name, context.url);
+            },
+            { context: { type, name, url } }
+        );
 
         Logger.info(
             Logs.info.updatedServerCount.replace('{SERVER_COUNT}', serverCount.toLocaleString())
