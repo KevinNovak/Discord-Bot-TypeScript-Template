@@ -1,11 +1,4 @@
-import {
-    DMChannel,
-    MessageReaction,
-    NewsChannel,
-    TextChannel,
-    ThreadChannel,
-    User,
-} from 'discord.js';
+import { MessageReaction, User } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { EventHandler } from '.';
@@ -27,18 +20,6 @@ export class ReactionHandler implements EventHandler {
 
         // Don't respond to self, or other bots
         if (reactor.id === msgReaction.client.user.id || reactor.bot) {
-            return;
-        }
-
-        // Only handle messages from the following channel types
-        if (
-            !(
-                msg.channel instanceof DMChannel ||
-                msg.channel instanceof TextChannel ||
-                msg.channel instanceof NewsChannel ||
-                msg.channel instanceof ThreadChannel
-            )
-        ) {
             return;
         }
 

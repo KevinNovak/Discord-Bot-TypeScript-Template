@@ -1,4 +1,4 @@
-import { DMChannel, Message, NewsChannel, TextChannel, ThreadChannel } from 'discord.js';
+import { Message } from 'discord.js';
 
 import { CommandHandler, EventHandler, TriggerHandler } from '.';
 
@@ -8,18 +8,6 @@ export class MessageHandler implements EventHandler {
     public async process(msg: Message): Promise<void> {
         // Don't respond to system messages or self
         if (msg.system || msg.author.id === msg.client.user.id) {
-            return;
-        }
-
-        // Only handle messages from the following channel types
-        if (
-            !(
-                msg.channel instanceof DMChannel ||
-                msg.channel instanceof TextChannel ||
-                msg.channel instanceof NewsChannel ||
-                msg.channel instanceof ThreadChannel
-            )
-        ) {
             return;
         }
 
