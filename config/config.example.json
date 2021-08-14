@@ -10,7 +10,18 @@
             "DIRECT_MESSAGE_REACTIONS"
         ],
         "partials": ["MESSAGE", "CHANNEL", "REACTION"],
-        "caches": {}
+        "caches": {
+            "BaseGuildEmojiManager": 0,
+            "GuildBanManager": 0,
+            "GuildInviteManager": 0,
+            "GuildStickerManager": 0,
+            "MessageManager": 0,
+            "PresenceManager": 0,
+            "StageInstanceManager": 0,
+            "ThreadManager": 0,
+            "ThreadMemberManager": 0,
+            "VoiceStateManager": 0
+        }
     },
     "api": {
         "port": 8080,
