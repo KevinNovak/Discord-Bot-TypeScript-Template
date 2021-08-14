@@ -2,6 +2,7 @@ import { ShardingManager } from 'discord.js';
 import { Request, Response, Router } from 'express';
 import router from 'express-promise-router';
 
+import { CustomClient } from '../extensions';
 import { mapClass } from '../middleware';
 import {
     GetShardsResponse,
@@ -66,11 +67,10 @@ export class ShardsController implements Controller {
     private async setShardPresences(req: Request, res: Response): Promise<void> {
         let reqBody: SetShardPresencesRequest = res.locals.input;
 
-        await this.shardManager.broadcastEval(`
-            (async () => {
-                return await this.setPresence('${reqBody.type}', '${reqBody.name}', '${reqBody.url}');
-            })();
-        `);
+        await this.shardManager.broadcastEval(async client => {
+            let customClient = client as CustomClient;
+            return await customClient.setPresence(reqBody.type, reqBody.name, reqBody.url);
+        });
 
         res.sendStatus(200);
     }
