@@ -6,7 +6,7 @@ export class CustomClient extends Client {
     }
 
     public async setPresence(type: ActivityType, name: string, url: string): Promise<Presence> {
-        return await this.user?.setPresence({
+        return this.user?.setPresence({
             activities: [
                 {
                     type,

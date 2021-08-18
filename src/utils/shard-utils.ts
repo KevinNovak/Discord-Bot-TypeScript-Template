@@ -5,7 +5,7 @@ const MAX_SERVERS_PER_SHARD = 2500;
 
 export class ShardUtils {
     public static async requiredShardCount(token: string): Promise<number> {
-        return await this.recommendedShardCount(token, MAX_SERVERS_PER_SHARD);
+        return this.recommendedShardCount(token, MAX_SERVERS_PER_SHARD);
     }
 
     public static async recommendedShardCount(

@@ -8,6 +8,7 @@
         "max-classes-per-file": false,
         "member-ordering": false,
         "no-console": false,
+        "no-return-await": true,
         "no-shadowed-variable": false,
         "no-unused-variable": true,
         "no-var-requires": false,

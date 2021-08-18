@@ -31,7 +31,7 @@ export class UpdateServerCountJob implements Job {
         await this.shardManager.broadcastEval(
             async (client, context) => {
                 let customClient = client as CustomClient;
-                return await customClient.setPresence(context.type, context.name, context.url);
+                return customClient.setPresence(context.type, context.name, context.url);
             },
             { context: { type, name, url } }
         );
