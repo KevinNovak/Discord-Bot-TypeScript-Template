@@ -2,13 +2,18 @@
     "compilerOptions": {
         "target": "es2020",
         "module": "commonjs",
-        "lib": ["es2020"],
+        "lib": ["es2021"],
+        "declaration": true,
         "sourceMap": true,
         "outDir": "./dist",
         "rootDir": "./src",
+        "strict": false,
         "moduleResolution": "node",
         "esModuleInterop": true,
+        "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "experimentalDecorators": true
-    }
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "exclude": ["dist", "node_modules", "tests"]
 }
