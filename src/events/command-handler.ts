@@ -35,14 +35,14 @@ export class CommandHandler implements EventHandler {
 
         // Defer interaction
         // NOTE: Anything after this point we should be responding to the interaction
-        await intr.defer();
+        await intr.deferReply();
 
         // TODO: Get data from database
         let data = new EventData();
 
         // Check if I have permission to send a message
         // TODO: Temp fix until we can have a DM channel in the interaction
-        let channel = await intr.client.channels.fetch(intr.channelID);
+        let channel = await intr.client.channels.fetch(intr.channelId);
         if (!PermissionUtils.canSendEmbed(channel)) {
             // No permission to send message
             if (PermissionUtils.canSend(channel)) {
