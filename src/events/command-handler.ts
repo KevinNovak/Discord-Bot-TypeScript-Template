@@ -41,11 +41,9 @@ export class CommandHandler implements EventHandler {
         let data = new EventData();
 
         // Check if I have permission to send a message
-        // TODO: Temp fix until we can have a DM channel in the interaction
-        let channel = await intr.client.channels.fetch(intr.channelId);
-        if (!PermissionUtils.canSendEmbed(channel)) {
+        if (!PermissionUtils.canSendEmbed(intr.channel)) {
             // No permission to send message
-            if (PermissionUtils.canSend(channel)) {
+            if (PermissionUtils.canSend(intr.channel)) {
                 let message = Lang.getRef('messages.missingEmbedPerms', data.lang());
                 await MessageUtils.sendIntr(intr, message);
             }
