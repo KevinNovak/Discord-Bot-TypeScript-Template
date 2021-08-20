@@ -74,7 +74,8 @@ export class CommandHandler implements EventHandler {
             return;
         }
 
-        if (intr.member && !this.hasPermission(intr.member, command)) {
+        // TODO: Remove "as GuildMember",  why does discord.js have intr.member as a "APIInteractionGuildMember"?
+        if (intr.member && !this.hasPermission(intr.member as GuildMember, command)) {
             await MessageUtils.sendIntr(
                 intr,
                 Lang.getEmbed('validation.permissionRequired', data.lang())
