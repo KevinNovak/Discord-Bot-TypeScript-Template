@@ -1,4 +1,4 @@
-import { Guild } from 'discord.js-light';
+import { Guild } from 'discord.js';
 
 export class FormatUtils {
     public static roleMention(guild: Guild, discordId: string): string {

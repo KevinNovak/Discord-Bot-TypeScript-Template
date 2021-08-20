@@ -1,7 +1,8 @@
-import { ShardingManager } from 'discord.js-light';
+import { ShardingManager } from 'discord.js';
 import { Request, Response, Router } from 'express';
 import router from 'express-promise-router';
 
+import { CustomClient } from '../extensions';
 import { mapClass } from '../middleware';
 import {
     GetShardsResponse,
@@ -39,9 +40,8 @@ export class ShardsController implements Controller {
                 };
 
                 try {
-                    shardInfo.uptimeSecs = Math.floor(
-                        (await shard.fetchClientValue('uptime')) / 1000
-                    );
+                    let uptime = (await shard.fetchClientValue('uptime')) as number;
+                    shardInfo.uptimeSecs = Math.floor(uptime / 1000);
                 } catch (error) {
                     Logger.error(Logs.error.managerShardInfo, error);
                     shardInfo.error = true;
@@ -66,11 +66,13 @@ export class ShardsController implements Controller {
     private async setShardPresences(req: Request, res: Response): Promise<void> {
         let reqBody: SetShardPresencesRequest = res.locals.input;
 
-        await this.shardManager.broadcastEval(`
-            (async () => {
-                return await this.setPresence('${reqBody.type}', '${reqBody.name}', '${reqBody.url}');
-            })();
-        `);
+        await this.shardManager.broadcastEval(
+            async (client, context) => {
+                let customClient = client as CustomClient;
+                return customClient.setPresence(context.type, context.name, context.url);
+            },
+            { context: { type: reqBody.type, name: reqBody.name, url: reqBody.url } }
+        );
 
         res.sendStatus(200);
     }

@@ -1,5 +1,6 @@
-import { ActivityType, ShardingManager } from 'discord.js-light';
+import { ActivityType, ShardingManager } from 'discord.js';
 
+import { CustomClient } from '../extensions';
 import { BotSite } from '../models/config-models';
 import { HttpService, Lang, Logger } from '../services';
 import { ShardUtils } from '../utils';
@@ -27,11 +28,13 @@ export class UpdateServerCountJob implements Job {
         let name = `to ${serverCount.toLocaleString()} servers`;
         let url = Lang.getRef('links.stream', Lang.Default);
 
-        await this.shardManager.broadcastEval(`
-            (async () => {
-                return await this.setPresence('${type}', '${name}', '${url}');
-            })();
-        `);
+        await this.shardManager.broadcastEval(
+            async (client, context) => {
+                let customClient = client as CustomClient;
+                return customClient.setPresence(context.type, context.name, context.url);
+            },
+            { context: { type, name, url } }
+        );
 
         Logger.info(
             Logs.info.updatedServerCount.replace('{SERVER_COUNT}', serverCount.toLocaleString())

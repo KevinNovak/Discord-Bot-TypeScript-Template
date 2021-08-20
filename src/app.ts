@@ -1,4 +1,4 @@
-import { ShardingManager } from 'discord.js-light';
+import { ShardingManager } from 'discord.js';
 import 'reflect-metadata';
 
 import { Api } from './api';

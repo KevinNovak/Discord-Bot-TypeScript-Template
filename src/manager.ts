@@ -1,4 +1,4 @@
-import { Shard, ShardingManager } from 'discord.js-light';
+import { Shard, ShardingManager } from 'discord.js';
 
 import { JobService, Logger } from './services';
 
@@ -12,7 +12,7 @@ export class Manager {
     public async start(): Promise<void> {
         this.registerListeners();
 
-        let shardList: number[] = this.shardManager.shardList as number[];
+        let shardList = this.shardManager.shardList as number[];
 
         try {
             Logger.info(

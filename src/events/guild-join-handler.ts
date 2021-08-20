@@ -1,4 +1,4 @@
-import { Guild } from 'discord.js-light';
+import { Guild } from 'discord.js';
 
 import { Lang, Logger } from '../services';
 import { ClientUtils, MessageUtils } from '../utils';

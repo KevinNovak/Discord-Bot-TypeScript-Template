@@ -1,6 +1,6 @@
 # Discord Bot TypeScript Template
 
-[![discord.js-light](https://img.shields.io/github/package-json/dependency-version/KevinNovak/Discord-Bot-TypeScript-Template/discord.js-light)](https://github.com/timotejroiko/discord.js-light)
+[![discord.js](https://img.shields.io/github/package-json/dependency-version/KevinNovak/Discord-Bot-TypeScript-Template/discord.js)](https://discord.js.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
 
 **Discord bot** - A discord.js bot template written with TypeScript.
@@ -25,8 +25,7 @@ For help using this template, feel free to [join our support server](https://dis
 ### Developer Friendly:
 
 -   Written with TypeScript.
--   Uses the [discord.js-light](https://github.com/timotejroiko/discord.js-light) framework.
-    -   Based on [discord.js](https://discord.js.org/), but more memory efficient.
+-   Uses the [discord.js](https://discord.js.org/) framework.
 -   Built-in debugging setup for VSCode.
 -   Support for running with the [PM2](https://pm2.keymetrics.io/) process manger.
 -   Support for running with [Docker](https://www.docker.com/).

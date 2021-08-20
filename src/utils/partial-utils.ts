@@ -1,4 +1,4 @@
-import { DiscordAPIError, Message, MessageReaction, PartialMessage } from 'discord.js-light';
+import { DiscordAPIError, Message, MessageReaction, PartialMessage } from 'discord.js';
 
 // 10003: "Unknown Channel" (Channel was deleted)
 // 10008: "Unknown Message" (Message was deleted)
