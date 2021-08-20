@@ -1,5 +1,5 @@
 import { IsDefined, IsEnum, IsString, IsUrl, Length } from 'class-validator';
-import { Constants } from 'discord.js';
+import { ActivityType, Constants } from 'discord.js';
 
 export interface GetShardsResponse {
     shards: ShardInfo[];
@@ -21,7 +21,7 @@ export interface ShardInfo {
 export class SetShardPresencesRequest {
     @IsDefined()
     @IsEnum(Constants.ActivityTypes)
-    type: string;
+    type: ActivityType;
 
     @IsDefined()
     @IsString()

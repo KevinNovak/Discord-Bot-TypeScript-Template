@@ -7,7 +7,7 @@ import {
     MessageReaction,
     RateLimitData,
     User,
-} from 'discord.js-light';
+} from 'discord.js';
 
 import {
     CommandHandler,

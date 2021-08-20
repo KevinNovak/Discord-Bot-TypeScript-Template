@@ -1,4 +1,4 @@
-import { Message } from 'discord.js-light';
+import { Message } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { EventData } from '../models/internal-models';

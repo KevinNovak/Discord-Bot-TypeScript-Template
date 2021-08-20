@@ -1,4 +1,4 @@
-import { ApplicationCommandData, CommandInteraction, PermissionResolvable } from 'discord.js-light';
+import { ApplicationCommandData, CommandInteraction, PermissionResolvable } from 'discord.js';
 import { EventData } from '../models/internal-models';
 
 export interface Command {

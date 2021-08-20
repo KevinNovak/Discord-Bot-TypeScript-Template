@@ -1,28 +1,23 @@
 import {
-    Channel,
     CommandInteraction,
     DiscordAPIError,
-    DMChannel,
     EmojiResolvable,
     Message,
+    MessageEmbed,
+    MessageOptions,
     MessageReaction,
-    NewsChannel,
-    StringResolvable,
-    TextChannel,
+    TextBasedChannels,
     User,
-} from 'discord.js-light';
+} from 'discord.js';
 
 export class MessageUtils {
-    public static async send(target: User | Channel, content: StringResolvable): Promise<Message> {
+    public static async send(
+        target: User | TextBasedChannels,
+        content: string | MessageEmbed | MessageOptions
+    ): Promise<Message> {
         try {
-            if (
-                target instanceof User ||
-                target instanceof DMChannel ||
-                target instanceof TextChannel ||
-                target instanceof NewsChannel
-            ) {
-                return await target.send(content);
-            }
+            let msgOptions = this.messageOptions(content);
+            return await target.send(msgOptions);
         } catch (error) {
             // 10003: "Unknown channel"
             // 10004: "Unknown guild"
@@ -41,10 +36,11 @@ export class MessageUtils {
 
     public static async sendIntr(
         intr: CommandInteraction,
-        content: StringResolvable
+        content: string | MessageEmbed | MessageOptions
     ): Promise<void> {
         try {
-            await intr.webhook.send(content);
+            let msgOptions = this.messageOptions(content);
+            await intr.webhook.send(msgOptions);
         } catch (error) {
             // 10003: "Unknown channel"
             // 10004: "Unknown guild"
@@ -61,9 +57,13 @@ export class MessageUtils {
         }
     }
 
-    public static async reply(msg: Message, content: StringResolvable): Promise<Message> {
+    public static async reply(
+        msg: Message,
+        content: string | MessageEmbed | MessageOptions
+    ): Promise<Message> {
         try {
-            return await msg.reply(content);
+            let msgOptions = this.messageOptions(content);
+            return await msg.reply(msgOptions);
         } catch (error) {
             // 10008: "Unknown Message" (Message was deleted)
             // 50007: "Cannot send messages to this user" (User blocked bot or DM disabled)
@@ -75,9 +75,13 @@ export class MessageUtils {
         }
     }
 
-    public static async edit(msg: Message, content: StringResolvable): Promise<Message> {
+    public static async edit(
+        msg: Message,
+        content: string | MessageEmbed | MessageOptions
+    ): Promise<Message> {
         try {
-            return await msg.edit(content);
+            let msgOptions = this.messageOptions(content);
+            return await msg.edit(msgOptions);
         } catch (error) {
             // 10008: "Unknown Message" (Message was deleted)
             // 50007: "Cannot send messages to this user" (User blocked bot or DM disabled)
@@ -115,5 +119,17 @@ export class MessageUtils {
                 throw error;
             }
         }
+    }
+
+    private static messageOptions(content: string | MessageEmbed | MessageOptions): MessageOptions {
+        let options: MessageOptions = {};
+        if (typeof content === 'string') {
+            options.content = content;
+        } else if (content instanceof MessageEmbed) {
+            options.embeds = [content];
+        } else {
+            options = content;
+        }
+        return options;
     }
 }

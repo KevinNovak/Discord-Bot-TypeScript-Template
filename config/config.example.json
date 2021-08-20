@@ -8,20 +8,18 @@
             "DIRECT_MESSAGES",
             "DIRECT_MESSAGE_REACTIONS"
         ],
-        "disabledEvents": [],
         "partials": ["MESSAGE", "CHANNEL", "REACTION"],
         "caches": {
-            "guilds": true,
-            "roles": true,
-            "emojis": false,
-            "channels": true,
-            "overwrites": true,
-            "presences": false,
-            "messages": {
-                "size": 0,
-                "lifetime": 0,
-                "sweepInterval": 0
-            }
+            "BaseGuildEmojiManager": 0,
+            "GuildBanManager": 0,
+            "GuildInviteManager": 0,
+            "GuildStickerManager": 0,
+            "MessageManager": 0,
+            "PresenceManager": 0,
+            "StageInstanceManager": 0,
+            "ThreadManager": 0,
+            "ThreadMemberManager": 0,
+            "VoiceStateManager": 0
         }
     },
     "api": {

@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Start Dev",
+            "name": "start:dev",
             "type": "node",
             "request": "launch",
             "protocol": "inspector",
@@ -19,11 +19,11 @@
             "restart": true
         },
         {
-            "name": "Start",
+            "name": "start",
             "type": "node",
             "request": "launch",
             "protocol": "inspector",
-            "preLaunchTask": "tsc",
+            "preLaunchTask": "build",
             "cwd": "${workspaceFolder}",
             "runtimeExecutable": "node",
             "program": "${workspaceFolder}\\dist\\start.js",
@@ -33,11 +33,11 @@
             "restart": false
         },
         {
-            "name": "Start Shard",
+            "name": "start:shard",
             "type": "node",
             "request": "launch",
             "protocol": "inspector",
-            "preLaunchTask": "tsc",
+            "preLaunchTask": "build",
             "cwd": "${workspaceFolder}",
             "runtimeExecutable": "node",
             "program": "${workspaceFolder}\\dist\\app.js",

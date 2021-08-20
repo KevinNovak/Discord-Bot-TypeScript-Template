@@ -78,7 +78,7 @@
                             "**Node.js**: {{NODE_VERSION}}",
                             "**TypeScript**: {{TS_VERSION}}",
                             "**ECMAScript**: {{ES_VERSION}}",
-                            "**discord.js-light**: {{DJS_VERSION}}"
+                            "**discord.js**: {{DJS_VERSION}}"
                         ]
                     },
                     {

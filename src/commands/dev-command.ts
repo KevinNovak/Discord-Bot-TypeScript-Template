@@ -1,4 +1,4 @@
-import djs, { ApplicationCommandData, CommandInteraction } from 'discord.js-light';
+import djs, { ApplicationCommandData, CommandInteraction } from 'discord.js';
 import fileSize from 'filesize';
 import typescript from 'typescript';
 
@@ -65,7 +65,7 @@ export class DevCommand implements Command {
                     serverCount > 0
                         ? fileSize(memory.heapUsed / serverCount)
                         : Lang.getRef('other.na', data.lang()),
-                SHARD_ID: (intr.guild?.shardID ?? 0).toString(),
+                SHARD_ID: (intr.guild?.shardId ?? 0).toString(),
                 SERVER_ID: intr.guild?.id ?? Lang.getRef('other.na', data.lang()),
                 BOT_ID: intr.client.user.id,
                 USER_ID: intr.user.id,

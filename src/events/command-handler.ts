@@ -4,7 +4,8 @@ import {
     NewsChannel,
     Permissions,
     TextChannel,
-} from 'discord.js-light';
+    ThreadChannel,
+} from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { EventHandler } from '.';
@@ -89,7 +90,9 @@ export class CommandHandler implements EventHandler {
 
             // Log command error
             Logger.error(
-                intr.channel instanceof TextChannel || intr.channel instanceof NewsChannel
+                intr.channel instanceof TextChannel ||
+                    intr.channel instanceof NewsChannel ||
+                    intr.channel instanceof ThreadChannel
                     ? Logs.error.commandGuild
                           .replace('{INTERACTION_ID}', intr.id)
                           .replace('{COMMAND_NAME}', command.info.name)

@@ -47,7 +47,7 @@ export class MasterApiService {
             throw res;
         }
 
-        return await res.json();
+        return res.json();
     }
 
     public async ready(): Promise<void> {

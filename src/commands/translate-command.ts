@@ -1,4 +1,4 @@
-import { ApplicationCommandData, CommandInteraction } from 'discord.js-light';
+import { ApplicationCommandData, CommandInteraction } from 'discord.js';
 
 import { LangCode, Language } from '../models/enums';
 import { EventData } from '../models/internal-models';
