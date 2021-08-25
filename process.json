@@ -4,7 +4,6 @@
             "name": "my-bot",
             "script": "dist/app.js",
             "node_args": ["--enable-source-maps"],
-            "log_date_format": "YYYY-MM-DD HH:mm:ss",
             "restart_delay": 10000
         }
     ]
