@@ -62,6 +62,7 @@
         }
     },
     "logging": {
+        "pretty": false,
         "rateLimit": {
             "minTimeout": 30
         }
