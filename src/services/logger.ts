@@ -5,7 +5,11 @@ import pino from 'pino';
 let Config = require('../../config/config.json');
 
 let logger = pino({
-    useLevelLabels: true,
+    formatters: {
+        level: label => {
+            return { level: label };
+        },
+    },
     prettyPrint: Config.logging.pretty
         ? {
               colorize: true,
