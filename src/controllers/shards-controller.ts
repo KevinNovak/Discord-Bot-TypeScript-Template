@@ -13,8 +13,8 @@ import {
 import { Logger } from '../services';
 import { Controller } from './controller';
 
-let Config = require('../../config/config.json');
-let Logs = require('../../lang/logs.json');
+import Config from '../../config/config.json';
+import Logs from '../../lang/logs.json';
 
 export class ShardsController implements Controller {
     public path = '/shards';

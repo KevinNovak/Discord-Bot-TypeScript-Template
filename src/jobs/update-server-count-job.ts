@@ -6,9 +6,9 @@ import { HttpService, Lang, Logger } from '../services';
 import { ShardUtils } from '../utils';
 import { Job } from './job';
 
-let Config = require('../../config/config.json');
-let BotSites: BotSite[] = require('../../config/bot-sites.json');
-let Logs = require('../../lang/logs.json');
+import BotSites from '../../config/bot-sites.json';
+import Config from '../../config/config.json';
+import Logs from '../../lang/logs.json';
 
 export class UpdateServerCountJob implements Job {
     public name = 'Update Server Count';

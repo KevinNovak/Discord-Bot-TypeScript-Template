@@ -1,7 +1,7 @@
 import { ErrorRequestHandler } from 'express';
 import { Logger } from '../services';
 
-let Logs = require('../../lang/logs.json');
+import Logs from '../../lang/logs.json';
 
 export function handleError(): ErrorRequestHandler {
     return (error, req, res, next) => {

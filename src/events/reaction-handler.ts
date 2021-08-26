@@ -5,7 +5,7 @@ import { EventHandler } from '.';
 import { EventData } from '../models/internal-models';
 import { Reaction } from '../reactions';
 
-let Config = require('../../config/config.json');
+import Config from '../../config/config.json';
 
 export class ReactionHandler implements EventHandler {
     private rateLimiter = new RateLimiter(
