@@ -111,19 +111,19 @@ export class CommandHandler {
                     msg.channel instanceof NewsChannel ||
                     msg.channel instanceof ThreadChannel
                     ? Logs.error.commandGuild
-                          .replace('{MESSAGE_ID}', msg.id)
-                          .replace('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
-                          .replace('{USER_TAG}', msg.author.tag)
-                          .replace('{USER_ID}', msg.author.id)
-                          .replace('{CHANNEL_NAME}', msg.channel.name)
-                          .replace('{CHANNEL_ID}', msg.channel.id)
-                          .replace('{GUILD_NAME}', msg.guild.name)
-                          .replace('{GUILD_ID}', msg.guild.id)
+                          .replaceAll('{MESSAGE_ID}', msg.id)
+                          .replaceAll('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
+                          .replaceAll('{USER_TAG}', msg.author.tag)
+                          .replaceAll('{USER_ID}', msg.author.id)
+                          .replaceAll('{CHANNEL_NAME}', msg.channel.name)
+                          .replaceAll('{CHANNEL_ID}', msg.channel.id)
+                          .replaceAll('{GUILD_NAME}', msg.guild.name)
+                          .replaceAll('{GUILD_ID}', msg.guild.id)
                     : Logs.error.commandOther
-                          .replace('{MESSAGE_ID}', msg.id)
-                          .replace('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
-                          .replace('{USER_TAG}', msg.author.tag)
-                          .replace('{USER_ID}', msg.author.id),
+                          .replaceAll('{MESSAGE_ID}', msg.id)
+                          .replaceAll('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
+                          .replaceAll('{USER_TAG}', msg.author.tag)
+                          .replaceAll('{USER_ID}', msg.author.id),
                 error
             );
         }

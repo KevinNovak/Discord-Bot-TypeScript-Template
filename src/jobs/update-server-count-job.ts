@@ -37,13 +37,13 @@ export class UpdateServerCountJob implements Job {
         );
 
         Logger.info(
-            Logs.info.updatedServerCount.replace('{SERVER_COUNT}', serverCount.toLocaleString())
+            Logs.info.updatedServerCount.replaceAll('{SERVER_COUNT}', serverCount.toLocaleString())
         );
 
         for (let botSite of this.botSites) {
             try {
                 let body = JSON.parse(
-                    botSite.body.replace('{{SERVER_COUNT}}', serverCount.toString())
+                    botSite.body.replaceAll('{{SERVER_COUNT}}', serverCount.toString())
                 );
                 let res = await this.httpService.post(botSite.url, botSite.authorization, body);
 
@@ -52,13 +52,13 @@ export class UpdateServerCountJob implements Job {
                 }
             } catch (error) {
                 Logger.error(
-                    Logs.error.updatedServerCountSite.replace('{BOT_SITE}', botSite.name),
+                    Logs.error.updatedServerCountSite.replaceAll('{BOT_SITE}', botSite.name),
                     error
                 );
                 continue;
             }
 
-            Logger.info(Logs.info.updatedServerCountSite.replace('{BOT_SITE}', botSite.name));
+            Logger.info(Logs.info.updatedServerCountSite.replaceAll('{BOT_SITE}', botSite.name));
         }
     }
 }
