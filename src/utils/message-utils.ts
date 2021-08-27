@@ -37,10 +37,10 @@ export class MessageUtils {
     public static async sendIntr(
         intr: CommandInteraction,
         content: string | MessageEmbed | MessageOptions
-    ): Promise<void> {
+    ): Promise<Message> {
         try {
             let msgOptions = this.messageOptions(content);
-            await intr.webhook.send(msgOptions);
+            return (await intr.webhook.send(msgOptions)) as Message;
         } catch (error) {
             // 10003: "Unknown channel"
             // 10004: "Unknown guild"
