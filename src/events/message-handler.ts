@@ -19,6 +19,6 @@ export class MessageHandler implements EventHandler {
         }
 
         // Process triggers
-        await this.triggerHandler.process(msg, args);
+        await this.triggerHandler.process(msg);
     }
 }
