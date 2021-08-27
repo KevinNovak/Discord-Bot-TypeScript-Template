@@ -10,8 +10,8 @@ export class GuildJoinHandler implements EventHandler {
     public async process(guild: Guild): Promise<void> {
         Logger.info(
             Logs.info.guildJoined
-                .replace('{GUILD_NAME}', guild.name)
-                .replace('{GUILD_ID}', guild.id)
+                .replaceAll('{GUILD_NAME}', guild.name)
+                .replaceAll('{GUILD_ID}', guild.id)
         );
 
         // TODO: Get data from database

@@ -1,38 +1,37 @@
 import { DiscordAPIError } from 'discord.js';
 import { Response } from 'node-fetch';
+import pino from 'pino';
+
+let Config = require('../../config/config.json');
+
+let logger = pino({
+    formatters: {
+        level: label => {
+            return { level: label };
+        },
+    },
+    prettyPrint: Config.logging.pretty
+        ? {
+              colorize: true,
+              ignore: 'pid,hostname',
+              translateTime: 'yyyy-mm-dd HH:MM:ss.l',
+          }
+        : false,
+});
 
 export class Logger {
-    private static shardTag: string;
-
     public static info(message: string): void {
-        let log = '[Info]';
-        if (this.shardTag) {
-            log += ' ' + this.shardTag;
-        }
-        log += ' ' + message;
-        console.log(log);
+        logger.info(message);
     }
 
     public static warn(message: string): void {
-        let log = '[Warn]';
-        if (this.shardTag) {
-            log += ' ' + this.shardTag;
-        }
-        log += ' ' + message;
-        console.warn(log);
+        logger.warn(message);
     }
 
     public static async error(message: string, error?: any): Promise<void> {
-        // Log custom error message
-        let log = '[Error]';
-        if (this.shardTag) {
-            log += ' ' + this.shardTag;
-        }
-        log += ' ' + message;
-        console.error(log);
-
         // Log error object if exists
         if (!error) {
+            logger.error(message);
             return;
         }
 
@@ -45,29 +44,33 @@ export class Logger {
                 } catch {
                     // Ignore
                 }
-                console.error({
-                    path: res.url,
-                    statusCode: res.status,
-                    statusName: res.statusText,
-                    headers: res.headers.raw(),
-                    body: resText,
-                });
+                logger
+                    .child({
+                        path: res.url,
+                        statusCode: res.status,
+                        statusName: res.statusText,
+                        headers: res.headers.raw(),
+                        body: resText,
+                    })
+                    .error(message);
                 break;
             }
             case DiscordAPIError: {
                 let discordError = error as DiscordAPIError;
-                console.error({
-                    message: discordError.message,
-                    code: discordError.code,
-                    statusCode: discordError.httpStatus,
-                    method: discordError.method,
-                    path: discordError.path,
-                    stack: discordError.stack,
-                });
+                logger
+                    .child({
+                        message: discordError.message,
+                        code: discordError.code,
+                        statusCode: discordError.httpStatus,
+                        method: discordError.method,
+                        path: discordError.path,
+                        stack: discordError.stack,
+                    })
+                    .error(message);
                 break;
             }
             default: {
-                console.error(error);
+                logger.error(error, message);
                 break;
             }
         }
@@ -75,7 +78,7 @@ export class Logger {
 
     public static setShardId(shardId: number): void {
         if (shardId > -1) {
-            this.shardTag = `[Shard ${shardId.toString()}]`;
+            logger = logger.child({ shardId });
         }
     }
 }

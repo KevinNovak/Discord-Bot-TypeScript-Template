@@ -93,19 +93,19 @@ export class CommandHandler implements EventHandler {
                     intr.channel instanceof NewsChannel ||
                     intr.channel instanceof ThreadChannel
                     ? Logs.error.commandGuild
-                          .replace('{INTERACTION_ID}', intr.id)
-                          .replace('{COMMAND_NAME}', command.info.name)
-                          .replace('{USER_TAG}', intr.user.tag)
-                          .replace('{USER_ID}', intr.user.id)
-                          .replace('{CHANNEL_NAME}', intr.channel.name)
-                          .replace('{CHANNEL_ID}', intr.channel.id)
-                          .replace('{GUILD_NAME}', intr.guild.name)
-                          .replace('{GUILD_ID}', intr.guild.id)
+                          .replaceAll('{INTERACTION_ID}', intr.id)
+                          .replaceAll('{COMMAND_NAME}', command.info.name)
+                          .replaceAll('{USER_TAG}', intr.user.tag)
+                          .replaceAll('{USER_ID}', intr.user.id)
+                          .replaceAll('{CHANNEL_NAME}', intr.channel.name)
+                          .replaceAll('{CHANNEL_ID}', intr.channel.id)
+                          .replaceAll('{GUILD_NAME}', intr.guild.name)
+                          .replaceAll('{GUILD_ID}', intr.guild.id)
                     : Logs.error.commandOther
-                          .replace('{INTERACTION_ID}', intr.id)
-                          .replace('{COMMAND_NAME}', command.info.name)
-                          .replace('{USER_TAG}', intr.user.tag)
-                          .replace('{USER_ID}', intr.user.id),
+                          .replaceAll('{INTERACTION_ID}', intr.id)
+                          .replaceAll('{COMMAND_NAME}', command.info.name)
+                          .replaceAll('{USER_TAG}', intr.user.tag)
+                          .replaceAll('{USER_ID}', intr.user.id),
                 error
             );
         }

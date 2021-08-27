@@ -34,7 +34,7 @@ async function start(): Promise<void> {
             // Keep default caching behavior
             ...Options.defaultMakeCacheSettings,
             // Override specific options from config
-            ...Config.caches,
+            ...Config.client.caches,
         }),
     });
 

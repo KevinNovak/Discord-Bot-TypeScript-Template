@@ -14,6 +14,7 @@
                 "${workspaceFolder}/src/start.ts"
             ],
             "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+            "outputCapture": "std",
             "internalConsoleOptions": "openOnSessionStart",
             "skipFiles": ["<node_internals>/**"],
             "restart": true
@@ -28,6 +29,7 @@
             "runtimeExecutable": "node",
             "program": "${workspaceFolder}\\dist\\start.js",
             "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+            "outputCapture": "std",
             "internalConsoleOptions": "openOnSessionStart",
             "skipFiles": ["<node_internals>/**"],
             "restart": false
@@ -42,8 +44,9 @@
             "runtimeExecutable": "node",
             "program": "${workspaceFolder}\\dist\\app.js",
             "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
-            "skipFiles": ["<node_internals>/**"],
+            "outputCapture": "std",
             "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": ["<node_internals>/**"],
             "restart": false
         }
     ]

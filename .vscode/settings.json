@@ -19,6 +19,7 @@
         "filesize",
         "ondiscord",
         "parens",
+        "pino",
         "regexes",
         "respawn",
         "varchar"
