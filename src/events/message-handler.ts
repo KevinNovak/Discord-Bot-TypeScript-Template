@@ -11,8 +11,7 @@ export class MessageHandler implements EventHandler {
             return;
         }
 
-        // Process command
-        let args = msg.content.split(' ');
-        await this.triggerHandler.process(msg, args);
+        // Process trigger
+        await this.triggerHandler.process(msg);
     }
 }
