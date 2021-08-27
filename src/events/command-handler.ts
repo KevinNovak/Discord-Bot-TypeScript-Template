@@ -58,8 +58,8 @@ export class CommandHandler implements EventHandler {
             await this.sendError(intr, data);
             Logger.error(
                 Logs.error.commandNotFound
-                    .replace('{INTERACTION_ID}', intr.id)
-                    .replace('{COMMAND_NAME}', command.info.name)
+                    .replaceAll('{INTERACTION_ID}', intr.id)
+                    .replaceAll('{COMMAND_NAME}', command.info.name)
             );
             return;
         }
