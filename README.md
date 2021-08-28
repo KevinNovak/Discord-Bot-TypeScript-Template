@@ -98,15 +98,15 @@ A welcome message is sent to the server and owner when the bot is added.
 
 You can run the bot in 4 different modes:
 
-1. Dev Mode
+1. Normal Mode
+    - Type `npm start`.
+    - This runs the bot directly with Node and without shards.
+    - Use this mode if you don't need sharding.
+2. Dev Mode
     - Type `npm start:dev`.
     - This runs the bot with [ts-node-dev](https://www.npmjs.com/package/ts-node-dev).
     - Use this mode for general development.
     - TypeScript files are compiled automatically as they are changed.
-2. Normal Mode
-    - Type `npm start`.
-    - This runs the bot directly with Node and without shards.
-    - Use this mode if you don't need sharding.
 3. Shard Mode
     - Type `npm run start:shard`.
     - This runs the bot directly with Node and with sharding enabled.
