@@ -73,7 +73,23 @@ export class Bot {
 
     private async registerCommands(): Promise<void> {
         let cmdInfos = this.commandHandler.commands.map(command => command.info);
-        await this.client.application.commands.set(cmdInfos);
+        let cmdNames = cmdInfos.map(cmdInfo => cmdInfo.name);
+
+        Logger.info(
+            Logs.info.registeringCommands.replaceAll(
+                '{COMMAND_NAMES}',
+                cmdNames
+                    .map(cmdName => `'${cmdName}'`)
+                    .sort()
+                    .join(', ')
+            )
+        );
+
+        try {
+            await this.client.application.commands.set(cmdInfos);
+        } catch (error) {
+            Logger.error(Logs.error.registeringCommands, error);
+        }
     }
 
     private async onReady(): Promise<void> {
@@ -81,7 +97,6 @@ export class Bot {
         Logger.info(Logs.info.clientLogin.replaceAll('{USER_TAG}', userTag));
 
         if (!Debug.skip.registerCommands) {
-            // TODO: Add log
             await this.registerCommands();
         }
 
