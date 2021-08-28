@@ -2,6 +2,21 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "start",
+            "type": "node",
+            "request": "launch",
+            "protocol": "inspector",
+            "preLaunchTask": "build",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "node",
+            "program": "${workspaceFolder}\\dist\\start.js",
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+            "outputCapture": "std",
+            "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": ["<node_internals>/**"],
+            "restart": false
+        },
+        {
             "name": "start:dev",
             "type": "node",
             "request": "launch",
@@ -18,21 +33,6 @@
             "internalConsoleOptions": "openOnSessionStart",
             "skipFiles": ["<node_internals>/**"],
             "restart": true
-        },
-        {
-            "name": "start",
-            "type": "node",
-            "request": "launch",
-            "protocol": "inspector",
-            "preLaunchTask": "build",
-            "cwd": "${workspaceFolder}",
-            "runtimeExecutable": "node",
-            "program": "${workspaceFolder}\\dist\\start.js",
-            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
-            "outputCapture": "std",
-            "internalConsoleOptions": "openOnSessionStart",
-            "skipFiles": ["<node_internals>/**"],
-            "restart": false
         },
         {
             "name": "start:shard",
