@@ -90,9 +90,16 @@ A welcome message is sent to the server and owner when the bot is added.
 3. Modify the config file.
     - Open the `config/config.json` file.
     - You'll need to edit the following values:
-        - `client.token` - Your discord bot token.
+        - `client.id` - Your discord bot's [user ID](https://techswift.org/2020/04/22/how-to-find-your-user-id-on-discord/).
+        - `client.token` - Your discord bot's token.
 4. Install packages.
     - Navigate into the downloaded source files and type `npm install`.
+5. Register commands.
+    - In order to use slash commands, they first [have to be registered](https://discordjs.guide/interactions/registering-slash-commands.html#registering-slash-commands).
+    - Type `npm run register` to register the bot's commands.
+        - Run this script any time you change a command name, structure, or add/remove commands.
+        - This is so Discord knows what your commands look like.
+        - It may take up to an hour for command changes to appear.
 
 ## Start Scripts
 
