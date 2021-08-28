@@ -7,7 +7,7 @@ import { Command } from './command';
 
 export class DocsCommand implements Command {
     public static data: ApplicationCommandData = {
-        name: Lang.getRef('commands.docs', Lang.Default),
+        name: 'docs',
         description: 'Show bot documentation.',
     };
     public name = DocsCommand.data.name;

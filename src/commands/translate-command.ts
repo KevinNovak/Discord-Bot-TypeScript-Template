@@ -8,7 +8,7 @@ import { Command } from './command';
 
 export class TranslateCommand implements Command {
     public static data: ApplicationCommandData = {
-        name: Lang.getRef('commands.translate', Lang.Default),
+        name: 'translate',
         description: 'View translation info.',
     };
     public name = TranslateCommand.data.name;

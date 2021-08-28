@@ -7,7 +7,7 @@ import { Command } from './command';
 
 export class HelpCommand implements Command {
     public static data: ApplicationCommandData = {
-        name: Lang.getRef('commands.help', Lang.Default),
+        name: 'help',
         description: 'Show help menu.',
     };
     public name = HelpCommand.data.name;

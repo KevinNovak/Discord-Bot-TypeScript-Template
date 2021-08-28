@@ -7,7 +7,7 @@ import { Command } from './command';
 
 export class VoteCommand implements Command {
     public static data: ApplicationCommandData = {
-        name: Lang.getRef('commands.vote', Lang.Default),
+        name: 'vote',
         description: 'Vote for bot.',
     };
     public name = VoteCommand.data.name;
