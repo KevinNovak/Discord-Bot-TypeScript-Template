@@ -6,10 +6,11 @@ import { MessageUtils } from '../utils';
 import { Command } from './command';
 
 export class VoteCommand implements Command {
-    public info: ApplicationCommandData = {
+    public static data: ApplicationCommandData = {
         name: Lang.getRef('commands.vote', Lang.Default),
         description: 'Vote for bot.',
     };
+    public name = VoteCommand.data.name;
     public requireGuild = false;
     public requirePerms = [];
 

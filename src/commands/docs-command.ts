@@ -6,10 +6,11 @@ import { MessageUtils } from '../utils';
 import { Command } from './command';
 
 export class DocsCommand implements Command {
-    public info: ApplicationCommandData = {
+    public static data: ApplicationCommandData = {
         name: Lang.getRef('commands.docs', Lang.Default),
         description: 'Show bot documentation.',
     };
+    public name = DocsCommand.data.name;
     public requireGuild = false;
     public requirePerms = [];
 

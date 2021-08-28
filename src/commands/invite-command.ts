@@ -6,10 +6,11 @@ import { MessageUtils } from '../utils';
 import { Command } from './command';
 
 export class InviteCommand implements Command {
-    public info: ApplicationCommandData = {
+    public static data: ApplicationCommandData = {
         name: Lang.getRef('commands.invite', Lang.Default),
         description: 'Invite bot.',
     };
+    public name = InviteCommand.data.name;
     public requireGuild = false;
     public requirePerms = [];
 

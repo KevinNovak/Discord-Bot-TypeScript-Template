@@ -53,13 +53,13 @@ export class CommandHandler implements EventHandler {
         }
 
         // Try to find the command the user wants
-        let command = this.commands.find(command => command.info.name === intr.commandName);
+        let command = this.commands.find(command => command.name === intr.commandName);
         if (!command) {
             await this.sendError(intr, data);
             Logger.error(
                 Logs.error.commandNotFound
                     .replaceAll('{INTERACTION_ID}', intr.id)
-                    .replaceAll('{COMMAND_NAME}', command.info.name)
+                    .replaceAll('{COMMAND_NAME}', command.name)
             );
             return;
         }
@@ -94,7 +94,7 @@ export class CommandHandler implements EventHandler {
                     intr.channel instanceof ThreadChannel
                     ? Logs.error.commandGuild
                           .replaceAll('{INTERACTION_ID}', intr.id)
-                          .replaceAll('{COMMAND_NAME}', command.info.name)
+                          .replaceAll('{COMMAND_NAME}', command.name)
                           .replaceAll('{USER_TAG}', intr.user.tag)
                           .replaceAll('{USER_ID}', intr.user.id)
                           .replaceAll('{CHANNEL_NAME}', intr.channel.name)
@@ -103,7 +103,7 @@ export class CommandHandler implements EventHandler {
                           .replaceAll('{GUILD_ID}', intr.guild.id)
                     : Logs.error.commandOther
                           .replaceAll('{INTERACTION_ID}', intr.id)
-                          .replaceAll('{COMMAND_NAME}', command.info.name)
+                          .replaceAll('{COMMAND_NAME}', command.name)
                           .replaceAll('{USER_TAG}', intr.user.tag)
                           .replaceAll('{USER_ID}', intr.user.id),
                 error

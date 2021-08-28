@@ -1,5 +1,6 @@
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
+import { ApplicationCommandData } from 'discord.js';
 
 import {
     DevCommand,
@@ -18,31 +19,19 @@ let Config = require('../config/config.json');
 let Logs = require('../lang/logs.json');
 
 async function start(): Promise<void> {
-    // TODO: Way to not instantiate classes, static properties?
-    let devCommand = new DevCommand();
-    let docsCommand = new DocsCommand();
-    let helpCommand = new HelpCommand();
-    let infoCommand = new InfoCommand();
-    let inviteCommand = new InviteCommand();
-    let supportCommand = new SupportCommand();
-    let testCommand = new TestCommand();
-    let translateCommand = new TranslateCommand();
-    let voteCommand = new VoteCommand();
-
-    let commands = [
-        devCommand,
-        docsCommand,
-        helpCommand,
-        infoCommand,
-        inviteCommand,
-        supportCommand,
-        testCommand,
-        translateCommand,
-        voteCommand,
+    let cmdDatas: ApplicationCommandData[] = [
+        DevCommand.data,
+        DocsCommand.data,
+        HelpCommand.data,
+        InfoCommand.data,
+        InviteCommand.data,
+        SupportCommand.data,
+        TestCommand.data,
+        TranslateCommand.data,
+        VoteCommand.data,
     ];
 
-    let cmdInfos = commands.map(command => command.info);
-    let cmdNames = cmdInfos.map(cmdInfo => cmdInfo.name);
+    let cmdNames = cmdDatas.map(cmdInfo => cmdInfo.name);
 
     Logger.info(
         Logs.info.commandsRegistering.replaceAll(
@@ -56,7 +45,7 @@ async function start(): Promise<void> {
 
     try {
         let rest = new REST({ version: '9' }).setToken(Config.client.token);
-        await rest.put(Routes.applicationCommands(Config.client.id), { body: cmdInfos });
+        await rest.put(Routes.applicationCommands(Config.client.id), { body: cmdDatas });
     } catch (error) {
         Logger.error(Logs.error.commandsRegistering, error);
     }

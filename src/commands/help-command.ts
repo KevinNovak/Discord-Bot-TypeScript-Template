@@ -6,10 +6,11 @@ import { MessageUtils } from '../utils';
 import { Command } from './command';
 
 export class HelpCommand implements Command {
-    public info: ApplicationCommandData = {
+    public static data: ApplicationCommandData = {
         name: Lang.getRef('commands.help', Lang.Default),
         description: 'Show help menu.',
     };
+    public name = HelpCommand.data.name;
     public requireGuild = false;
     public requirePerms = [];
 

@@ -6,10 +6,11 @@ import { MessageUtils } from '../utils';
 import { Command } from './command';
 
 export class SupportCommand implements Command {
-    public info: ApplicationCommandData = {
+    public static data: ApplicationCommandData = {
         name: Lang.getRef('commands.support', Lang.Default),
         description: 'Contact support.',
     };
+    public name = SupportCommand.data.name;
     public requireGuild = false;
     public requirePerms = [];
 

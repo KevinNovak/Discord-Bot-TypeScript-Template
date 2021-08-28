@@ -6,10 +6,11 @@ import { MessageUtils } from '../utils';
 import { Command } from './command';
 
 export class TestCommand implements Command {
-    public info: ApplicationCommandData = {
+    public static data: ApplicationCommandData = {
         name: Lang.getRef('commands.test', Lang.Default),
         description: 'Run test command.',
     };
+    public name = TestCommand.data.name;
     public requireGuild = false;
     public requirePerms = [];
 
