@@ -11,6 +11,7 @@ export class InviteCommand implements Command {
         description: 'Invite bot.',
     };
     public name = InviteCommand.data.name;
+    public requireDev = false;
     public requireGuild = false;
     public requirePerms = [];
 

@@ -11,6 +11,7 @@ export class DocsCommand implements Command {
         description: 'Show bot documentation.',
     };
     public name = DocsCommand.data.name;
+    public requireDev = false;
     public requireGuild = false;
     public requirePerms = [];
 

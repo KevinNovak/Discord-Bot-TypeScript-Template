@@ -12,6 +12,7 @@ export class TranslateCommand implements Command {
         description: 'View translation info.',
     };
     public name = TranslateCommand.data.name;
+    public requireDev = false;
     public requireGuild = false;
     public requirePerms = [];
 

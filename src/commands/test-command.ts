@@ -11,6 +11,7 @@ export class TestCommand implements Command {
         description: 'Run test command.',
     };
     public name = TestCommand.data.name;
+    public requireDev = false;
     public requireGuild = false;
     public requirePerms = [];
 

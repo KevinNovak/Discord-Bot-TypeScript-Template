@@ -11,6 +11,7 @@ export class SupportCommand implements Command {
         description: 'Contact support.',
     };
     public name = SupportCommand.data.name;
+    public requireDev = false;
     public requireGuild = false;
     public requirePerms = [];
 

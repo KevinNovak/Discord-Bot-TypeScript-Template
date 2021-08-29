@@ -15,6 +15,7 @@ export class DevCommand implements Command {
         description: 'Show developer info.',
     };
     public name = DevCommand.data.name;
+    public requireDev = true;
     public requireGuild = false;
     public requirePerms = [];
 

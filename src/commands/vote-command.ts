@@ -11,6 +11,7 @@ export class VoteCommand implements Command {
         description: 'Vote for bot.',
     };
     public name = VoteCommand.data.name;
+    public requireDev = false;
     public requireGuild = false;
     public requirePerms = [];
 

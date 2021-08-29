@@ -11,6 +11,7 @@ export class InfoCommand implements Command {
         description: 'Show more information.',
     };
     public name = InfoCommand.data.name;
+    public requireDev = false;
     public requireGuild = false;
     public requirePerms = [];
 

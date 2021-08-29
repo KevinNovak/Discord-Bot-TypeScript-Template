@@ -11,6 +11,7 @@ export class HelpCommand implements Command {
         description: 'Show help menu.',
     };
     public name = HelpCommand.data.name;
+    public requireDev = false;
     public requireGuild = false;
     public requirePerms = [];
 

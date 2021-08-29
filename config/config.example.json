@@ -1,4 +1,5 @@
 {
+    "developers": ["<YOUR_DISCORD_ID>"],
     "client": {
         "id": "<DISCORD_BOT_ID>",
         "token": "<DISCORD_BOT_TOKEN>",
