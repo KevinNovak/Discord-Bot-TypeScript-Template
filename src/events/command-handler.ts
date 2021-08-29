@@ -73,6 +73,14 @@ export class CommandHandler {
             return;
         }
 
+        if (command.requireDev && !Config.developers.includes(msg.author.id)) {
+            await MessageUtils.send(
+                msg.channel,
+                Lang.getEmbed('validation.devOnlyCommand', data.lang())
+            );
+            return;
+        }
+
         if (command.requireGuild && !msg.guild) {
             await MessageUtils.send(
                 msg.channel,

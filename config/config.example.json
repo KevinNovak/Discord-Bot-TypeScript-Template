@@ -1,5 +1,6 @@
 {
     "prefix": "bot",
+    "developers": ["<YOUR_DISCORD_ID>"],
     "client": {
         "token": "<DISCORD_BOT_TOKEN>",
         "intents": [
