@@ -17,12 +17,15 @@ let Logs = require('../lang/logs.json');
 
 async function start(): Promise<void> {
     let cmdDatas: ApplicationCommandData[] = [
-        DevCommand.data,
+        // Commands
         HelpCommand.data,
         InfoCommand.data,
         LinkCommand.data,
         TestCommand.data,
         TranslateCommand.data,
+
+        // Developer Commands
+        DevCommand.data,
     ];
 
     let cmdNames = cmdDatas.map(cmdInfo => cmdInfo.name);
@@ -39,6 +42,11 @@ async function start(): Promise<void> {
 
     try {
         let rest = new REST({ version: '9' }).setToken(Config.client.token);
+
+        // Remove old commands
+        await rest.put(Routes.applicationCommands(Config.client.id), { body: [] });
+
+        // Register new commands
         await rest.put(Routes.applicationCommands(Config.client.id), { body: cmdDatas });
     } catch (error) {
         Logger.error(Logs.error.commandsRegistering, error);
