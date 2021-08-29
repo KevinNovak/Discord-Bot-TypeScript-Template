@@ -186,8 +186,8 @@
             "prefix": "bot"
         },
         "colors": {
-            "success": "00ff83",
-            "warning": "ffcc66",
+            "success": "#00ff83",
+            "warning": "#ffcc66",
             "error": "#ff4a4a"
         },
         "commands": {
