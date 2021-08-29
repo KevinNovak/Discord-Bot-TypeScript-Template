@@ -174,8 +174,8 @@
             "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features."
         },
         "colors": {
-            "success": "00ff83",
-            "warning": "ffcc66",
+            "success": "#00ff83",
+            "warning": "#ffcc66",
             "error": "#ff4a4a"
         },
         "commands": {
