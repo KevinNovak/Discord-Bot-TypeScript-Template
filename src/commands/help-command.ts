@@ -8,7 +8,7 @@ import { Command } from './command';
 export class HelpCommand implements Command {
     public static data: ApplicationCommandData = {
         name: 'help',
-        description: 'Show help menu.',
+        description: 'View help menu and list of commands.',
     };
     public name = HelpCommand.data.name;
     public requireDev = false;

@@ -4,14 +4,11 @@ import { ApplicationCommandData } from 'discord.js';
 
 import {
     DevCommand,
-    DocsCommand,
     HelpCommand,
     InfoCommand,
-    InviteCommand,
-    SupportCommand,
+    LinkCommand,
     TestCommand,
     TranslateCommand,
-    VoteCommand,
 } from './commands';
 import { Logger } from './services';
 
@@ -21,14 +18,11 @@ let Logs = require('../lang/logs.json');
 async function start(): Promise<void> {
     let cmdDatas: ApplicationCommandData[] = [
         DevCommand.data,
-        DocsCommand.data,
         HelpCommand.data,
         InfoCommand.data,
-        InviteCommand.data,
-        SupportCommand.data,
+        LinkCommand.data,
         TestCommand.data,
         TranslateCommand.data,
-        VoteCommand.data,
     ];
 
     let cmdNames = cmdDatas.map(cmdInfo => cmdInfo.name);

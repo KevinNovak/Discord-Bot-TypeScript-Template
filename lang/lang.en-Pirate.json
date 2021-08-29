@@ -10,7 +10,9 @@
                 "fields": [
                     {
                         "name": "Important {{REF:fields.commands}}",
-                        "value": ["**/{{REF:commands.help}}** - View bot help."]
+                        "value": [
+                            "**/{{REF:commands.help}}** - View help menu and list of commands."
+                        ]
                     },
                     {
                         "name": "{{REF:fields.links}}",
@@ -30,7 +32,7 @@
                         "name": "{{REF:fields.commands}}",
                         "value": [
                             "**/{{REF:commands.test}}** - Run the test command.",
-                            "**/{{REF:commands.info}}** - More information about {{REF:bot.name}}."
+                            "**/{{REF:commands.info}}** - View bot info."
                         ]
                     },
                     {

@@ -8,7 +8,7 @@ import { Command } from './command';
 export class TestCommand implements Command {
     public static data: ApplicationCommandData = {
         name: 'test',
-        description: 'Run test command.',
+        description: 'Run the test command.',
     };
     public name = TestCommand.data.name;
     public requireDev = false;

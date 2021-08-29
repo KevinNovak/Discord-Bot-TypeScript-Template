@@ -3,14 +3,11 @@ import { Options } from 'discord.js';
 import { Bot } from './bot';
 import {
     DevCommand,
-    DocsCommand,
     HelpCommand,
     InfoCommand,
-    InviteCommand,
-    SupportCommand,
+    LinkCommand,
     TestCommand,
     TranslateCommand,
-    VoteCommand,
 } from './commands';
 import {
     CommandHandler,
@@ -40,28 +37,22 @@ async function start(): Promise<void> {
 
     // Commands
     let devCommand = new DevCommand();
-    let docsCommand = new DocsCommand();
     let helpCommand = new HelpCommand();
     let infoCommand = new InfoCommand();
-    let inviteCommand = new InviteCommand();
-    let supportCommand = new SupportCommand();
+    let linkCommand = new LinkCommand();
     let testCommand = new TestCommand();
     let translateCommand = new TranslateCommand();
-    let voteCommand = new VoteCommand();
 
     // Event handlers
     let guildJoinHandler = new GuildJoinHandler();
     let guildLeaveHandler = new GuildLeaveHandler();
     let commandHandler = new CommandHandler([
         devCommand,
-        docsCommand,
         helpCommand,
         infoCommand,
-        inviteCommand,
-        supportCommand,
+        linkCommand,
         testCommand,
         translateCommand,
-        voteCommand,
     ]);
     let triggerHandler = new TriggerHandler([]);
     let messageHandler = new MessageHandler(triggerHandler);

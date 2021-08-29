@@ -8,7 +8,7 @@ import { Command } from './command';
 export class InfoCommand implements Command {
     public static data: ApplicationCommandData = {
         name: 'info',
-        description: 'Show more information.',
+        description: 'View bot info.',
     };
     public name = InfoCommand.data.name;
     public requireDev = false;
