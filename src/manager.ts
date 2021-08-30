@@ -17,8 +17,8 @@ export class Manager {
         try {
             Logger.info(
                 Logs.info.managerSpawningShards
-                    .replace('{SHARD_COUNT}', shardList.length.toLocaleString())
-                    .replace('{SHARD_LIST}', shardList.join(', '))
+                    .replaceAll('{SHARD_COUNT}', shardList.length.toLocaleString())
+                    .replaceAll('{SHARD_LIST}', shardList.join(', '))
             );
             await this.shardManager.spawn({
                 amount: this.shardManager.totalShards,
@@ -43,6 +43,6 @@ export class Manager {
     }
 
     private onShardCreate(shard: Shard): void {
-        Logger.info(Logs.info.managerLaunchedShard.replace('{SHARD_ID}', shard.id.toString()));
+        Logger.info(Logs.info.managerLaunchedShard.replaceAll('{SHARD_ID}', shard.id.toString()));
     }
 }

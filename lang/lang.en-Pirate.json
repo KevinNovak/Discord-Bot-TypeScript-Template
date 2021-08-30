@@ -125,6 +125,10 @@
             }
         },
         "validation": {
+            "devOnlyCommand": {
+                "description": "This command can only be used by developers.",
+                "color": "{{REF:colors.warning}}"
+            },
             "serverOnlyCommand": {
                 "description": "This command can only be used in a server.",
                 "color": "{{REF:colors.warning}}"
@@ -186,8 +190,8 @@
             "prefix": "bot"
         },
         "colors": {
-            "success": "00ff83",
-            "warning": "ffcc66",
+            "success": "#00ff83",
+            "warning": "#ffcc66",
             "error": "#ff4a4a"
         },
         "commands": {

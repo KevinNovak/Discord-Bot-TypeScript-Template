@@ -60,9 +60,9 @@ export class Bot {
         }
     }
 
-    private onReady(): void {
+    private async onReady(): Promise<void> {
         let userTag = this.client.user.tag;
-        Logger.info(Logs.info.clientLogin.replace('{USER_TAG}', userTag));
+        Logger.info(Logs.info.clientLogin.replaceAll('{USER_TAG}', userTag));
 
         if (!Debug.dummyMode.enabled) {
             this.jobService.start();

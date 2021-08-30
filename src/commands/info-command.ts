@@ -7,6 +7,7 @@ import { MessageUtils } from '../utils';
 import { Command } from './command';
 
 export class InfoCommand implements Command {
+    public requireDev = false;
     public requireGuild = false;
     public requirePerms = [];
 

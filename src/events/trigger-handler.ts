@@ -14,14 +14,14 @@ export class TriggerHandler {
 
     constructor(private triggers: Trigger[]) {}
 
-    public async process(msg: Message, args: string[]): Promise<void> {
+    public async process(msg: Message): Promise<void> {
         // Find triggers caused by this message
         let triggers = this.triggers.filter(trigger => {
             if (trigger.requireGuild && !msg.guild) {
                 return false;
             }
 
-            if (!trigger.triggered(msg, args)) {
+            if (!trigger.triggered(msg)) {
                 return false;
             }
 
@@ -44,7 +44,7 @@ export class TriggerHandler {
 
         // Execute triggers
         for (let trigger of triggers) {
-            await trigger.execute(msg, args, data);
+            await trigger.execute(msg, data);
         }
     }
 }

@@ -11,6 +11,7 @@ import { Command } from './command';
 import TsConfig from '../../tsconfig.json';
 
 export class DevCommand implements Command {
+    public requireDev = true;
     public requireGuild = false;
     public requirePerms = [];
 
