@@ -29,12 +29,13 @@ export class Logger {
     }
 
     public static async error(message: string, error?: any): Promise<void> {
-        // Log error object if exists
+        // Log just a message if no error object
         if (!error) {
             logger.error(message);
             return;
         }
 
+        // Otherwise log details about the error
         switch (error.constructor) {
             case Response: {
                 let res = error as Response;
