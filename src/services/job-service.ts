@@ -3,7 +3,7 @@ import schedule from 'node-schedule';
 import { Logger } from '.';
 import { Job } from '../jobs';
 
-let Logs = require('../../lang/logs.json');
+import Logs from '../../lang/logs.json';
 
 export class JobService {
     constructor(private jobs: Job[]) {}

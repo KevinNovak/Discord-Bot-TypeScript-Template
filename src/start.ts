@@ -1,4 +1,4 @@
-import { Options } from 'discord.js';
+import { IntentsString, Options, PartialTypes } from 'discord.js';
 
 import { Bot } from './bot';
 import {
@@ -23,13 +23,13 @@ import {
 import { CustomClient } from './extensions';
 import { JobService, Logger } from './services';
 
-let Config = require('../config/config.json');
-let Logs = require('../lang/logs.json');
+import Config from '../config/config.json';
+import Logs from '../lang/logs.json';
 
 async function start(): Promise<void> {
     let client = new CustomClient({
-        intents: Config.client.intents,
-        partials: Config.client.partials,
+        intents: Config.client.intents as IntentsString[],
+        partials: Config.client.partials as PartialTypes[],
         makeCache: Options.cacheWithLimits({
             // Keep default caching behavior
             ...Options.defaultMakeCacheSettings,

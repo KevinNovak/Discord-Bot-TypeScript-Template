@@ -7,7 +7,7 @@ import {
     RegisterClusterResponse,
 } from '../models/master-api';
 
-let Config = require('../../config/config.json');
+import Config from '../../config/config.json';
 
 export class MasterApiService {
     private clusterId: string;

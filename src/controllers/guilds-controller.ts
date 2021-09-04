@@ -5,7 +5,7 @@ import router from 'express-promise-router';
 import { GetGuildsResponse } from '../models/cluster-api';
 import { Controller } from './controller';
 
-let Config = require('../../config/config.json');
+import Config from '../../config/config.json';
 
 export class GuildsController implements Controller {
     public path = '/guilds';
