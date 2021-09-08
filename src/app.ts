@@ -1,4 +1,4 @@
-import { ShardingManager, ShardingManagerMode } from 'discord.js';
+import { ShardingManager } from 'discord.js';
 import 'reflect-metadata';
 
 import { Api } from './api';
@@ -8,9 +8,9 @@ import { Manager } from './manager';
 import { HttpService, JobService, Logger, MasterApiService } from './services';
 import { MathUtils, ShardUtils } from './utils';
 
-import Config from '../config/config.json';
-import Debug from '../config/debug.json';
-import Logs from '../lang/logs.json';
+let Config = require('../config/config.json');
+let Debug = require('../config/debug.json');
+let Logs = require('../lang/logs.json');
 
 async function start(): Promise<void> {
     Logger.info(Logs.info.appStarted);
@@ -51,9 +51,7 @@ async function start(): Promise<void> {
 
     let shardManager = new ShardingManager('dist/start.js', {
         token: Config.client.token,
-        mode: Debug.override.shardMode.enabled
-            ? (Debug.override.shardMode.value as ShardingManagerMode)
-            : 'worker',
+        mode: Debug.override.shardMode.enabled ? Debug.override.shardMode.value : 'worker',
         respawn: true,
         totalShards,
         shardList,

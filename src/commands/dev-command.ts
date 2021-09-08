@@ -8,7 +8,7 @@ import { Lang } from '../services';
 import { MessageUtils, ShardUtils } from '../utils';
 import { Command } from './command';
 
-import TsConfig from '../../tsconfig.json';
+let TsConfig = require('../../tsconfig.json');
 
 export class DevCommand implements Command {
     public requireDev = true;

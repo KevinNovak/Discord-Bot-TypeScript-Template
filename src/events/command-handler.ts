@@ -14,9 +14,9 @@ import { EventData } from '../models/internal-models';
 import { Lang, Logger } from '../services';
 import { MessageUtils, PermissionUtils } from '../utils';
 
-import Config from '../../config/config.json';
-import Debug from '../../config/debug.json';
-import Logs from '../../lang/logs.json';
+let Config = require('../../config/config.json');
+let Debug = require('../../config/debug.json');
+let Logs = require('../../lang/logs.json');
 
 export class CommandHandler {
     private rateLimiter = new RateLimiter(

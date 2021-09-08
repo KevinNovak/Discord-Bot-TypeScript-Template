@@ -12,9 +12,9 @@ import { GuildJoinHandler, GuildLeaveHandler, MessageHandler, ReactionHandler } 
 import { JobService, Logger } from './services';
 import { PartialUtils } from './utils';
 
-import Config from '../config/config.json';
-import Debug from '../config/debug.json';
-import Logs from '../lang/logs.json';
+let Config = require('../config/config.json');
+let Debug = require('../config/debug.json');
+let Logs = require('../lang/logs.json');
 
 export class Bot {
     private ready = false;

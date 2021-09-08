@@ -2,9 +2,9 @@ import { Shard, ShardingManager } from 'discord.js';
 
 import { JobService, Logger } from './services';
 
-import Config from '../config/config.json';
-import Debug from '../config/debug.json';
-import Logs from '../lang/logs.json';
+let Config = require('../config/config.json');
+let Debug = require('../config/debug.json');
+let Logs = require('../lang/logs.json');
 
 export class Manager {
     constructor(private shardManager: ShardingManager, private jobService: JobService) {}

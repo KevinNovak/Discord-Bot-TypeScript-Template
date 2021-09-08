@@ -4,7 +4,7 @@ import { Lang, Logger } from '../services';
 import { ClientUtils, MessageUtils } from '../utils';
 import { EventHandler } from './event-handler';
 
-import Logs from '../../lang/logs.json';
+let Logs = require('../../lang/logs.json');
 
 export class GuildJoinHandler implements EventHandler {
     public async process(guild: Guild): Promise<void> {
