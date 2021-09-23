@@ -6,13 +6,13 @@ import {
     TextChannel,
     ThreadChannel,
 } from 'discord.js';
-import { RateLimiter } from 'discord.js-rate-limiter';
-
-import { Command } from '../commands';
-import { LangCode } from '../models/enums';
-import { EventData } from '../models/internal-models';
 import { Lang, Logger } from '../services';
 import { MessageUtils, PermissionUtils } from '../utils';
+
+import { Command } from '../commands';
+import { EventData } from '../models/internal-models';
+import { LangCode } from '../models/enums';
+import { RateLimiter } from 'discord.js-rate-limiter';
 
 let Config = require('../../config/config.json');
 let Debug = require('../../config/debug.json');
@@ -148,7 +148,10 @@ export class CommandHandler {
         }
 
         // Members with "Manage Server" have permission for all commands
-        if (member.permissions.has(Permissions.FLAGS.MANAGE_GUILD)) {
+        if (
+            member.permissions.has(Permissions.FLAGS.MANAGE_GUILD) ||
+            Config.developers.includes(member.id)
+        ) {
             return true;
         }
 
