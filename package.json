@@ -32,7 +32,7 @@
         "express": "4.17.1",
         "express-promise-router": "4.1.0",
         "filesize": "8.0.3",
-        "node-fetch": "2.6.1",
+        "node-fetch": "2.6.5",
         "node-schedule": "2.0.0",
         "pino": "6.13.3",
         "pino-pretty": "7.0.1",
