@@ -6,13 +6,13 @@ import {
     TextChannel,
     ThreadChannel,
 } from 'discord.js';
-import { Lang, Logger } from '../services';
-import { MessageUtils, PermissionUtils } from '../utils';
+import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { Command } from '../commands';
-import { EventData } from '../models/internal-models';
 import { LangCode } from '../models/enums';
-import { RateLimiter } from 'discord.js-rate-limiter';
+import { EventData } from '../models/internal-models';
+import { Lang, Logger } from '../services';
+import { MessageUtils, PermissionUtils } from '../utils';
 
 let Config = require('../../config/config.json');
 let Debug = require('../../config/debug.json');
