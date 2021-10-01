@@ -1,4 +1,4 @@
-import { Client } from 'discord.js';
+import { Client, NewsChannel } from 'discord.js';
 import { DiscordAPIError, Guild, GuildMember, TextChannel, User } from 'discord.js';
 
 import { PermissionUtils, RegexUtils } from '.';
@@ -52,7 +52,10 @@ export class ClientUtils {
         }
     }
 
-    public static async findNotifyChannel(guild: Guild, langCode: LangCode): Promise<TextChannel> {
+    public static async findNotifyChannel(
+        guild: Guild,
+        langCode: LangCode
+    ): Promise<TextChannel | NewsChannel> {
         // Prefer the system channel
         let systemChannel = guild.systemChannel;
         if (systemChannel && PermissionUtils.canSendEmbed(systemChannel)) {
@@ -62,9 +65,9 @@ export class ClientUtils {
         // Otherwise look for a bot channel
         return (await guild.channels.fetch()).find(
             channel =>
-                channel instanceof TextChannel &&
+                (channel instanceof TextChannel || channel instanceof NewsChannel) &&
                 PermissionUtils.canSendEmbed(channel) &&
                 Lang.getRegex('channels.bot', langCode).test(channel.name)
-        ) as TextChannel;
+        ) as TextChannel | NewsChannel;
     }
 }
