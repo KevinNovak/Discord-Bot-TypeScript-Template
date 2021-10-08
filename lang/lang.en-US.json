@@ -1,9 +1,6 @@
 {
-    "defaultEmbed": {
-        "color": "#0099ff"
-    },
-    "embeds": {
-        "displays": {
+    "data": {
+        "embedsDisplays": {
             "welcome": {
                 "title": "Thank you for using {{REF:bot.name}}!",
                 "description": ["{{REF:bot.description}}"],
@@ -124,7 +121,7 @@
                 "description": "Need help? Join our [support server]({{REF:links.support}})!"
             }
         },
-        "validation": {
+        "embedsValidation": {
             "devOnlyCommand": {
                 "description": "This command can only be used by developers.",
                 "color": "{{REF:colors.warning}}"
@@ -138,7 +135,7 @@
                 "color": "{{REF:colors.warning}}"
             }
         },
-        "errors": {
+        "embedsErrors": {
             "command": {
                 "description": "Something went wrong!",
                 "fields": [
@@ -157,16 +154,14 @@
                 "description": "{{REF:bot.name}} is still starting up. Try again later.",
                 "color": "{{REF:colors.warning}}"
             }
-        }
-    },
-    "regexes": {
-        "meta": {
+        },
+        "regexesMeta": {
             "language": "/\\b({{REF:meta.language}}|en US|English)\\b/i"
         },
-        "channels": {
+        "regexesChannels": {
             "bot": "/bot|command|cmd/i"
         },
-        "commands": {
+        "regexesCommands": {
             "dev": "/\\b({{REF:commands.dev}}|developer|usage|memory|mem)\\b/i",
             "docs": "/\\b({{REF:commands.docs}}|d|documentation|readme|website|site)\\b/i",
             "help": "/\\b({{REF:commands.help}}|h|\\?)\\b/i",

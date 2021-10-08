@@ -16,10 +16,10 @@ export class InfoCommand implements Command {
     }
 
     public regex(langCode: LangCode): RegExp {
-        return Lang.getRegex('commands.info', langCode);
+        return Lang.getRegex('regexesCommands.info', langCode);
     }
 
     public async execute(msg: Message, args: string[], data: EventData): Promise<void> {
-        await MessageUtils.send(msg.channel, Lang.getEmbed('displays.info', data.lang()));
+        await MessageUtils.send(msg.channel, Lang.getEmbed('embedsDisplays.info', data.lang()));
     }
 }
