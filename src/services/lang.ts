@@ -1,5 +1,5 @@
 import { MessageEmbed } from 'discord.js';
-import { MultilingualService } from 'discord.js-multilingual-utils';
+import { Linguini, regExpTm, TypeMapper } from 'linguini';
 import path from 'path';
 
 import { LangCode } from '../models/enums';
@@ -7,36 +7,107 @@ import { LangCode } from '../models/enums';
 export class Lang {
     public static Default = LangCode.EN_US;
 
-    private static multilingualService: MultilingualService = new MultilingualService(
-        path.resolve(__dirname, '../../lang')
-    );
+    private static linguini = new Linguini(path.resolve(__dirname, '../../lang'), 'lang');
 
     public static getEmbed(
-        embedName: string,
+        location: string,
         langCode: LangCode,
         variables?: { [name: string]: string }
     ): MessageEmbed {
         return (
-            this.multilingualService.getEmbed(embedName, langCode, variables) ??
-            this.multilingualService.getEmbed(embedName, this.Default, variables)
+            this.linguini.get(location, langCode, this.messageEmbedTm, variables) ??
+            this.linguini.get(location, this.Default, this.messageEmbedTm, variables)
         );
     }
 
-    public static getRegex(regexName: string, langCode: LangCode): RegExp {
+    public static getRegex(location: string, langCode: LangCode): RegExp {
         return (
-            this.multilingualService.getRegex(regexName, langCode) ??
-            this.multilingualService.getRegex(regexName, this.Default)
+            this.linguini.get(location, langCode, regExpTm) ??
+            this.linguini.get(location, langCode, regExpTm)
         );
     }
 
     public static getRef(
-        refName: string,
+        location: string,
         langCode: LangCode,
         variables?: { [name: string]: string }
     ): string {
         return (
-            this.multilingualService.getRef(refName, langCode, variables) ??
-            this.multilingualService.getRef(refName, this.Default, variables)
+            this.linguini.getRef(location, langCode, variables) ??
+            this.linguini.getRef(location, this.Default, variables)
         );
+    }
+
+    private static messageEmbedTm: TypeMapper<MessageEmbed> = (jsonValue: any) => {
+        let embed = new MessageEmbed({ color: '#0099ff' });
+
+        let author = jsonValue.author;
+        if (author?.name) {
+            embed.setAuthor(author.name, author.icon, author.url);
+        }
+
+        let title = this.join(jsonValue.title, '\n');
+        if (title) {
+            embed.setTitle(title);
+        }
+
+        let url = jsonValue.url;
+        if (url) {
+            embed.setURL(url);
+        }
+
+        let thumbnail = jsonValue.thumbnail;
+        if (thumbnail) {
+            embed.setThumbnail(thumbnail);
+        }
+
+        let description = this.join(jsonValue.description, '\n');
+        if (description) {
+            embed.setDescription(description);
+        }
+
+        let fields = jsonValue.fields;
+        if (fields) {
+            for (let field of fields) {
+                field.name = this.join(field.name, '\n');
+                field.value = this.join(field.value, '\n');
+                if (field.inline !== undefined) {
+                    embed.addField(field.name, field.value, field.inline);
+                } else {
+                    embed.addField(field.name, field.value);
+                }
+            }
+        }
+
+        let image = jsonValue.image;
+        if (image) {
+            embed.setImage(image);
+        }
+
+        let footer = jsonValue.footer;
+        let footerText = this.join(footer?.text, '\n');
+        let footerIcon = footer?.icon;
+        if (footerText && footerIcon) {
+            embed.setFooter(footerText, footerIcon);
+        } else if (footerText) {
+            embed.setFooter(footerText);
+        }
+
+        // TODO: Allow date or number timestamp
+        let timestamp = jsonValue.timestamp;
+        if (timestamp) {
+            embed.setTimestamp();
+        }
+
+        let color = jsonValue.color;
+        if (color) {
+            embed.setColor(color);
+        }
+
+        return embed;
+    };
+
+    private static join(input: string | string[], separator: string): string {
+        return input instanceof Array ? input.join('\n') : input;
     }
 }
