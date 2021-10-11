@@ -9,7 +9,9 @@ export class CustomClient extends Client {
         return this.user?.setPresence({
             activities: [
                 {
-                    type,
+                    // TODO: Discord.js won't accept all ActivityType's here
+                    // Need to find a solution to remove "any"
+                    type: type as any,
                     name,
                     url,
                 },

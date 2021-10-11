@@ -20,6 +20,8 @@ let logger = pino({
 });
 
 export class Logger {
+    private static shardId: number;
+
     public static info(message: string): void {
         logger.info(message);
     }
@@ -78,7 +80,8 @@ export class Logger {
     }
 
     public static setShardId(shardId: number): void {
-        if (shardId > -1) {
+        if (this.shardId !== shardId) {
+            this.shardId = shardId;
             logger = logger.child({ shardId });
         }
     }
