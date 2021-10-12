@@ -2,6 +2,11 @@
     "bot": {
         "name": "My Bot"
     },
+    "colors": {
+        "success": "#00ff83",
+        "warning": "#ffcc66",
+        "error": "#ff4a4a"
+    },
     "links": {
         "invite": "https://discord.com/",
         "docs": "https://top.gg/",
