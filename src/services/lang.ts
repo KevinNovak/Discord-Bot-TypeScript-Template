@@ -38,6 +38,10 @@ export class Lang {
         );
     }
 
+    public static getCom(location: string, variables?: { [name: string]: string }): string {
+        return this.linguini.getCom(location, variables);
+    }
+
     private static messageEmbedTm: TypeMapper<MessageEmbed> = (jsonValue: any) => {
         return new MessageEmbed({
             author: jsonValue.author,
