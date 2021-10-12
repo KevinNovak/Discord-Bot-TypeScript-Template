@@ -16,10 +16,10 @@ export class DocsCommand implements Command {
     }
 
     public regex(langCode: LangCode): RegExp {
-        return Lang.getRegex('commands.docs', langCode);
+        return Lang.getRegex('commandRegexes.docs', langCode);
     }
 
     public async execute(msg: Message, args: string[], data: EventData): Promise<void> {
-        await MessageUtils.send(msg.channel, Lang.getEmbed('displays.docs', data.lang()));
+        await MessageUtils.send(msg.channel, Lang.getEmbed('displayEmbeds.docs', data.lang()));
     }
 }

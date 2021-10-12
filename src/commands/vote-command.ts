@@ -16,10 +16,10 @@ export class VoteCommand implements Command {
     }
 
     public regex(langCode: LangCode): RegExp {
-        return Lang.getRegex('commands.vote', langCode);
+        return Lang.getRegex('commandRegexes.vote', langCode);
     }
 
     public async execute(msg: Message, args: string[], data: EventData): Promise<void> {
-        await MessageUtils.send(msg.channel, Lang.getEmbed('displays.vote', data.lang()));
+        await MessageUtils.send(msg.channel, Lang.getEmbed('displayEmbeds.vote', data.lang()));
     }
 }
