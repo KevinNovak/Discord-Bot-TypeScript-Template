@@ -76,7 +76,7 @@ export class CommandHandler {
         if (command.requireDev && !Config.developers.includes(msg.author.id)) {
             await MessageUtils.send(
                 msg.channel,
-                Lang.getEmbed('embedsValidation.devOnlyCommand', data.lang())
+                Lang.getEmbed('validationEmbeds.devOnlyCommand', data.lang())
             );
             return;
         }
@@ -84,7 +84,7 @@ export class CommandHandler {
         if (command.requireGuild && !msg.guild) {
             await MessageUtils.send(
                 msg.channel,
-                Lang.getEmbed('embedsValidation.serverOnlyCommand', data.lang())
+                Lang.getEmbed('validationEmbeds.serverOnlyCommand', data.lang())
             );
             return;
         }
@@ -92,7 +92,7 @@ export class CommandHandler {
         if (msg.member && !this.hasPermission(msg.member, command)) {
             await MessageUtils.send(
                 msg.channel,
-                Lang.getEmbed('embedsValidation.permissionRequired', data.lang())
+                Lang.getEmbed('validationEmbeds.permissionRequired', data.lang())
             );
             return;
         }
@@ -105,7 +105,7 @@ export class CommandHandler {
             try {
                 await MessageUtils.send(
                     msg.channel,
-                    Lang.getEmbed('embedsErrors.command', data.lang(), {
+                    Lang.getEmbed('errorEmbeds.command', data.lang(), {
                         ERROR_CODE: msg.id,
                     })
                 );

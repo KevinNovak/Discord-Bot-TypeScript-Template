@@ -16,10 +16,10 @@ export class InviteCommand implements Command {
     }
 
     public regex(langCode: LangCode): RegExp {
-        return Lang.getRegex('regexesCommands.invite', langCode);
+        return Lang.getRegex('commandRegexes.invite', langCode);
     }
 
     public async execute(msg: Message, args: string[], data: EventData): Promise<void> {
-        await MessageUtils.send(msg.channel, Lang.getEmbed('embedsDisplays.invite', data.lang()));
+        await MessageUtils.send(msg.channel, Lang.getEmbed('displayEmbeds.invite', data.lang()));
     }
 }

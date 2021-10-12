@@ -16,10 +16,10 @@ export class SupportCommand implements Command {
     }
 
     public regex(langCode: LangCode): RegExp {
-        return Lang.getRegex('regexesCommands.support', langCode);
+        return Lang.getRegex('commandRegexes.support', langCode);
     }
 
     public async execute(msg: Message, args: string[], data: EventData): Promise<void> {
-        await MessageUtils.send(msg.channel, Lang.getEmbed('embedsDisplays.support', data.lang()));
+        await MessageUtils.send(msg.channel, Lang.getEmbed('displayEmbeds.support', data.lang()));
     }
 }

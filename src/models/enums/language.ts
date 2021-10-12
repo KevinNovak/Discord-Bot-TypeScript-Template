@@ -11,7 +11,7 @@ export class Language {
     }
 
     public static regex(langCode: LangCode): RegExp {
-        return Lang.getRegex('regexesMeta.language', langCode);
+        return Lang.getRegex('metaRegexes.language', langCode);
     }
 
     public static displayName(langCode: LangCode): string {

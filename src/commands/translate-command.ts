@@ -16,11 +16,11 @@ export class TranslateCommand implements Command {
     }
 
     public regex(langCode: LangCode): RegExp {
-        return Lang.getRegex('regexesCommands.translate', langCode);
+        return Lang.getRegex('commandRegexes.translate', langCode);
     }
 
     public async execute(msg: Message, args: string[], data: EventData): Promise<void> {
-        let embed = Lang.getEmbed('embedsDisplays.translate', data.lang());
+        let embed = Lang.getEmbed('displayEmbeds.translate', data.lang());
         for (let langCode of Object.values(LangCode)) {
             embed.addField(Language.displayName(langCode), Language.translators(langCode));
         }

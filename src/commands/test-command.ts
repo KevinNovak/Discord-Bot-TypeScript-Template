@@ -16,10 +16,10 @@ export class TestCommand implements Command {
     }
 
     public regex(langCode: LangCode): RegExp {
-        return Lang.getRegex('regexesCommands.test', langCode);
+        return Lang.getRegex('commandRegexes.test', langCode);
     }
 
     public async execute(msg: Message, args: string[], data: EventData): Promise<void> {
-        await MessageUtils.send(msg.channel, Lang.getEmbed('embedsDisplays.test', data.lang()));
+        await MessageUtils.send(msg.channel, Lang.getEmbed('displayEmbeds.test', data.lang()));
     }
 }
