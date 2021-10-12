@@ -39,72 +39,24 @@ export class Lang {
     }
 
     private static messageEmbedTm: TypeMapper<MessageEmbed> = (jsonValue: any) => {
-        let embed = new MessageEmbed({ color: '#0099ff' });
-
-        let author = jsonValue.author;
-        if (author?.name) {
-            embed.setAuthor(author.name, author.icon, author.url);
-        }
-
-        let title = this.join(jsonValue.title, '\n');
-        if (title) {
-            embed.setTitle(title);
-        }
-
-        let url = jsonValue.url;
-        if (url) {
-            embed.setURL(url);
-        }
-
-        let thumbnail = jsonValue.thumbnail;
-        if (thumbnail) {
-            embed.setThumbnail(thumbnail);
-        }
-
-        let description = this.join(jsonValue.description, '\n');
-        if (description) {
-            embed.setDescription(description);
-        }
-
-        let fields = jsonValue.fields;
-        if (fields) {
-            for (let field of fields) {
-                field.name = this.join(field.name, '\n');
-                field.value = this.join(field.value, '\n');
-                if (field.inline !== undefined) {
-                    embed.addField(field.name, field.value, field.inline);
-                } else {
-                    embed.addField(field.name, field.value);
-                }
-            }
-        }
-
-        let image = jsonValue.image;
-        if (image) {
-            embed.setImage(image);
-        }
-
-        let footer = jsonValue.footer;
-        let footerText = this.join(footer?.text, '\n');
-        let footerIcon = footer?.icon;
-        if (footerText && footerIcon) {
-            embed.setFooter(footerText, footerIcon);
-        } else if (footerText) {
-            embed.setFooter(footerText);
-        }
-
-        // TODO: Allow date or number timestamp
-        let timestamp = jsonValue.timestamp;
-        if (timestamp) {
-            embed.setTimestamp();
-        }
-
-        let color = jsonValue.color;
-        if (color) {
-            embed.setColor(color);
-        }
-
-        return embed;
+        return new MessageEmbed({
+            author: jsonValue.author,
+            title: this.join(jsonValue.title, '\n'),
+            url: jsonValue.url,
+            thumbnail: jsonValue.thumbnail,
+            description: this.join(jsonValue.description, '\n'),
+            fields: jsonValue.fields?.map(field => ({
+                name: this.join(field.name, '\n'),
+                value: this.join(field.value, '\n'),
+            })),
+            image: jsonValue.image,
+            footer: {
+                text: this.join(jsonValue.footer?.text, '\n'),
+                iconURL: this.join(jsonValue.footer?.icon, '\n'),
+            },
+            timestamp: jsonValue.timestamp ? Date.now() : undefined,
+            color: jsonValue.color ?? '#0099ff',
+        });
     };
 
     private static regExpTm: TypeMapper<RegExp> = (jsonValue: any) => {
