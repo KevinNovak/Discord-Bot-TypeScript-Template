@@ -1,4 +1,7 @@
 {
+    "bot": {
+        "name": "My Bot"
+    },
     "links": {
         "invite": "https://discord.com/",
         "docs": "https://top.gg/",

@@ -2,7 +2,7 @@
     "data": {
         "embedsDisplays": {
             "welcome": {
-                "title": "Thank you for using {{REF:bot.name}}!",
+                "title": "Thank you for using {{COM:bot.name}}!",
                 "description": ["{{REF:bot.description}}"],
                 "fields": [
                     {
@@ -20,14 +20,14 @@
                 ]
             },
             "help": {
-                "title": "{{REF:bot.name}} - Help",
+                "title": "{{COM:bot.name}} - Help",
                 "description": "{{REF:bot.description}}",
                 "fields": [
                     {
                         "name": "{{REF:fields.commands}}",
                         "value": [
                             "**{{REF:bot.prefix}} {{REF:commands.test}}** - Run the test command.",
-                            "**{{REF:bot.prefix}} {{REF:commands.info}}** - More information about {{REF:bot.name}}."
+                            "**{{REF:bot.prefix}} {{REF:commands.info}}** - More information about {{COM:bot.name}}."
                         ]
                     },
                     {
@@ -44,7 +44,7 @@
                 "description": "Test command works!"
             },
             "info": {
-                "title": "{{REF:bot.name}} - Info",
+                "title": "{{COM:bot.name}} - Info",
                 "fields": [
                     { "name": "Author", "value": "{{REF:links.authorEmbed}}" },
                     {
@@ -63,11 +63,11 @@
                 ]
             },
             "translate": {
-                "title": "{{REF:bot.name}} - Translations",
-                "description": "Thank you to our translators who have made it possible for {{REF:bot.name}} to be used in the following languages. If you are interested in providing a translation, please contact the staff in our [support server]({{COM:links.support}})."
+                "title": "{{COM:bot.name}} - Translations",
+                "description": "Thank you to our translators who have made it possible for {{COM:bot.name}} to be used in the following languages. If you are interested in providing a translation, please contact the staff in our [support server]({{COM:links.support}})."
             },
             "dev": {
-                "title": "{{REF:bot.name}} - Developer Info",
+                "title": "{{COM:bot.name}} - Developer Info",
                 "fields": [
                     {
                         "name": "Versions",
@@ -105,19 +105,19 @@
                 ]
             },
             "invite": {
-                "title": "{{REF:bot.name}} - Invite",
-                "description": "Click [here]({{COM:links.invite}}) to invite {{REF:bot.name}} to a server!"
+                "title": "{{COM:bot.name}} - Invite",
+                "description": "Click [here]({{COM:links.invite}}) to invite {{COM:bot.name}} to a server!"
             },
             "docs": {
-                "title": "{{REF:bot.name}} - Documentation",
+                "title": "{{COM:bot.name}} - Documentation",
                 "description": "Click [here]({{COM:links.docs}}/) to view the bot documentation."
             },
             "vote": {
-                "title": "{{REF:bot.name}} - Vote",
-                "description": "Support {{REF:bot.name}} by voting [here]({{COM:links.vote}})!"
+                "title": "{{COM:bot.name}} - Vote",
+                "description": "Support {{COM:bot.name}} by voting [here]({{COM:links.vote}})!"
             },
             "support": {
-                "title": "{{REF:bot.name}} - Support",
+                "title": "{{COM:bot.name}} - Support",
                 "description": "Need help? Join our [support server]({{COM:links.support}})!"
             }
         },
@@ -151,7 +151,7 @@
                 "color": "{{REF:colors.error}}"
             },
             "startupInProcess": {
-                "description": "{{REF:bot.name}} is still starting up. Try again later.",
+                "description": "{{COM:bot.name}} is still starting up. Try again later.",
                 "color": "{{REF:colors.warning}}"
             }
         },
@@ -180,7 +180,6 @@
             "translators": "[TranslatorName#1234](https://github.com/)"
         },
         "bot": {
-            "name": "My Bot",
             "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features.",
             "prefix": "bot"
         },
@@ -211,9 +210,9 @@
             "na": "N/A"
         },
         "links": {
-            "inviteEmbed": "[Invite {{REF:bot.name}} to a Server!]({{COM:links.invite}})",
+            "inviteEmbed": "[Invite {{COM:bot.name}} to a Server!]({{COM:links.invite}})",
             "docsEmbed": "[View Documentation]({{COM:links.docs}})",
-            "voteEmbed": "[Vote for {{REF:bot.name}}!]({{COM:links.vote}})",
+            "voteEmbed": "[Vote for {{COM:bot.name}}!]({{COM:links.vote}})",
             "supportEmbed": "[Join Support Server]({{COM:links.support}})",
             "authorEmbed": "[My Name]({{COM:links.author}})",
             "sourceEmbed": "[View Source Code]({{COM:links.source}})",
