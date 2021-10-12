@@ -1,5 +1,5 @@
 import { MessageEmbed } from 'discord.js';
-import { Linguini, regExpTm, TypeMapper } from 'linguini';
+import { join, Linguini, regExpTm, TypeMapper } from 'linguini';
 import path from 'path';
 
 import { LangCode } from '../models/enums';
@@ -41,25 +41,21 @@ export class Lang {
     private static messageEmbedTm: TypeMapper<MessageEmbed> = (jsonValue: any) => {
         return new MessageEmbed({
             author: jsonValue.author,
-            title: this.join(jsonValue.title, '\n'),
+            title: join(jsonValue.title, '\n'),
             url: jsonValue.url,
             thumbnail: jsonValue.thumbnail,
-            description: this.join(jsonValue.description, '\n'),
+            description: join(jsonValue.description, '\n'),
             fields: jsonValue.fields?.map(field => ({
-                name: this.join(field.name, '\n'),
-                value: this.join(field.value, '\n'),
+                name: join(field.name, '\n'),
+                value: join(field.value, '\n'),
             })),
             image: jsonValue.image,
             footer: {
-                text: this.join(jsonValue.footer?.text, '\n'),
-                iconURL: this.join(jsonValue.footer?.icon, '\n'),
+                text: join(jsonValue.footer?.text, '\n'),
+                iconURL: join(jsonValue.footer?.icon, '\n'),
             },
             timestamp: jsonValue.timestamp ? Date.now() : undefined,
             color: jsonValue.color ?? '#0099ff',
         });
     };
-
-    private static join(input: string | string[], separator: string): string {
-        return input instanceof Array ? input.join('\n') : input;
-    }
 }
