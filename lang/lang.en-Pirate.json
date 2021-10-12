@@ -211,21 +211,13 @@
             "na": "N/A"
         },
         "links": {
-            "invite": "https://discord.com/",
-            "inviteEmbed": "[Invite {{REF:bot.name}} to a Server!]({{REF:links.invite}})",
-            "docs": "https://top.gg/",
-            "docsEmbed": "[View Documentation]({{REF:links.docs}})",
-            "vote": "https://top.gg/",
-            "voteEmbed": "[Vote for {{REF:bot.name}}!]({{REF:links.vote}})",
-            "support": "https://support.discord.com/",
-            "supportEmbed": "[Join Support Server]({{REF:links.support}})",
-            "stream": "https://www.twitch.tv/novakevin",
-            "author": "https://github.com/",
-            "authorEmbed": "[My Name]({{REF:links.author}})",
-            "source": "https://github.com/",
-            "sourceEmbed": "[View Source Code]({{REF:links.source}})",
-            "template": "https://github.com/KevinNovak/Discord-Bot-TypeScript-Template",
-            "templateEmbed": "[Discord Bot TypeScript Template]({{REF:links.template}})"
+            "inviteEmbed": "[Invite {{REF:bot.name}} to a Server!]({{COM:links.invite}})",
+            "docsEmbed": "[View Documentation]({{COM:links.docs}})",
+            "voteEmbed": "[Vote for {{REF:bot.name}}!]({{COM:links.vote}})",
+            "supportEmbed": "[Join Support Server]({{COM:links.support}})",
+            "authorEmbed": "[My Name]({{COM:links.author}})",
+            "sourceEmbed": "[View Source Code]({{COM:links.source}})",
+            "templateEmbed": "[Discord Bot TypeScript Template]({{COM:links.template}})"
         },
         "messages": {
             "missingEmbedPerms": [
