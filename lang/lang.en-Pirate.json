@@ -64,7 +64,7 @@
             },
             "translate": {
                 "title": "{{REF:bot.name}} - Translations",
-                "description": "Thank you to our translators who have made it possible for {{REF:bot.name}} to be used in the following languages. If you are interested in providing a translation, please contact the staff in our [support server]({{REF:links.support}})."
+                "description": "Thank you to our translators who have made it possible for {{REF:bot.name}} to be used in the following languages. If you are interested in providing a translation, please contact the staff in our [support server]({{COM:links.support}})."
             },
             "dev": {
                 "title": "{{REF:bot.name}} - Developer Info",
@@ -106,19 +106,19 @@
             },
             "invite": {
                 "title": "{{REF:bot.name}} - Invite",
-                "description": "Click [here]({{REF:links.invite}}) to invite {{REF:bot.name}} to a server!"
+                "description": "Click [here]({{COM:links.invite}}) to invite {{REF:bot.name}} to a server!"
             },
             "docs": {
                 "title": "{{REF:bot.name}} - Documentation",
-                "description": "Click [here]({{REF:links.docs}}/) to view the bot documentation."
+                "description": "Click [here]({{COM:links.docs}}/) to view the bot documentation."
             },
             "vote": {
                 "title": "{{REF:bot.name}} - Vote",
-                "description": "Support {{REF:bot.name}} by voting [here]({{REF:links.vote}})!"
+                "description": "Support {{REF:bot.name}} by voting [here]({{COM:links.vote}})!"
             },
             "support": {
                 "title": "{{REF:bot.name}} - Support",
-                "description": "Need help? Join our [support server]({{REF:links.support}})!"
+                "description": "Need help? Join our [support server]({{COM:links.support}})!"
             }
         },
         "embedsValidation": {
@@ -145,7 +145,7 @@
                     },
                     {
                         "name": "Contact support",
-                        "value": "{{REF:links.support}}"
+                        "value": "{{COM:links.support}}"
                     }
                 ],
                 "color": "{{REF:colors.error}}"
