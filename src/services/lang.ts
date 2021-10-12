@@ -1,5 +1,5 @@
 import { MessageEmbed } from 'discord.js';
-import { join, Linguini, regExpTm, TypeMapper } from 'linguini';
+import { join, Linguini, TypeMapper, TypeMappers } from 'linguini';
 import path from 'path';
 
 import { LangCode } from '../models/enums';
@@ -22,8 +22,8 @@ export class Lang {
 
     public static getRegex(location: string, langCode: LangCode): RegExp {
         return (
-            this.linguini.get(location, langCode, regExpTm) ??
-            this.linguini.get(location, this.Default, regExpTm)
+            this.linguini.get(location, langCode, TypeMappers.RegExp) ??
+            this.linguini.get(location, this.Default, TypeMappers.RegExp)
         );
     }
 
