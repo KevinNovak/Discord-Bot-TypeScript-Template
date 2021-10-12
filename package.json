@@ -31,7 +31,7 @@
         "express": "4.17.1",
         "express-promise-router": "4.1.0",
         "filesize": "8.0.3",
-        "linguini": "1.1.1",
+        "linguini": "1.2.0",
         "node-fetch": "2.6.5",
         "node-schedule": "2.0.0",
         "pino": "6.13.3",
