@@ -10,7 +10,6 @@
     },
     "cSpell.enabled": true,
     "cSpell.words": [
-        "Novak",
         "bot's",
         "cmds",
         "datas",
@@ -18,6 +17,7 @@
         "discordjs",
         "discordlabs",
         "filesize",
+        "Novak",
         "ondiscord",
         "parens",
         "pino",
