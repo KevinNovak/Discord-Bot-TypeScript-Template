@@ -7,8 +7,8 @@ import { Command } from './command';
 
 export class InfoCommand implements Command {
     public static data: ApplicationCommandData = {
-        name: 'info',
-        description: 'View bot info.',
+        name: Lang.getCom('commands.info'),
+        description: Lang.getCom('commandDescs.info'),
     };
     public name = InfoCommand.data.name;
     public requireDev = false;

@@ -2,6 +2,22 @@
     "bot": {
         "name": "My Bot"
     },
+    "commands": {
+        "dev": "dev",
+        "help": "help",
+        "info": "info",
+        "link": "link",
+        "test": "test",
+        "translate": "translate"
+    },
+    "commandDescs": {
+        "dev": "View developer info.",
+        "help": "View help menu and list of commands.",
+        "info": "View bot info.",
+        "link": "Get links to invite, support, etc.",
+        "test": "Run the test command.",
+        "translate": "View translation info."
+    },
     "colors": {
         "success": "#00ff83",
         "warning": "#ffcc66",

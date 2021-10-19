@@ -11,8 +11,8 @@ let TsConfig = require('../../tsconfig.json');
 
 export class DevCommand implements Command {
     public static data: ApplicationCommandData = {
-        name: 'dev',
-        description: 'View developer info.',
+        name: Lang.getCom('commands.dev'),
+        description: Lang.getCom('commandDescs.dev'),
     };
     public name = DevCommand.data.name;
     public requireDev = true;

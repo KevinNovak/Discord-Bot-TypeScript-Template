@@ -8,8 +8,8 @@ import { Command } from './command';
 
 export class TranslateCommand implements Command {
     public static data: ApplicationCommandData = {
-        name: 'translate',
-        description: 'View translation info.',
+        name: Lang.getCom('commands.translate'),
+        description: Lang.getCom('commandDescs.translate'),
     };
     public name = TranslateCommand.data.name;
     public requireDev = false;

@@ -7,9 +7,7 @@
                 "fields": [
                     {
                         "name": "Important {{REF:fields.commands}}",
-                        "value": [
-                            "**/{{REF:commands.help}}** - View help menu and list of commands."
-                        ]
+                        "value": ["**/{{COM:commands.help}}** - {{COM:commandDescs.help}}"]
                     },
                     {
                         "name": "{{REF:fields.links}}",
@@ -28,8 +26,8 @@
                     {
                         "name": "{{REF:fields.commands}}",
                         "value": [
-                            "**/{{REF:commands.test}}** - Run the test command.",
-                            "**/{{REF:commands.info}}** - View bot info."
+                            "**/{{COM:commands.test}}** - {{COM:commandDescs.test}}",
+                            "**/{{COM:commands.info}}** - {{COM:commandDescs.info}}"
                         ]
                     },
                     {
@@ -172,17 +170,6 @@
         },
         "bot": {
             "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features."
-        },
-        "commands": {
-            "dev": "dev",
-            "docs": "docs",
-            "help": "help",
-            "info": "info",
-            "invite": "invite",
-            "support": "support",
-            "test": "test",
-            "translate": "translate",
-            "vote": "vote"
         },
         "lists": {
             "languageItem": "**{{LANGUAGE_NAME}}** (`{{LANGUAGE_KEYWORD}}`)"

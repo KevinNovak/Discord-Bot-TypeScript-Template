@@ -8,8 +8,8 @@ import { Command } from './command';
 
 export class LinkCommand implements Command {
     public static data: ApplicationCommandData = {
-        name: 'link',
-        description: 'Get links to invite, support, etc.',
+        name: Lang.getCom('commands.link'),
+        description: Lang.getCom('commandDescs.link'),
         options: [
             {
                 name: 'link',
