@@ -17,7 +17,7 @@ export class TranslateCommand implements Command {
     public requirePerms = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
-        let embed = Lang.getEmbed('displays.translate', data.lang());
+        let embed = Lang.getEmbed('displayEmbeds.translate', data.lang());
         for (let langCode of Object.values(LangCode)) {
             embed.addField(Language.displayName(langCode), Language.translators(langCode));
         }

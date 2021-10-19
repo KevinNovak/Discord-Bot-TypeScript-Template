@@ -30,7 +30,7 @@ export class DevCommand implements Command {
                 if (error.name.includes('SHARDING_IN_PROCESS')) {
                     await MessageUtils.sendIntr(
                         intr,
-                        Lang.getEmbed('errors.startupInProcess', data.lang())
+                        Lang.getEmbed('errorEmbeds.startupInProcess', data.lang())
                     );
                     return;
                 } else {
@@ -44,7 +44,7 @@ export class DevCommand implements Command {
         let memory = process.memoryUsage();
         await MessageUtils.sendIntr(
             intr,
-            Lang.getEmbed('displays.dev', data.lang(), {
+            Lang.getEmbed('displayEmbeds.dev', data.lang(), {
                 NODE_VERSION: process.version,
                 TS_VERSION: `v${typescript.version}`,
                 ES_VERSION: TsConfig.compilerOptions.target,

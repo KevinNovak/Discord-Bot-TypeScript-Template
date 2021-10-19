@@ -1,11 +1,8 @@
 {
-    "defaultEmbed": {
-        "color": "#0099ff"
-    },
-    "embeds": {
-        "displays": {
+    "data": {
+        "displayEmbeds": {
             "welcome": {
-                "title": "Thank you for using {{REF:bot.name}}!",
+                "title": "Thank you for using {{COM:bot.name}}!",
                 "description": ["{{REF:bot.description}}"],
                 "fields": [
                     {
@@ -25,7 +22,7 @@
                 ]
             },
             "help": {
-                "title": "{{REF:bot.name}} - Help",
+                "title": "{{COM:bot.name}} - Help",
                 "description": "{{REF:bot.description}}",
                 "fields": [
                     {
@@ -49,7 +46,7 @@
                 "description": "Test command works!"
             },
             "info": {
-                "title": "{{REF:bot.name}} - Info",
+                "title": "{{COM:bot.name}} - Info",
                 "fields": [
                     { "name": "Author", "value": "{{REF:links.authorEmbed}}" },
                     {
@@ -68,11 +65,11 @@
                 ]
             },
             "translate": {
-                "title": "{{REF:bot.name}} - Translations",
-                "description": "Thank you to our translators who have made it possible for {{REF:bot.name}} to be used in the following languages. If you are interested in providing a translation, please contact the staff in our [support server]({{REF:links.support}})."
+                "title": "{{COM:bot.name}} - Translations",
+                "description": "Thank you to our translators who have made it possible for {{COM:bot.name}} to be used in the following languages. If you are interested in providing a translation, please contact the staff in our [support server]({{COM:links.support}})."
             },
             "dev": {
-                "title": "{{REF:bot.name}} - Developer Info",
+                "title": "{{COM:bot.name}} - Developer Info",
                 "fields": [
                     {
                         "name": "Versions",
@@ -110,37 +107,37 @@
                 ]
             },
             "invite": {
-                "title": "{{REF:bot.name}} - Invite",
-                "description": "Click [here]({{REF:links.invite}}) to invite {{REF:bot.name}} to a server!"
+                "title": "{{COM:bot.name}} - Invite",
+                "description": "Click [here]({{COM:links.invite}}) to invite {{COM:bot.name}} to a server!"
             },
             "docs": {
-                "title": "{{REF:bot.name}} - Documentation",
-                "description": "Click [here]({{REF:links.docs}}/) to view the bot documentation."
+                "title": "{{COM:bot.name}} - Documentation",
+                "description": "Click [here]({{COM:links.docs}}/) to view the bot documentation."
             },
             "vote": {
-                "title": "{{REF:bot.name}} - Vote",
-                "description": "Support {{REF:bot.name}} by voting [here]({{REF:links.vote}})!"
+                "title": "{{COM:bot.name}} - Vote",
+                "description": "Support {{COM:bot.name}} by voting [here]({{COM:links.vote}})!"
             },
             "support": {
-                "title": "{{REF:bot.name}} - Support",
-                "description": "Need help? Join our [support server]({{REF:links.support}})!"
+                "title": "{{COM:bot.name}} - Support",
+                "description": "Need help? Join our [support server]({{COM:links.support}})!"
             }
         },
-        "validation": {
+        "validationEmbeds": {
             "devOnlyCommand": {
                 "description": "This command can only be used by developers.",
-                "color": "{{REF:colors.warning}}"
+                "color": "{{COM:colors.warning}}"
             },
             "serverOnlyCommand": {
                 "description": "This command can only be used in a server.",
-                "color": "{{REF:colors.warning}}"
+                "color": "{{COM:colors.warning}}"
             },
             "permissionRequired": {
                 "description": "You don't have permission to run that command!",
-                "color": "{{REF:colors.warning}}"
+                "color": "{{COM:colors.warning}}"
             }
         },
-        "errors": {
+        "errorEmbeds": {
             "command": {
                 "description": "Something went wrong!",
                 "fields": [
@@ -150,22 +147,20 @@
                     },
                     {
                         "name": "Contact support",
-                        "value": "{{REF:links.support}}"
+                        "value": "{{COM:links.support}}"
                     }
                 ],
-                "color": "{{REF:colors.error}}"
+                "color": "{{COM:colors.error}}"
             },
             "startupInProcess": {
-                "description": "{{REF:bot.name}} is still starting up. Try again later.",
-                "color": "{{REF:colors.warning}}"
+                "description": "{{COM:bot.name}} is still starting up. Try again later.",
+                "color": "{{COM:colors.warning}}"
             }
-        }
-    },
-    "regexes": {
-        "meta": {
+        },
+        "metaRegexes": {
             "language": "/\\b({{REF:meta.language}}|en US|English)\\b/i"
         },
-        "channels": {
+        "channelRegexes": {
             "bot": "/bot|command|cmd/i"
         }
     },
@@ -176,13 +171,7 @@
             "translators": "[TranslatorName#1234](https://github.com/)"
         },
         "bot": {
-            "name": "My Bot",
             "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features."
-        },
-        "colors": {
-            "success": "#00ff83",
-            "warning": "#ffcc66",
-            "error": "#ff4a4a"
         },
         "commands": {
             "dev": "dev",
@@ -206,21 +195,13 @@
             "na": "N/A"
         },
         "links": {
-            "invite": "https://discord.com/",
-            "inviteEmbed": "[Invite {{REF:bot.name}} to a Server!]({{REF:links.invite}})",
-            "docs": "https://top.gg/",
-            "docsEmbed": "[View Documentation]({{REF:links.docs}})",
-            "vote": "https://top.gg/",
-            "voteEmbed": "[Vote for {{REF:bot.name}}!]({{REF:links.vote}})",
-            "support": "https://support.discord.com/",
-            "supportEmbed": "[Join Support Server]({{REF:links.support}})",
-            "stream": "https://www.twitch.tv/novakevin",
-            "author": "https://github.com/",
-            "authorEmbed": "[My Name]({{REF:links.author}})",
-            "source": "https://github.com/",
-            "sourceEmbed": "[View Source Code]({{REF:links.source}})",
-            "template": "https://github.com/KevinNovak/Discord-Bot-TypeScript-Template",
-            "templateEmbed": "[Discord Bot TypeScript Template]({{REF:links.template}})"
+            "inviteEmbed": "[Invite {{COM:bot.name}} to a Server!]({{COM:links.invite}})",
+            "docsEmbed": "[View Documentation]({{COM:links.docs}})",
+            "voteEmbed": "[Vote for {{COM:bot.name}}!]({{COM:links.vote}})",
+            "supportEmbed": "[Join Support Server]({{COM:links.support}})",
+            "authorEmbed": "[My Name]({{COM:links.author}})",
+            "sourceEmbed": "[View Source Code]({{COM:links.source}})",
+            "templateEmbed": "[Discord Bot TypeScript Template]({{COM:links.template}})"
         },
         "messages": {
             "missingEmbedPerms": [

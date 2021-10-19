@@ -48,19 +48,19 @@ export class LinkCommand implements Command {
         let embed: MessageEmbed;
         switch (link) {
             case 'INVITE': {
-                embed = Lang.getEmbed('displays.invite', data.lang());
+                embed = Lang.getEmbed('displayEmbeds.invite', data.lang());
                 break;
             }
             case 'SUPPORT': {
-                embed = Lang.getEmbed('displays.support', data.lang());
+                embed = Lang.getEmbed('displayEmbeds.support', data.lang());
                 break;
             }
             case 'DOCS': {
-                embed = Lang.getEmbed('displays.docs', data.lang());
+                embed = Lang.getEmbed('displayEmbeds.docs', data.lang());
                 break;
             }
             case 'VOTE': {
-                embed = Lang.getEmbed('displays.vote', data.lang());
+                embed = Lang.getEmbed('displayEmbeds.vote', data.lang());
                 break;
             }
             default: {

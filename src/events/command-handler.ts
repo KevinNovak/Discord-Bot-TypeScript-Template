@@ -67,7 +67,7 @@ export class CommandHandler implements EventHandler {
         if (command.requireDev && !Config.developers.includes(intr.user.id)) {
             await MessageUtils.sendIntr(
                 intr,
-                Lang.getEmbed('validation.devOnlyCommand', data.lang())
+                Lang.getEmbed('validationEmbeds.devOnlyCommand', data.lang())
             );
             return;
         }
@@ -75,7 +75,7 @@ export class CommandHandler implements EventHandler {
         if (command.requireGuild && !intr.guild) {
             await MessageUtils.sendIntr(
                 intr,
-                Lang.getEmbed('validation.serverOnlyCommand', data.lang())
+                Lang.getEmbed('validationEmbeds.serverOnlyCommand', data.lang())
             );
             return;
         }
@@ -84,7 +84,7 @@ export class CommandHandler implements EventHandler {
         if (intr.member && !this.hasPermission(intr.member as GuildMember, command)) {
             await MessageUtils.sendIntr(
                 intr,
-                Lang.getEmbed('validation.permissionRequired', data.lang())
+                Lang.getEmbed('validationEmbeds.permissionRequired', data.lang())
             );
             return;
         }
@@ -145,7 +145,7 @@ export class CommandHandler implements EventHandler {
         try {
             await MessageUtils.sendIntr(
                 intr,
-                Lang.getEmbed('errors.command', data.lang(), {
+                Lang.getEmbed('errorEmbeds.command', data.lang(), {
                     ERROR_CODE: intr.id,
                 })
             );

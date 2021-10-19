@@ -67,7 +67,7 @@ export class ClientUtils {
             channel =>
                 (channel instanceof TextChannel || channel instanceof NewsChannel) &&
                 PermissionUtils.canSendEmbed(channel) &&
-                Lang.getRegex('channels.bot', langCode).test(channel.name)
+                Lang.getRegex('channelRegexes.bot', langCode).test(channel.name)
         ) as TextChannel | NewsChannel;
     }
 }
