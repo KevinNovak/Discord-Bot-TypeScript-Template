@@ -67,7 +67,7 @@ A `/dev` command, which shows detailed information that may be helpful to develo
 
 ### Link Command
 
-A `/link` command, which provide relevant links (`invite`, `support`, `docs`, `vote`).
+A `/link` command, which provides relevant links (`invite`, `support`, `docs`, `vote`).
 
 ![Misc Commands](https://i.imgur.com/FOZcKM8.png)
 
