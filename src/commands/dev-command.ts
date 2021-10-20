@@ -1,8 +1,7 @@
-import djs, { Message } from 'discord.js';
+import djs, { ApplicationCommandData, CommandInteraction } from 'discord.js';
 import fileSize from 'filesize';
 import typescript from 'typescript';
 
-import { LangCode } from '../models/enums';
 import { EventData } from '../models/internal-models';
 import { Lang } from '../services';
 import { MessageUtils, ShardUtils } from '../utils';
@@ -11,29 +10,26 @@ import { Command } from './command';
 let TsConfig = require('../../tsconfig.json');
 
 export class DevCommand implements Command {
+    public static data: ApplicationCommandData = {
+        name: Lang.getCom('commands.dev'),
+        description: Lang.getCom('commandDescs.dev'),
+    };
+    public name = DevCommand.data.name;
     public requireDev = true;
     public requireGuild = false;
     public requirePerms = [];
 
-    public keyword(langCode: LangCode): string {
-        return Lang.getRef('commands.dev', langCode);
-    }
-
-    public regex(langCode: LangCode): RegExp {
-        return Lang.getRegex('commandRegexes.dev', langCode);
-    }
-
-    public async execute(msg: Message, args: string[], data: EventData): Promise<void> {
-        let shardCount = msg.client.shard?.count ?? 1;
+    public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
+        let shardCount = intr.client.shard?.count ?? 1;
         let serverCount: number;
-        if (msg.client.shard) {
+        if (intr.client.shard) {
             try {
-                serverCount = await ShardUtils.serverCount(msg.client.shard);
+                serverCount = await ShardUtils.serverCount(intr.client.shard);
             } catch (error) {
                 // SHARDING_IN_PROCESS: Shards are still being spawned.
                 if (error.name.includes('SHARDING_IN_PROCESS')) {
-                    await MessageUtils.send(
-                        msg.channel,
+                    await MessageUtils.sendIntr(
+                        intr,
                         Lang.getEmbed('errorEmbeds.startupInProcess', data.lang())
                     );
                     return;
@@ -42,12 +38,12 @@ export class DevCommand implements Command {
                 }
             }
         } else {
-            serverCount = msg.client.guilds.cache.size;
+            serverCount = intr.client.guilds.cache.size;
         }
 
         let memory = process.memoryUsage();
-        await MessageUtils.send(
-            msg.channel,
+        await MessageUtils.sendIntr(
+            intr,
             Lang.getEmbed('displayEmbeds.dev', data.lang(), {
                 NODE_VERSION: process.version,
                 TS_VERSION: `v${typescript.version}`,
@@ -71,10 +67,10 @@ export class DevCommand implements Command {
                     serverCount > 0
                         ? fileSize(memory.heapUsed / serverCount)
                         : Lang.getRef('other.na', data.lang()),
-                SHARD_ID: (msg.guild?.shardId ?? 0).toString(),
-                SERVER_ID: msg.guild?.id ?? Lang.getRef('other.na', data.lang()),
-                BOT_ID: msg.client.user.id,
-                USER_ID: msg.author.id,
+                SHARD_ID: (intr.guild?.shardId ?? 0).toString(),
+                SERVER_ID: intr.guild?.id ?? Lang.getRef('other.na', data.lang()),
+                BOT_ID: intr.client.user.id,
+                USER_ID: intr.user.id,
             })
         );
     }

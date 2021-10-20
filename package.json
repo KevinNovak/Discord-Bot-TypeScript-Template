@@ -15,6 +15,7 @@
         "format": "prettier --check .",
         "format:fix": "prettier --write .",
         "build": "tsc --project tsconfig.json",
+        "register": "npm run build && node --enable-source-maps dist/register.js",
         "start": "npm run build && node --enable-source-maps dist/start.js",
         "start:dev": "ts-node-dev --watch src/**/*.ts,config/**/*.json,lang/**/*.json src/start.ts",
         "start:shard": "npm run build && node --enable-source-maps dist/app.js",
@@ -24,8 +25,10 @@
         "pm2:delete": "pm2 delete process.json"
     },
     "dependencies": {
+        "@discordjs/rest": "0.1.0-canary.0",
         "class-transformer": "0.4.0",
         "class-validator": "0.13.1",
+        "discord-api-types": "0.24.0",
         "discord.js": "13.2.0",
         "discord.js-rate-limiter": "1.2.3",
         "express": "4.17.1",

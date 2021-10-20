@@ -7,7 +7,7 @@
                 "fields": [
                     {
                         "name": "Important {{REF:fields.commands}}",
-                        "value": ["**{{REF:bot.prefix}} {{REF:commands.help}}** - View bot help."]
+                        "value": ["**/{{COM:commands.help}}** - {{REF:commandDescs.help}}"]
                     },
                     {
                         "name": "{{REF:fields.links}}",
@@ -26,8 +26,8 @@
                     {
                         "name": "{{REF:fields.commands}}",
                         "value": [
-                            "**{{REF:bot.prefix}} {{REF:commands.test}}** - Run the test command.",
-                            "**{{REF:bot.prefix}} {{REF:commands.info}}** - More information about {{COM:bot.name}}."
+                            "**/{{COM:commands.test}}** - {{REF:commandDescs.test}}",
+                            "**/{{COM:commands.info}}** - {{REF:commandDescs.info}}"
                         ]
                     },
                     {
@@ -160,17 +160,6 @@
         },
         "channelRegexes": {
             "bot": "/bot|command|cmd/i"
-        },
-        "commandRegexes": {
-            "dev": "/\\b({{REF:commands.dev}}|developer|usage|memory|mem)\\b/i",
-            "docs": "/\\b({{REF:commands.docs}}|d|documentation|readme|website|site)\\b/i",
-            "help": "/\\b({{REF:commands.help}}|h|\\?)\\b/i",
-            "info": "/\\b({{REF:commands.info}}|i|information)\\b/i",
-            "invite": "/\\b({{REF:commands.invite}})\\b/i",
-            "support": "/\\b({{REF:commands.support}}|s)\\b/i",
-            "test": "/\\b({{REF:commands.test}}|t)\\b/i",
-            "translate": "/\\b({{REF:commands.translate}}|t|translation|translations|lang|langs|language|languages)\\b/i",
-            "vote": "/\\b({{REF:commands.vote}}|v)\\b/i"
         }
     },
     "refs": {
@@ -180,19 +169,15 @@
             "translators": "[TranslatorName#1234](https://github.com/)"
         },
         "bot": {
-            "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features.",
-            "prefix": "bot"
+            "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features."
         },
-        "commands": {
-            "dev": "dev",
-            "docs": "docs",
-            "help": "help",
-            "info": "info",
-            "invite": "invite",
-            "support": "support",
-            "test": "test",
-            "translate": "translate",
-            "vote": "vote"
+        "commandDescs": {
+            "dev": "{{COM:commandDescs.dev}}",
+            "help": "{{COM:commandDescs.help}}",
+            "info": "{{COM:commandDescs.info}}",
+            "link": "{{COM:commandDescs.link}}",
+            "test": "{{COM:commandDescs.test}}",
+            "translate": "{{COM:commandDescs.translate}}"
         },
         "lists": {
             "languageItem": "**{{LANGUAGE_NAME}}** (`{{LANGUAGE_KEYWORD}}`)"

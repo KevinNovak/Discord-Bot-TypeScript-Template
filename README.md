@@ -43,39 +43,39 @@ This bot has a few example commands which can be modified as needed.
 
 ### Help Command
 
-A help command with a bot description, list of commands, and important links.
+A `/help` command with a bot description, list of commands, and important links.
 
-![Help Command](https://i.imgur.com/N7LfacD.png)
+![Help Command](https://i.imgur.com/qsxQ0fP.png)
 
 ### Test Command
 
-A generic command, which can be copied to create additional commands.
+A generic command, `/test`, which can be copied to create additional commands.
 
-![Test Command](https://i.imgur.com/bYKEizS.png)
+![Test Command](https://i.imgur.com/HxzgUO7.png)
 
 ### Info Command
 
-An info command, which shows more information and relevant links.
+An `/info` command, which shows more information and relevant links.
 
-![Info Command](https://i.imgur.com/wIlKnBD.png)
+![Info Command](https://i.imgur.com/P4zeAx9.png)
 
 ### Dev Command
 
-A dev command, which shows detailed information that may be helpful to developers.
+A `/dev` command, which shows detailed information that may be helpful to developers.
 
-![Dev Command](https://i.imgur.com/PKiur9p.png)
+![Dev Command](https://i.imgur.com/KVIIVJ3.png)
 
-### Misc Commands
+### Link Command
 
-There are additional commands built-in that simply provide relevant links (`invite`, `docs`, `support`, `vote`).
+A `/link` command, which provides relevant links (`invite`, `support`, `docs`, `vote`).
 
-![Misc Commands](https://i.imgur.com/Q2aYa5U.png)
+![Misc Commands](https://i.imgur.com/FOZcKM8.png)
 
 ### Welcome Message
 
 A welcome message is sent to the server and owner when the bot is added.
 
-![Welcome Message](https://i.imgur.com/00mXi0O.png)
+![Welcome Message](https://i.imgur.com/APzT9pp.png)
 
 ## Setup
 
@@ -90,9 +90,16 @@ A welcome message is sent to the server and owner when the bot is added.
 3. Modify the config file.
     - Open the `config/config.json` file.
     - You'll need to edit the following values:
-        - `client.token` - Your discord bot token.
+        - `client.id` - Your discord bot's [user ID](https://techswift.org/2020/04/22/how-to-find-your-user-id-on-discord/).
+        - `client.token` - Your discord bot's token.
 4. Install packages.
     - Navigate into the downloaded source files and type `npm install`.
+5. Register commands.
+    - In order to use slash commands, they first [have to be registered](https://discordjs.guide/interactions/registering-slash-commands.html#registering-slash-commands).
+    - Type `npm run register` to register the bot's commands.
+        - Run this script any time you change a command name, structure, or add/remove commands.
+        - This is so Discord knows what your commands look like.
+        - It may take up to an hour for command changes to appear.
 
 ## Start Scripts
 

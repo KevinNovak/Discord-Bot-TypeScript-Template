@@ -1,6 +1,6 @@
 import {
+    CommandInteraction,
     GuildMember,
-    Message,
     NewsChannel,
     Permissions,
     TextChannel,
@@ -8,8 +8,8 @@ import {
 } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
+import { EventHandler } from '.';
 import { Command } from '../commands';
-import { LangCode } from '../models/enums';
 import { EventData } from '../models/internal-models';
 import { Lang, Logger } from '../services';
 import { MessageUtils, PermissionUtils } from '../utils';
@@ -18,80 +18,72 @@ let Config = require('../../config/config.json');
 let Debug = require('../../config/debug.json');
 let Logs = require('../../lang/logs.json');
 
-export class CommandHandler {
+export class CommandHandler implements EventHandler {
     private rateLimiter = new RateLimiter(
         Config.rateLimiting.commands.amount,
         Config.rateLimiting.commands.interval * 1000
     );
 
-    constructor(
-        private prefix: string,
-        private helpCommand: Command,
-        private commands: Command[]
-    ) {}
+    constructor(public commands: Command[]) {}
 
-    public shouldHandle(msg: Message, args: string[]): boolean {
-        return (
-            [this.prefix, `<@${msg.client.user.id}>`, `<@!${msg.client.user.id}>`].includes(
-                args[0].toLowerCase()
-            ) && !msg.author.bot
-        );
-    }
-
-    public async process(msg: Message, args: string[]): Promise<void> {
+    public async process(intr: CommandInteraction): Promise<void> {
         // Check if user is rate limited
-        let limited = this.rateLimiter.take(msg.author.id);
+        let limited = this.rateLimiter.take(intr.user.id);
         if (limited) {
             return;
         }
+
+        // Defer interaction
+        // NOTE: Anything after this point we should be responding to the interaction
+        await intr.deferReply();
 
         // TODO: Get data from database
         let data = new EventData();
 
         // Check if I have permission to send a message
-        if (!PermissionUtils.canSendEmbed(msg.channel)) {
+        if (!PermissionUtils.canSendEmbed(intr.channel)) {
             // No permission to send message
-            if (PermissionUtils.canSend(msg.channel)) {
+            if (PermissionUtils.canSend(intr.channel)) {
                 let message = Lang.getRef('messages.missingEmbedPerms', data.lang());
-                await MessageUtils.send(msg.channel, message);
+                await MessageUtils.sendIntr(intr, message);
             }
-            return;
-        }
 
-        // If only a prefix, run the help command
-        if (args.length === 1) {
-            await this.helpCommand.execute(msg, args, data);
+            // TODO: This could be a problem, we need to send a response back but have no permission
             return;
         }
 
         // Try to find the command the user wants
-        let command = this.find(args[1], data.lang());
-
-        // If no command found, run the help command
+        let command = this.commands.find(command => command.name === intr.commandName);
         if (!command) {
-            await this.helpCommand.execute(msg, args, data);
+            await this.sendError(intr, data);
+            Logger.error(
+                Logs.error.commandNotFound
+                    .replaceAll('{INTERACTION_ID}', intr.id)
+                    .replaceAll('{COMMAND_NAME}', command.name)
+            );
             return;
         }
 
-        if (command.requireDev && !Config.developers.includes(msg.author.id)) {
-            await MessageUtils.send(
-                msg.channel,
+        if (command.requireDev && !Config.developers.includes(intr.user.id)) {
+            await MessageUtils.sendIntr(
+                intr,
                 Lang.getEmbed('validationEmbeds.devOnlyCommand', data.lang())
             );
             return;
         }
 
-        if (command.requireGuild && !msg.guild) {
-            await MessageUtils.send(
-                msg.channel,
+        if (command.requireGuild && !intr.guild) {
+            await MessageUtils.sendIntr(
+                intr,
                 Lang.getEmbed('validationEmbeds.serverOnlyCommand', data.lang())
             );
             return;
         }
 
-        if (msg.member && !this.hasPermission(msg.member, command)) {
-            await MessageUtils.send(
-                msg.channel,
+        // TODO: Remove "as GuildMember",  why does discord.js have intr.member as a "APIInteractionGuildMember"?
+        if (intr.member && !this.hasPermission(intr.member as GuildMember, command)) {
+            await MessageUtils.sendIntr(
+                intr,
                 Lang.getEmbed('validationEmbeds.permissionRequired', data.lang())
             );
             return;
@@ -99,46 +91,32 @@ export class CommandHandler {
 
         // Execute the command
         try {
-            await command.execute(msg, args, data);
+            await command.execute(intr, data);
         } catch (error) {
-            // Try to notify sender of command error
-            try {
-                await MessageUtils.send(
-                    msg.channel,
-                    Lang.getEmbed('errorEmbeds.command', data.lang(), {
-                        ERROR_CODE: msg.id,
-                    })
-                );
-            } catch {
-                // Ignore
-            }
+            await this.sendError(intr, data);
 
             // Log command error
             Logger.error(
-                msg.channel instanceof TextChannel ||
-                    msg.channel instanceof NewsChannel ||
-                    msg.channel instanceof ThreadChannel
+                intr.channel instanceof TextChannel ||
+                    intr.channel instanceof NewsChannel ||
+                    intr.channel instanceof ThreadChannel
                     ? Logs.error.commandGuild
-                          .replaceAll('{MESSAGE_ID}', msg.id)
-                          .replaceAll('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
-                          .replaceAll('{USER_TAG}', msg.author.tag)
-                          .replaceAll('{USER_ID}', msg.author.id)
-                          .replaceAll('{CHANNEL_NAME}', msg.channel.name)
-                          .replaceAll('{CHANNEL_ID}', msg.channel.id)
-                          .replaceAll('{GUILD_NAME}', msg.guild.name)
-                          .replaceAll('{GUILD_ID}', msg.guild.id)
+                          .replaceAll('{INTERACTION_ID}', intr.id)
+                          .replaceAll('{COMMAND_NAME}', command.name)
+                          .replaceAll('{USER_TAG}', intr.user.tag)
+                          .replaceAll('{USER_ID}', intr.user.id)
+                          .replaceAll('{CHANNEL_NAME}', intr.channel.name)
+                          .replaceAll('{CHANNEL_ID}', intr.channel.id)
+                          .replaceAll('{GUILD_NAME}', intr.guild.name)
+                          .replaceAll('{GUILD_ID}', intr.guild.id)
                     : Logs.error.commandOther
-                          .replaceAll('{MESSAGE_ID}', msg.id)
-                          .replaceAll('{COMMAND_KEYWORD}', command.keyword(Lang.Default))
-                          .replaceAll('{USER_TAG}', msg.author.tag)
-                          .replaceAll('{USER_ID}', msg.author.id),
+                          .replaceAll('{INTERACTION_ID}', intr.id)
+                          .replaceAll('{COMMAND_NAME}', command.name)
+                          .replaceAll('{USER_TAG}', intr.user.tag)
+                          .replaceAll('{USER_ID}', intr.user.id),
                 error
             );
         }
-    }
-
-    private find(input: string, langCode: LangCode): Command {
-        return this.commands.find(command => command.regex(langCode).test(input));
     }
 
     private hasPermission(member: GuildMember, command: Command): boolean {
@@ -161,5 +139,18 @@ export class CommandHandler {
         }
 
         return true;
+    }
+
+    private async sendError(intr: CommandInteraction, data: EventData): Promise<void> {
+        try {
+            await MessageUtils.sendIntr(
+                intr,
+                Lang.getEmbed('errorEmbeds.command', data.lang(), {
+                    ERROR_CODE: intr.id,
+                })
+            );
+        } catch {
+            // Ignore
+        }
     }
 }

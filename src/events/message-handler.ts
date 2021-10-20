@@ -1,9 +1,9 @@
 import { Message } from 'discord.js';
 
-import { CommandHandler, EventHandler, TriggerHandler } from '.';
+import { EventHandler, TriggerHandler } from '.';
 
 export class MessageHandler implements EventHandler {
-    constructor(private commandHandler: CommandHandler, private triggerHandler: TriggerHandler) {}
+    constructor(private triggerHandler: TriggerHandler) {}
 
     public async process(msg: Message): Promise<void> {
         // Don't respond to system messages or self
@@ -11,14 +11,7 @@ export class MessageHandler implements EventHandler {
             return;
         }
 
-        // Process command
-        let args = msg.content.split(' ');
-        if (this.commandHandler.shouldHandle(msg, args)) {
-            await this.commandHandler.process(msg, args);
-            return;
-        }
-
-        // Process triggers
+        // Process trigger
         await this.triggerHandler.process(msg);
     }
 }
