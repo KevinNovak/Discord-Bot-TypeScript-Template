@@ -67,7 +67,7 @@ export class ShardsController implements Controller {
         let reqBody: SetShardPresencesRequest = res.locals.input;
 
         await this.shardManager.broadcastEval(
-            async (client, context) => {
+            (client, context) => {
                 let customClient = client as CustomClient;
                 return customClient.setPresence(context.type, context.name, context.url);
             },

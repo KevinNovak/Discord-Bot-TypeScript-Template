@@ -5,7 +5,7 @@ export class CustomClient extends Client {
         super(clientOptions);
     }
 
-    public async setPresence(type: ActivityType, name: string, url: string): Promise<Presence> {
+    public setPresence(type: ActivityType, name: string, url: string): Presence {
         return this.user?.setPresence({
             activities: [
                 {
