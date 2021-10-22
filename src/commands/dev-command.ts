@@ -10,11 +10,10 @@ import { Command } from './command';
 let TsConfig = require('../../tsconfig.json');
 
 export class DevCommand implements Command {
-    public static data: ApplicationCommandData = {
+    public data: ApplicationCommandData = {
         name: Lang.getCom('commands.dev'),
         description: Lang.getCom('commandDescs.dev'),
     };
-    public name = DevCommand.data.name;
     public requireDev = true;
     public requireGuild = false;
     public requirePerms = [];

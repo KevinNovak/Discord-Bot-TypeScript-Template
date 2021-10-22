@@ -7,11 +7,10 @@ import { MessageUtils } from '../utils';
 import { Command } from './command';
 
 export class TranslateCommand implements Command {
-    public static data: ApplicationCommandData = {
+    public data: ApplicationCommandData = {
         name: Lang.getCom('commands.translate'),
         description: Lang.getCom('commandDescs.translate'),
     };
-    public name = TranslateCommand.data.name;
     public requireDev = false;
     public requireGuild = false;
     public requirePerms = [];

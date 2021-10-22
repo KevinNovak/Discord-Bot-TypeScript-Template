@@ -9,7 +9,7 @@
             "preLaunchTask": "build",
             "cwd": "${workspaceFolder}",
             "runtimeExecutable": "node",
-            "args": ["--enable-source-maps", "${workspaceFolder}/dist/register.js"],
+            "args": ["--enable-source-maps", "${workspaceFolder}/dist/start.js", "--register"],
             "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
             "outputCapture": "std",
             "internalConsoleOptions": "openOnSessionStart",
