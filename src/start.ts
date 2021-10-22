@@ -92,6 +92,7 @@ async function registerCommands(commands: Command[]): Promise<void> {
         await rest.put(Routes.applicationCommands(Config.client.id), { body: cmdDatas });
     } catch (error) {
         Logger.error(Logs.error.commandsRegistering, error);
+        return;
     }
 
     Logger.info(Logs.info.commandsRegistered);
