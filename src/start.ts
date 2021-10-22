@@ -39,7 +39,7 @@ async function start(): Promise<void> {
     });
 
     // Commands
-    let commands = [
+    let commands: Command[] = [
         new DevCommand(),
         new HelpCommand(),
         new InfoCommand(),
