@@ -7,7 +7,7 @@ import { MessageUtils } from '../utils';
 import { Command } from './command';
 
 export class LinkCommand implements Command {
-    public static data: ApplicationCommandData = {
+    public data: ApplicationCommandData = {
         name: Lang.getCom('commands.link'),
         description: Lang.getCom('commandDescs.link'),
         options: [
@@ -37,7 +37,6 @@ export class LinkCommand implements Command {
             },
         ],
     };
-    public name = LinkCommand.data.name;
     public requireDev = false;
     public requireGuild = false;
     public requirePerms = [];

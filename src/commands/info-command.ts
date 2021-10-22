@@ -6,11 +6,10 @@ import { MessageUtils } from '../utils';
 import { Command } from './command';
 
 export class InfoCommand implements Command {
-    public static data: ApplicationCommandData = {
+    public data: ApplicationCommandData = {
         name: Lang.getCom('commands.info'),
         description: Lang.getCom('commandDescs.info'),
     };
-    public name = InfoCommand.data.name;
     public requireDev = false;
     public requireGuild = false;
     public requirePerms = [];

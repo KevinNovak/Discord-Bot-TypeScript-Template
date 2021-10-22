@@ -15,7 +15,7 @@
         "format": "prettier --check .",
         "format:fix": "prettier --write .",
         "build": "tsc --project tsconfig.json",
-        "register": "npm run build && node --enable-source-maps dist/register.js",
+        "register": "npm run build && node --enable-source-maps dist/start.js --register",
         "start": "npm run build && node --enable-source-maps dist/start.js",
         "start:dev": "ts-node-dev --watch src/**/*.ts,config/**/*.json,lang/**/*.json src/start.ts",
         "start:shard": "npm run build && node --enable-source-maps dist/app.js",
