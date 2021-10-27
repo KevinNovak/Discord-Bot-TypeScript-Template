@@ -12,7 +12,7 @@ let TsConfig = require('../../tsconfig.json');
 export class DevCommand implements Command {
     public data: ApplicationCommandData = {
         name: Lang.getCom('commands.dev'),
-        description: Lang.getCom('commandDescs.dev'),
+        description: Lang.getRef('commandDescs.dev', Lang.Default),
     };
     public requireDev = true;
     public requireGuild = false;

@@ -9,10 +9,10 @@ import { Command } from './command';
 export class LinkCommand implements Command {
     public data: ApplicationCommandData = {
         name: Lang.getCom('commands.link'),
-        description: Lang.getCom('commandDescs.link'),
+        description: Lang.getRef('commandDescs.link', Lang.Default),
         options: [
             {
-                name: 'link',
+                name: Lang.getCom('arguments.link'),
                 description: 'Link to display.',
                 required: true,
                 type: ApplicationCommandOptionType.String.valueOf(),

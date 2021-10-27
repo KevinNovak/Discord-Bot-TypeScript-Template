@@ -10,13 +10,8 @@
         "test": "test",
         "translate": "translate"
     },
-    "commandDescs": {
-        "dev": "View developer info.",
-        "help": "View help menu and list of commands.",
-        "info": "View bot info.",
-        "link": "Get links to invite, support, etc.",
-        "test": "Run the test command.",
-        "translate": "View translation info."
+    "arguments": {
+        "link": "link"
     },
     "colors": {
         "success": "#00ff83",

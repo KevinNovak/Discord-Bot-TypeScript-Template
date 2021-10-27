@@ -8,7 +8,7 @@ import { Command } from './command';
 export class HelpCommand implements Command {
     public data: ApplicationCommandData = {
         name: Lang.getCom('commands.help'),
-        description: Lang.getCom('commandDescs.help'),
+        description: Lang.getRef('commandDescs.help', Lang.Default),
     };
     public requireDev = false;
     public requireGuild = false;
