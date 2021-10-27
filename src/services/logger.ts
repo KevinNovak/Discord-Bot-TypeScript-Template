@@ -4,20 +4,25 @@ import pino from 'pino';
 
 let Config = require('../../config/config.json');
 
-let logger = pino({
-    formatters: {
-        level: label => {
-            return { level: label };
+let logger = pino(
+    {
+        formatters: {
+            level: label => {
+                return { level: label };
+            },
         },
     },
-    prettyPrint: Config.logging.pretty
-        ? {
-              colorize: true,
-              ignore: 'pid,hostname',
-              translateTime: 'yyyy-mm-dd HH:MM:ss.l',
-          }
-        : false,
-});
+    Config.logging.pretty
+        ? pino.transport({
+              target: 'pino-pretty',
+              options: {
+                  colorize: true,
+                  ignore: 'pid,hostname',
+                  translateTime: 'yyyy-mm-dd HH:MM:ss.l',
+              },
+          })
+        : undefined
+);
 
 export class Logger {
     private static shardId: number;
