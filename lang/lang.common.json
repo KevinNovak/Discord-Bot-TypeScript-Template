@@ -1,6 +1,7 @@
 {
     "bot": {
-        "name": "My Bot"
+        "name": "My Bot",
+        "author": "My Name"
     },
     "commands": {
         "dev": "dev",

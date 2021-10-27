@@ -194,7 +194,7 @@
             "docsEmbed": "[View Documentation]({{COM:links.docs}})",
             "voteEmbed": "[Vote for {{COM:bot.name}}!]({{COM:links.vote}})",
             "supportEmbed": "[Join Support Server]({{COM:links.support}})",
-            "authorEmbed": "[My Name]({{COM:links.author}})",
+            "authorEmbed": "[{{COM:bot.author}}]({{COM:links.author}})",
             "sourceEmbed": "[View Source Code]({{COM:links.source}})",
             "templateEmbed": "[Discord Bot TypeScript Template]({{COM:links.template}})"
         },
