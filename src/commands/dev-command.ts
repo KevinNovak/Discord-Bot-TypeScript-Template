@@ -1,5 +1,6 @@
 import djs, { ApplicationCommandData, CommandInteraction } from 'discord.js';
 import fileSize from 'filesize';
+import os from 'os';
 import typescript from 'typescript';
 
 import { EventData } from '../models/internal-models';
@@ -66,6 +67,7 @@ export class DevCommand implements Command {
                     serverCount > 0
                         ? fileSize(memory.heapUsed / serverCount)
                         : Lang.getRef('other.na', data.lang()),
+                HOSTNAME: os.hostname(),
                 SHARD_ID: (intr.guild?.shardId ?? 0).toString(),
                 SERVER_ID: intr.guild?.id ?? Lang.getRef('other.na', data.lang()),
                 BOT_ID: intr.client.user.id,
