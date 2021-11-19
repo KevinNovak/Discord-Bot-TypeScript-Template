@@ -57,7 +57,7 @@ A generic command, `/test`, which can be copied to create additional commands.
 
 An `/info` command, which shows more information and relevant links.
 
-![Info Command](https://i.imgur.com/P4zeAx9.png)
+![Info Command](https://i.imgur.com/BQcxVFm.png)
 
 ### Dev Command
 
@@ -67,7 +67,7 @@ A `/dev` command, which shows detailed information that may be helpful to develo
 
 ### Link Command
 
-A `/link` command, which provides relevant links (`invite`, `support`, `docs`, `vote`).
+A `/link` command, which provides relevant links (`invite`, `support`, `docs`, `vote`, `donate`).
 
 ![Misc Commands](https://i.imgur.com/FOZcKM8.png)
 

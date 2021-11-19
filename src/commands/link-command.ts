@@ -33,6 +33,10 @@ export class LinkCommand implements Command {
                         name: 'vote',
                         value: 'VOTE',
                     },
+                    {
+                        name: 'donate',
+                        value: 'DONATE',
+                    },
                 ],
             },
         ],
@@ -60,6 +64,10 @@ export class LinkCommand implements Command {
             }
             case 'VOTE': {
                 embed = Lang.getEmbed('displayEmbeds.vote', data.lang());
+                break;
+            }
+            case 'DONATE': {
+                embed = Lang.getEmbed('displayEmbeds.donate', data.lang());
                 break;
             }
             default: {
