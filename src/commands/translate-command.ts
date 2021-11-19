@@ -9,7 +9,7 @@ import { Command } from './command';
 export class TranslateCommand implements Command {
     public data: ApplicationCommandData = {
         name: Lang.getCom('commands.translate'),
-        description: Lang.getRef('commandDescs.test', Lang.Default),
+        description: Lang.getRef('commandDescs.translate', Lang.Default),
     };
     public requireDev = false;
     public requireGuild = false;
