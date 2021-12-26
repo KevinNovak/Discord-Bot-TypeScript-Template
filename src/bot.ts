@@ -161,7 +161,11 @@ export class Bot {
         }
 
         try {
-            await this.reactionHandler.process(msgReaction, reactor);
+            await this.reactionHandler.process(
+                msgReaction,
+                await msgReaction.message.fetch(),
+                reactor
+            );
         } catch (error) {
             Logger.error(Logs.error.reaction, error);
         }
