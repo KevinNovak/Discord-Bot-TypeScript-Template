@@ -21,6 +21,7 @@ import {
     TriggerHandler,
 } from './events';
 import { CustomClient } from './extensions';
+import { Reaction } from './reactions';
 import { JobService, Logger } from './services';
 
 let Config = require('../config/config.json');
@@ -46,7 +47,12 @@ async function start(): Promise<void> {
         new LinkCommand(),
         new TestCommand(),
         new TranslateCommand(),
+        // TODO: Add new commands here
     ].sort((a, b) => (a.data.name > b.data.name ? 1 : -1));
+
+    let reactions: Reaction[] = [
+        // TODO: Add new reactions here
+    ];
 
     // Event handlers
     let guildJoinHandler = new GuildJoinHandler();
@@ -54,7 +60,7 @@ async function start(): Promise<void> {
     let commandHandler = new CommandHandler(commands);
     let triggerHandler = new TriggerHandler([]);
     let messageHandler = new MessageHandler(triggerHandler);
-    let reactionHandler = new ReactionHandler([]);
+    let reactionHandler = new ReactionHandler(reactions);
 
     let bot = new Bot(
         Config.client.token,
