@@ -63,7 +63,7 @@ export class Lang {
                 iconURL: jsonValue.footer?.icon,
             },
             timestamp: jsonValue.timestamp ? Date.now() : undefined,
-            color: jsonValue.color ?? '#0099ff',
+            color: jsonValue.color ?? Lang.getCom('colors.default'),
         });
     };
 }
