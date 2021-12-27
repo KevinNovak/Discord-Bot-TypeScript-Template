@@ -43,36 +43,34 @@ export class Logger {
         }
 
         // Otherwise log details about the error
-        switch (error.constructor) {
-            case Response: {
-                let res = error as Response;
+        switch (true) {
+            case error instanceof Response: {
                 let resText: string;
                 try {
-                    resText = await res.text();
+                    resText = await error.text();
                 } catch {
                     // Ignore
                 }
                 logger
                     .child({
-                        path: res.url,
-                        statusCode: res.status,
-                        statusName: res.statusText,
-                        headers: res.headers.raw(),
+                        path: error.url,
+                        statusCode: error.status,
+                        statusName: error.statusText,
+                        headers: error.headers.raw(),
                         body: resText,
                     })
                     .error(message);
                 break;
             }
-            case DiscordAPIError: {
-                let discordError = error as DiscordAPIError;
+            case error instanceof DiscordAPIError: {
                 logger
                     .child({
-                        message: discordError.message,
-                        code: discordError.code,
-                        statusCode: discordError.httpStatus,
-                        method: discordError.method,
-                        path: discordError.path,
-                        stack: discordError.stack,
+                        message: error.message,
+                        code: error.code,
+                        statusCode: error.httpStatus,
+                        method: error.method,
+                        path: error.path,
+                        stack: error.stack,
                     })
                     .error(message);
                 break;
