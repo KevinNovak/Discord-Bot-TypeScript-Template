@@ -106,25 +106,25 @@
                     }
                 ]
             },
-            "invite": {
-                "title": "{{COM:bot.name}} - Invite",
-                "description": "Click [here]({{COM:links.invite}}) to invite {{COM:bot.name}} to a server!"
-            },
-            "docs": {
+            "linkDocs": {
                 "title": "{{COM:bot.name}} - Documentation",
                 "description": "Click [here]({{COM:links.docs}}/) to view the bot documentation."
             },
-            "vote": {
-                "title": "{{COM:bot.name}} - Vote",
-                "description": "Support {{COM:bot.name}} by voting [here]({{COM:links.vote}})!"
-            },
-            "donate": {
+            "linkDonate": {
                 "title": "{{COM:bot.name}} - Donate",
                 "description": "Support {{COM:bot.name}} by donating with PayPal [here]({{COM:links.donate}})!"
             },
-            "support": {
+            "linkInvite": {
+                "title": "{{COM:bot.name}} - Invite",
+                "description": "Click [here]({{COM:links.invite}}) to invite {{COM:bot.name}} to a server!"
+            },
+            "linkSupport": {
                 "title": "{{COM:bot.name}} - Support",
                 "description": "Need help? Join our [support server]({{COM:links.support}})!"
+            },
+            "linkVote": {
+                "title": "{{COM:bot.name}} - Vote",
+                "description": "Support {{COM:bot.name}} by voting [here]({{COM:links.vote}})!"
             }
         },
         "validationEmbeds": {
@@ -162,7 +162,7 @@
             }
         },
         "metaRegexes": {
-            "language": "/\\b({{REF:meta.language}}|en Pirate|Pirate)\\b/i"
+            "language": "/\\b({{REF:meta.language}}|en US|English)\\b/i"
         },
         "channelRegexes": {
             "bot": "/bot|command|cmd/i"
@@ -170,8 +170,8 @@
     },
     "refs": {
         "meta": {
-            "language": "en-Pirate",
-            "languageDisplay": "Pirate",
+            "language": "en-US",
+            "languageDisplay": "English",
             "translators": "[TranslatorName#1234](https://github.com/)"
         },
         "bot": {
@@ -196,14 +196,14 @@
             "na": "N/A"
         },
         "links": {
-            "inviteEmbed": "[Invite {{COM:bot.name}} to a Server!]({{COM:links.invite}})",
-            "docsEmbed": "[View Documentation]({{COM:links.docs}})",
-            "voteEmbed": "[Vote for {{COM:bot.name}}!]({{COM:links.vote}})",
-            "donateEmbed": "[Donate via PayPal]({{COM:links.donate}})",
-            "supportEmbed": "[Join Support Server]({{COM:links.support}})",
             "authorEmbed": "[{{COM:bot.author}}]({{COM:links.author}})",
+            "docsEmbed": "[View Documentation]({{COM:links.docs}})",
+            "donateEmbed": "[Donate via PayPal]({{COM:links.donate}})",
+            "inviteEmbed": "[Invite {{COM:bot.name}} to a Server!]({{COM:links.invite}})",
             "sourceEmbed": "[View Source Code]({{COM:links.source}})",
-            "templateEmbed": "[Discord Bot TypeScript Template]({{COM:links.template}})"
+            "supportEmbed": "[Join Support Server]({{COM:links.support}})",
+            "templateEmbed": "[Discord Bot TypeScript Template]({{COM:links.template}})",
+            "voteEmbed": "[Vote for {{COM:bot.name}}!]({{COM:links.vote}})"
         },
         "messages": {
             "missingEmbedPerms": [

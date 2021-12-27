@@ -196,14 +196,14 @@
             "na": "N/A"
         },
         "links": {
-            "inviteEmbed": "[Invite {{COM:bot.name}} to a Server!]({{COM:links.invite}})",
-            "docsEmbed": "[View Documentation]({{COM:links.docs}})",
-            "voteEmbed": "[Vote for {{COM:bot.name}}!]({{COM:links.vote}})",
-            "donateEmbed": "[Donate via PayPal]({{COM:links.donate}})",
-            "supportEmbed": "[Join Support Server]({{COM:links.support}})",
             "authorEmbed": "[{{COM:bot.author}}]({{COM:links.author}})",
+            "docsEmbed": "[View Documentation]({{COM:links.docs}})",
+            "donateEmbed": "[Donate via PayPal]({{COM:links.donate}})",
+            "inviteEmbed": "[Invite {{COM:bot.name}} to a Server!]({{COM:links.invite}})",
             "sourceEmbed": "[View Source Code]({{COM:links.source}})",
-            "templateEmbed": "[Discord Bot TypeScript Template]({{COM:links.template}})"
+            "supportEmbed": "[Join Support Server]({{COM:links.support}})",
+            "templateEmbed": "[Discord Bot TypeScript Template]({{COM:links.template}})",
+            "voteEmbed": "[Vote for {{COM:bot.name}}!]({{COM:links.vote}})"
         },
         "messages": {
             "missingEmbedPerms": [
