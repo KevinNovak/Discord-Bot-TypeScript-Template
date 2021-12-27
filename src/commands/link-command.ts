@@ -18,24 +18,24 @@ export class LinkCommand implements Command {
                 type: ApplicationCommandOptionType.String.valueOf(),
                 choices: [
                     {
-                        name: 'invite',
-                        value: 'INVITE',
-                    },
-                    {
-                        name: 'support',
-                        value: 'SUPPORT',
-                    },
-                    {
                         name: 'docs',
-                        value: 'DOCS',
-                    },
-                    {
-                        name: 'vote',
-                        value: 'VOTE',
+                        value: 'docs',
                     },
                     {
                         name: 'donate',
-                        value: 'DONATE',
+                        value: 'donate',
+                    },
+                    {
+                        name: 'invite',
+                        value: 'invite',
+                    },
+                    {
+                        name: 'support',
+                        value: 'support',
+                    },
+                    {
+                        name: 'vote',
+                        value: 'vote',
                     },
                 ],
             },
@@ -50,24 +50,24 @@ export class LinkCommand implements Command {
 
         let embed: MessageEmbed;
         switch (link) {
-            case 'INVITE': {
-                embed = Lang.getEmbed('displayEmbeds.invite', data.lang());
+            case 'docs': {
+                embed = Lang.getEmbed('displayEmbeds.linkDocs', data.lang());
                 break;
             }
-            case 'SUPPORT': {
-                embed = Lang.getEmbed('displayEmbeds.support', data.lang());
+            case 'donate': {
+                embed = Lang.getEmbed('displayEmbeds.linkDonate', data.lang());
                 break;
             }
-            case 'DOCS': {
-                embed = Lang.getEmbed('displayEmbeds.docs', data.lang());
+            case 'invite': {
+                embed = Lang.getEmbed('displayEmbeds.linkInvite', data.lang());
                 break;
             }
-            case 'VOTE': {
-                embed = Lang.getEmbed('displayEmbeds.vote', data.lang());
+            case 'support': {
+                embed = Lang.getEmbed('displayEmbeds.linkSupport', data.lang());
                 break;
             }
-            case 'DONATE': {
-                embed = Lang.getEmbed('displayEmbeds.donate', data.lang());
+            case 'vote': {
+                embed = Lang.getEmbed('displayEmbeds.linkVote', data.lang());
                 break;
             }
             default: {
