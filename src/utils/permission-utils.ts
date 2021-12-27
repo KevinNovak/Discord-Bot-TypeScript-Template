@@ -2,13 +2,13 @@ import {
     DMChannel,
     NewsChannel,
     Permissions,
-    TextBasedChannels,
+    TextBasedChannel,
     TextChannel,
     ThreadChannel,
 } from 'discord.js';
 
 export class PermissionUtils {
-    public static canSend(channel: TextBasedChannels): boolean {
+    public static canSend(channel: TextBasedChannel): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (
@@ -33,7 +33,7 @@ export class PermissionUtils {
         }
     }
 
-    public static canSendEmbed(channel: TextBasedChannels): boolean {
+    public static canSendEmbed(channel: TextBasedChannel): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (
@@ -60,7 +60,7 @@ export class PermissionUtils {
         }
     }
 
-    public static canMention(channel: TextBasedChannels): boolean {
+    public static canMention(channel: TextBasedChannel): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (
@@ -85,7 +85,7 @@ export class PermissionUtils {
         }
     }
 
-    public static canReact(channel: TextBasedChannels, removeOthers: boolean = false): boolean {
+    public static canReact(channel: TextBasedChannel, removeOthers: boolean = false): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (
@@ -115,7 +115,7 @@ export class PermissionUtils {
         }
     }
 
-    public static canPin(channel: TextBasedChannels, unpinOld: boolean = false): boolean {
+    public static canPin(channel: TextBasedChannel, unpinOld: boolean = false): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (
