@@ -6,7 +6,7 @@ export class StringUtils {
             return input;
         }
 
-        let output = input.substr(0, addEllipsis ? length - 3 : length);
+        let output = input.substring(0, addEllipsis ? length - 3 : length);
         if (addEllipsis) {
             output += '...';
         }

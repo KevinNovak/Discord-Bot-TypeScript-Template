@@ -5,6 +5,7 @@
     "rules": {
         "arrow-parens": false,
         "await-promise": [true],
+        "deprecation": true,
         "interface-name": false,
         "max-classes-per-file": false,
         "member-ordering": false,
