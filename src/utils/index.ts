@@ -1,4 +1,5 @@
 export { ClientUtils } from './client-utils';
+export { CommandUtils } from './command-utils';
 export { FormatUtils } from './format-utils';
 export { MathUtils } from './math-utils';
 export { MessageUtils } from './message-utils';
