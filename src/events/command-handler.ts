@@ -36,6 +36,7 @@ export class CommandHandler implements EventHandler {
         if (!PermissionUtils.canSendEmbed(intr.channel)) {
             let message = Lang.getRef('messages.missingEmbedPerms', data.lang());
             await MessageUtils.sendIntr(intr, message);
+            return;
         }
 
         // Try to find the command the user wants
