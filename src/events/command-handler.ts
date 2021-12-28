@@ -34,14 +34,8 @@ export class CommandHandler implements EventHandler {
 
         // Check if I have permission to send a message
         if (!PermissionUtils.canSendEmbed(intr.channel)) {
-            // No permission to send message
-            if (PermissionUtils.canSend(intr.channel)) {
-                let message = Lang.getRef('messages.missingEmbedPerms', data.lang());
-                await MessageUtils.sendIntr(intr, message);
-            }
-
-            // TODO: This could be a problem, we need to send a response back but have no permission
-            return;
+            let message = Lang.getRef('messages.missingEmbedPerms', data.lang());
+            await MessageUtils.sendIntr(intr, message);
         }
 
         // Try to find the command the user wants
