@@ -11,7 +11,7 @@ import { Command } from './command';
 let TsConfig = require('../../tsconfig.json');
 
 export class DevCommand implements Command {
-    public data: ApplicationCommandData = {
+    public metadata: ApplicationCommandData = {
         name: Lang.getCom('commands.dev'),
         description: Lang.getRef('commandDescs.dev', Lang.Default),
     };

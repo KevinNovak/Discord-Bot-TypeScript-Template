@@ -49,7 +49,7 @@ async function start(): Promise<void> {
         new TestCommand(),
         new TranslateCommand(),
         // TODO: Add new commands here
-    ].sort((a, b) => (a.data.name > b.data.name ? 1 : -1));
+    ].sort((a, b) => (a.metadata.name > b.metadata.name ? 1 : -1));
 
     // Reactions
     let reactions: Reaction[] = [
@@ -89,7 +89,7 @@ async function start(): Promise<void> {
 }
 
 async function registerCommands(commands: Command[]): Promise<void> {
-    let cmdDatas = commands.map(cmd => cmd.data);
+    let cmdDatas = commands.map(cmd => cmd.metadata);
     let cmdNames = cmdDatas.map(cmdData => cmdData.name);
 
     Logger.info(

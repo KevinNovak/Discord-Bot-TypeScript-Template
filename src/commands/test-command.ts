@@ -6,7 +6,7 @@ import { MessageUtils } from '../utils';
 import { Command } from './command';
 
 export class TestCommand implements Command {
-    public data: ApplicationCommandData = {
+    public metadata: ApplicationCommandData = {
         name: Lang.getCom('commands.test'),
         description: Lang.getRef('commandDescs.test', Lang.Default),
     };
