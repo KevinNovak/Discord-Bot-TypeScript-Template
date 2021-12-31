@@ -5,6 +5,8 @@ import {
     Interaction,
     Message,
     MessageReaction,
+    PartialMessageReaction,
+    PartialUser,
     RateLimitData,
     User,
 } from 'discord.js';
@@ -44,8 +46,10 @@ export class Bot {
 
     private registerListeners(): void {
         this.client.on(Constants.Events.CLIENT_READY, () => this.onReady());
-        this.client.on(Constants.Events.SHARD_READY, (shardId: number) =>
-            this.onShardReady(shardId)
+        this.client.on(
+            Constants.Events.SHARD_READY,
+            (shardId: number, unavailableGuilds: Set<string>) =>
+                this.onShardReady(shardId, unavailableGuilds)
         );
         this.client.on(Constants.Events.GUILD_CREATE, (guild: Guild) => this.onGuildJoin(guild));
         this.client.on(Constants.Events.GUILD_DELETE, (guild: Guild) => this.onGuildLeave(guild));
@@ -55,7 +59,8 @@ export class Bot {
         );
         this.client.on(
             Constants.Events.MESSAGE_REACTION_ADD,
-            (messageReaction: MessageReaction, user: User) => this.onReaction(messageReaction, user)
+            (messageReaction: MessageReaction | PartialMessageReaction, user: User | PartialUser) =>
+                this.onReaction(messageReaction, user)
         );
         this.client.on(Constants.Events.RATE_LIMIT, (rateLimitData: RateLimitData) =>
             this.onRateLimit(rateLimitData)
@@ -83,7 +88,7 @@ export class Bot {
         Logger.info(Logs.info.clientReady);
     }
 
-    private onShardReady(shardId: number): void {
+    private onShardReady(shardId: number, _unavailableGuilds: Set<string>): void {
         Logger.setShardId(shardId);
     }
 
@@ -147,7 +152,10 @@ export class Bot {
         }
     }
 
-    private async onReaction(msgReaction: MessageReaction, reactor: User): Promise<void> {
+    private async onReaction(
+        msgReaction: MessageReaction | PartialMessageReaction,
+        reactor: User | PartialUser
+    ): Promise<void> {
         if (
             !this.ready ||
             (Debug.dummyMode.enabled && !Debug.dummyMode.whitelist.includes(reactor.id))
@@ -160,10 +168,15 @@ export class Bot {
             return;
         }
 
+        reactor = await PartialUtils.fillUser(reactor);
+        if (!reactor) {
+            return;
+        }
+
         try {
             await this.reactionHandler.process(
                 msgReaction,
-                await msgReaction.message.fetch(),
+                msgReaction.message as Message,
                 reactor
             );
         } catch (error) {
