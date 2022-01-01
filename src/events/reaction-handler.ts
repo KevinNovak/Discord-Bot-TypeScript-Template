@@ -17,7 +17,7 @@ export class ReactionHandler implements EventHandler {
 
     public async process(msgReaction: MessageReaction, msg: Message, reactor: User): Promise<void> {
         // Don't respond to self, or other bots
-        if (reactor.id === msgReaction.client.user.id || reactor.bot) {
+        if (reactor.id === msgReaction.client.user?.id || reactor.bot) {
             return;
         }
 
@@ -31,7 +31,7 @@ export class ReactionHandler implements EventHandler {
             return;
         }
 
-        if (reaction.requireSentByClient && msg.author.id !== msg.client.user.id) {
+        if (reaction.requireSentByClient && msg.author.id !== msg.client.user?.id) {
             return;
         }
 

@@ -7,7 +7,7 @@ export class MessageHandler implements EventHandler {
 
     public async process(msg: Message): Promise<void> {
         // Don't respond to system messages or self
-        if (msg.system || msg.author.id === msg.client.user.id) {
+        if (msg.system || msg.author.id === msg.client.user?.id) {
             return;
         }
 
