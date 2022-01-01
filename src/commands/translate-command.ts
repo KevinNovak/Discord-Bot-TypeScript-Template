@@ -1,4 +1,4 @@
-import { ApplicationCommandData, CommandInteraction } from 'discord.js';
+import { ApplicationCommandData, CommandInteraction, PermissionString } from 'discord.js';
 
 import { LangCode, Language } from '../models/enums';
 import { EventData } from '../models/internal-models';
@@ -14,7 +14,7 @@ export class TranslateCommand implements Command {
     public requireDev = false;
     public requireGuild = false;
     public requireClientPerms = [];
-    public requireUserPerms = [];
+    public requireUserPerms: PermissionString[] = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
         let embed = Lang.getEmbed('displayEmbeds.translate', data.lang());
