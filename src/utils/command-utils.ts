@@ -31,7 +31,10 @@ export class CommandUtils {
 
         if (intr.guild && !intr.guild?.me.permissions.has(command.requireClientPerms)) {
             // TODO: Fill out message
-            await MessageUtils.sendIntr(intr, 'Missing perms');
+            await MessageUtils.sendIntr(
+                intr,
+                Lang.getEmbed('validationEmbeds.missingClientPerms', data.lang())
+            );
             return;
         }
 
