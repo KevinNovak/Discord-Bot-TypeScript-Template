@@ -13,6 +13,7 @@ export class TranslateCommand implements Command {
     };
     public requireDev = false;
     public requireGuild = false;
+    public requireClientPerms = [];
     public requireUserPerms = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
