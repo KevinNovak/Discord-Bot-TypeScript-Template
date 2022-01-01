@@ -73,8 +73,8 @@ export class CommandHandler implements EventHandler {
                           .replaceAll('{USER_ID}', intr.user.id)
                           .replaceAll('{CHANNEL_NAME}', intr.channel.name)
                           .replaceAll('{CHANNEL_ID}', intr.channel.id)
-                          .replaceAll('{GUILD_NAME}', intr.guild.name)
-                          .replaceAll('{GUILD_ID}', intr.guild.id)
+                          .replaceAll('{GUILD_NAME}', intr.guild?.name)
+                          .replaceAll('{GUILD_ID}', intr.guild?.id)
                     : Logs.error.commandOther
                           .replaceAll('{INTERACTION_ID}', intr.id)
                           .replaceAll('{COMMAND_NAME}', command.metadata.name)
