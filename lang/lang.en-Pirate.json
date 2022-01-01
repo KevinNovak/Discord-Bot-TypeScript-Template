@@ -148,7 +148,7 @@
                 "description": ["I don't have all permissions required to send messages here!"],
                 "color": "{{COM:colors.warning}}"
             },
-            "permissionRequired": {
+            "missingUserPerms": {
                 "description": "You don't have permission to run that command!",
                 "color": "{{COM:colors.warning}}"
             }
