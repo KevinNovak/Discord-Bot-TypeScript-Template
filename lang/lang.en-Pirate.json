@@ -146,7 +146,7 @@
             },
             "missingClientPerms": {
                 "description": [
-                    "I don't have all permissions required to send messages here!",
+                    "I don't have all permissions required to run that command here! Please check the server and channel permissions to make sure I have the following permissions.",
                     "",
                     "Required permissions: {{PERMISSIONS}}"
                 ],
