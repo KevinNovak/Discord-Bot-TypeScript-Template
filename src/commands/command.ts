@@ -5,6 +5,6 @@ export interface Command {
     metadata: ApplicationCommandData;
     requireDev: boolean;
     requireGuild: boolean;
-    requirePerms: PermissionResolvable[];
+    requireUserPerms: PermissionResolvable[];
     execute(intr: CommandInteraction, data: EventData): Promise<void>;
 }

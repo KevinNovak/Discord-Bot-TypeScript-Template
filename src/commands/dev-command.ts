@@ -17,7 +17,7 @@ export class DevCommand implements Command {
     };
     public requireDev = true;
     public requireGuild = false;
-    public requirePerms = [];
+    public requireUserPerms = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
         let shardCount = intr.client.shard?.count ?? 1;
