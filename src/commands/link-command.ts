@@ -48,7 +48,7 @@ export class LinkCommand implements Command {
     };
     public requireDev = false;
     public requireGuild = false;
-    public requireClientPerms = [];
+    public requireClientPerms: PermissionString[] = [];
     public requireUserPerms: PermissionString[] = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
