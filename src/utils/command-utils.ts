@@ -29,6 +29,12 @@ export class CommandUtils {
             return false;
         }
 
+        if (intr.guild && !intr.guild?.me.permissions.has(command.requireClientPerms)) {
+            // TODO: Fill out message
+            await MessageUtils.sendIntr(intr, 'Missing perms');
+            return;
+        }
+
         // TODO: Remove "as GuildMember",  why does discord.js have intr.member as a "APIInteractionGuildMember"?
         if (intr.member && !this.hasPermission(intr.member as GuildMember, command)) {
             await MessageUtils.sendIntr(
