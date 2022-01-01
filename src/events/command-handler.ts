@@ -34,8 +34,10 @@ export class CommandHandler implements EventHandler {
 
         // Check if I have permission to send a message
         if (!PermissionUtils.canSendEmbed(intr.channel)) {
-            let message = Lang.getRef('messages.missingEmbedPerms', data.lang());
-            await MessageUtils.sendIntr(intr, message);
+            await MessageUtils.sendIntr(
+                intr,
+                Lang.getEmbed('validationEmbeds.missingEmbedPerms', data.lang())
+            );
             return;
         }
 
