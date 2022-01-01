@@ -144,7 +144,7 @@
                 "description": "This command can only be used in a server.",
                 "color": "{{COM:colors.warning}}"
             },
-            "permissionRequired": {
+            "missingUserPerms": {
                 "description": "You don't have permission to run that command!",
                 "color": "{{COM:colors.warning}}"
             }

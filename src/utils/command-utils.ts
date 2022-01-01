@@ -33,7 +33,7 @@ export class CommandUtils {
         if (intr.member && !this.hasPermission(intr.member as GuildMember, command)) {
             await MessageUtils.sendIntr(
                 intr,
-                Lang.getEmbed('validationEmbeds.permissionRequired', data.lang())
+                Lang.getEmbed('validationEmbeds.missingUserPerms', data.lang())
             );
             return false;
         }
