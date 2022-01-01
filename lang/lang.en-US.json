@@ -128,6 +128,14 @@
             }
         },
         "validationEmbeds": {
+            "missingEmbedPerms": {
+                "description": [
+                    "I don't have all permissions required to send messages here!",
+                    "",
+                    "Please allow me to **View Channel**, **Send Messages**, and **Embed Links** in this channel."
+                ],
+                "color": "{{COM:colors.warning}}"
+            },
             "devOnlyCommand": {
                 "description": "This command can only be used by developers.",
                 "color": "{{COM:colors.warning}}"
@@ -204,13 +212,6 @@
             "supportEmbed": "[Join Support Server]({{COM:links.support}})",
             "templateEmbed": "[Discord Bot TypeScript Template]({{COM:links.template}})",
             "voteEmbed": "[Vote for {{COM:bot.name}}!]({{COM:links.vote}})"
-        },
-        "messages": {
-            "missingEmbedPerms": [
-                "I don't have all permissions required to send messages here!",
-                "",
-                "Please allow me to **View Channel**, **Send Messages**, and **Embed Links** in this channel."
-            ]
         }
     }
 }
