@@ -20,7 +20,7 @@ export class HttpService {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
             },
-            body: body ? JSON.stringify(body) : null,
+            body: body ? JSON.stringify(body) : undefined,
         });
     }
 
@@ -32,7 +32,7 @@ export class HttpService {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
             },
-            body: body ? JSON.stringify(body) : null,
+            body: body ? JSON.stringify(body) : undefined,
         });
     }
 
@@ -48,7 +48,7 @@ export class HttpService {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
             },
-            body: body ? JSON.stringify(body) : null,
+            body: body ? JSON.stringify(body) : undefined,
         });
     }
 }
