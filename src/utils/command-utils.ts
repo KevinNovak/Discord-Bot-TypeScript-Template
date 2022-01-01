@@ -1,6 +1,7 @@
 import { CommandInteraction, GuildMember, Permissions } from 'discord.js';
 import { MessageUtils } from '.';
 import { Command } from '../commands';
+import { Permission } from '../models/enums';
 import { EventData } from '../models/internal-models';
 import { Lang } from '../services';
 
@@ -33,7 +34,11 @@ export class CommandUtils {
             // TODO: Fill out message
             await MessageUtils.sendIntr(
                 intr,
-                Lang.getEmbed('validationEmbeds.missingClientPerms', data.lang())
+                Lang.getEmbed('validationEmbeds.missingClientPerms', data.lang(), {
+                    PERMISSIONS: command.requireClientPerms
+                        .map(perm => Permission.Data[perm].displayName(data.lang()))
+                        .join(', '),
+                })
             );
             return;
         }
