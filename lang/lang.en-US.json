@@ -144,6 +144,14 @@
                 "description": "This command can only be used in a server.",
                 "color": "{{COM:colors.warning}}"
             },
+            "missingClientPerms": {
+                "description": [
+                    "I don't have all permissions required to run that command here! Please check the server and channel permissions to make sure I have the following permissions.",
+                    "",
+                    "Required permissions: {{PERMISSIONS}}"
+                ],
+                "color": "{{COM:colors.warning}}"
+            },
             "missingUserPerms": {
                 "description": "You don't have permission to run that command!",
                 "color": "{{COM:colors.warning}}"
@@ -199,6 +207,51 @@
         "fields": {
             "commands": "Commands",
             "links": "Links"
+        },
+        "permissions": {
+            "ADD_REACTIONS": "Add Reactions",
+            "ADMINISTRATOR": "Administrator",
+            "ATTACH_FILES": "Attach Files",
+            "BAN_MEMBERS": "Ban Members",
+            "CHANGE_NICKNAME": "Change Nickname",
+            "CONNECT": "Connect",
+            "CREATE_INSTANT_INVITE": "Create Invite",
+            "CREATE_PRIVATE_THREADS": "Create Private Threads",
+            "CREATE_PUBLIC_THREADS": "Create Public Threads",
+            "DEAFEN_MEMBERS": "Deafen Members",
+            "EMBED_LINKS": "Embed Links",
+            "KICK_MEMBERS": "Kick Members",
+            "MANAGE_CHANNELS": "Manage Channel(s)",
+            "MANAGE_EMOJIS_AND_STICKERS": "Manage Emojis and Stickers",
+            "MANAGE_EVENTS": "Manage Events",
+            "MANAGE_GUILD": "Manage Server",
+            "MANAGE_MESSAGES": "Manage Messages",
+            "MANAGE_NICKNAMES": "Manage Nicknames",
+            "MANAGE_ROLES": "Manage Roles / Permissions",
+            "MANAGE_THREADS": "Manage Threads",
+            "MANAGE_WEBHOOKS": "Manage Webhooks",
+            "MENTION_EVERYONE": "Mention Everyone, Here, and All Roles",
+            "MODERATE_MEMBERS": "Timeout Members",
+            "MOVE_MEMBERS": "Move Members",
+            "MUTE_MEMBERS": "Mute Members",
+            "PRIORITY_SPEAKER": "Priority Speaker",
+            "READ_MESSAGE_HISTORY": "Read Message History",
+            "REQUEST_TO_SPEAK": "Request to Speak",
+            "SEND_MESSAGES": "Send Messages",
+            "SEND_MESSAGES_IN_THREADS": "Send Messages in Threads",
+            "SEND_TTS_MESSAGES": "Send Text-to-Speech Messages",
+            "SPEAK": "Speak",
+            "START_EMBEDDED_ACTIVITIES": "Start Activities",
+            "STREAM": "Video",
+            "USE_APPLICATION_COMMANDS": "Use Application Commands",
+            "USE_EXTERNAL_EMOJIS": "Use External Emoji",
+            "USE_EXTERNAL_STICKERS": "Use External Stickers",
+            "USE_PRIVATE_THREADS": "Use Private Threads",
+            "USE_PUBLIC_THREADS": "Use Public Threads",
+            "USE_VAD": "Use Voice Activity",
+            "VIEW_AUDIT_LOG": "View Audit Log",
+            "VIEW_CHANNEL": "View Channel(s)",
+            "VIEW_GUILD_INSIGHTS": "View Server Insights"
         },
         "other": {
             "na": "N/A"

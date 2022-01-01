@@ -17,6 +17,7 @@ export class DevCommand implements Command {
     };
     public requireDev = true;
     public requireGuild = false;
+    public requireClientPerms: PermissionString[] = [];
     public requireUserPerms: PermissionString[] = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {

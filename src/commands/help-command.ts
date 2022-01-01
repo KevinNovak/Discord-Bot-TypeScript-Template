@@ -12,6 +12,7 @@ export class HelpCommand implements Command {
     };
     public requireDev = false;
     public requireGuild = false;
+    public requireClientPerms: PermissionString[] = [];
     public requireUserPerms: PermissionString[] = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {

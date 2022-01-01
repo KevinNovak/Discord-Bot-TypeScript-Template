@@ -1,6 +1,7 @@
 import { CommandInteraction, GuildMember, Permissions } from 'discord.js';
 import { MessageUtils } from '.';
 import { Command } from '../commands';
+import { Permission } from '../models/enums';
 import { EventData } from '../models/internal-models';
 import { Lang } from '../services';
 
@@ -27,6 +28,18 @@ export class CommandUtils {
                 Lang.getEmbed('validationEmbeds.serverOnlyCommand', data.lang())
             );
             return false;
+        }
+
+        if (intr.guild && !intr.guild?.me.permissions.has(command.requireClientPerms)) {
+            await MessageUtils.sendIntr(
+                intr,
+                Lang.getEmbed('validationEmbeds.missingClientPerms', data.lang(), {
+                    PERMISSIONS: command.requireClientPerms
+                        .map(perm => `**${Permission.Data[perm].displayName(data.lang())}**`)
+                        .join(', '),
+                })
+            );
+            return;
         }
 
         // TODO: Remove "as GuildMember",  why does discord.js have intr.member as a "APIInteractionGuildMember"?
