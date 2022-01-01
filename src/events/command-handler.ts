@@ -46,7 +46,7 @@ export class CommandHandler implements EventHandler {
             Logger.error(
                 Logs.error.commandNotFound
                     .replaceAll('{INTERACTION_ID}', intr.id)
-                    .replaceAll('{COMMAND_NAME}', command.metadata.name)
+                    .replaceAll('{COMMAND_NAME}', intr.commandName)
             );
             return;
         }
