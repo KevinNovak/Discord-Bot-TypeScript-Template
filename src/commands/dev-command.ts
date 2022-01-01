@@ -1,4 +1,4 @@
-import djs, { ApplicationCommandData, CommandInteraction } from 'discord.js';
+import djs, { ApplicationCommandData, CommandInteraction, PermissionString } from 'discord.js';
 import fileSize from 'filesize';
 import os from 'os';
 import typescript from 'typescript';
@@ -17,7 +17,7 @@ export class DevCommand implements Command {
     };
     public requireDev = true;
     public requireGuild = false;
-    public requireUserPerms = [];
+    public requireUserPerms: PermissionString[] = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
         let shardCount = intr.client.shard?.count ?? 1;
