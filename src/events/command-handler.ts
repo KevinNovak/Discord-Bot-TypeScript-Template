@@ -5,7 +5,7 @@ import { EventHandler } from '.';
 import { Command } from '../commands';
 import { EventData } from '../models/internal-models';
 import { Lang, Logger } from '../services';
-import { CommandUtils, MessageUtils, PermissionUtils } from '../utils';
+import { CommandUtils, MessageUtils } from '../utils';
 
 let Config = require('../../config/config.json');
 let Logs = require('../../lang/logs.json');
