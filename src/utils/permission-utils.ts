@@ -1,28 +1,7 @@
 import { DMChannel, GuildChannel, Permissions, TextBasedChannel } from 'discord.js';
 
 export class PermissionUtils {
-    public static canSend(channel: TextBasedChannel): boolean {
-        if (channel instanceof DMChannel) {
-            return true;
-        } else if (channel instanceof GuildChannel) {
-            let channelPerms = channel.permissionsFor(channel.client.user);
-            if (!channelPerms) {
-                // This can happen if the guild disconnected while a collector is running
-                return false;
-            }
-
-            // VIEW_CHANNEL - Needed to view the channel
-            // SEND_MESSAGES - Needed to send messages
-            return channelPerms.has([
-                Permissions.FLAGS.VIEW_CHANNEL,
-                Permissions.FLAGS.SEND_MESSAGES,
-            ]);
-        } else {
-            return false;
-        }
-    }
-
-    public static canSendEmbed(channel: TextBasedChannel): boolean {
+    public static canSend(channel: TextBasedChannel, embedLinks: boolean = false): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (channel instanceof GuildChannel) {
@@ -38,7 +17,7 @@ export class PermissionUtils {
             return channelPerms.has([
                 Permissions.FLAGS.VIEW_CHANNEL,
                 Permissions.FLAGS.SEND_MESSAGES,
-                Permissions.FLAGS.EMBED_LINKS,
+                ...(embedLinks ? [Permissions.FLAGS.EMBED_LINKS] : []),
             ]);
         } else {
             return false;
