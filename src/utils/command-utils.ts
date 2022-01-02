@@ -39,7 +39,7 @@ export class CommandUtils {
                         .join(', '),
                 })
             );
-            return;
+            return false;
         }
 
         // TODO: Remove "as GuildMember",  why does discord.js have intr.member as a "APIInteractionGuildMember"?
