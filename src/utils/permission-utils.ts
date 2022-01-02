@@ -1,21 +1,10 @@
-import {
-    DMChannel,
-    NewsChannel,
-    Permissions,
-    TextBasedChannel,
-    TextChannel,
-    ThreadChannel,
-} from 'discord.js';
+import { DMChannel, GuildChannel, Permissions, TextBasedChannel } from 'discord.js';
 
 export class PermissionUtils {
     public static canSend(channel: TextBasedChannel): boolean {
         if (channel instanceof DMChannel) {
             return true;
-        } else if (
-            channel instanceof TextChannel ||
-            channel instanceof NewsChannel ||
-            channel instanceof ThreadChannel
-        ) {
+        } else if (channel instanceof GuildChannel) {
             let channelPerms = channel.permissionsFor(channel.client.user);
             if (!channelPerms) {
                 // This can happen if the guild disconnected while a collector is running
@@ -36,11 +25,7 @@ export class PermissionUtils {
     public static canSendEmbed(channel: TextBasedChannel): boolean {
         if (channel instanceof DMChannel) {
             return true;
-        } else if (
-            channel instanceof TextChannel ||
-            channel instanceof NewsChannel ||
-            channel instanceof ThreadChannel
-        ) {
+        } else if (channel instanceof GuildChannel) {
             let channelPerms = channel.permissionsFor(channel.client.user);
             if (!channelPerms) {
                 // This can happen if the guild disconnected while a collector is running
@@ -63,11 +48,7 @@ export class PermissionUtils {
     public static canMention(channel: TextBasedChannel): boolean {
         if (channel instanceof DMChannel) {
             return true;
-        } else if (
-            channel instanceof TextChannel ||
-            channel instanceof NewsChannel ||
-            channel instanceof ThreadChannel
-        ) {
+        } else if (channel instanceof GuildChannel) {
             let channelPerms = channel.permissionsFor(channel.client.user);
             if (!channelPerms) {
                 // This can happen if the guild disconnected while a collector is running
@@ -88,11 +69,7 @@ export class PermissionUtils {
     public static canReact(channel: TextBasedChannel, removeOthers: boolean = false): boolean {
         if (channel instanceof DMChannel) {
             return true;
-        } else if (
-            channel instanceof TextChannel ||
-            channel instanceof NewsChannel ||
-            channel instanceof ThreadChannel
-        ) {
+        } else if (channel instanceof GuildChannel) {
             let channelPerms = channel.permissionsFor(channel.client.user);
             if (!channelPerms) {
                 // This can happen if the guild disconnected while a collector is running
@@ -118,11 +95,7 @@ export class PermissionUtils {
     public static canPin(channel: TextBasedChannel, unpinOld: boolean = false): boolean {
         if (channel instanceof DMChannel) {
             return true;
-        } else if (
-            channel instanceof TextChannel ||
-            channel instanceof NewsChannel ||
-            channel instanceof ThreadChannel
-        ) {
+        } else if (channel instanceof GuildChannel) {
             let channelPerms = channel.permissionsFor(channel.client.user);
             if (!channelPerms) {
                 // This can happen if the guild disconnected while a collector is running
