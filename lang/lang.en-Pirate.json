@@ -128,14 +128,6 @@
             }
         },
         "validationEmbeds": {
-            "missingEmbedPerms": {
-                "description": [
-                    "I don't have all permissions required to run that command here!",
-                    "",
-                    "Please allow me to **{{REF:permissions.VIEW_CHANNEL}}**, **{{REF:permissions.SEND_MESSAGES}}**, and **{{REF:permissions.EMBED_LINKS}}** in this channel."
-                ],
-                "color": "{{COM:colors.warning}}"
-            },
             "devOnlyCommand": {
                 "description": "This command can only be used by developers.",
                 "color": "{{COM:colors.warning}}"
