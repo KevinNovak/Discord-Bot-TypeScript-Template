@@ -130,9 +130,9 @@
         "validationEmbeds": {
             "missingEmbedPerms": {
                 "description": [
-                    "I don't have all permissions required to send messages here!",
+                    "I don't have all permissions required to run that command here!",
                     "",
-                    "Please allow me to **View Channel**, **Send Messages**, and **Embed Links** in this channel."
+                    "Please allow me to **{{REF:permissions.VIEW_CHANNEL}}**, **{{REF:permissions.SEND_MESSAGES}}**, and **{{REF:permissions.EMBED_LINKS}}** in this channel."
                 ],
                 "color": "{{COM:colors.warning}}"
             },
