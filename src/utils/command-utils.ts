@@ -1,4 +1,5 @@
-import { CommandInteraction, GuildMember, Permissions } from 'discord.js';
+import { CommandInteraction, GuildChannel, GuildMember, Permissions } from 'discord.js';
+
 import { MessageUtils } from '.';
 import { Command } from '../commands';
 import { Permission } from '../models/enums';
@@ -30,7 +31,10 @@ export class CommandUtils {
             return false;
         }
 
-        if (intr.guild && !intr.guild?.me.permissions.has(command.requireClientPerms)) {
+        if (
+            intr.channel instanceof GuildChannel &&
+            !intr.channel.permissionsFor(intr.client.user).has(command.requireClientPerms)
+        ) {
             await MessageUtils.sendIntr(
                 intr,
                 Lang.getEmbed('validationEmbeds.missingClientPerms', data.lang(), {
