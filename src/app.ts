@@ -60,10 +60,10 @@ async function start(): Promise<void> {
     // Jobs
     let jobs = [
         Config.clustering.enabled ? undefined : new UpdateServerCountJob(shardManager, httpService),
+        // TODO: Add new jobs here
     ].filter(Boolean);
-    let jobService = new JobService(jobs);
 
-    let manager = new Manager(shardManager, jobService);
+    let manager = new Manager(shardManager, new JobService(jobs));
 
     // API
     let guildsController = new GuildsController(shardManager);
