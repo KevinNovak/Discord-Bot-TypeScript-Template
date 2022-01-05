@@ -1,4 +1,4 @@
-import { Client, NewsChannel } from 'discord.js';
+import { AnyChannel, Client, NewsChannel } from 'discord.js';
 import { DiscordAPIError, Guild, GuildMember, TextChannel, User } from 'discord.js';
 
 import { PermissionUtils, RegexUtils } from '.';
@@ -45,6 +45,24 @@ export class ClientUtils {
             // 10007: "Unknown Member"
             // 10013: "Unknown User"
             if (error instanceof DiscordAPIError && [10007, 10013].includes(error.code)) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    public static async getChannel(client: Client, discordId: string): Promise<AnyChannel> {
+        discordId = RegexUtils.discordId(discordId);
+        if (!discordId) {
+            return;
+        }
+
+        try {
+            return await client.channels.fetch(discordId);
+        } catch (error) {
+            // 10013: "Unknown Channel"
+            if (error instanceof DiscordAPIError && [10003].includes(error.code)) {
                 return;
             } else {
                 throw error;
