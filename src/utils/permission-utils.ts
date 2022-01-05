@@ -1,7 +1,7 @@
-import { DMChannel, GuildChannel, Permissions, TextBasedChannel } from 'discord.js';
+import { AnyChannel, DMChannel, GuildChannel, Permissions } from 'discord.js';
 
 export class PermissionUtils {
-    public static canSend(channel: TextBasedChannel, embedLinks: boolean = false): boolean {
+    public static canSend(channel: AnyChannel, embedLinks: boolean = false): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (channel instanceof GuildChannel) {
@@ -24,7 +24,7 @@ export class PermissionUtils {
         }
     }
 
-    public static canMention(channel: TextBasedChannel): boolean {
+    public static canMention(channel: AnyChannel): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (channel instanceof GuildChannel) {
@@ -45,7 +45,7 @@ export class PermissionUtils {
         }
     }
 
-    public static canReact(channel: TextBasedChannel, removeOthers: boolean = false): boolean {
+    public static canReact(channel: AnyChannel, removeOthers: boolean = false): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (channel instanceof GuildChannel) {
@@ -71,7 +71,7 @@ export class PermissionUtils {
         }
     }
 
-    public static canPin(channel: TextBasedChannel, unpinOld: boolean = false): boolean {
+    public static canPin(channel: AnyChannel, unpinOld: boolean = false): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (channel instanceof GuildChannel) {
