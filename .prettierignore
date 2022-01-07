@@ -1,5 +1,7 @@
-node_modules
-dist
-docs
-misc
-.cache
+# Folders
+/.cache
+/.git
+/dist
+/docs
+/misc
+/node_modules
