@@ -129,7 +129,7 @@
         },
         "validationEmbeds": {
             "cooldownHit": {
-                "description": "You can only run this command {{AMOUNT}} time(s) every {{INTERVAL}}.",
+                "description": "You can only run this command {{AMOUNT}} time(s) every {{INTERVAL}}. Please wait before attempting this command again.",
                 "color": "{{COM:colors.warning}}"
             },
             "devOnlyCommand": {
