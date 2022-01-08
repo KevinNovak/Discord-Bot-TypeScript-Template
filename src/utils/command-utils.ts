@@ -15,6 +15,23 @@ export class CommandUtils {
         intr: CommandInteraction,
         data: EventData
     ): Promise<boolean> {
+        if (command.cooldown) {
+            let limited = command.cooldown.limiter.take(intr.user.id);
+            if (limited) {
+                if (!command.cooldown.silent) {
+                    await MessageUtils.sendIntr(
+                        intr,
+                        Lang.getEmbed('validationEmbeds.cooldownHit', data.lang(), {
+                            AMOUNT: command.cooldown.limiter.amount.toLocaleString(),
+                            // TODO: Need to convert to seconds
+                            SECONDS: command.cooldown.limiter.interval.toLocaleString(),
+                        })
+                    );
+                }
+                return;
+            }
+        }
+
         if (command.requireDev && !Config.developers.includes(intr.user.id)) {
             await MessageUtils.sendIntr(
                 intr,

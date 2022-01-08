@@ -1,4 +1,5 @@
 import { ApplicationCommandData, CommandInteraction, PermissionString } from 'discord.js';
+import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { EventData } from '../models/internal-models';
 import { Lang } from '../services';
@@ -10,6 +11,7 @@ export class TestCommand implements Command {
         name: Lang.getCom('commands.test'),
         description: Lang.getRef('commandDescs.test', Lang.Default),
     };
+    public cooldown = { limiter: new RateLimiter(1, 5000), silent: false };
     public requireDev = false;
     public requireGuild = false;
     public requireClientPerms: PermissionString[] = [];
