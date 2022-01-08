@@ -1,6 +1,6 @@
 import { CommandInteraction, GuildChannel, GuildMember, Permissions } from 'discord.js';
 
-import { MessageUtils } from '.';
+import { MessageUtils, TimeUtils } from '.';
 import { Command } from '../commands';
 import { Permission } from '../models/enums';
 import { EventData } from '../models/internal-models';
@@ -23,8 +23,7 @@ export class CommandUtils {
                         intr,
                         Lang.getEmbed('validationEmbeds.cooldownHit', data.lang(), {
                             AMOUNT: command.cooldown.limiter.amount.toLocaleString(),
-                            // TODO: Need to convert to seconds
-                            SECONDS: command.cooldown.limiter.interval.toLocaleString(),
+                            INTERVAL: TimeUtils.friendlyDuration(command.cooldown.limiter.interval),
                         })
                     );
                 }
