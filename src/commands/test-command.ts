@@ -11,7 +11,7 @@ export class TestCommand implements Command {
         name: Lang.getCom('commands.test'),
         description: Lang.getRef('commandDescs.test', Lang.Default),
     };
-    public cooldown = { limiter: new RateLimiter(1, 5000), silent: false };
+    public cooldown = new RateLimiter(1, 5000);
     public requireDev = false;
     public requireGuild = false;
     public requireClientPerms: PermissionString[] = [];
