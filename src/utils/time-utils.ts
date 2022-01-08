@@ -14,8 +14,7 @@ export class TimeUtils {
                             'day',
                             'hour',
                             'minute',
-                            'second',
-                            'millisecond'
+                            'second'
                         )
                         .toObject()
                 ).filter(([_, value]) => !!value)
