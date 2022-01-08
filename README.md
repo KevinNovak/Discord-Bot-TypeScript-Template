@@ -127,11 +127,12 @@ You can run the bot in 4 different modes:
 
 A list of Discord bots using this template.
 
-| Bot                                                   | Servers                                                       |
-| ----------------------------------------------------- | ------------------------------------------------------------- |
-| [Birthday Bot](https://top.gg/bot/656621136808902656) | ![](https://top.gg/api/widget/servers/656621136808902656.svg) |
-| [QOTD Bot](https://top.gg/bot/713586207119900693)     | ![](https://top.gg/api/widget/servers/713586207119900693.svg) |
-| [Friend Time](https://top.gg/bot/471091072546766849)  | ![](https://top.gg/api/widget/servers/471091072546766849.svg) |
-| [NFT-Info](https://top.gg/bot/902249456072818708)     | ![](https://top.gg/api/widget/servers/902249456072818708.svg) |
+| Bot                                                       | Servers                                                       |
+| --------------------------------------------------------- | ------------------------------------------------------------- |
+| [Birthday Bot](https://top.gg/bot/656621136808902656)     | ![](https://top.gg/api/widget/servers/656621136808902656.svg) |
+| [QOTD Bot](https://top.gg/bot/713586207119900693)         | ![](https://top.gg/api/widget/servers/713586207119900693.svg) |
+| [Friend Time](https://top.gg/bot/471091072546766849)      | ![](https://top.gg/api/widget/servers/471091072546766849.svg) |
+| [NFT-Info](https://top.gg/bot/902249456072818708)         | ![](https://top.gg/api/widget/servers/902249456072818708.svg) |
+| [Skylink IF](https://github.com/kennedy-steve/skylink-if) |                                                               |
 
 Don't see your bot listed? [Contact us](https://discord.gg/Vyf6fEWbVr) to have your bot added!
