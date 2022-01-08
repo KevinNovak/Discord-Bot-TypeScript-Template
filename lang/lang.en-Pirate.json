@@ -178,8 +178,9 @@
     },
     "refs": {
         "meta": {
-            "language": "en-US",
-            "languageDisplay": "English",
+            "language": "en-Pirate",
+            "languageDisplay": "Pirate",
+            "locale": "en-US",
             "translators": "[TranslatorName#1234](https://github.com/)"
         },
         "bot": {

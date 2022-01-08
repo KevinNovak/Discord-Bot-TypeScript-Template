@@ -18,7 +18,7 @@ For help using this template, feel free to [join our support server](https://dis
 ### Built-In Bot Features:
 
 -   Basic command structure.
--   Rate limits for commands.
+-   Rate limits and command cooldowns.
 -   Welcome message when joining a server.
 -   Shows server count in bot status.
 -   Posts server count to popular bot list websites.

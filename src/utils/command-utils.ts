@@ -1,6 +1,6 @@
 import { CommandInteraction, GuildChannel, GuildMember, Permissions } from 'discord.js';
 
-import { MessageUtils } from '.';
+import { FormatUtils, MessageUtils } from '.';
 import { Command } from '../commands';
 import { Permission } from '../models/enums';
 import { EventData } from '../models/internal-models';
@@ -15,6 +15,20 @@ export class CommandUtils {
         intr: CommandInteraction,
         data: EventData
     ): Promise<boolean> {
+        if (command.cooldown) {
+            let limited = command.cooldown.take(intr.user.id);
+            if (limited) {
+                await MessageUtils.sendIntr(
+                    intr,
+                    Lang.getEmbed('validationEmbeds.cooldownHit', data.lang(), {
+                        AMOUNT: command.cooldown.amount.toLocaleString(),
+                        INTERVAL: FormatUtils.duration(command.cooldown.interval, data.lang()),
+                    })
+                );
+                return;
+            }
+        }
+
         if (command.requireDev && !Config.developers.includes(intr.user.id)) {
             await MessageUtils.sendIntr(
                 intr,
