@@ -19,6 +19,7 @@
         "discordjs",
         "discordlabs",
         "filesize",
+        "luxon",
         "Novak",
         "ondiscord",
         "parens",
