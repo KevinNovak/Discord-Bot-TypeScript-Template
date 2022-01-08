@@ -16,20 +16,15 @@ export class CommandUtils {
         data: EventData
     ): Promise<boolean> {
         if (command.cooldown) {
-            let limited = command.cooldown.limiter.take(intr.user.id);
+            let limited = command.cooldown.take(intr.user.id);
             if (limited) {
-                if (!command.cooldown.silent) {
-                    await MessageUtils.sendIntr(
-                        intr,
-                        Lang.getEmbed('validationEmbeds.cooldownHit', data.lang(), {
-                            AMOUNT: command.cooldown.limiter.amount.toLocaleString(),
-                            INTERVAL: FormatUtils.duration(
-                                command.cooldown.limiter.interval,
-                                data.lang()
-                            ),
-                        })
-                    );
-                }
+                await MessageUtils.sendIntr(
+                    intr,
+                    Lang.getEmbed('validationEmbeds.cooldownHit', data.lang(), {
+                        AMOUNT: command.cooldown.amount.toLocaleString(),
+                        INTERVAL: FormatUtils.duration(command.cooldown.interval, data.lang()),
+                    })
+                );
                 return;
             }
         }
