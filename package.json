@@ -10,8 +10,8 @@
     },
     "main": "dist/start.js",
     "scripts": {
-        "lint": "tslint --project .",
-        "lint:fix": "tslint --fix --project .",
+        "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+        "lint:fix": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
         "format": "prettier --check .",
         "format:fix": "prettier --write .",
         "build": "tsc --project tsconfig.json",
