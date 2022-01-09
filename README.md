@@ -13,6 +13,8 @@ This template was created to give developers a starting point for new Discord bo
 
 For help using this template, feel free to [join our support server](https://discord.gg/Vyf6fEWbVr)!
 
+[![Discord Shield](https://discord.com/api/guilds/660711235766976553/widget.png?style=shield)](https://discord.gg/Vyf6fEWbVr)
+
 ## Features
 
 ### Built-In Bot Features:
