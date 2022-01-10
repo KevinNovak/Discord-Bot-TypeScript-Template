@@ -1,5 +1,13 @@
-import { AnyChannel, Client, NewsChannel } from 'discord.js';
-import { DiscordAPIError, Guild, GuildMember, TextChannel, User } from 'discord.js';
+import {
+    AnyChannel,
+    Client,
+    NewsChannel,
+    DiscordAPIError,
+    Guild,
+    GuildMember,
+    TextChannel,
+    User,
+} from 'discord.js';
 
 import { PermissionUtils, RegexUtils } from '.';
 import { LangCode } from '../models/enums';
