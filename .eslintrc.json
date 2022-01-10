@@ -21,7 +21,7 @@
         "@typescript-eslint/no-unsafe-call": "off",
         "@typescript-eslint/no-unsafe-member-access": "off",
         "@typescript-eslint/no-unused-vars": [
-            "warn",
+            "error",
             {
                 "argsIgnorePattern": "^_"
             }
@@ -45,6 +45,7 @@
         ],
         "no-return-await": "off",
         "prefer-const": "off",
+        "quotes": ["error", "single"],
         "sort-imports": "off"
     }
 }
