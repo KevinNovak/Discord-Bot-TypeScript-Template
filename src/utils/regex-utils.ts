@@ -1,6 +1,6 @@
 export class RegexUtils {
     public static regex(input: string): RegExp {
-        let match = input.match(/^\/(.*)\/([^\/]*)$/);
+        let match = input.match(/^\/(.*)\/([^/]*)$/);
         if (!match) {
             return;
         }

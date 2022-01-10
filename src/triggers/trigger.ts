@@ -1,4 +1,5 @@
 import { Message } from 'discord.js';
+
 import { EventData } from '../models/internal-models';
 
 export interface Trigger {

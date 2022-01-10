@@ -120,7 +120,7 @@ async function registerCommands(commands: Command[]): Promise<void> {
     Logger.info(Logs.info.commandsRegistered);
 }
 
-process.on('unhandledRejection', (reason, promise) => {
+process.on('unhandledRejection', (reason, _promise) => {
     Logger.error(Logs.error.unhandledRejection, reason);
 });
 
