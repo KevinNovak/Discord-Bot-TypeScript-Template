@@ -1,7 +1,7 @@
 import removeMarkdown from 'remove-markdown';
 
 export class StringUtils {
-    public static truncate(input: string, length: number, addEllipsis = false): string {
+    public static truncate(input: string, length: number, addEllipsis: boolean = false): string {
         if (input.length <= length) {
             return input;
         }
