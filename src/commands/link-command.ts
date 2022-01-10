@@ -1,4 +1,4 @@
-import { ApplicationCommandOptionType } from 'discord-api-types';
+import { ApplicationCommandOptionType } from 'discord-api-types/payloads/v9';
 import {
     ApplicationCommandData,
     CommandInteraction,
