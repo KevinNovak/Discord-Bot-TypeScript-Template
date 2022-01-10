@@ -41,6 +41,7 @@
         ],
         "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/require-await": "off",
+        "@typescript-eslint/restrict-template-expressions": "off",
         "@typescript-eslint/return-await": ["error", "always"],
         "@typescript-eslint/typedef": [
             "error",
