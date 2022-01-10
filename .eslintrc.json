@@ -26,6 +26,8 @@
         ],
         "@typescript-eslint/no-var-requires": "off",
         "@typescript-eslint/require-await": "off",
+        "@typescript-eslint/return-await": ["error", "always"],
+        "no-return-await": "off",
         "prefer-const": "off"
     }
 }
