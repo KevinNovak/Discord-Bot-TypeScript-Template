@@ -59,8 +59,8 @@
                     "order": "asc"
                 },
                 "groups": [
-                    ["builtin", "external"],
-                    ["internal", "parent", "sibling", "index", "object", "type"]
+                    ["builtin", "external", "object", "type"],
+                    ["internal", "parent", "sibling", "index"]
                 ],
                 "newlines-between": "always"
             }
