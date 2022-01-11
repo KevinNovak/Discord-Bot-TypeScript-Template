@@ -34,6 +34,31 @@ export class MessageUtils {
         }
     }
 
+    public static async deferIntr(
+        intr: CommandInteraction,
+        hidden: boolean = false
+    ): Promise<void> {
+        try {
+            return await intr.deferReply({
+                ephemeral: hidden,
+            });
+        } catch (error) {
+            // 10003: "Unknown channel"
+            // 10004: "Unknown guild"
+            // 10013: "Unknown user"
+            // 10062: "Unknown interaction"
+            // 50007: "Cannot send messages to this user" (User blocked bot or DM disabled)
+            if (
+                error instanceof DiscordAPIError &&
+                [10003, 10004, 10013, 10062, 50007].includes(error.code)
+            ) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
     public static async sendIntr(
         intr: CommandInteraction,
         content: string | MessageEmbed | MessageOptions,
@@ -49,10 +74,11 @@ export class MessageUtils {
             // 10003: "Unknown channel"
             // 10004: "Unknown guild"
             // 10013: "Unknown user"
+            // 10062: "Unknown interaction"
             // 50007: "Cannot send messages to this user" (User blocked bot or DM disabled)
             if (
                 error instanceof DiscordAPIError &&
-                [10003, 10004, 10013, 50007].includes(error.code)
+                [10003, 10004, 10013, 10062, 50007].includes(error.code)
             ) {
                 return;
             } else {
