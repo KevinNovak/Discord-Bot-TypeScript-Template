@@ -28,6 +28,7 @@
         "pino",
         "regexes",
         "respawn",
+        "restjson",
         "varchar"
     ]
 }
