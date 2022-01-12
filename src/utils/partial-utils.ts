@@ -1,3 +1,4 @@
+import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/rest/v9';
 import {
     DiscordAPIError,
     Message,
@@ -8,10 +9,11 @@ import {
     User,
 } from 'discord.js';
 
-// 10003: "Unknown Channel" (Channel was deleted)
-// 10008: "Unknown Message" (Message was deleted)
-// 50001: "Missing Access"
-const IGNORED_ERROR_CODES = [10003, 10008, 50001];
+const IGNORED_ERRORS = [
+    DiscordApiErrors.UnknownChannel,
+    DiscordApiErrors.UnknownMessage,
+    DiscordApiErrors.MissingAccess,
+];
 
 export class PartialUtils {
     public static async fillUser(user: User | PartialUser): Promise<User> {
@@ -19,7 +21,7 @@ export class PartialUtils {
             try {
                 return await user.fetch();
             } catch (error) {
-                if (error instanceof DiscordAPIError && IGNORED_ERROR_CODES.includes(error.code)) {
+                if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
                     return;
                 } else {
                     throw error;
@@ -35,7 +37,7 @@ export class PartialUtils {
             try {
                 return await msg.fetch();
             } catch (error) {
-                if (error instanceof DiscordAPIError && IGNORED_ERROR_CODES.includes(error.code)) {
+                if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
                     return;
                 } else {
                     throw error;
@@ -53,7 +55,7 @@ export class PartialUtils {
             try {
                 msgReaction = await msgReaction.fetch();
             } catch (error) {
-                if (error instanceof DiscordAPIError && IGNORED_ERROR_CODES.includes(error.code)) {
+                if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
                     return;
                 } else {
                     throw error;
