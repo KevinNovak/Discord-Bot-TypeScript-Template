@@ -35,6 +35,11 @@ export class ReactionHandler implements EventHandler {
             return;
         }
 
+        // Check if the embeds author equals the reactors tag
+        if (reaction.requireEmbedAuthorTag && msg.embeds[0]?.author?.name !== reactor.tag) {
+            return;
+        }
+
         // Check if user is rate limited
         let limited = this.rateLimiter.take(msg.author.id);
         if (limited) {
