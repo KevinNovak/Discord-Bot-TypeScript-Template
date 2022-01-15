@@ -15,6 +15,12 @@ export class TriggerHandler {
     constructor(private triggers: Trigger[]) {}
 
     public async process(msg: Message): Promise<void> {
+        // Check if user is rate limited
+        let limited = this.rateLimiter.take(msg.author.id);
+        if (limited) {
+            return;
+        }
+
         // Find triggers caused by this message
         let triggers = this.triggers.filter(trigger => {
             if (trigger.requireGuild && !msg.guild) {
@@ -30,12 +36,6 @@ export class TriggerHandler {
 
         // If this message causes no triggers then return
         if (triggers.length === 0) {
-            return;
-        }
-
-        // Check if user is rate limited
-        let limited = this.rateLimiter.take(msg.author.id);
-        if (limited) {
             return;
         }
 
