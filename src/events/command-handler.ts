@@ -2,8 +2,7 @@ import { CommandInteraction, NewsChannel, TextChannel, ThreadChannel } from 'dis
 import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { EventHandler } from '.';
-import { Command } from '../commands';
-import { CommandDeferType } from '../commands/command';
+import { Command, CommandDeferType } from '../commands';
 import { EventData } from '../models/internal-models';
 import { Lang, Logger } from '../services';
 import { CommandUtils, MessageUtils } from '../utils';
