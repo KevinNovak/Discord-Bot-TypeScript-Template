@@ -1,10 +1,10 @@
 import { ApplicationCommandData, CommandInteraction, PermissionString } from 'discord.js';
 
+import { Command, CommandDeferType } from '.';
 import { LangCode, Language } from '../models/enums';
 import { EventData } from '../models/internal-models';
 import { Lang } from '../services';
 import { MessageUtils } from '../utils';
-import { Command, CommandDeferType } from './command';
 
 export class TranslateCommand implements Command {
     public metadata: ApplicationCommandData = {

@@ -1,10 +1,10 @@
 import { ApplicationCommandData, CommandInteraction, PermissionString } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
+import { Command, CommandDeferType } from '.';
 import { EventData } from '../models/internal-models';
 import { Lang } from '../services';
 import { MessageUtils } from '../utils';
-import { Command, CommandDeferType } from './command';
 
 export class TestCommand implements Command {
     public metadata: ApplicationCommandData = {
