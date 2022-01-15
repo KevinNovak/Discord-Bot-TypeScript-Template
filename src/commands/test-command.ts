@@ -4,7 +4,7 @@ import { RateLimiter } from 'discord.js-rate-limiter';
 import { EventData } from '../models/internal-models';
 import { Lang } from '../services';
 import { MessageUtils } from '../utils';
-import { Command } from './command';
+import { Command, CommandDeferType } from './command';
 
 export class TestCommand implements Command {
     public metadata: ApplicationCommandData = {
@@ -12,6 +12,7 @@ export class TestCommand implements Command {
         description: Lang.getRef('commandDescs.test', Lang.Default),
     };
     public cooldown = new RateLimiter(1, 5000);
+    public deferType = CommandDeferType.PUBLIC;
     public requireDev = false;
     public requireGuild = false;
     public requireClientPerms: PermissionString[] = [];

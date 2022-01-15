@@ -1,4 +1,4 @@
-export { Command } from './command';
+export { Command, CommandDeferType } from './command';
 export { DevCommand } from './dev-command';
 export { HelpCommand } from './help-command';
 export { InfoCommand } from './info-command';

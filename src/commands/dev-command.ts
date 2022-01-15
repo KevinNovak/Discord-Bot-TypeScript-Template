@@ -6,7 +6,7 @@ import typescript from 'typescript';
 import { EventData } from '../models/internal-models';
 import { Lang } from '../services';
 import { MessageUtils, ShardUtils } from '../utils';
-import { Command } from './command';
+import { Command, CommandDeferType } from './command';
 
 let TsConfig = require('../../tsconfig.json');
 
@@ -15,6 +15,7 @@ export class DevCommand implements Command {
         name: Lang.getCom('commands.dev'),
         description: Lang.getRef('commandDescs.dev', Lang.Default),
     };
+    public deferType = CommandDeferType.PUBLIC;
     public requireDev = true;
     public requireGuild = false;
     public requireClientPerms: PermissionString[] = [];

@@ -3,6 +3,7 @@ import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { EventHandler } from '.';
 import { Command } from '../commands';
+import { CommandDeferType } from '../commands/command';
 import { EventData } from '../models/internal-models';
 import { Lang, Logger } from '../services';
 import { CommandUtils, MessageUtils } from '../utils';
@@ -25,17 +26,9 @@ export class CommandHandler implements EventHandler {
             return;
         }
 
-        // Defer interaction
-        // NOTE: Anything after this point we should be responding to the interaction
-        await MessageUtils.deferIntr(intr);
-
-        // TODO: Get data from database
-        let data = new EventData();
-
         // Try to find the command the user wants
         let command = this.commands.find(command => command.metadata.name === intr.commandName);
         if (!command) {
-            await this.sendError(intr, data);
             Logger.error(
                 Logs.error.commandNotFound
                     .replaceAll('{INTERACTION_ID}', intr.id)
@@ -43,6 +36,22 @@ export class CommandHandler implements EventHandler {
             );
             return;
         }
+
+        // Defer interaction
+        // NOTE: Anything after this point we should be responding to the interaction
+        switch (command.deferType) {
+            case CommandDeferType.PUBLIC: {
+                await intr.deferReply({ ephemeral: false });
+                break;
+            }
+            case CommandDeferType.HIDDEN: {
+                await intr.deferReply({ ephemeral: true });
+                break;
+            }
+        }
+
+        // TODO: Get data from database
+        let data = new EventData();
 
         try {
             // Check if interaction passes command checks
