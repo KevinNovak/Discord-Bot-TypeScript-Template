@@ -4,6 +4,7 @@ import {
     DiscordAPIError,
     EmojiResolvable,
     Message,
+    MessageComponentInteraction,
     MessageEmbed,
     MessageOptions,
     MessageReaction,
@@ -29,43 +30,6 @@ export class MessageUtils {
         try {
             let msgOptions = this.messageOptions(content);
             return await target.send(msgOptions);
-        } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
-                return;
-            } else {
-                throw error;
-            }
-        }
-    }
-
-    public static async deferIntr(
-        intr: CommandInteraction,
-        hidden: boolean = false
-    ): Promise<void> {
-        try {
-            return await intr.deferReply({
-                ephemeral: hidden,
-            });
-        } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
-                return;
-            } else {
-                throw error;
-            }
-        }
-    }
-
-    public static async sendIntr(
-        intr: CommandInteraction,
-        content: string | MessageEmbed | MessageOptions,
-        hidden: boolean = false
-    ): Promise<Message> {
-        try {
-            let msgOptions = this.messageOptions(content);
-            return (await intr.followUp({
-                ...msgOptions,
-                ephemeral: hidden,
-            })) as Message;
         } catch (error) {
             if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
                 return;
@@ -122,6 +86,73 @@ export class MessageUtils {
     public static async delete(msg: Message): Promise<Message> {
         try {
             return await msg.delete();
+        } catch (error) {
+            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    public static async deferReply(
+        intr: CommandInteraction | MessageComponentInteraction,
+        hidden: boolean = false
+    ): Promise<void> {
+        try {
+            return await intr.deferReply({
+                ephemeral: hidden,
+            });
+        } catch (error) {
+            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    public static async deferUpdate(intr: MessageComponentInteraction): Promise<void> {
+        try {
+            return await intr.deferUpdate();
+        } catch (error) {
+            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    public static async sendIntr(
+        intr: CommandInteraction,
+        content: string | MessageEmbed | MessageOptions,
+        hidden: boolean = false
+    ): Promise<Message> {
+        try {
+            let msgOptions = this.messageOptions(content);
+            return (await intr.followUp({
+                ...msgOptions,
+                ephemeral: hidden,
+            })) as Message;
+        } catch (error) {
+            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    public static async updateIntr(
+        intr: MessageComponentInteraction,
+        content: string | MessageEmbed | MessageOptions
+    ): Promise<void> {
+        try {
+            let msgOptions = this.messageOptions(content);
+            return await intr.update({
+                ...msgOptions,
+            });
         } catch (error) {
             if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
                 return;

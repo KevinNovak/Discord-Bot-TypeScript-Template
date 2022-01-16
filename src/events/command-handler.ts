@@ -45,11 +45,11 @@ export class CommandHandler implements EventHandler {
         // NOTE: Anything after this point we should be responding to the interaction
         switch (command.deferType) {
             case CommandDeferType.PUBLIC: {
-                await MessageUtils.deferIntr(intr, false);
+                await MessageUtils.deferReply(intr, false);
                 break;
             }
             case CommandDeferType.HIDDEN: {
-                await MessageUtils.deferIntr(intr, true);
+                await MessageUtils.deferReply(intr, true);
                 break;
             }
         }
