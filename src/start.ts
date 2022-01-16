@@ -3,6 +3,7 @@ import { Routes } from 'discord-api-types/rest/v9';
 import { Options } from 'discord.js';
 
 import { Bot } from './bot';
+import { Button } from './buttons';
 import {
     Command,
     DevCommand,
@@ -13,6 +14,7 @@ import {
     TranslateCommand,
 } from './commands';
 import {
+    ButtonHandler,
     CommandHandler,
     GuildJoinHandler,
     GuildLeaveHandler,
@@ -53,6 +55,11 @@ async function start(): Promise<void> {
         // TODO: Add new commands here
     ].sort((a, b) => (a.metadata.name > b.metadata.name ? 1 : -1));
 
+    // Buttons
+    let buttons: Button[] = [
+        // TODO: Add new buttons here
+    ];
+
     // Reactions
     let reactions: Reaction[] = [
         // TODO: Add new reactions here
@@ -67,6 +74,7 @@ async function start(): Promise<void> {
     let guildJoinHandler = new GuildJoinHandler();
     let guildLeaveHandler = new GuildLeaveHandler();
     let commandHandler = new CommandHandler(commands);
+    let buttonHandler = new ButtonHandler(buttons);
     let triggerHandler = new TriggerHandler(triggers);
     let messageHandler = new MessageHandler(triggerHandler);
     let reactionHandler = new ReactionHandler(reactions);
@@ -84,6 +92,7 @@ async function start(): Promise<void> {
         guildLeaveHandler,
         messageHandler,
         commandHandler,
+        buttonHandler,
         reactionHandler,
         new JobService(jobs)
     );
