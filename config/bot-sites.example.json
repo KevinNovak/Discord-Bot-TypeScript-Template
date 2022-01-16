@@ -33,5 +33,12 @@
         "url": "https://bots.discordlabs.org/v2/bot/<BOT_ID>/stats",
         "authorization": null,
         "body": "{\"token\":\"discordlabs.org-<TOKEN>\",\"server_count\":\"{{SERVER_COUNT}}\"}"
+    },
+    {
+        "name": "discords.com",
+        "enabled": false,
+        "url": "https://discords.com/bots/api/bot/<BOT_ID>",
+        "authorization": "<TOKEN>",
+        "body": "{\"server_count\":{{SERVER_COUNT}}}"
     }
 ]
