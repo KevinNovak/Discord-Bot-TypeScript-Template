@@ -1,3 +1,4 @@
+export { ButtonHandler } from './button-handler';
 export { CommandHandler } from './command-handler';
 export { EventHandler } from './event-handler';
 export { GuildJoinHandler } from './guild-join-handler';

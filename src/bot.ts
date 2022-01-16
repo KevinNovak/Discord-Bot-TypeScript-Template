@@ -1,5 +1,7 @@
 import {
+    ButtonInteraction,
     Client,
+    CommandInteraction,
     Constants,
     Guild,
     Interaction,
@@ -12,6 +14,7 @@ import {
 } from 'discord.js';
 
 import {
+    ButtonHandler,
     CommandHandler,
     GuildJoinHandler,
     GuildLeaveHandler,
@@ -35,6 +38,7 @@ export class Bot {
         private guildLeaveHandler: GuildLeaveHandler,
         private messageHandler: MessageHandler,
         private commandHandler: CommandHandler,
+        private buttonHandler: ButtonHandler,
         private reactionHandler: ReactionHandler,
         private jobService: JobService
     ) {}
@@ -138,17 +142,24 @@ export class Bot {
 
     private async onInteraction(intr: Interaction): Promise<void> {
         if (
-            !intr.isCommand() ||
             !this.ready ||
             (Debug.dummyMode.enabled && !Debug.dummyMode.whitelist.includes(intr.user.id))
         ) {
             return;
         }
 
-        try {
-            await this.commandHandler.process(intr);
-        } catch (error) {
-            Logger.error(Logs.error.command, error);
+        if (intr instanceof CommandInteraction) {
+            try {
+                await this.commandHandler.process(intr);
+            } catch (error) {
+                Logger.error(Logs.error.command, error);
+            }
+        } else if (intr instanceof ButtonInteraction) {
+            try {
+                await this.buttonHandler.process(intr, intr.message as Message);
+            } catch (error) {
+                Logger.error(Logs.error.button, error);
+            }
         }
     }
 

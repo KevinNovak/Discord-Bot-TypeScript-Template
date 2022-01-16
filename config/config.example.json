@@ -53,6 +53,10 @@
             "amount": 10,
             "interval": 30
         },
+        "buttons": {
+            "amount": 10,
+            "interval": 30
+        },
         "triggers": {
             "amount": 10,
             "interval": 30
