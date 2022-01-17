@@ -9,13 +9,16 @@
         "node": ">=16.6.0"
     },
     "type": "module",
-    "main": "dist/start.js",
+    "exports": [
+        "./dist/start.js",
+        "./dist/app.js"
+    ],
     "scripts": {
         "lint": "eslint . --cache --ext .js,.jsx,.ts,.tsx",
         "lint:fix": "eslint . --fix --cache --ext .js,.jsx,.ts,.tsx",
         "format": "prettier --check .",
         "format:fix": "prettier --write .",
-        "build": "",
+        "build": "tsc --project tsconfig.json",
         "register": "npm run build && node --enable-source-maps --experimental-json-modules dist/start.js --register",
         "start": "npm run build && node --enable-source-maps --experimental-json-modules dist/start.js",
         "start:dev": "ts-node-dev --watch src/**/*.ts,config/**/*.json,lang/**/*.json src/start.ts",
