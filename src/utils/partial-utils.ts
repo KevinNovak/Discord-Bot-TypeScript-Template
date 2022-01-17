@@ -1,4 +1,4 @@
-import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/rest/v9';
+import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/v9';
 import {
     DiscordAPIError,
     Message,

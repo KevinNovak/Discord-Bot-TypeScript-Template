@@ -1,5 +1,5 @@
 import { REST } from '@discordjs/rest';
-import { Routes } from 'discord-api-types/rest/v9';
+import { Routes } from 'discord-api-types/v9';
 import { Options } from 'discord.js';
 
 import { Bot } from './bot';
