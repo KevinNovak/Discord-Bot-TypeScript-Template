@@ -32,24 +32,6 @@
             "restart": false
         },
         {
-            "name": "start:dev",
-            "type": "node",
-            "request": "launch",
-            "protocol": "inspector",
-            "cwd": "${workspaceFolder}",
-            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ts-node-dev",
-            "args": [
-                "--watch",
-                "src/**/*.ts,config/**/*.json,lang/**/*.json",
-                "${workspaceFolder}/src/start.ts"
-            ],
-            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
-            "outputCapture": "std",
-            "internalConsoleOptions": "openOnSessionStart",
-            "skipFiles": ["<node_internals>/**"],
-            "restart": true
-        },
-        {
             "name": "start:shard",
             "type": "node",
             "request": "launch",
