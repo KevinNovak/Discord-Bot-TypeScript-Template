@@ -51,7 +51,7 @@
                 "propertyDeclaration": true
             }
         ],
-        "import/extensions": ["error", "always"],
+        "import/extensions": ["error", "ignorePackages"],
         "import/no-unresolved": "off",
         "import/order": [
             "error",
