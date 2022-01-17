@@ -106,7 +106,7 @@ A welcome message is sent to the server and owner when the bot is added.
 
 ## Start Scripts
 
-You can run the bot in 4 different modes:
+You can run the bot in multiple modes:
 
 1. Normal Mode
     - Type `npm start`.
