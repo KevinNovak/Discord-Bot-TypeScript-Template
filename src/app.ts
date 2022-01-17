@@ -1,4 +1,5 @@
 import { ShardingManager } from 'discord.js';
+import { createRequire } from 'module';
 import 'reflect-metadata';
 
 import { Api } from './api.js';
@@ -8,6 +9,7 @@ import { Manager } from './manager.js';
 import { HttpService, JobService, Logger, MasterApiService } from './services/index.js';
 import { MathUtils, ShardUtils } from './utils/index.js';
 
+const require = createRequire(import.meta.url);
 let Config = require('../config/config.json');
 let Debug = require('../config/debug.json');
 let Logs = require('../lang/logs.json');

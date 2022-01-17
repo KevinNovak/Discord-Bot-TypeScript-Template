@@ -1,4 +1,5 @@
 import { CommandInteraction, GuildChannel, GuildMember, Permissions } from 'discord.js';
+import { createRequire } from 'module';
 
 import { Command } from '../commands/index.js';
 import { Permission } from '../models/enums/index.js';
@@ -6,6 +7,7 @@ import { EventData } from '../models/internal-models.js';
 import { Lang } from '../services/index.js';
 import { FormatUtils, MessageUtils } from './index.js';
 
+const require = createRequire(import.meta.url);
 let Config = require('../../config/config.json');
 let Debug = require('../../config/debug.json');
 

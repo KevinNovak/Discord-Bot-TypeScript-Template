@@ -1,8 +1,10 @@
+import { createRequire } from 'module';
 import schedule from 'node-schedule';
 
 import { Job } from '../jobs/index.js';
 import { Logger } from './index.js';
 
+const require = createRequire(import.meta.url);
 let Logs = require('../../lang/logs.json');
 
 export class JobService {

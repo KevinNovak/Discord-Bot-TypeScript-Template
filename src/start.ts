@@ -1,6 +1,7 @@
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 import { Options } from 'discord.js';
+import { createRequire } from 'module';
 
 import { Bot } from './bot.js';
 import { Button } from './buttons/index.js';
@@ -28,6 +29,7 @@ import { Reaction } from './reactions/index.js';
 import { JobService, Logger } from './services/index.js';
 import { Trigger } from './triggers/index.js';
 
+const require = createRequire(import.meta.url);
 let Config = require('../config/config.json');
 let Logs = require('../lang/logs.json');
 

@@ -1,10 +1,12 @@
 import express, { Express } from 'express';
+import { createRequire } from 'module';
 import util from 'util';
 
 import { Controller } from './controllers/index.js';
 import { checkAuth, handleError } from './middleware/index.js';
 import { Logger } from './services/index.js';
 
+const require = createRequire(import.meta.url);
 let Config = require('../config/config.json');
 let Logs = require('../lang/logs.json');
 

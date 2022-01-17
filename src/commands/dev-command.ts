@@ -1,5 +1,6 @@
 import djs, { ApplicationCommandData, CommandInteraction, PermissionString } from 'discord.js';
 import fileSize from 'filesize';
+import { createRequire } from 'module';
 import os from 'os';
 import typescript from 'typescript';
 
@@ -8,6 +9,7 @@ import { Lang } from '../services/index.js';
 import { MessageUtils, ShardUtils } from '../utils/index.js';
 import { Command, CommandDeferType } from './index.js';
 
+const require = createRequire(import.meta.url);
 let TsConfig = require('../../tsconfig.json');
 
 export class DevCommand implements Command {

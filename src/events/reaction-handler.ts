@@ -1,10 +1,12 @@
 import { Message, MessageReaction, User } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
+import { createRequire } from 'module';
 
 import { EventData } from '../models/internal-models.js';
 import { Reaction } from '../reactions/index.js';
 import { EventHandler } from './index.js';
 
+const require = createRequire(import.meta.url);
 let Config = require('../../config/config.json');
 
 export class ReactionHandler implements EventHandler {
