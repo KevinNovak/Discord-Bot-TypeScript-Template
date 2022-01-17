@@ -3,7 +3,7 @@
         {
             "name": "my-bot",
             "script": "dist/app.js",
-            "node_args": ["--enable-source-maps"],
+            "node_args": ["--enable-source-maps", "--experimental-json-modules"],
             "restart_delay": 10000
         }
     ]

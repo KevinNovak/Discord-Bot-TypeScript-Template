@@ -8,18 +8,18 @@
     "engines": {
         "node": ">=16.6.0"
     },
-    "type": "commonjs",
+    "type": "module",
     "main": "dist/start.js",
     "scripts": {
         "lint": "eslint . --cache --ext .js,.jsx,.ts,.tsx",
         "lint:fix": "eslint . --fix --cache --ext .js,.jsx,.ts,.tsx",
         "format": "prettier --check .",
         "format:fix": "prettier --write .",
-        "build": "tsc --project tsconfig.json",
-        "register": "npm run build && node --enable-source-maps dist/start.js --register",
-        "start": "npm run build && node --enable-source-maps dist/start.js",
+        "build": "",
+        "register": "npm run build && node --enable-source-maps --experimental-json-modules dist/start.js --register",
+        "start": "npm run build && node --enable-source-maps --experimental-json-modules dist/start.js",
         "start:dev": "ts-node-dev --watch src/**/*.ts,config/**/*.json,lang/**/*.json src/start.ts",
-        "start:shard": "npm run build && node --enable-source-maps dist/app.js",
+        "start:shard": "npm run build && node --enable-source-maps --experimental-json-modules dist/app.js",
         "start:pm2": "npm run build && npm run pm2:start",
         "pm2:start": "pm2 start process.json",
         "pm2:stop": "pm2 stop process.json",

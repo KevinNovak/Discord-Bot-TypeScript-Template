@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-        "target": "es2020",
-        "module": "commonjs",
+        "target": "es2021",
+        "module": "es2022",
         "lib": ["es2021"],
         "declaration": true,
         "sourceMap": true,
@@ -10,6 +10,7 @@
         "strict": false,
         "moduleResolution": "node",
         "esModuleInterop": true,
+        "resolveJsonModule": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "skipLibCheck": true,
