@@ -1,5 +1,5 @@
 import { ShardingManager } from 'discord.js';
-import { createRequire } from 'module';
+import { createRequire } from 'node:module';
 import 'reflect-metadata';
 
 import { Api } from './api.js';

@@ -1,7 +1,7 @@
 import djs, { ApplicationCommandData, CommandInteraction, PermissionString } from 'discord.js';
 import fileSize from 'filesize';
-import { createRequire } from 'module';
-import os from 'os';
+import { createRequire } from 'node:module';
+import os from 'node:os';
 import typescript from 'typescript';
 
 import { EventData } from '../models/internal-models.js';

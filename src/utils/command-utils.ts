@@ -1,5 +1,5 @@
 import { CommandInteraction, GuildChannel, GuildMember, Permissions } from 'discord.js';
-import { createRequire } from 'module';
+import { createRequire } from 'node:module';
 
 import { Command } from '../commands/index.js';
 import { Permission } from '../models/enums/index.js';

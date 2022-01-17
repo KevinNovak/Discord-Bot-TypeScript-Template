@@ -12,7 +12,7 @@ import {
     RateLimitData,
     User,
 } from 'discord.js';
-import { createRequire } from 'module';
+import { createRequire } from 'node:module';
 
 import {
     ButtonHandler,

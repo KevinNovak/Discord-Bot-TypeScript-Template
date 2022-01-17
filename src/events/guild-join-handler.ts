@@ -1,5 +1,5 @@
 import { Guild } from 'discord.js';
-import { createRequire } from 'module';
+import { createRequire } from 'node:module';
 
 import { Lang, Logger } from '../services/index.js';
 import { ClientUtils, MessageUtils } from '../utils/index.js';

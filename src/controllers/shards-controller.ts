@@ -1,7 +1,7 @@
 import { ShardingManager } from 'discord.js';
 import { Request, Response, Router } from 'express';
 import router from 'express-promise-router';
-import { createRequire } from 'module';
+import { createRequire } from 'node:module';
 
 import { CustomClient } from '../extensions/index.js';
 import { mapClass } from '../middleware/index.js';

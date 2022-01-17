@@ -1,5 +1,5 @@
 import { ActivityType, ShardingManager } from 'discord.js';
-import { createRequire } from 'module';
+import { createRequire } from 'node:module';
 
 import { CustomClient } from '../extensions/index.js';
 import { BotSite } from '../models/config-models.js';

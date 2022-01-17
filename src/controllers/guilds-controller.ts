@@ -1,7 +1,7 @@
 import { ShardingManager } from 'discord.js';
 import { Request, Response, Router } from 'express';
 import router from 'express-promise-router';
-import { createRequire } from 'module';
+import { createRequire } from 'node:module';
 
 import { GetGuildsResponse } from '../models/cluster-api/index.js';
 import { Controller } from './index.js';

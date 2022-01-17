@@ -1,6 +1,6 @@
 import { CommandInteraction, NewsChannel, TextChannel, ThreadChannel } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
-import { createRequire } from 'module';
+import { createRequire } from 'node:module';
 
 import { Command, CommandDeferType } from '../commands/index.js';
 import { EventData } from '../models/internal-models.js';

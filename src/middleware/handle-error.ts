@@ -1,5 +1,5 @@
 import { ErrorRequestHandler } from 'express';
-import { createRequire } from 'module';
+import { createRequire } from 'node:module';
 
 import { Logger } from '../services/index.js';
 

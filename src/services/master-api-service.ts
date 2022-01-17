@@ -1,5 +1,5 @@
-import { createRequire } from 'module';
-import { URL } from 'url';
+import { createRequire } from 'node:module';
+import { URL } from 'node:url';
 
 import {
     LoginClusterResponse,
