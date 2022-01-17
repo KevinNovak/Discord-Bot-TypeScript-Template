@@ -31,6 +31,7 @@ For help using this template, feel free to [join our support server](https://dis
 -   Written with TypeScript.
 -   Uses the [discord.js](https://discord.js.org/) framework.
 -   Built-in debugging setup for VSCode.
+-   Written with [ESM](https://nodejs.org/api/esm.html#introduction) for future compatibility with packages.
 -   Support for running with the [PM2](https://pm2.keymetrics.io/) process manger.
 -   Support for running with [Docker](https://www.docker.com/).
 
