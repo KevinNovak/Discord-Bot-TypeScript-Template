@@ -35,7 +35,7 @@ export class MasterApiService {
             throw res;
         }
 
-        let resBody: RegisterClusterResponse = await res.json();
+        let resBody = (await res.json()) as RegisterClusterResponse;
         this.clusterId = resBody.id;
     }
 
@@ -49,7 +49,7 @@ export class MasterApiService {
             throw res;
         }
 
-        return await res.json();
+        return (await res.json()) as LoginClusterResponse;
     }
 
     public async ready(): Promise<void> {

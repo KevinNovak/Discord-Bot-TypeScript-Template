@@ -3,7 +3,7 @@ import { URL } from 'node:url';
 
 export class HttpService {
     public async get(url: string | URL, authorization: string): Promise<Response> {
-        return await fetch(url, {
+        return await fetch(url.toString(), {
             method: 'get',
             headers: {
                 Authorization: authorization,
@@ -13,7 +13,7 @@ export class HttpService {
     }
 
     public async post(url: string | URL, authorization: string, body?: object): Promise<Response> {
-        return await fetch(url, {
+        return await fetch(url.toString(), {
             method: 'post',
             headers: {
                 Authorization: authorization,
@@ -25,7 +25,7 @@ export class HttpService {
     }
 
     public async put(url: string | URL, authorization: string, body?: object): Promise<Response> {
-        return await fetch(url, {
+        return await fetch(url.toString(), {
             method: 'put',
             headers: {
                 Authorization: authorization,
@@ -41,7 +41,7 @@ export class HttpService {
         authorization: string,
         body?: object
     ): Promise<Response> {
-        return await fetch(url, {
+        return await fetch(url.toString(), {
             method: 'delete',
             headers: {
                 Authorization: authorization,
