@@ -51,6 +51,7 @@
                 "propertyDeclaration": true
             }
         ],
+        "import/extensions": ["error", "always"],
         "import/order": [
             "error",
             {
