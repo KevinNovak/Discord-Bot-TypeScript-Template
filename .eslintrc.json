@@ -4,7 +4,7 @@
     "parserOptions": {
         "project": "./tsconfig.json"
     },
-    "plugins": ["@typescript-eslint", "import"],
+    "plugins": ["@typescript-eslint", "import", "unicorn"],
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
@@ -51,6 +51,10 @@
                 "propertyDeclaration": true
             }
         ],
+        "import/extensions": ["error", "ignorePackages"],
+        "import/no-extraneous-dependencies": "error",
+        "import/no-unresolved": "off",
+        "import/no-useless-path-segments": "error",
         "import/order": [
             "error",
             {
@@ -75,6 +79,7 @@
                 "allowTemplateLiterals": true
             }
         ],
-        "sort-imports": "off"
+        "sort-imports": "off",
+        "unicorn/prefer-node-protocol": "error"
     }
 }

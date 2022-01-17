@@ -31,6 +31,7 @@ For help using this template, feel free to [join our support server](https://dis
 -   Written with TypeScript.
 -   Uses the [discord.js](https://discord.js.org/) framework.
 -   Built-in debugging setup for VSCode.
+-   Written with [ESM](https://nodejs.org/api/esm.html#introduction) for future compatibility with packages.
 -   Support for running with the [PM2](https://pm2.keymetrics.io/) process manger.
 -   Support for running with [Docker](https://www.docker.com/).
 
@@ -105,22 +106,17 @@ A welcome message is sent to the server and owner when the bot is added.
 
 ## Start Scripts
 
-You can run the bot in 4 different modes:
+You can run the bot in multiple modes:
 
 1. Normal Mode
     - Type `npm start`.
     - This runs the bot directly with Node and without shards.
     - Use this mode if you don't need sharding.
-2. Dev Mode
-    - Type `npm start:dev`.
-    - This runs the bot with [ts-node-dev](https://www.npmjs.com/package/ts-node-dev).
-    - Use this mode for general development.
-    - TypeScript files are compiled automatically as they are changed.
-3. Shard Mode
+2. Shard Mode
     - Type `npm run start:shard`.
     - This runs the bot directly with Node and with sharding enabled.
     - Use this mode if you need sharding.
-4. PM2 Mode
+3. PM2 Mode
     - Run by typing `npm run start:pm2`.
     - This runs the bot using the process manager [PM2](https://pm2.keymetrics.io/).
     - Use this mode if you require the bot to always be online.

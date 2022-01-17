@@ -1,11 +1,13 @@
 import { ButtonInteraction, Message } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
+import { createRequire } from 'node:module';
 
-import { EventHandler } from '.';
-import { Button, ButtonDeferType } from '../buttons';
-import { EventData } from '../models/internal-models';
-import { MessageUtils } from '../utils';
+import { Button, ButtonDeferType } from '../buttons/index.js';
+import { EventData } from '../models/internal-models.js';
+import { MessageUtils } from '../utils/index.js';
+import { EventHandler } from './index.js';
 
+const require = createRequire(import.meta.url);
 let Config = require('../../config/config.json');
 
 export class ButtonHandler implements EventHandler {

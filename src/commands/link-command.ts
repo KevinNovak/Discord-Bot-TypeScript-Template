@@ -6,10 +6,10 @@ import {
     PermissionString,
 } from 'discord.js';
 
-import { Command, CommandDeferType } from '.';
-import { EventData } from '../models/internal-models';
-import { Lang } from '../services';
-import { MessageUtils } from '../utils';
+import { EventData } from '../models/internal-models.js';
+import { Lang } from '../services/index.js';
+import { MessageUtils } from '../utils/index.js';
+import { Command, CommandDeferType } from './index.js';
 
 export class LinkCommand implements Command {
     public metadata: ApplicationCommandData = {

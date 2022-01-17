@@ -1,5 +1,5 @@
 import fetch, { Response } from 'node-fetch';
-import { URL } from 'url';
+import { URL } from 'node:url';
 
 export class HttpService {
     public async get(url: string | URL, authorization: string): Promise<Response> {

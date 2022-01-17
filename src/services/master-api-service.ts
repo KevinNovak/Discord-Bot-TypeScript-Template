@@ -1,12 +1,14 @@
-import { URL } from 'url';
+import { createRequire } from 'node:module';
+import { URL } from 'node:url';
 
-import { HttpService } from '.';
 import {
     LoginClusterResponse,
     RegisterClusterRequest,
     RegisterClusterResponse,
-} from '../models/master-api';
+} from '../models/master-api/index.js';
+import { HttpService } from './index.js';
 
+const require = createRequire(import.meta.url);
 let Config = require('../../config/config.json');
 
 export class MasterApiService {

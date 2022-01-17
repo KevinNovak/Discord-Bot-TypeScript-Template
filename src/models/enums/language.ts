@@ -1,4 +1,4 @@
-import { Lang } from '../../services';
+import { Lang } from '../../services/index.js';
 
 export enum LangCode {
     EN_US = 'en-US',

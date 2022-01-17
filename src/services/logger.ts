@@ -1,7 +1,9 @@
 import { DiscordAPIError } from 'discord.js';
 import { Response } from 'node-fetch';
+import { createRequire } from 'node:module';
 import pino from 'pino';
 
+const require = createRequire(import.meta.url);
 let Config = require('../../config/config.json');
 
 let logger = pino(

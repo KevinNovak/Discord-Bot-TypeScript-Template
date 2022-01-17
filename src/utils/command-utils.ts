@@ -1,11 +1,13 @@
 import { CommandInteraction, GuildChannel, GuildMember, Permissions } from 'discord.js';
+import { createRequire } from 'node:module';
 
-import { FormatUtils, MessageUtils } from '.';
-import { Command } from '../commands';
-import { Permission } from '../models/enums';
-import { EventData } from '../models/internal-models';
-import { Lang } from '../services';
+import { Command } from '../commands/index.js';
+import { Permission } from '../models/enums/index.js';
+import { EventData } from '../models/internal-models.js';
+import { Lang } from '../services/index.js';
+import { FormatUtils, MessageUtils } from './index.js';
 
+const require = createRequire(import.meta.url);
 let Config = require('../../config/config.json');
 let Debug = require('../../config/debug.json');
 
