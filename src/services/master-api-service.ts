@@ -1,11 +1,11 @@
 import { URL } from 'url';
 
-import { HttpService } from '.';
 import {
     LoginClusterResponse,
     RegisterClusterRequest,
     RegisterClusterResponse,
-} from '../models/master-api';
+} from '../models/master-api/index.js';
+import { HttpService } from './index.js';
 
 let Config = require('../../config/config.json');
 

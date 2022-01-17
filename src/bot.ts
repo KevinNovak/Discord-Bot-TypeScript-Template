@@ -20,9 +20,9 @@ import {
     GuildLeaveHandler,
     MessageHandler,
     ReactionHandler,
-} from './events';
-import { JobService, Logger } from './services';
-import { PartialUtils } from './utils';
+} from './events/index.js';
+import { JobService, Logger } from './services/index.js';
+import { PartialUtils } from './utils/index.js';
 
 let Config = require('../config/config.json');
 let Debug = require('../config/debug.json');

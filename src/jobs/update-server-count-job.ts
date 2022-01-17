@@ -1,10 +1,10 @@
 import { ActivityType, ShardingManager } from 'discord.js';
 
-import { CustomClient } from '../extensions';
-import { BotSite } from '../models/config-models';
-import { HttpService, Lang, Logger } from '../services';
-import { ShardUtils } from '../utils';
-import { Job } from './job';
+import { CustomClient } from '../extensions/index.js';
+import { BotSite } from '../models/config-models.js';
+import { HttpService, Lang, Logger } from '../services/index.js';
+import { ShardUtils } from '../utils/index.js';
+import { Job } from './index.js';
 
 let BotSites: BotSite[] = require('../../config/bot-sites.json');
 let Config = require('../../config/config.json');

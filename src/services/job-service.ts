@@ -1,7 +1,7 @@
 import schedule from 'node-schedule';
 
-import { Logger } from '.';
-import { Job } from '../jobs';
+import { Job } from '../jobs/index.js';
+import { Logger } from './index.js';
 
 let Logs = require('../../lang/logs.json');
 

@@ -1,7 +1,7 @@
 import { Guild } from 'discord.js';
 
-import { Logger } from '../services';
-import { EventHandler } from './event-handler';
+import { Logger } from '../services/index.js';
+import { EventHandler } from './index.js';
 
 let Logs = require('../../lang/logs.json');
 

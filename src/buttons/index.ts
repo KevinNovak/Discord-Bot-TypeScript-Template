@@ -1,1 +1,1 @@
-export { Button, ButtonDeferType } from './button';
+export { Button, ButtonDeferType } from './button.js';

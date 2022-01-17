@@ -3,10 +3,10 @@ import fileSize from 'filesize';
 import os from 'os';
 import typescript from 'typescript';
 
-import { Command, CommandDeferType } from '.';
-import { EventData } from '../models/internal-models';
-import { Lang } from '../services';
-import { MessageUtils, ShardUtils } from '../utils';
+import { EventData } from '../models/internal-models.js';
+import { Lang } from '../services/index.js';
+import { MessageUtils, ShardUtils } from '../utils/index.js';
+import { Command, CommandDeferType } from './index.js';
 
 let TsConfig = require('../../tsconfig.json');
 

@@ -1,1 +1,1 @@
-export { CustomClient } from './custom-client';
+export { CustomClient } from './custom-client.js';

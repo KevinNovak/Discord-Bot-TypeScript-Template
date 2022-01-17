@@ -1,1 +1,1 @@
-export { Trigger } from './trigger';
+export { Trigger } from './trigger.js';

@@ -1,6 +1,6 @@
 import { ErrorRequestHandler } from 'express';
 
-import { Logger } from '../services';
+import { Logger } from '../services/index.js';
 
 let Logs = require('../../lang/logs.json');
 

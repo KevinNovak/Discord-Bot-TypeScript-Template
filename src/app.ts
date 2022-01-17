@@ -1,12 +1,12 @@
 import { ShardingManager } from 'discord.js';
 import 'reflect-metadata';
 
-import { Api } from './api';
-import { GuildsController, RootController, ShardsController } from './controllers';
-import { Job, UpdateServerCountJob } from './jobs';
-import { Manager } from './manager';
-import { HttpService, JobService, Logger, MasterApiService } from './services';
-import { MathUtils, ShardUtils } from './utils';
+import { Api } from './api.js';
+import { GuildsController, RootController, ShardsController } from './controllers/index.js';
+import { Job, UpdateServerCountJob } from './jobs/index.js';
+import { Manager } from './manager.js';
+import { HttpService, JobService, Logger, MasterApiService } from './services/index.js';
+import { MathUtils, ShardUtils } from './utils/index.js';
 
 let Config = require('../config/config.json');
 let Debug = require('../config/debug.json');

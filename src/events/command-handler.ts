@@ -1,11 +1,11 @@
 import { CommandInteraction, NewsChannel, TextChannel, ThreadChannel } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
-import { EventHandler } from '.';
-import { Command, CommandDeferType } from '../commands';
-import { EventData } from '../models/internal-models';
-import { Lang, Logger } from '../services';
-import { CommandUtils, MessageUtils } from '../utils';
+import { Command, CommandDeferType } from '../commands/index.js';
+import { EventData } from '../models/internal-models.js';
+import { Lang, Logger } from '../services/index.js';
+import { CommandUtils, MessageUtils } from '../utils/index.js';
+import { EventHandler } from './index.js';
 
 let Config = require('../../config/config.json');
 let Logs = require('../../lang/logs.json');

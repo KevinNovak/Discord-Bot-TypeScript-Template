@@ -2,8 +2,8 @@ import { ShardingManager } from 'discord.js';
 import { Request, Response, Router } from 'express';
 import router from 'express-promise-router';
 
-import { GetGuildsResponse } from '../models/cluster-api';
-import { Controller } from './controller';
+import { GetGuildsResponse } from '../models/cluster-api/index.js';
+import { Controller } from './index.js';
 
 let Config = require('../../config/config.json');
 

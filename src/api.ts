@@ -1,9 +1,9 @@
 import express, { Express } from 'express';
 import util from 'util';
 
-import { Controller } from './controllers';
-import { checkAuth, handleError } from './middleware';
-import { Logger } from './services';
+import { Controller } from './controllers/index.js';
+import { checkAuth, handleError } from './middleware/index.js';
+import { Logger } from './services/index.js';
 
 let Config = require('../config/config.json');
 let Logs = require('../lang/logs.json');
