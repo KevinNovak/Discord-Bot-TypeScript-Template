@@ -90,7 +90,7 @@ export class ClientUtils {
     ): Promise<TextChannel | NewsChannel> {
         // Prefer the system channel
         let systemChannel = guild.systemChannel;
-        if (systemChannel && PermissionUtils.canSend(systemChannel)) {
+        if (systemChannel && PermissionUtils.canSend(systemChannel, true)) {
             return systemChannel;
         }
 
@@ -98,7 +98,7 @@ export class ClientUtils {
         return (await guild.channels.fetch()).find(
             channel =>
                 (channel instanceof TextChannel || channel instanceof NewsChannel) &&
-                PermissionUtils.canSend(channel) &&
+                PermissionUtils.canSend(channel, true) &&
                 Lang.getRegex('channelRegexes.bot', langCode).test(channel.name)
         ) as TextChannel | NewsChannel;
     }
