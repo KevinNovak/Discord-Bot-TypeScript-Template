@@ -3,7 +3,7 @@ import { RateLimiter } from 'discord.js-rate-limiter';
 
 import { EventData } from '../models/internal-models.js';
 import { Lang } from '../services/index.js';
-import { MessageUtils } from '../utils/index.js';
+import { InteractionUtils } from '../utils/index.js';
 import { Command, CommandDeferType } from './index.js';
 
 export class TestCommand implements Command {
@@ -19,6 +19,6 @@ export class TestCommand implements Command {
     public requireUserPerms: PermissionString[] = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
-        await MessageUtils.sendIntr(intr, Lang.getEmbed('displayEmbeds.test', data.lang()));
+        await InteractionUtils.send(intr, Lang.getEmbed('displayEmbeds.test', data.lang()));
     }
 }

@@ -3,7 +3,7 @@ import { ApplicationCommandData, CommandInteraction, PermissionString } from 'di
 import { LangCode, Language } from '../models/enums/index.js';
 import { EventData } from '../models/internal-models.js';
 import { Lang } from '../services/index.js';
-import { MessageUtils } from '../utils/index.js';
+import { InteractionUtils } from '../utils/index.js';
 import { Command, CommandDeferType } from './index.js';
 
 export class TranslateCommand implements Command {
@@ -22,6 +22,6 @@ export class TranslateCommand implements Command {
         for (let langCode of Object.values(LangCode)) {
             embed.addField(Language.displayName(langCode), Language.translators(langCode));
         }
-        await MessageUtils.sendIntr(intr, embed);
+        await InteractionUtils.send(intr, embed);
     }
 }

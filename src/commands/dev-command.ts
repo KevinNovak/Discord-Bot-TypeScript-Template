@@ -6,7 +6,7 @@ import typescript from 'typescript';
 
 import { EventData } from '../models/internal-models.js';
 import { Lang } from '../services/index.js';
-import { MessageUtils, ShardUtils } from '../utils/index.js';
+import { InteractionUtils, ShardUtils } from '../utils/index.js';
 import { Command, CommandDeferType } from './index.js';
 
 const require = createRequire(import.meta.url);
@@ -32,7 +32,7 @@ export class DevCommand implements Command {
             } catch (error) {
                 // SHARDING_IN_PROCESS: Shards are still being spawned.
                 if (error.name.includes('SHARDING_IN_PROCESS')) {
-                    await MessageUtils.sendIntr(
+                    await InteractionUtils.send(
                         intr,
                         Lang.getEmbed('errorEmbeds.startupInProcess', data.lang())
                     );
@@ -46,7 +46,7 @@ export class DevCommand implements Command {
         }
 
         let memory = process.memoryUsage();
-        await MessageUtils.sendIntr(
+        await InteractionUtils.send(
             intr,
             Lang.getEmbed('displayEmbeds.dev', data.lang(), {
                 NODE_VERSION: process.version,

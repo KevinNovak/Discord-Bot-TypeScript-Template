@@ -1,10 +1,8 @@
 import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/v9';
 import {
-    CommandInteraction,
     DiscordAPIError,
     EmojiResolvable,
     Message,
-    MessageComponentInteraction,
     MessageEmbed,
     MessageOptions,
     MessageReaction,
@@ -17,7 +15,6 @@ const IGNORED_ERRORS = [
     DiscordApiErrors.UnknownChannel,
     DiscordApiErrors.UnknownGuild,
     DiscordApiErrors.UnknownUser,
-    DiscordApiErrors.UnknownInteraction,
     DiscordApiErrors.CannotSendMessagesToThisUser, // User blocked bot or DM disabled
     DiscordApiErrors.ReactionWasBlocked, // User blocked bot or DM disabled
 ];
@@ -95,92 +92,7 @@ export class MessageUtils {
         }
     }
 
-    public static async deferReply(
-        intr: CommandInteraction | MessageComponentInteraction,
-        hidden: boolean = false
-    ): Promise<void> {
-        try {
-            return await intr.deferReply({
-                ephemeral: hidden,
-            });
-        } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
-                return;
-            } else {
-                throw error;
-            }
-        }
-    }
-
-    public static async deferUpdate(intr: MessageComponentInteraction): Promise<void> {
-        try {
-            return await intr.deferUpdate();
-        } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
-                return;
-            } else {
-                throw error;
-            }
-        }
-    }
-
-    public static async sendIntr(
-        intr: CommandInteraction,
-        content: string | MessageEmbed | MessageOptions,
-        hidden: boolean = false
-    ): Promise<Message> {
-        try {
-            let msgOptions = this.messageOptions(content);
-            return (await intr.followUp({
-                ...msgOptions,
-                ephemeral: hidden,
-            })) as Message;
-        } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
-                return;
-            } else {
-                throw error;
-            }
-        }
-    }
-
-    public static async editReplyIntr(
-        intr: CommandInteraction,
-        content: string | MessageEmbed | MessageOptions
-    ): Promise<Message> {
-        try {
-            let msgOptions = this.messageOptions(content);
-            return (await intr.editReply({
-                ...msgOptions,
-            })) as Message;
-        } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
-                return;
-            } else {
-                throw error;
-            }
-        }
-    }
-
-    public static async updateIntr(
-        intr: MessageComponentInteraction,
-        content: string | MessageEmbed | MessageOptions
-    ): Promise<void> {
-        try {
-            let msgOptions = this.messageOptions(content);
-            return await intr.update({
-                ...msgOptions,
-            });
-        } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
-                return;
-            } else {
-                throw error;
-            }
-        }
-    }
-
-    private static messageOptions(content: string | MessageEmbed | MessageOptions): MessageOptions {
+    public static messageOptions(content: string | MessageEmbed | MessageOptions): MessageOptions {
         let options: MessageOptions = {};
         if (typeof content === 'string') {
             options.content = content;
