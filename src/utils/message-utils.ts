@@ -144,6 +144,24 @@ export class MessageUtils {
         }
     }
 
+    public static async editReplyIntr(
+        intr: CommandInteraction,
+        content: string | MessageEmbed | MessageOptions
+    ): Promise<Message> {
+        try {
+            let msgOptions = this.messageOptions(content);
+            return (await intr.editReply({
+                ...msgOptions,
+            })) as Message;
+        } catch (error) {
+            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
     public static async updateIntr(
         intr: MessageComponentInteraction,
         content: string | MessageEmbed | MessageOptions
