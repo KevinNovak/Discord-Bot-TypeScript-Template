@@ -47,5 +47,12 @@
         "url": "https://discord.boats/api/bot/<BOT_ID>",
         "authorization": "<TOKEN>",
         "body": "{\"server_count\":{{SERVER_COUNT}}}"
+    },
+    {
+        "name": "discordlist.space",
+        "enabled": false,
+        "url": "https://api.discordlist.space/v2/bots/<BOT_ID>",
+        "authorization": "<TOKEN>",
+        "body": "{\"serverCount\":{{SERVER_COUNT}}}"
     }
 ]
