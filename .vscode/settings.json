@@ -30,5 +30,6 @@
         "respawn",
         "restjson",
         "varchar"
-    ]
+    ],
+    "typescript.preferences.importModuleSpecifierEnding": "js"
 }
