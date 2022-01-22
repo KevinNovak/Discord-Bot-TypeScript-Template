@@ -10,7 +10,15 @@ import {
 
 import { MessageUtils } from './index.js';
 
-const IGNORED_ERRORS = [DiscordApiErrors.UnknownInteraction];
+const IGNORED_ERRORS = [
+    DiscordApiErrors.UnknownMessage,
+    DiscordApiErrors.UnknownChannel,
+    DiscordApiErrors.UnknownGuild,
+    DiscordApiErrors.UnknownUser,
+    DiscordApiErrors.UnknownInteraction,
+    DiscordApiErrors.CannotSendMessagesToThisUser, // User blocked bot or DM disabled
+    DiscordApiErrors.ReactionWasBlocked, // User blocked bot or DM disabled
+];
 
 export class InteractionUtils {
     public static async deferReply(

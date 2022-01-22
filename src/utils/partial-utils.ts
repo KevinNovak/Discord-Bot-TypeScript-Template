@@ -10,8 +10,11 @@ import {
 } from 'discord.js';
 
 const IGNORED_ERRORS = [
-    DiscordApiErrors.UnknownChannel,
     DiscordApiErrors.UnknownMessage,
+    DiscordApiErrors.UnknownChannel,
+    DiscordApiErrors.UnknownGuild,
+    DiscordApiErrors.UnknownUser,
+    DiscordApiErrors.UnknownInteraction,
     DiscordApiErrors.MissingAccess,
 ];
 
