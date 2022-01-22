@@ -59,10 +59,7 @@ export class ButtonHandler implements EventHandler {
         }
 
         // Return if defer was unsuccessful
-        if (
-            [ButtonDeferType.REPLY, ButtonDeferType.UPDATE].includes(button.deferType) &&
-            !intr.deferred
-        ) {
+        if (button.deferType !== ButtonDeferType.NONE && !intr.deferred) {
             return;
         }
 
