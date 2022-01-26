@@ -2,10 +2,10 @@ import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/v9';
 import {
     AnyChannel,
     Client,
-    NewsChannel,
     DiscordAPIError,
     Guild,
     GuildMember,
+    NewsChannel,
     TextChannel,
     User,
 } from 'discord.js';

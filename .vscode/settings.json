@@ -20,6 +20,7 @@
         "discordjs",
         "discordlabs",
         "discordlist",
+        "disforge",
         "filesize",
         "luxon",
         "millis",
@@ -31,5 +32,6 @@
         "respawn",
         "restjson",
         "varchar"
-    ]
+    ],
+    "typescript.preferences.importModuleSpecifierEnding": "js"
 }

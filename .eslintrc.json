@@ -79,7 +79,16 @@
                 "allowTemplateLiterals": true
             }
         ],
-        "sort-imports": "off",
+        "sort-imports": [
+            "error",
+            {
+                "allowSeparatedGroups": true,
+                "ignoreCase": true,
+                "ignoreDeclarationSort": true,
+                "ignoreMemberSort": false,
+                "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+            }
+        ],
         "unicorn/prefer-node-protocol": "error"
     }
 }

@@ -5,7 +5,7 @@ import { createRequire } from 'node:module';
 import { Command, CommandDeferType } from '../commands/index.js';
 import { EventData } from '../models/internal-models.js';
 import { Lang, Logger } from '../services/index.js';
-import { CommandUtils, MessageUtils } from '../utils/index.js';
+import { CommandUtils, InteractionUtils } from '../utils/index.js';
 import { EventHandler } from './index.js';
 
 const require = createRequire(import.meta.url);
@@ -47,13 +47,18 @@ export class CommandHandler implements EventHandler {
         // NOTE: Anything after this point we should be responding to the interaction
         switch (command.deferType) {
             case CommandDeferType.PUBLIC: {
-                await MessageUtils.deferReply(intr, false);
+                await InteractionUtils.deferReply(intr, false);
                 break;
             }
             case CommandDeferType.HIDDEN: {
-                await MessageUtils.deferReply(intr, true);
+                await InteractionUtils.deferReply(intr, true);
                 break;
             }
+        }
+
+        // Return if defer was unsuccessful
+        if (command.deferType !== CommandDeferType.NONE && !intr.deferred) {
+            return;
         }
 
         // TODO: Get data from database
@@ -95,7 +100,7 @@ export class CommandHandler implements EventHandler {
 
     private async sendError(intr: CommandInteraction, data: EventData): Promise<void> {
         try {
-            await MessageUtils.sendIntr(
+            await InteractionUtils.send(
                 intr,
                 Lang.getEmbed('errorEmbeds.command', data.lang(), {
                     ERROR_CODE: intr.id,

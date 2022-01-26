@@ -5,7 +5,7 @@ import { Command } from '../commands/index.js';
 import { Permission } from '../models/enums/index.js';
 import { EventData } from '../models/internal-models.js';
 import { Lang } from '../services/index.js';
-import { FormatUtils, MessageUtils } from './index.js';
+import { FormatUtils, InteractionUtils } from './index.js';
 
 const require = createRequire(import.meta.url);
 let Config = require('../../config/config.json');
@@ -20,7 +20,7 @@ export class CommandUtils {
         if (command.cooldown) {
             let limited = command.cooldown.take(intr.user.id);
             if (limited) {
-                await MessageUtils.sendIntr(
+                await InteractionUtils.send(
                     intr,
                     Lang.getEmbed('validationEmbeds.cooldownHit', data.lang(), {
                         AMOUNT: command.cooldown.amount.toLocaleString(),
@@ -32,7 +32,7 @@ export class CommandUtils {
         }
 
         if (command.requireDev && !Config.developers.includes(intr.user.id)) {
-            await MessageUtils.sendIntr(
+            await InteractionUtils.send(
                 intr,
                 Lang.getEmbed('validationEmbeds.devOnlyCommand', data.lang())
             );
@@ -40,7 +40,7 @@ export class CommandUtils {
         }
 
         if (command.requireGuild && !intr.guild) {
-            await MessageUtils.sendIntr(
+            await InteractionUtils.send(
                 intr,
                 Lang.getEmbed('validationEmbeds.serverOnlyCommand', data.lang())
             );
@@ -51,7 +51,7 @@ export class CommandUtils {
             intr.channel instanceof GuildChannel &&
             !intr.channel.permissionsFor(intr.client.user).has(command.requireClientPerms)
         ) {
-            await MessageUtils.sendIntr(
+            await InteractionUtils.send(
                 intr,
                 Lang.getEmbed('validationEmbeds.missingClientPerms', data.lang(), {
                     PERMISSIONS: command.requireClientPerms
@@ -64,7 +64,7 @@ export class CommandUtils {
 
         // TODO: Remove "as GuildMember",  why does discord.js have intr.member as a "APIInteractionGuildMember"?
         if (intr.member && !this.hasPermission(intr.member as GuildMember, command)) {
-            await MessageUtils.sendIntr(
+            await InteractionUtils.send(
                 intr,
                 Lang.getEmbed('validationEmbeds.missingUserPerms', data.lang())
             );
