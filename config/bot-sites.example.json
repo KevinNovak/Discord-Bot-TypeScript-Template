@@ -47,5 +47,12 @@
         "url": "https://discord.boats/api/bot/<BOT_ID>",
         "authorization": "<TOKEN>",
         "body": "{\"server_count\":{{SERVER_COUNT}}}"
+    },
+    {
+        "name": "disforge.com",
+        "enabled": false,
+        "url": "https://disforge.com/api/botstats/<BOT_ID>",
+        "authorization": "<TOKEN>",
+        "body": "{\"servers\":{{SERVER_COUNT}}}"
     }
 ]
