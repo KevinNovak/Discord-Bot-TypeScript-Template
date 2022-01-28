@@ -6,6 +6,7 @@ import {
     Guild,
     GuildMember,
     NewsChannel,
+    NonThreadGuildBasedChannel,
     Role,
     TextChannel,
     User,
@@ -87,7 +88,10 @@ export class ClientUtils {
         }
     }
 
-    public static async findChannel(guild: Guild, input: string): Promise<AnyChannel> {
+    public static async findChannel(
+        guild: Guild,
+        input: string
+    ): Promise<NonThreadGuildBasedChannel> {
         try {
             let discordId = RegexUtils.discordId(input);
             if (discordId) {
