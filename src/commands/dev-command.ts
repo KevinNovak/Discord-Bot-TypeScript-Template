@@ -1,4 +1,8 @@
-import djs, { ApplicationCommandData, CommandInteraction, PermissionString } from 'discord.js';
+import djs, {
+    ChatInputApplicationCommandData,
+    CommandInteraction,
+    PermissionString,
+} from 'discord.js';
 import fileSize from 'filesize';
 import { createRequire } from 'node:module';
 import os from 'node:os';
@@ -13,7 +17,7 @@ const require = createRequire(import.meta.url);
 let TsConfig = require('../../tsconfig.json');
 
 export class DevCommand implements Command {
-    public metadata: ApplicationCommandData = {
+    public metadata: ChatInputApplicationCommandData = {
         name: Lang.getCom('commands.dev'),
         description: Lang.getRef('commandDescs.dev', Lang.Default),
     };
