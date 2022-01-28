@@ -6,6 +6,7 @@ import {
     Guild,
     GuildMember,
     NewsChannel,
+    Role,
     TextChannel,
     User,
 } from 'discord.js';
@@ -56,6 +57,26 @@ export class ClientUtils {
             if (
                 error instanceof DiscordAPIError &&
                 [DiscordApiErrors.UnknownMember, DiscordApiErrors.UnknownUser].includes(error.code)
+            ) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    public static async findRole(guild: Guild, input: string): Promise<Role> {
+        try {
+            let discordId = RegexUtils.discordId(input);
+            if (discordId) {
+                return await guild.roles.fetch(discordId);
+            }
+
+            return guild.roles.cache.find(r => r.name.toLowerCase().includes(input));
+        } catch (error) {
+            if (
+                error instanceof DiscordAPIError &&
+                [DiscordApiErrors.UnknownRole].includes(error.code)
             ) {
                 return;
             } else {
