@@ -94,8 +94,9 @@ export class ClientUtils {
                 return await guild.roles.fetch(discordId);
             }
 
+            let search = input.toLowerCase();
             return (await guild.roles.fetch()).find(role =>
-                role.name.toLowerCase().includes(input.toLowerCase())
+                role.name.toLowerCase().includes(search)
             );
         } catch (error) {
             if (
@@ -124,10 +125,11 @@ export class ClientUtils {
                 }
             }
 
+            let search = input.toLowerCase().replaceAll(' ', '-');
             return [...(await guild.channels.fetch()).values()]
                 .filter(channel => channel instanceof NewsChannel || channel instanceof TextChannel)
                 .map(channel => channel as NewsChannel | TextChannel)
-                .find(channel => channel.name.toLowerCase().includes(input.toLowerCase()));
+                .find(channel => channel.name.toLowerCase().includes(search));
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
@@ -155,12 +157,13 @@ export class ClientUtils {
                 }
             }
 
+            let search = input.toLowerCase();
             return [...(await guild.channels.fetch()).values()]
                 .filter(
                     channel => channel instanceof StageChannel || channel instanceof VoiceChannel
                 )
                 .map(channel => channel as StageChannel | VoiceChannel)
-                .find(channel => channel.name.toLowerCase().includes(input.toLowerCase()));
+                .find(channel => channel.name.toLowerCase().includes(search));
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
