@@ -40,6 +40,26 @@ export class ClientUtils {
         }
     }
 
+    public static async getChannel(client: Client, discordId: string): Promise<AnyChannel> {
+        discordId = RegexUtils.discordId(discordId);
+        if (!discordId) {
+            return;
+        }
+
+        try {
+            return await client.channels.fetch(discordId);
+        } catch (error) {
+            if (
+                error instanceof DiscordAPIError &&
+                [DiscordApiErrors.UnknownChannel].includes(error.code)
+            ) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
     public static async findMember(guild: Guild, input: string): Promise<GuildMember> {
         try {
             let discordId = RegexUtils.discordId(input);
@@ -141,26 +161,6 @@ export class ClientUtils {
                 )
                 .map(channel => channel as StageChannel | VoiceChannel)
                 .find(channel => channel.name.toLowerCase().includes(input.toLowerCase()));
-        } catch (error) {
-            if (
-                error instanceof DiscordAPIError &&
-                [DiscordApiErrors.UnknownChannel].includes(error.code)
-            ) {
-                return;
-            } else {
-                throw error;
-            }
-        }
-    }
-
-    public static async getChannel(client: Client, discordId: string): Promise<AnyChannel> {
-        discordId = RegexUtils.discordId(discordId);
-        if (!discordId) {
-            return;
-        }
-
-        try {
-            return await client.channels.fetch(discordId);
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
