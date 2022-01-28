@@ -72,7 +72,9 @@ export class ClientUtils {
                 return await guild.roles.fetch(discordId);
             }
 
-            return guild.roles.cache.find(role => role.name.toLowerCase().includes(input.toLowercase()));
+            return (await guild.roles.fetch()).find(role =>
+                role.name.toLowerCase().includes(input.toLowerCase())
+            );
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
