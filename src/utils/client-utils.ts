@@ -87,6 +87,28 @@ export class ClientUtils {
         }
     }
 
+    public static async findChannel(guild: Guild, input: string): Promise<AnyChannel> {
+        try {
+            let discordId = RegexUtils.discordId(input);
+            if (discordId) {
+                return await guild.channels.fetch(discordId);
+            }
+
+            return (await guild.channels.fetch()).find(channel =>
+                channel.name.toLowerCase().includes(input.toLowerCase())
+            );
+        } catch (error) {
+            if (
+                error instanceof DiscordAPIError &&
+                [DiscordApiErrors.UnknownChannel].includes(error.code)
+            ) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
     public static async getChannel(client: Client, discordId: string): Promise<AnyChannel> {
         discordId = RegexUtils.discordId(discordId);
         if (!discordId) {
