@@ -58,6 +58,7 @@ export class Lang {
             fields: jsonValue.fields?.map(field => ({
                 name: Utils.join(field.name, '\n'),
                 value: Utils.join(field.value, '\n'),
+                inline: field.inline ? field.inline : false,
             })),
             image: {
                 url: jsonValue.image,
