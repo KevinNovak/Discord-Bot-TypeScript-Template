@@ -57,10 +57,19 @@ export class InteractionUtils {
     ): Promise<Message> {
         try {
             let msgOptions = MessageUtils.messageOptions(content);
-            return (await intr.followUp({
-                ...msgOptions,
-                ephemeral: hidden,
-            })) as Message;
+
+            if (intr.deferred || intr.replied) {
+                return (await intr.followUp({
+                    ...msgOptions,
+                    ephemeral: hidden,
+                })) as Message;
+            } else {
+                return (await intr.reply({
+                    ...msgOptions,
+                    ephemeral: hidden,
+                    fetchReply: true,
+                })) as Message;
+            }
         } catch (error) {
             if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
                 return;
