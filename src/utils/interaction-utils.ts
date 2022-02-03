@@ -100,12 +100,13 @@ export class InteractionUtils {
     public static async update(
         intr: MessageComponentInteraction,
         content: string | MessageEmbed | MessageOptions
-    ): Promise<void> {
+    ): Promise<Message> {
         try {
             let msgOptions = MessageUtils.messageOptions(content);
-            return await intr.update({
+            return (await intr.update({
                 ...msgOptions,
-            });
+                fetchReply: true,
+            })) as Message;
         } catch (error) {
             if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
                 return;
