@@ -29,51 +29,51 @@ let logger = pino(
 export class Logger {
     private static shardId: number;
 
-    public static info(message: string): void {
-        logger.info(message);
+    public static info(message: string, obj?: any): void {
+        obj ? logger.info(obj, message) : logger.info(message);
     }
 
-    public static warn(message: string): void {
-        logger.warn(message);
+    public static warn(message: string, obj?: any): void {
+        obj ? logger.warn(obj, message) : logger.warn(message);
     }
 
-    public static async error(message: string, error?: any): Promise<void> {
+    public static async error(message: string, obj?: any): Promise<void> {
         // Log just a message if no error object
-        if (!error) {
+        if (!obj) {
             logger.error(message);
             return;
         }
 
         // Otherwise log details about the error
-        if (error instanceof Response) {
+        if (obj instanceof Response) {
             let resText: string;
             try {
-                resText = await error.text();
+                resText = await obj.text();
             } catch {
                 // Ignore
             }
             logger
                 .child({
-                    path: error.url,
-                    statusCode: error.status,
-                    statusName: error.statusText,
-                    headers: error.headers.raw(),
+                    path: obj.url,
+                    statusCode: obj.status,
+                    statusName: obj.statusText,
+                    headers: obj.headers.raw(),
                     body: resText,
                 })
                 .error(message);
-        } else if (error instanceof DiscordAPIError) {
+        } else if (obj instanceof DiscordAPIError) {
             logger
                 .child({
-                    message: error.message,
-                    code: error.code,
-                    statusCode: error.httpStatus,
-                    method: error.method,
-                    path: error.path,
-                    stack: error.stack,
+                    message: obj.message,
+                    code: obj.code,
+                    statusCode: obj.httpStatus,
+                    method: obj.method,
+                    path: obj.path,
+                    stack: obj.stack,
                 })
                 .error(message);
         } else {
-            logger.error(error, message);
+            logger.error(obj, message);
         }
     }
 
