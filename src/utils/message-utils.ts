@@ -6,7 +6,9 @@ import {
     MessageEmbed,
     MessageOptions,
     MessageReaction,
+    StartThreadOptions,
     TextBasedChannel,
+    ThreadChannel,
     User,
 } from 'discord.js';
 
@@ -72,6 +74,21 @@ export class MessageUtils {
     public static async react(msg: Message, emoji: EmojiResolvable): Promise<MessageReaction> {
         try {
             return await msg.react(emoji);
+        } catch (error) {
+            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    public static async startThread(
+        msg: Message,
+        options: StartThreadOptions
+    ): Promise<ThreadChannel> {
+        try {
+            return await msg.startThread(options);
         } catch (error) {
             if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
                 return;
