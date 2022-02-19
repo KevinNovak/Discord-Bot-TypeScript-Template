@@ -18,6 +18,8 @@
         "lint:fix": "eslint . --fix --cache --ext .js,.jsx,.ts,.tsx",
         "format": "prettier --check .",
         "format:fix": "prettier --write .",
+        "clean": "git clean -xdf --exclude=\"/config/**/*\"",
+        "clean:dry": "git clean -xdf --exclude=\"/config/**/*\" --dry-run",
         "build": "tsc --project tsconfig.json",
         "register": "npm run build && node --enable-source-maps dist/start.js --register",
         "start": "npm run build && node --enable-source-maps dist/start.js",
