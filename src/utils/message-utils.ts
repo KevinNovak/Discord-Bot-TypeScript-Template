@@ -83,6 +83,30 @@ export class MessageUtils {
         }
     }
 
+    public static async pin(msg: Message): Promise<Message> {
+        try {
+            return await msg.pin();
+        } catch (error) {
+            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    public static async unpin(msg: Message): Promise<Message> {
+        try {
+            return await msg.unpin();
+        } catch (error) {
+            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
     public static async startThread(
         msg: Message,
         options: StartThreadOptions
