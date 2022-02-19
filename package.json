@@ -22,6 +22,7 @@
         "clean:dry": "git clean -xdf --exclude=\"/config/**/*\" --dry-run",
         "build": "tsc --project tsconfig.json",
         "register": "npm run build && node --enable-source-maps dist/start.js --register",
+        "register:clear": "npm run build && node --enable-source-maps dist/start.js --register:clear",
         "start": "npm run build && node --enable-source-maps dist/start.js",
         "start:shard": "npm run build && node --enable-source-maps dist/app.js",
         "start:pm2": "npm run build && npm run pm2:start",

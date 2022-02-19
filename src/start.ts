@@ -103,6 +103,9 @@ async function start(): Promise<void> {
     if (process.argv[2] === '--register') {
         await registerCommands(commands);
         process.exit();
+    } else if (process.argv[2] === '--register:clear') {
+        await clearCommands();
+        process.exit();
     }
 
     await bot.start();
@@ -129,6 +132,20 @@ async function registerCommands(commands: Command[]): Promise<void> {
     }
 
     Logger.info(Logs.info.commandsRegistered);
+}
+
+async function clearCommands(): Promise<void> {
+    Logger.info(Logs.info.commandsClearing);
+
+    try {
+        let rest = new REST({ version: '9' }).setToken(Config.client.token);
+        await rest.put(Routes.applicationCommands(Config.client.id), { body: [] });
+    } catch (error) {
+        Logger.error(Logs.error.commandsClearing, error);
+        return;
+    }
+
+    Logger.info(Logs.info.commandsCleared);
 }
 
 process.on('unhandledRejection', (reason, _promise) => {
