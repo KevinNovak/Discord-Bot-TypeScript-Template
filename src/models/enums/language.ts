@@ -1,9 +1,5 @@
+import { LangCode } from '../../enums/index.js';
 import { Lang } from '../../services/index.js';
-
-export enum LangCode {
-    EN_US = 'en-US',
-    EN_PIRATE = 'en-Pirate',
-}
 
 export class Language {
     public static keyword(langCode: LangCode): string {

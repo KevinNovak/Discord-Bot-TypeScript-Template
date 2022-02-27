@@ -3,7 +3,7 @@ import { Linguini, TypeMapper, TypeMappers, Utils } from 'linguini';
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { LangCode } from '../models/enums/index.js';
+import { LangCode } from '../enums/index.js';
 
 export class Lang {
     public static Default = LangCode.EN_US;
