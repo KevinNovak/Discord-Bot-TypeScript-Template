@@ -3,7 +3,6 @@ import { Routes } from 'discord-api-types/v9';
 import { Options } from 'discord.js';
 import { createRequire } from 'node:module';
 
-import { Bot } from './bot.js';
 import { Button } from './buttons/index.js';
 import {
     Command,
@@ -25,6 +24,7 @@ import {
 } from './events/index.js';
 import { CustomClient } from './extensions/index.js';
 import { Job } from './jobs/index.js';
+import { Bot } from './models/bot.js';
 import { Reaction } from './reactions/index.js';
 import { JobService, Logger } from './services/index.js';
 import { Trigger } from './triggers/index.js';
