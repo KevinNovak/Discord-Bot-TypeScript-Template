@@ -2,7 +2,7 @@ import { CommandInteraction, GuildChannel, GuildMember, Permissions } from 'disc
 import { createRequire } from 'node:module';
 
 import { Command } from '../commands/index.js';
-import { Permission } from '../models/enums/index.js';
+import { Permission } from '../models/enum-helpers/index.js';
 import { EventData } from '../models/internal-models.js';
 import { Lang } from '../services/index.js';
 import { FormatUtils, InteractionUtils } from './index.js';
