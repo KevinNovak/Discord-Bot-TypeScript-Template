@@ -45,6 +45,36 @@
             "internalConsoleOptions": "openOnSessionStart",
             "skipFiles": ["<node_internals>/**"],
             "restart": false
+        },
+        {
+            "name": "start:bridge",
+            "type": "node",
+            "request": "launch",
+            "protocol": "inspector",
+            "preLaunchTask": "build",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "node",
+            "args": ["--enable-source-maps", "${workspaceFolder}/dist/start-bridge.js"],
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+            "outputCapture": "std",
+            "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": ["<node_internals>/**"],
+            "restart": false
+        },
+        {
+            "name": "start:api",
+            "type": "node",
+            "request": "launch",
+            "protocol": "inspector",
+            "preLaunchTask": "build",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "node",
+            "args": ["--enable-source-maps", "${workspaceFolder}/dist/start-api.js"],
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+            "outputCapture": "std",
+            "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": ["<node_internals>/**"],
+            "restart": false
         }
     ]
 }
