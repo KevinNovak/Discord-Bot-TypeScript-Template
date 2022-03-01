@@ -99,7 +99,7 @@ A welcome message is sent to the server and owner when the bot is added.
     - Navigate into the downloaded source files and type `npm install`.
 5. Register commands.
     - In order to use slash commands, they first [have to be registered](https://discordjs.guide/interactions/registering-slash-commands.html#registering-slash-commands).
-    - Type `npm run register` to register the bot's commands.
+    - Type `npm run commands:register` to register the bot's commands.
         - Run this script any time you change a command name, structure, or add/remove commands.
         - This is so Discord knows what your commands look like.
         - It may take up to an hour for command changes to appear.

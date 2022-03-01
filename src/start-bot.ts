@@ -103,7 +103,7 @@ async function start(): Promise<void> {
     if (process.argv[2] === '--register') {
         await registerCommands(commands);
         process.exit();
-    } else if (process.argv[2] === '--register:clear') {
+    } else if (process.argv[2] === '--clear') {
         await clearCommands();
         process.exit();
     }

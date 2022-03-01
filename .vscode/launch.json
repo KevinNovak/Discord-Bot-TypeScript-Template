@@ -32,7 +32,7 @@
             "restart": false
         },
         {
-            "name": "register",
+            "name": "commands:register",
             "type": "node",
             "request": "launch",
             "protocol": "inspector",
