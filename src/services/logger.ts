@@ -45,7 +45,13 @@ export class Logger {
         }
 
         // Otherwise log details about the error
-        if (obj instanceof Response) {
+        if (typeof obj === 'string') {
+            logger
+                .child({
+                    message: obj,
+                })
+                .error(message);
+        } else if (obj instanceof Response) {
             let resText: string;
             try {
                 resText = await obj.text();
