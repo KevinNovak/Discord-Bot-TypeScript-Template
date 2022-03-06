@@ -33,6 +33,7 @@
         "pino",
         "regexes",
         "respawn",
+        "respawned",
         "restjson",
         "varchar"
     ],
