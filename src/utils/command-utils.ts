@@ -1,4 +1,10 @@
-import { CommandInteraction, GuildChannel, GuildMember, Permissions } from 'discord.js';
+import {
+    CommandInteraction,
+    GuildChannel,
+    GuildMember,
+    Permissions,
+    ThreadChannel,
+} from 'discord.js';
 import { createRequire } from 'node:module';
 
 import { Command } from '../commands/index.js';
@@ -48,7 +54,7 @@ export class CommandUtils {
         }
 
         if (
-            intr.channel instanceof GuildChannel &&
+            (intr.channel instanceof GuildChannel || intr.channel instanceof ThreadChannel) &&
             !intr.channel.permissionsFor(intr.client.user).has(command.requireClientPerms)
         ) {
             await InteractionUtils.send(
