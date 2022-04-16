@@ -7,7 +7,14 @@ export interface Reaction {
     requireGuild: boolean;
     requireSentByClient: boolean;
     requireEmbedAuthorTag: boolean;
-    execute(
+    executeReaction(
+        msgReaction: MessageReaction,
+        msg: Message,
+        reactor: User,
+        data: EventData
+    ): Promise<void>;
+
+    executeNonReaction(
         msgReaction: MessageReaction,
         msg: Message,
         reactor: User,
