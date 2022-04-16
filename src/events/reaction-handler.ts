@@ -17,7 +17,12 @@ export class ReactionHandler implements EventHandler {
 
     constructor(private reactions: Reaction[]) {}
 
-    public async process(msgReaction: MessageReaction, msg: Message, reactor: User): Promise<void> {
+    public async process(
+        msgReaction: MessageReaction,
+        msg: Message,
+        reactor: User,
+        isNonReaction: boolean = false
+    ): Promise<void> {
         // Don't respond to self, or other bots
         if (reactor.id === msgReaction.client.user?.id || reactor.bot) {
             return;
@@ -52,7 +57,11 @@ export class ReactionHandler implements EventHandler {
         let data = new EventData();
 
         // Execute the reaction
-        await reaction.execute(msgReaction, msg, reactor, data);
+        if (!isNonReaction) {
+            return await reaction.executeReaction(msgReaction, msg, reactor, data);
+        }
+
+        await reaction.executeNonReaction(msgReaction, msg, reactor, data);
     }
 
     private findReaction(emoji: string): Reaction {
