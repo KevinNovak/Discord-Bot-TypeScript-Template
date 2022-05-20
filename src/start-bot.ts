@@ -1,5 +1,5 @@
 import { REST } from '@discordjs/rest';
-import { Routes } from 'discord-api-types/v9';
+import { Routes } from 'discord-api-types/v10';
 import { Options } from 'discord.js';
 import { createRequire } from 'node:module';
 
@@ -123,7 +123,7 @@ async function registerCommands(commands: Command[]): Promise<void> {
     );
 
     try {
-        let rest = new REST({ version: '9' }).setToken(Config.client.token);
+        let rest = new REST({ version: '10' }).setToken(Config.client.token);
         await rest.put(Routes.applicationCommands(Config.client.id), { body: [] });
         await rest.put(Routes.applicationCommands(Config.client.id), { body: cmdDatas });
     } catch (error) {
@@ -138,7 +138,7 @@ async function clearCommands(): Promise<void> {
     Logger.info(Logs.info.commandsClearing);
 
     try {
-        let rest = new REST({ version: '9' }).setToken(Config.client.token);
+        let rest = new REST({ version: '10' }).setToken(Config.client.token);
         await rest.put(Routes.applicationCommands(Config.client.id), { body: [] });
     } catch (error) {
         Logger.error(Logs.error.commandsClearing, error);
