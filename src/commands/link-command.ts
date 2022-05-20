@@ -1,10 +1,8 @@
-import { ApplicationCommandOptionType } from 'discord-api-types/v10';
 import {
-    ChatInputApplicationCommandData,
-    CommandInteraction,
-    MessageEmbed,
-    PermissionString,
-} from 'discord.js';
+    ApplicationCommandOptionType,
+    RESTPostAPIChatInputApplicationCommandsJSONBody,
+} from 'discord-api-types/v10';
+import { CommandInteraction, MessageEmbed, PermissionString } from 'discord.js';
 
 import { EventData } from '../models/internal-models.js';
 import { Lang } from '../services/index.js';
@@ -12,7 +10,7 @@ import { InteractionUtils } from '../utils/index.js';
 import { Command, CommandDeferType } from './index.js';
 
 export class LinkCommand implements Command {
-    public metadata: ChatInputApplicationCommandData = {
+    public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
         name: Lang.getCom('commands.link'),
         description: Lang.getRef('commandDescs.link', Lang.Default),
         options: [
@@ -20,7 +18,7 @@ export class LinkCommand implements Command {
                 name: Lang.getCom('arguments.link'),
                 description: 'Link to display.',
                 required: true,
-                type: ApplicationCommandOptionType.String.valueOf(),
+                type: ApplicationCommandOptionType.String,
                 choices: [
                     {
                         name: 'docs',
