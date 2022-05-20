@@ -45,14 +45,6 @@ export class CommandUtils {
             return false;
         }
 
-        if (command.requireGuild && !intr.guild) {
-            await InteractionUtils.send(
-                intr,
-                Lang.getEmbed('validationEmbeds.serverOnlyCommand', data.lang())
-            );
-            return false;
-        }
-
         if (
             (intr.channel instanceof GuildChannel || intr.channel instanceof ThreadChannel) &&
             !intr.channel.permissionsFor(intr.client.user).has(command.requireClientPerms)

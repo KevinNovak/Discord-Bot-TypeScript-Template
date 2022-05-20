@@ -10,10 +10,10 @@ export class HelpCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
         name: Lang.getCom('commands.help'),
         description: Lang.getRef('commandDescs.help', Lang.Default),
+        dm_permission: true,
     };
     public deferType = CommandDeferType.PUBLIC;
     public requireDev = false;
-    public requireGuild = false;
     public requireClientPerms: PermissionString[] = [];
     public requireUserPerms: PermissionString[] = [];
 

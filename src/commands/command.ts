@@ -9,7 +9,6 @@ export interface Command {
     cooldown?: RateLimiter;
     deferType: CommandDeferType;
     requireDev: boolean;
-    requireGuild: boolean;
     requireClientPerms: PermissionString[];
     requireUserPerms: PermissionString[];
     execute(intr: CommandInteraction, data: EventData): Promise<void>;

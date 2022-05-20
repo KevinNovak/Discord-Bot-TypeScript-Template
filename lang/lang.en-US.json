@@ -136,10 +136,6 @@
                 "description": "This command can only be used by developers.",
                 "color": "{{COM:colors.warning}}"
             },
-            "serverOnlyCommand": {
-                "description": "This command can only be used in a server.",
-                "color": "{{COM:colors.warning}}"
-            },
             "missingClientPerms": {
                 "description": [
                     "I don't have all permissions required to run that command here! Please check the server and channel permissions to make sure I have the following permissions.",

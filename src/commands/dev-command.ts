@@ -17,10 +17,10 @@ export class DevCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
         name: Lang.getCom('commands.dev'),
         description: Lang.getRef('commandDescs.dev', Lang.Default),
+        dm_permission: true,
     };
     public deferType = CommandDeferType.PUBLIC;
     public requireDev = true;
-    public requireGuild = false;
     public requireClientPerms: PermissionString[] = [];
     public requireUserPerms: PermissionString[] = [];
 
