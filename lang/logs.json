@@ -2,9 +2,9 @@
     "info": {
         "appStarted": "Application started.",
         "apiStarted": "API started on port {PORT}.",
-        "commandsRegistering": "Registering commands: {COMMAND_NAMES}.",
+        "commandsRegistering": "Registering commands for client '{CLIENT_ID}': {COMMAND_NAMES}.",
         "commandsRegistered": "Commands registered.",
-        "commandsClearing": "Clearing all commands.",
+        "commandsClearing": "Clearing all commands for client '{CLIENT_ID}'.",
         "commandsCleared": "Commands cleared.",
         "managerSpawningShards": "Spawning {SHARD_COUNT} shards: [{SHARD_LIST}].",
         "managerLaunchedShard": "Launched Shard {SHARD_ID}.",

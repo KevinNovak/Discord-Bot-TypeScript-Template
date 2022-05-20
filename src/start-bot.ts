@@ -116,10 +116,9 @@ async function registerCommands(commands: Command[]): Promise<void> {
     let cmdNames = cmdDatas.map(cmdData => cmdData.name);
 
     Logger.info(
-        Logs.info.commandsRegistering.replaceAll(
-            '{COMMAND_NAMES}',
-            cmdNames.map(cmdName => `'${cmdName}'`).join(', ')
-        )
+        Logs.info.commandsRegistering
+            .replaceAll('{COMMAND_NAMES}', cmdNames.map(cmdName => `'${cmdName}'`).join(', '))
+            .replaceAll('{CLIENT_ID}', Config.client.id)
     );
 
     try {
@@ -135,7 +134,7 @@ async function registerCommands(commands: Command[]): Promise<void> {
 }
 
 async function clearCommands(): Promise<void> {
-    Logger.info(Logs.info.commandsClearing);
+    Logger.info(Logs.info.commandsClearing.replaceAll('{CLIENT_ID}', Config.client.id));
 
     try {
         let rest = new REST({ version: '10' }).setToken(Config.client.token);
