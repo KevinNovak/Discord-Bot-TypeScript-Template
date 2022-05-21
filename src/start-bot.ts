@@ -1,5 +1,4 @@
 import { REST } from '@discordjs/rest';
-import { Routes } from 'discord-api-types/v10';
 import { Options } from 'discord.js';
 import { createRequire } from 'node:module';
 
@@ -26,7 +25,7 @@ import { CustomClient } from './extensions/index.js';
 import { Job } from './jobs/index.js';
 import { Bot } from './models/bot.js';
 import { Reaction } from './reactions/index.js';
-import { JobService, Logger } from './services/index.js';
+import { CommandRegistrationService, JobService, Logger } from './services/index.js';
 import { Trigger } from './triggers/index.js';
 
 const require = createRequire(import.meta.url);
@@ -100,54 +99,19 @@ async function start(): Promise<void> {
     );
 
     // Register
-    if (process.argv[2] === '--register') {
-        await registerCommands(commands);
-        process.exit();
-    } else if (process.argv[2] === '--clear') {
-        await clearCommands();
+    if (process.argv[2] == 'commands') {
+        try {
+            let rest = new REST({ version: '10' }).setToken(Config.client.token);
+            let commandRegistrationService = new CommandRegistrationService(rest);
+            let localCmds = commands.map(cmd => cmd.metadata);
+            await commandRegistrationService.process(localCmds, process.argv);
+        } catch (error) {
+            Logger.error(Logs.error.commandAction, error);
+        }
         process.exit();
     }
 
     await bot.start();
-}
-
-async function registerCommands(commands: Command[]): Promise<void> {
-    let cmdDatas = commands.map(cmd => cmd.metadata);
-    let cmdNames = cmdDatas.map(cmdData => cmdData.name);
-
-    Logger.info(
-        Logs.info.commandsRegistering
-            .replaceAll('{COMMAND_NAMES}', cmdNames.map(cmdName => `'${cmdName}'`).join(', '))
-            .replaceAll('{CLIENT_ID}', Config.client.id)
-    );
-
-    try {
-        let rest = new REST({ version: '10' }).setToken(Config.client.token);
-        for (let cmdData of cmdDatas) {
-            await rest.post(Routes.applicationCommands(Config.client.id), {
-                body: cmdData,
-            });
-        }
-    } catch (error) {
-        Logger.error(Logs.error.commandsRegistering, error);
-        return;
-    }
-
-    Logger.info(Logs.info.commandsRegistered);
-}
-
-async function clearCommands(): Promise<void> {
-    Logger.info(Logs.info.commandsClearing.replaceAll('{CLIENT_ID}', Config.client.id));
-
-    try {
-        let rest = new REST({ version: '10' }).setToken(Config.client.token);
-        await rest.put(Routes.applicationCommands(Config.client.id), { body: [] });
-    } catch (error) {
-        Logger.error(Logs.error.commandsClearing, error);
-        return;
-    }
-
-    Logger.info(Logs.info.commandsCleared);
 }
 
 process.on('unhandledRejection', (reason, _promise) => {
