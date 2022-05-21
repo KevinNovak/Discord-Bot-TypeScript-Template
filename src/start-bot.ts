@@ -123,8 +123,11 @@ async function registerCommands(commands: Command[]): Promise<void> {
 
     try {
         let rest = new REST({ version: '10' }).setToken(Config.client.token);
-        await rest.put(Routes.applicationCommands(Config.client.id), { body: [] });
-        await rest.put(Routes.applicationCommands(Config.client.id), { body: cmdDatas });
+        for (let cmdData of cmdDatas) {
+            await rest.post(Routes.applicationCommands(Config.client.id), {
+                body: cmdData,
+            });
+        }
     } catch (error) {
         Logger.error(Logs.error.commandsRegistering, error);
         return;
