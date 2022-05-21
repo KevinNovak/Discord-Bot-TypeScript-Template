@@ -139,10 +139,6 @@
                     "Required permissions: {{PERMISSIONS}}"
                 ],
                 "color": "{{COM:colors.warning}}"
-            },
-            "missingUserPerms": {
-                "description": "You don't have permission to run that command!",
-                "color": "{{COM:colors.warning}}"
             }
         },
         "errorEmbeds": {

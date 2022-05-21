@@ -12,12 +12,12 @@ export class TestCommand implements Command {
         name: Lang.getCom('commands.test'),
         description: Lang.getRef('commandDescs.test', Lang.Default),
         dm_permission: true,
+        default_member_permissions: undefined,
     };
     public cooldown = new RateLimiter(1, 5000);
     public deferType = CommandDeferType.PUBLIC;
     public requireDev = false;
     public requireClientPerms: PermissionString[] = [];
-    public requireUserPerms: PermissionString[] = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
         await InteractionUtils.send(intr, Lang.getEmbed('displayEmbeds.test', data.lang()));

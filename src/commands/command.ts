@@ -10,7 +10,6 @@ export interface Command {
     deferType: CommandDeferType;
     requireDev: boolean;
     requireClientPerms: PermissionString[];
-    requireUserPerms: PermissionString[];
     execute(intr: CommandInteraction, data: EventData): Promise<void>;
 }
 

@@ -13,11 +13,11 @@ export class TranslateCommand implements Command {
         name: Lang.getCom('commands.translate'),
         description: Lang.getRef('commandDescs.translate', Lang.Default),
         dm_permission: true,
+        default_member_permissions: undefined,
     };
     public deferType = CommandDeferType.PUBLIC;
     public requireDev = false;
     public requireClientPerms: PermissionString[] = [];
-    public requireUserPerms: PermissionString[] = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
         let embed = Lang.getEmbed('displayEmbeds.translate', data.lang());
