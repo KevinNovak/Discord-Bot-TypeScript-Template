@@ -1,6 +1,7 @@
 import { REST } from '@discordjs/rest';
 import {
     RESTGetAPIApplicationCommandsResult,
+    RESTPatchAPIApplicationCommandJSONBody,
     RESTPostAPIChatInputApplicationCommandsJSONBody,
     Routes,
 } from 'discord-api-types/v10';
@@ -190,6 +191,25 @@ async function runCommands(
         case 'rename': {
             let oldName = args[4];
             let newName = args[5];
+            if (!(oldName && newName)) {
+                Logger.error('Please supply an old name and a new name.');
+                return;
+            }
+
+            let remoteCmd = remoteCmds.find(remoteCmd => remoteCmd.name == oldName);
+            if (!remoteCmd) {
+                Logger.error(`Could not find a command with the name '${oldName}'.`);
+                return;
+            }
+
+            Logger.info(`Renaming command '${oldName}' to '${newName}'.`);
+            let body: RESTPatchAPIApplicationCommandJSONBody = {
+                name: newName,
+            };
+            await rest.patch(Routes.applicationCommand(Config.client.id, remoteCmd.id), {
+                body,
+            });
+            Logger.info('Command renamed.');
 
             return;
         }
