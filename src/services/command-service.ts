@@ -1,5 +1,6 @@
 import { REST } from '@discordjs/rest';
 import {
+    APIApplicationCommand,
     RESTGetAPIApplicationCommandsResult,
     RESTPatchAPIApplicationCommandJSONBody,
     RESTPostAPIChatInputApplicationCommandsJSONBody,
@@ -35,30 +36,20 @@ export class CommandService {
 
         switch (args[3]) {
             case 'view': {
-                let localCmdsOnRemoteLine =
-                    localCmdsOnRemote.length > 0
-                        ? localCmdsOnRemote.map(localCmd => `'${localCmd.name}'`).join(', ')
-                        : 'N/A';
-                let localCmdsOnlyLine =
-                    localCmdsOnly.length > 0
-                        ? localCmdsOnly.map(localCmd => `'${localCmd.name}'`).join(', ')
-                        : 'N/A';
-                let remoteCmdsOnlyLine =
-                    remoteCmdsOnly.length > 0
-                        ? remoteCmdsOnly.map(remoteCmd => `'${remoteCmd.name}'`).join(', ')
-                        : 'N/A';
                 Logger.info(
-                    `Local and remote (Run "register" to update): ${localCmdsOnRemoteLine}\nLocal only (Run "register" to create): ${localCmdsOnlyLine}\nRemote only (Run "delete" to delete): ${remoteCmdsOnlyLine}`
+                    `\nLocal and remote (Run "register" to update): ${this.formatCommandList(
+                        localCmdsOnRemote
+                    )}\nLocal only (Run "register" to create): ${this.formatCommandList(
+                        localCmdsOnly
+                    )}\nRemote only (Run "delete" to delete): ${this.formatCommandList(
+                        remoteCmdsOnly
+                    )}`
                 );
                 return;
             }
             case 'register': {
                 if (localCmdsOnly.length > 0) {
-                    Logger.info(
-                        `Creating commands: ${localCmdsOnly
-                            .map(localCmd => `'${localCmd.name}'`)
-                            .join(', ')}`
-                    );
+                    Logger.info(`Creating commands: ${this.formatCommandList(localCmdsOnly)}`);
                     for (let localCmd of localCmdsOnly) {
                         await this.rest.post(Routes.applicationCommands(Config.client.id), {
                             body: localCmd,
@@ -68,11 +59,7 @@ export class CommandService {
                 }
 
                 if (localCmdsOnRemote.length > 0) {
-                    Logger.info(
-                        `Updating commands: ${localCmdsOnRemote
-                            .map(localCmd => `'${localCmd.name}'`)
-                            .join(', ')}`
-                    );
+                    Logger.info(`Updating commands: ${this.formatCommandList(localCmdsOnRemote)}`);
                     for (let localCmd of localCmdsOnRemote) {
                         await this.rest.post(Routes.applicationCommands(Config.client.id), {
                             body: localCmd,
@@ -126,15 +113,19 @@ export class CommandService {
                 return;
             }
             case 'clear': {
-                Logger.info(
-                    `Deleting commands: ${remoteCmds
-                        .map(remoteCmd => `'${remoteCmd.name}'`)
-                        .join(', ')}`
-                );
+                Logger.info(`Deleting commands: ${this.formatCommandList(remoteCmds)}`);
                 await this.rest.put(Routes.applicationCommands(Config.client.id), { body: [] });
                 Logger.info(`Commands deleted.`);
                 return;
             }
         }
+    }
+
+    private formatCommandList(
+        cmds: RESTPostAPIChatInputApplicationCommandsJSONBody[] | APIApplicationCommand[]
+    ): string {
+        return cmds.length > 0
+            ? cmds.map((cmd: { name: string }) => `'${cmd.name}'`).join(', ')
+            : 'N/A';
     }
 }
