@@ -106,8 +106,7 @@ async function start(): Promise<void> {
             let localCmds = commands.map(cmd => cmd.metadata);
             await commandService.runCommands(localCmds, process.argv);
         } catch (error) {
-            // TODO: Create log for this, cleanup old logs
-            Logger.error('An error occurred while running a commands action.', error);
+            Logger.error(Logs.error.commandAction, error);
         }
         process.exit();
     }
