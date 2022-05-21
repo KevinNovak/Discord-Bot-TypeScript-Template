@@ -14,10 +14,10 @@ const require = createRequire(import.meta.url);
 let Config = require('../../config/config.json');
 let Logs = require('../../lang/logs.json');
 
-export class CommandService {
+export class CommandRegistrationService {
     constructor(private rest: REST) {}
 
-    public async runCommands(
+    public async process(
         localCmds: RESTPostAPIChatInputApplicationCommandsJSONBody[],
         args: string[]
     ): Promise<void> {

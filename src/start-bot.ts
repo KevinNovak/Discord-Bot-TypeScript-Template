@@ -25,7 +25,7 @@ import { CustomClient } from './extensions/index.js';
 import { Job } from './jobs/index.js';
 import { Bot } from './models/bot.js';
 import { Reaction } from './reactions/index.js';
-import { CommandService, JobService, Logger } from './services/index.js';
+import { CommandRegistrationService, JobService, Logger } from './services/index.js';
 import { Trigger } from './triggers/index.js';
 
 const require = createRequire(import.meta.url);
@@ -102,9 +102,9 @@ async function start(): Promise<void> {
     if (process.argv[2] == 'commands') {
         try {
             let rest = new REST({ version: '10' }).setToken(Config.client.token);
-            let commandService = new CommandService(rest);
+            let commandRegistrationService = new CommandRegistrationService(rest);
             let localCmds = commands.map(cmd => cmd.metadata);
-            await commandService.runCommands(localCmds, process.argv);
+            await commandRegistrationService.process(localCmds, process.argv);
         } catch (error) {
             Logger.error(Logs.error.commandAction, error);
         }
