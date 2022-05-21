@@ -32,6 +32,26 @@
             "restart": false
         },
         {
+            "name": "commands:view",
+            "type": "node",
+            "request": "launch",
+            "protocol": "inspector",
+            "preLaunchTask": "build",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "node",
+            "args": [
+                "--enable-source-maps",
+                "${workspaceFolder}/dist/start-bot.js",
+                "commands",
+                "view"
+            ],
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+            "outputCapture": "std",
+            "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": ["<node_internals>/**"],
+            "restart": false
+        },
+        {
             "name": "commands:register",
             "type": "node",
             "request": "launch",
@@ -39,7 +59,55 @@
             "preLaunchTask": "build",
             "cwd": "${workspaceFolder}",
             "runtimeExecutable": "node",
-            "args": ["--enable-source-maps", "${workspaceFolder}/dist/start-bot.js", "--register"],
+            "args": [
+                "--enable-source-maps",
+                "${workspaceFolder}/dist/start-bot.js",
+                "commands",
+                "register"
+            ],
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+            "outputCapture": "std",
+            "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": ["<node_internals>/**"],
+            "restart": false
+        },
+        {
+            "name": "commands:rename",
+            "type": "node",
+            "request": "launch",
+            "protocol": "inspector",
+            "preLaunchTask": "build",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "node",
+            "args": [
+                "--enable-source-maps",
+                "${workspaceFolder}/dist/start-bot.js",
+                "commands",
+                "rename",
+                "old_name",
+                "new_name"
+            ],
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+            "outputCapture": "std",
+            "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": ["<node_internals>/**"],
+            "restart": false
+        },
+        {
+            "name": "commands:delete",
+            "type": "node",
+            "request": "launch",
+            "protocol": "inspector",
+            "preLaunchTask": "build",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "node",
+            "args": [
+                "--enable-source-maps",
+                "${workspaceFolder}/dist/start-bot.js",
+                "commands",
+                "delete",
+                "command_name"
+            ],
             "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
             "outputCapture": "std",
             "internalConsoleOptions": "openOnSessionStart",
@@ -54,7 +122,12 @@
             "preLaunchTask": "build",
             "cwd": "${workspaceFolder}",
             "runtimeExecutable": "node",
-            "args": ["--enable-source-maps", "${workspaceFolder}/dist/start-bot.js", "--clear"],
+            "args": [
+                "--enable-source-maps",
+                "${workspaceFolder}/dist/start-bot.js",
+                "commands",
+                "clear"
+            ],
             "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
             "outputCapture": "std",
             "internalConsoleOptions": "openOnSessionStart",
