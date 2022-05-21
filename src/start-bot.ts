@@ -155,7 +155,7 @@ async function runCommands(
             Logger.info(
                 `Local and remote (Run "register" to update): ${localCmdsOnRemoteLine}\nLocal only (Run "register" to create): ${localCmdsOnlyLine}\nRemote only (Run "delete" to delete): ${remoteCmdsOnlyLine}`
             );
-            break;
+            return;
         }
         case 'register': {
             if (localCmdsOnly.length > 0) {
@@ -192,7 +192,7 @@ async function runCommands(
             let oldName = args[4];
             let newName = args[5];
             if (!(oldName && newName)) {
-                Logger.error('Please supply an old name and a new name.');
+                Logger.error('Please supply the current command name and new command name.');
                 return;
             }
 
@@ -202,7 +202,7 @@ async function runCommands(
                 return;
             }
 
-            Logger.info(`Renaming command '${oldName}' to '${newName}'.`);
+            Logger.info(`Renaming command '${remoteCmd.name}' to '${newName}'.`);
             let body: RESTPatchAPIApplicationCommandJSONBody = {
                 name: newName,
             };
@@ -210,12 +210,24 @@ async function runCommands(
                 body,
             });
             Logger.info('Command renamed.');
-
             return;
         }
         case 'delete': {
             let name = args[4];
+            if (!name) {
+                Logger.error('Please supply a command name to delete.');
+                return;
+            }
 
+            let remoteCmd = remoteCmds.find(remoteCmd => remoteCmd.name == name);
+            if (!remoteCmd) {
+                Logger.error(`Could not find a command with the name '${name}'.`);
+                return;
+            }
+
+            Logger.info(`Deleting command '${remoteCmd.name}'.`);
+            await rest.delete(Routes.applicationCommand(Config.client.id, remoteCmd.id));
+            Logger.info('Command deleted.');
             return;
         }
         case 'clear': {
