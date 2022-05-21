@@ -85,7 +85,7 @@ export class CommandRegistrationService {
                 let oldName = args[4];
                 let newName = args[5];
                 if (!(oldName && newName)) {
-                    Logger.error(Logs.error.commandRenameMissingArg);
+                    Logger.error(Logs.error.commandActionRenameMissingArg);
                     return;
                 }
 
@@ -114,7 +114,7 @@ export class CommandRegistrationService {
             case 'delete': {
                 let name = args[4];
                 if (!name) {
-                    Logger.error(Logs.error.commandDeleteMissingArg);
+                    Logger.error(Logs.error.commandActionDeleteMissingArg);
                     return;
                 }
 
