@@ -1,10 +1,4 @@
 import { REST } from '@discordjs/rest';
-import {
-    RESTGetAPIApplicationCommandsResult,
-    RESTPatchAPIApplicationCommandJSONBody,
-    RESTPostAPIChatInputApplicationCommandsJSONBody,
-    Routes,
-} from 'discord-api-types/v10';
 import { Options } from 'discord.js';
 import { createRequire } from 'node:module';
 
@@ -31,7 +25,7 @@ import { CustomClient } from './extensions/index.js';
 import { Job } from './jobs/index.js';
 import { Bot } from './models/bot.js';
 import { Reaction } from './reactions/index.js';
-import { JobService, Logger } from './services/index.js';
+import { CommandService, JobService, Logger } from './services/index.js';
 import { Trigger } from './triggers/index.js';
 
 const require = createRequire(import.meta.url);
@@ -107,8 +101,10 @@ async function start(): Promise<void> {
     // Register
     if (process.argv[2] == 'commands') {
         try {
+            let rest = new REST({ version: '10' }).setToken(Config.client.token);
+            let commandService = new CommandService(rest);
             let localCmds = commands.map(cmd => cmd.metadata);
-            await runCommands(localCmds, process.argv);
+            await commandService.runCommands(localCmds, process.argv);
         } catch (error) {
             // TODO: Create log for this, cleanup old logs
             Logger.error('An error occurred while running a commands action.', error);
@@ -117,130 +113,6 @@ async function start(): Promise<void> {
     }
 
     await bot.start();
-}
-
-async function runCommands(
-    localCmds: RESTPostAPIChatInputApplicationCommandsJSONBody[],
-    args: string[]
-): Promise<void> {
-    let rest = new REST({ version: '10' }).setToken(Config.client.token);
-    let remoteCmds = (await rest.get(
-        Routes.applicationCommands(Config.client.id)
-    )) as RESTGetAPIApplicationCommandsResult;
-
-    let localCmdsOnRemote = localCmds.filter(localCmd =>
-        remoteCmds.some(remoteCmd => remoteCmd.name === localCmd.name)
-    );
-    let localCmdsOnly = localCmds.filter(
-        localCmd => !remoteCmds.some(remoteCmd => remoteCmd.name === localCmd.name)
-    );
-    let remoteCmdsOnly = remoteCmds.filter(
-        remoteCmd => !localCmds.some(localCmd => localCmd.name === remoteCmd.name)
-    );
-
-    switch (args[3]) {
-        case 'view': {
-            let localCmdsOnRemoteLine =
-                localCmdsOnRemote.length > 0
-                    ? localCmdsOnRemote.map(localCmd => `'${localCmd.name}'`).join(', ')
-                    : 'N/A';
-            let localCmdsOnlyLine =
-                localCmdsOnly.length > 0
-                    ? localCmdsOnly.map(localCmd => `'${localCmd.name}'`).join(', ')
-                    : 'N/A';
-            let remoteCmdsOnlyLine =
-                remoteCmdsOnly.length > 0
-                    ? remoteCmdsOnly.map(remoteCmd => `'${remoteCmd.name}'`).join(', ')
-                    : 'N/A';
-            Logger.info(
-                `Local and remote (Run "register" to update): ${localCmdsOnRemoteLine}\nLocal only (Run "register" to create): ${localCmdsOnlyLine}\nRemote only (Run "delete" to delete): ${remoteCmdsOnlyLine}`
-            );
-            return;
-        }
-        case 'register': {
-            if (localCmdsOnly.length > 0) {
-                Logger.info(
-                    `Creating commands: ${localCmdsOnly
-                        .map(localCmd => `'${localCmd.name}'`)
-                        .join(', ')}`
-                );
-                for (let localCmd of localCmdsOnly) {
-                    await rest.post(Routes.applicationCommands(Config.client.id), {
-                        body: localCmd,
-                    });
-                }
-                Logger.info('Commands created.');
-            }
-
-            if (localCmdsOnRemote.length > 0) {
-                Logger.info(
-                    `Updating commands: ${localCmdsOnRemote
-                        .map(localCmd => `'${localCmd.name}'`)
-                        .join(', ')}`
-                );
-                for (let localCmd of localCmdsOnRemote) {
-                    await rest.post(Routes.applicationCommands(Config.client.id), {
-                        body: localCmd,
-                    });
-                }
-                Logger.info('Commands updated.');
-            }
-
-            return;
-        }
-        case 'rename': {
-            let oldName = args[4];
-            let newName = args[5];
-            if (!(oldName && newName)) {
-                Logger.error('Please supply the current command name and new command name.');
-                return;
-            }
-
-            let remoteCmd = remoteCmds.find(remoteCmd => remoteCmd.name == oldName);
-            if (!remoteCmd) {
-                Logger.error(`Could not find a command with the name '${oldName}'.`);
-                return;
-            }
-
-            Logger.info(`Renaming command '${remoteCmd.name}' to '${newName}'.`);
-            let body: RESTPatchAPIApplicationCommandJSONBody = {
-                name: newName,
-            };
-            await rest.patch(Routes.applicationCommand(Config.client.id, remoteCmd.id), {
-                body,
-            });
-            Logger.info('Command renamed.');
-            return;
-        }
-        case 'delete': {
-            let name = args[4];
-            if (!name) {
-                Logger.error('Please supply a command name to delete.');
-                return;
-            }
-
-            let remoteCmd = remoteCmds.find(remoteCmd => remoteCmd.name == name);
-            if (!remoteCmd) {
-                Logger.error(`Could not find a command with the name '${name}'.`);
-                return;
-            }
-
-            Logger.info(`Deleting command '${remoteCmd.name}'.`);
-            await rest.delete(Routes.applicationCommand(Config.client.id, remoteCmd.id));
-            Logger.info('Command deleted.');
-            return;
-        }
-        case 'clear': {
-            Logger.info(
-                `Deleting commands: ${remoteCmds
-                    .map(remoteCmd => `'${remoteCmd.name}'`)
-                    .join(', ')}`
-            );
-            await rest.put(Routes.applicationCommands(Config.client.id), { body: [] });
-            Logger.info(`Commands deleted.`);
-            return;
-        }
-    }
 }
 
 process.on('unhandledRejection', (reason, _promise) => {
