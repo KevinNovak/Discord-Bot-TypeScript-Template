@@ -37,13 +37,11 @@ export class CommandService {
         switch (args[3]) {
             case 'view': {
                 Logger.info(
-                    `\nLocal and remote (Run "register" to update): ${this.formatCommandList(
+                    `\nLocal and remote:\n    ${this.formatCommandList(
                         localCmdsOnRemote
-                    )}\nLocal only (Run "register" to create): ${this.formatCommandList(
+                    )}\nLocal only:\n    ${this.formatCommandList(
                         localCmdsOnly
-                    )}\nRemote only (Run "delete" to delete): ${this.formatCommandList(
-                        remoteCmdsOnly
-                    )}`
+                    )}\nRemote only:\n    ${this.formatCommandList(remoteCmdsOnly)}`
                 );
                 return;
             }
