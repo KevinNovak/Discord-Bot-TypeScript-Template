@@ -139,6 +139,21 @@ async function runCommands(
 
     switch (args[3]) {
         case 'view': {
+            let localCmdsOnRemoteLine =
+                localCmdsOnRemote.length > 0
+                    ? localCmdsOnRemote.map(localCmd => `'${localCmd.name}'`).join(', ')
+                    : 'N/A';
+            let localCmdsOnlyLine =
+                localCmdsOnly.length > 0
+                    ? localCmdsOnly.map(localCmd => `'${localCmd.name}'`).join(', ')
+                    : 'N/A';
+            let remoteCmdsOnlyLine =
+                remoteCmdsOnly.length > 0
+                    ? remoteCmdsOnly.map(remoteCmd => `'${remoteCmd.name}'`).join(', ')
+                    : 'N/A';
+            Logger.info(
+                `Local and remote (Run "register" to update): ${localCmdsOnRemoteLine}\nLocal only (Run "register" to create): ${localCmdsOnlyLine}\nRemote only (Run "delete" to delete): ${remoteCmdsOnlyLine}`
+            );
             break;
         }
         case 'register': {
