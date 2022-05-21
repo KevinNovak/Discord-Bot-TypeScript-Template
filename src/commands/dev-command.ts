@@ -1,5 +1,5 @@
 import { RESTPostAPIChatInputApplicationCommandsJSONBody } from 'discord-api-types/v10';
-import djs, { CommandInteraction, PermissionString } from 'discord.js';
+import djs, { CommandInteraction, Permissions, PermissionString } from 'discord.js';
 import fileSize from 'filesize';
 import { createRequire } from 'node:module';
 import os from 'node:os';
@@ -18,7 +18,9 @@ export class DevCommand implements Command {
         name: Lang.getCom('commands.dev'),
         description: Lang.getRef('commandDescs.dev', Lang.Default),
         dm_permission: true,
-        default_member_permissions: undefined,
+        default_member_permissions: Permissions.resolve([
+            Permissions.FLAGS.ADMINISTRATOR,
+        ]).toString(),
     };
     public deferType = CommandDeferType.PUBLIC;
     public requireDev = true;
