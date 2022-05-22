@@ -33,7 +33,7 @@
                     {
                         "name": "Permissions",
                         "value": [
-                            "Want to restrict commands to certain roles, users, or channels? Set up permissions under the bot's **Integration** page in the server settings (or simply right-click the bot and select **Manage Integration**)."
+                            "Want to restrict commands to certain roles, users, or channels? Set up permissions under the bot's **Integration** page in the Server Settings (or simply right-click the bot and select **Manage Integration**)."
                         ]
                     },
                     {
