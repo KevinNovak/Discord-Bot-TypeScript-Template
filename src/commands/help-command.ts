@@ -11,12 +11,11 @@ export class HelpCommand implements Command {
         name: Lang.getCom('commands.help'),
         description: Lang.getRef('commandDescs.help', Lang.Default),
         dm_permission: true,
+        default_member_permissions: undefined,
     };
     public deferType = CommandDeferType.PUBLIC;
     public requireDev = false;
     public requireClientPerms: PermissionString[] = [];
-    public requireUserPerms: PermissionString[] = [];
-
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
         await InteractionUtils.send(intr, Lang.getEmbed('displayEmbeds.help', data.lang()));
     }

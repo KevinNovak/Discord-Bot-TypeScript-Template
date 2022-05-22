@@ -31,6 +31,12 @@
                         ]
                     },
                     {
+                        "name": "Permissions",
+                        "value": [
+                            "Want to restrict commands to certain roles, users, or channels? Set up permissions under the bot's **Integration** page in the Server Settings (or simply right-click the bot and select **Manage Integration**)."
+                        ]
+                    },
+                    {
                         "name": "{{REF:fields.links}}",
                         "value": [
                             "{{REF:links.docsEmbed}}",
@@ -142,10 +148,6 @@
                     "",
                     "Required permissions: {{PERMISSIONS}}"
                 ],
-                "color": "{{COM:colors.warning}}"
-            },
-            "missingUserPerms": {
-                "description": "You don't have permission to run that command!",
                 "color": "{{COM:colors.warning}}"
             }
         },

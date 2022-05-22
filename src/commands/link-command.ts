@@ -14,6 +14,7 @@ export class LinkCommand implements Command {
         name: Lang.getCom('commands.link'),
         description: Lang.getRef('commandDescs.link', Lang.Default),
         dm_permission: true,
+        default_member_permissions: undefined,
         options: [
             {
                 name: Lang.getCom('arguments.link'),
@@ -48,7 +49,6 @@ export class LinkCommand implements Command {
     public deferType = CommandDeferType.PUBLIC;
     public requireDev = false;
     public requireClientPerms: PermissionString[] = [];
-    public requireUserPerms: PermissionString[] = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
         let link = intr.options.getString(Lang.getCom('arguments.link'));

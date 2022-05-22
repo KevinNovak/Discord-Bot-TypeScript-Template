@@ -60,38 +60,6 @@ export class CommandUtils {
             return false;
         }
 
-        // TODO: Remove "as GuildMember",  why does discord.js have intr.member as a "APIInteractionGuildMember"?
-        if (intr.member && !this.hasPermission(intr.member as GuildMember, command)) {
-            await InteractionUtils.send(
-                intr,
-                Lang.getEmbed('validationEmbeds.missingUserPerms', data.lang())
-            );
-            return false;
-        }
-
-        return true;
-    }
-
-    private static hasPermission(member: GuildMember, command: Command): boolean {
-        // Debug option to bypass permission checks
-        if (Debug.skip.checkPerms) {
-            return true;
-        }
-
-        // Developers, server owners, and members with "Manage Server" have permission for all commands
-        if (
-            member.guild.ownerId === member.id ||
-            member.permissions.has(Permissions.FLAGS.MANAGE_GUILD) ||
-            Config.developers.includes(member.id)
-        ) {
-            return true;
-        }
-
-        // Check if member has required permissions for command
-        if (!member.permissions.has(command.requireUserPerms)) {
-            return false;
-        }
-
         return true;
     }
 }
