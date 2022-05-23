@@ -71,7 +71,7 @@ export class InfoCommand implements Command {
                 if (!Config.developers.includes(intr.user.id)) {
                     await InteractionUtils.send(
                         intr,
-                        Lang.getEmbed('validationEmbeds.devOnlyCommand', data.lang())
+                        Lang.getEmbed('validationEmbeds.devOnly', data.lang())
                     );
                     return;
                 }
