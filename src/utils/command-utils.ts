@@ -1,10 +1,4 @@
-import {
-    CommandInteraction,
-    GuildChannel,
-    GuildMember,
-    Permissions,
-    ThreadChannel,
-} from 'discord.js';
+import { CommandInteraction, GuildChannel, ThreadChannel } from 'discord.js';
 import { createRequire } from 'node:module';
 
 import { Command } from '../commands/index.js';
@@ -15,7 +9,6 @@ import { FormatUtils, InteractionUtils } from './index.js';
 
 const require = createRequire(import.meta.url);
 let Config = require('../../config/config.json');
-let Debug = require('../../config/debug.json');
 
 export class CommandUtils {
     public static async runChecks(
