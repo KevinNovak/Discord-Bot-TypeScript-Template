@@ -4,15 +4,13 @@
         "author": "My Name"
     },
     "commands": {
-        "dev": "dev",
         "help": "help",
         "info": "info",
-        "link": "link",
-        "test": "test",
-        "translate": "translate"
+        "test": "test"
     },
     "arguments": {
-        "link": "link"
+        "link": "link",
+        "option": "option"
     },
     "colors": {
         "default": "#0099ff",

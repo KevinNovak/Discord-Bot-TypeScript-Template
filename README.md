@@ -46,39 +46,29 @@ This bot has a few example commands which can be modified as needed.
 
 ### Help Command
 
-A `/help` command with a bot description, list of commands, and important links.
+A `/help` command to get help on different areas of the bot, like commands or permissions:
 
-![Help Command](https://i.imgur.com/qsxQ0fP.png)
+![](https://i.imgur.com/0WrN9mZ.png)
+![](https://i.imgur.com/asaAi8o.png)
+
+### Info Command
+
+A `/info` command to get information about the bot, links to different resources, or developer information.
+
+![](https://i.imgur.com/83BEMBS.png)
+![](https://i.imgur.com/I1bPcNM.png)
 
 ### Test Command
 
 A generic command, `/test`, which can be copied to create additional commands.
 
-![Test Command](https://i.imgur.com/HxzgUO7.png)
-
-### Info Command
-
-An `/info` command, which shows more information and relevant links.
-
-![Info Command](https://i.imgur.com/BQcxVFm.png)
-
-### Dev Command
-
-A `/dev` command, which shows detailed information that may be helpful to developers.
-
-![Dev Command](https://i.imgur.com/KVIIVJ3.png)
-
-### Link Command
-
-A `/link` command, which provides relevant links (`invite`, `support`, `docs`, `vote`, `donate`).
-
-![Misc Commands](https://i.imgur.com/FOZcKM8.png)
+![](https://i.imgur.com/HxzgUO7.png)
 
 ### Welcome Message
 
 A welcome message is sent to the server and owner when the bot is added.
 
-![Welcome Message](https://i.imgur.com/APzT9pp.png)
+![](https://i.imgur.com/APzT9pp.png)
 
 ## Setup
 

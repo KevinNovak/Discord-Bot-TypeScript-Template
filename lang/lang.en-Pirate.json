@@ -11,46 +11,39 @@
                     },
                     {
                         "name": "{{REF:fields.links}}",
-                        "value": [
-                            "{{REF:links.docsEmbed}}",
-                            "{{REF:links.supportEmbed}}",
-                            "{{REF:links.inviteEmbed}}"
-                        ]
+                        "value": ["{{REF:links.docsEmbed}}", "{{REF:links.supportEmbed}}"]
                     }
                 ]
             },
-            "help": {
-                "title": "{{COM:bot.name}} - Help",
-                "description": "{{REF:bot.description}}",
+            "commands": {
+                "title": "{{COM:bot.name}} - Commands",
+                "description": [
+                    "**/{{COM:commands.test}}** - {{REF:commandDescs.test}}",
+                    "**/{{COM:commands.info}}** - {{REF:commandDescs.info}}"
+                ],
                 "fields": [
                     {
-                        "name": "{{REF:fields.commands}}",
-                        "value": [
-                            "**/{{COM:commands.test}}** - {{REF:commandDescs.test}}",
-                            "**/{{COM:commands.info}}** - {{REF:commandDescs.info}}"
-                        ]
-                    },
-                    {
-                        "name": "Permissions",
-                        "value": [
-                            "Want to restrict commands to certain roles, users, or channels? Set up permissions under the bot's **Integration** page in the Server Settings (or simply right-click the bot and select **Manage Integration**)."
-                        ]
-                    },
+                        "name": "{{REF:fields.links}}",
+                        "value": ["{{REF:links.docsEmbed}}", "{{REF:links.supportEmbed}}"]
+                    }
+                ]
+            },
+            "permissions": {
+                "title": "{{COM:bot.name}} - Permissions",
+                "description": "Want to restrict commands to certain roles, users, or channels? Set up permissions under the bot's **Integration** page in the Server Settings (or simply right-click the bot and select **Manage Integration**).",
+                "fields": [
                     {
                         "name": "{{REF:fields.links}}",
-                        "value": [
-                            "{{REF:links.docsEmbed}}",
-                            "{{REF:links.supportEmbed}}",
-                            "{{REF:links.inviteEmbed}}"
-                        ]
+                        "value": ["{{REF:links.docsEmbed}}", "{{REF:links.supportEmbed}}"]
                     }
                 ]
             },
             "test": {
                 "description": "Test command works!"
             },
-            "info": {
-                "title": "{{COM:bot.name}} - Info",
+            "about": {
+                "title": "{{COM:bot.name}} - About",
+                "description": "{{REF:bot.description}}",
                 "fields": [
                     { "name": "Author", "value": "{{REF:links.authorEmbed}}" },
                     {
@@ -58,6 +51,7 @@
                         "value": [
                             "{{REF:links.sourceEmbed}}",
                             "{{REF:links.docsEmbed}}",
+                            "{{REF:links.voteEmbed}}",
                             "{{REF:links.donateEmbed}}",
                             "{{REF:links.supportEmbed}}",
                             "{{REF:links.inviteEmbed}}"
@@ -111,26 +105,6 @@
                         ]
                     }
                 ]
-            },
-            "linkDocs": {
-                "title": "{{COM:bot.name}} - Documentation",
-                "description": "Click [here]({{COM:links.docs}}/) to view the bot documentation."
-            },
-            "linkDonate": {
-                "title": "{{COM:bot.name}} - Donate",
-                "description": "Support {{COM:bot.name}} by donating with PayPal [here]({{COM:links.donate}})!"
-            },
-            "linkInvite": {
-                "title": "{{COM:bot.name}} - Invite",
-                "description": "Click [here]({{COM:links.invite}}) to invite {{COM:bot.name}} to a server!"
-            },
-            "linkSupport": {
-                "title": "{{COM:bot.name}} - Support",
-                "description": "Need help? Join our [support server]({{COM:links.support}})!"
-            },
-            "linkVote": {
-                "title": "{{COM:bot.name}} - Vote",
-                "description": "Support {{COM:bot.name}} by voting [here]({{COM:links.vote}})!"
             }
         },
         "validationEmbeds": {
@@ -138,8 +112,8 @@
                 "description": "You can only run this command {{AMOUNT}} time(s) every {{INTERVAL}}. Please wait before attempting this command again.",
                 "color": "{{COM:colors.warning}}"
             },
-            "devOnlyCommand": {
-                "description": "This command can only be used by developers.",
+            "devOnly": {
+                "description": "This action can only be done by developers.",
                 "color": "{{COM:colors.warning}}"
             },
             "missingClientPerms": {

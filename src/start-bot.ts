@@ -3,15 +3,7 @@ import { Options } from 'discord.js';
 import { createRequire } from 'node:module';
 
 import { Button } from './buttons/index.js';
-import {
-    Command,
-    DevCommand,
-    HelpCommand,
-    InfoCommand,
-    LinkCommand,
-    TestCommand,
-    TranslateCommand,
-} from './commands/index.js';
+import { Command, HelpCommand, InfoCommand, TestCommand } from './commands/index.js';
 import {
     ButtonHandler,
     CommandHandler,
@@ -47,12 +39,9 @@ async function start(): Promise<void> {
 
     // Commands
     let commands: Command[] = [
-        new DevCommand(),
         new HelpCommand(),
         new InfoCommand(),
-        new LinkCommand(),
         new TestCommand(),
-        new TranslateCommand(),
         // TODO: Add new commands here
     ].sort((a, b) => (a.metadata.name > b.metadata.name ? 1 : -1));
 
