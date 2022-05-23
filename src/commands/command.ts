@@ -8,7 +8,6 @@ export interface Command {
     metadata: RESTPostAPIChatInputApplicationCommandsJSONBody;
     cooldown?: RateLimiter;
     deferType: CommandDeferType;
-    requireDev: boolean;
     requireClientPerms: PermissionString[];
     execute(intr: CommandInteraction, data: EventData): Promise<void>;
 }
