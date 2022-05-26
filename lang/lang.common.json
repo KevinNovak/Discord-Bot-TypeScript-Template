@@ -9,7 +9,6 @@
         "test": "test"
     },
     "arguments": {
-        "link": "link",
         "option": "option"
     },
     "colors": {
