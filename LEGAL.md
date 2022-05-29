@@ -64,6 +64,6 @@ Data may be dropped from cache pre-maturely through actions such as removing the
 
 ## Removal of Data
 
-Manual removal of the data can be requested through the official support server.
+Manual removal of the data can be requested through the official support server. Discord IDs such as user, guild, role, etc. may be stored even after the removal of other data in order to properly identify bot specific statistics since those IDs are public and non-sensitive.
 
 For security reasons we will ask you to provide us with proof of ownership to the data you wish to be removed. Only a server owner may request manual removal of server data.
