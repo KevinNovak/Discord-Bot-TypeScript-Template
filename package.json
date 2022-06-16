@@ -58,7 +58,6 @@
         "@types/express": "4.17.13",
         "@types/luxon": "2.3.2",
         "@types/node": "^17.0.41",
-        "@types/node-fetch": "3.0.2",
         "@types/node-schedule": "2.1.0",
         "@types/remove-markdown": "0.3.1",
         "@typescript-eslint/eslint-plugin": "^5.27.1",
