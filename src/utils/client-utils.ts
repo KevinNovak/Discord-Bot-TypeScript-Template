@@ -20,18 +20,18 @@ import { PermissionUtils, RegexUtils } from './index.js';
 const FETCH_MEMBER_LIMIT = 20;
 
 export class ClientUtils {
-    public static async getUser(client: Client, discordId: string): Promise<User> {
+    public static async getGuild(client: Client, discordId: string): Promise<Guild> {
         discordId = RegexUtils.discordId(discordId);
         if (!discordId) {
             return;
         }
 
         try {
-            return await client.users.fetch(discordId);
+            return await client.guilds.fetch(discordId);
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
-                [DiscordApiErrors.UnknownUser].includes(error.code)
+                [DiscordApiErrors.UnknownGuild].includes(error.code)
             ) {
                 return;
             } else {
@@ -52,6 +52,26 @@ export class ClientUtils {
             if (
                 error instanceof DiscordAPIError &&
                 [DiscordApiErrors.UnknownChannel].includes(error.code)
+            ) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    public static async getUser(client: Client, discordId: string): Promise<User> {
+        discordId = RegexUtils.discordId(discordId);
+        if (!discordId) {
+            return;
+        }
+
+        try {
+            return await client.users.fetch(discordId);
+        } catch (error) {
+            if (
+                error instanceof DiscordAPIError &&
+                [DiscordApiErrors.UnknownUser].includes(error.code)
             ) {
                 return;
             } else {
