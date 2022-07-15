@@ -100,21 +100,9 @@ export class MessageUtils {
         }
     }
 
-    public static async pin(msg: Message): Promise<Message> {
+    public static async pin(msg: Message, pinned: boolean = true): Promise<Message> {
         try {
-            return await msg.pin();
-        } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
-                return;
-            } else {
-                throw error;
-            }
-        }
-    }
-
-    public static async unpin(msg: Message): Promise<Message> {
-        try {
-            return await msg.unpin();
+            return pinned ? await msg.pin() : await msg.unpin();
         } catch (error) {
             if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
                 return;
