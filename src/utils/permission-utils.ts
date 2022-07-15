@@ -71,7 +71,7 @@ export class PermissionUtils {
         }
     }
 
-    public static canPin(channel: AnyChannel, unpinOld: boolean = false): boolean {
+    public static canPin(channel: AnyChannel, findOld: boolean = false): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (channel instanceof GuildChannel || channel instanceof ThreadChannel) {
@@ -83,18 +83,22 @@ export class PermissionUtils {
 
             // VIEW_CHANNEL - Needed to view the channel
             // MANAGE_MESSAGES - Needed to pin messages
-            // READ_MESSAGE_HISTORY - Needed to find old pins to unpin
+            // READ_MESSAGE_HISTORY - Needed to find old pins
             return channelPerms.has([
                 Permissions.FLAGS.VIEW_CHANNEL,
                 Permissions.FLAGS.MANAGE_MESSAGES,
-                ...(unpinOld ? [Permissions.FLAGS.READ_MESSAGE_HISTORY] : []),
+                ...(findOld ? [Permissions.FLAGS.READ_MESSAGE_HISTORY] : []),
             ]);
         } else {
             return false;
         }
     }
 
-    public static canCreateThreads(channel: AnyChannel, manageThreads: boolean = false): boolean {
+    public static canCreateThreads(
+        channel: AnyChannel,
+        manageThreads: boolean = false,
+        findOld: boolean = false
+    ): boolean {
         if (channel instanceof DMChannel) {
             return false;
         } else if (channel instanceof GuildChannel || channel instanceof ThreadChannel) {
@@ -107,10 +111,12 @@ export class PermissionUtils {
             // VIEW_CHANNEL - Needed to view the channel
             // CREATE_PUBLIC_THREADS - Needed to create public threads
             // MANAGE_THREADS - Needed to rename, delete, archive, unarchive, slow mode threads
+            // READ_MESSAGE_HISTORY - Needed to find old threads
             return channelPerms.has([
                 Permissions.FLAGS.VIEW_CHANNEL,
                 Permissions.FLAGS.CREATE_PUBLIC_THREADS,
                 ...(manageThreads ? [Permissions.FLAGS.MANAGE_THREADS] : []),
+                ...(findOld ? [Permissions.FLAGS.READ_MESSAGE_HISTORY] : []),
             ]);
         } else {
             return false;
