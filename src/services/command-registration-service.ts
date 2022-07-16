@@ -3,7 +3,7 @@ import {
     APIApplicationCommand,
     RESTGetAPIApplicationCommandsResult,
     RESTPatchAPIApplicationCommandJSONBody,
-    RESTPostAPIChatInputApplicationCommandsJSONBody,
+    RESTPostAPIApplicationCommandsJSONBody,
     Routes,
 } from 'discord-api-types/v10';
 import { createRequire } from 'node:module';
@@ -18,7 +18,7 @@ export class CommandRegistrationService {
     constructor(private rest: REST) {}
 
     public async process(
-        localCmds: RESTPostAPIChatInputApplicationCommandsJSONBody[],
+        localCmds: RESTPostAPIApplicationCommandsJSONBody[],
         args: string[]
     ): Promise<void> {
         let remoteCmds = (await this.rest.get(
@@ -148,7 +148,7 @@ export class CommandRegistrationService {
     }
 
     private formatCommandList(
-        cmds: RESTPostAPIChatInputApplicationCommandsJSONBody[] | APIApplicationCommand[]
+        cmds: RESTPostAPIApplicationCommandsJSONBody[] | APIApplicationCommand[]
     ): string {
         return cmds.length > 0
             ? cmds.map((cmd: { name: string }) => `'${cmd.name}'`).join(', ')

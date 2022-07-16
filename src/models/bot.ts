@@ -1,7 +1,7 @@
 import {
+    BaseCommandInteraction,
     ButtonInteraction,
     Client,
-    CommandInteraction,
     Constants,
     Guild,
     Interaction,
@@ -150,7 +150,7 @@ export class Bot {
             return;
         }
 
-        if (intr instanceof CommandInteraction) {
+        if (intr instanceof BaseCommandInteraction) {
             try {
                 await this.commandHandler.process(intr);
             } catch (error) {

@@ -1,4 +1,4 @@
-import { CommandInteraction, NewsChannel, TextChannel, ThreadChannel } from 'discord.js';
+import { BaseCommandInteraction, NewsChannel, TextChannel, ThreadChannel } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 import { createRequire } from 'node:module';
 
@@ -20,7 +20,7 @@ export class CommandHandler implements EventHandler {
 
     constructor(public commands: Command[]) {}
 
-    public async process(intr: CommandInteraction): Promise<void> {
+    public async process(intr: BaseCommandInteraction): Promise<void> {
         // Don't respond to self, or other bots
         if (intr.user.id === intr.client.user?.id || intr.user.bot) {
             return;
@@ -98,7 +98,7 @@ export class CommandHandler implements EventHandler {
         }
     }
 
-    private async sendError(intr: CommandInteraction, data: EventData): Promise<void> {
+    private async sendError(intr: BaseCommandInteraction, data: EventData): Promise<void> {
         try {
             await InteractionUtils.send(
                 intr,

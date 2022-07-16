@@ -1,4 +1,4 @@
-import { CommandInteraction, GuildChannel, ThreadChannel } from 'discord.js';
+import { BaseCommandInteraction, GuildChannel, ThreadChannel } from 'discord.js';
 
 import { Command } from '../commands/index.js';
 import { Permission } from '../models/enum-helpers/index.js';
@@ -9,7 +9,7 @@ import { FormatUtils, InteractionUtils } from './index.js';
 export class CommandUtils {
     public static async runChecks(
         command: Command,
-        intr: CommandInteraction,
+        intr: BaseCommandInteraction,
         data: EventData
     ): Promise<boolean> {
         if (command.cooldown) {
