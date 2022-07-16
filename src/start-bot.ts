@@ -5,6 +5,8 @@ import { createRequire } from 'node:module';
 import { Button } from './buttons/index.js';
 import { HelpCommand, InfoCommand, TestCommand } from './commands/chat/index.js';
 import { Command } from './commands/index.js';
+import { ViewMessageSentDate } from './commands/message/view-message-sent-date.js';
+import { ViewJoinDate } from './commands/user/index.js';
 import {
     ButtonHandler,
     CommandHandler,
@@ -43,6 +45,10 @@ async function start(): Promise<void> {
         new HelpCommand(),
         new InfoCommand(),
         new TestCommand(),
+        // User Context Commands
+        new ViewJoinDate(),
+        // Message Context Commands
+        new ViewMessageSentDate(),
         // TODO: Add new commands here
     ].sort((a, b) => (a.metadata.name > b.metadata.name ? 1 : -1));
 

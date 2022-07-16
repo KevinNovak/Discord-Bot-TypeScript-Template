@@ -41,6 +41,12 @@
             "test": {
                 "description": "Test command works!"
             },
+            "viewJoinDate": {
+                "description": "{{MEMBER}} joined on {{DATE}}!"
+            },
+            "viewMessageSentDate": {
+                "description": "This message was sent on {{DATE}}!"
+            },
             "about": {
                 "title": "{{COM:bot.name}} - About",
                 "description": "{{REF:bot.description}}",
