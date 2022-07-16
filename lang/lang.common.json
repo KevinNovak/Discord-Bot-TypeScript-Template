@@ -3,7 +3,7 @@
         "name": "My Bot",
         "author": "My Name"
     },
-    "commands": {
+    "chat-commands": {
         "help": "help",
         "info": "info",
         "test": "test"
