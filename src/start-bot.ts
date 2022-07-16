@@ -3,7 +3,8 @@ import { Options } from 'discord.js';
 import { createRequire } from 'node:module';
 
 import { Button } from './buttons/index.js';
-import { Command, HelpCommand, InfoCommand, TestCommand } from './commands/index.js';
+import { HelpCommand, InfoCommand, TestCommand } from './commands/chat/index.js';
+import { Command } from './commands/index.js';
 import {
     ButtonHandler,
     CommandHandler,

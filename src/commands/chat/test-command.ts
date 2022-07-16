@@ -2,14 +2,14 @@ import { RESTPostAPIChatInputApplicationCommandsJSONBody } from 'discord-api-typ
 import { CommandInteraction, PermissionString } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
-import { EventData } from '../models/internal-models.js';
-import { Lang } from '../services/index.js';
-import { InteractionUtils } from '../utils/index.js';
-import { Command, CommandDeferType } from './index.js';
+import { EventData } from '../../models/internal-models.js';
+import { Lang } from '../../services/lang.js';
+import { InteractionUtils } from '../../utils/interaction-utils.js';
+import { Command, CommandDeferType } from '../index.js';
 
 export class TestCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
-        name: Lang.getCom('commands.test'),
+        name: Lang.getCom('chat-commands.test'),
         description: Lang.getRef('commandDescs.test', Lang.Default),
         dm_permission: true,
         default_member_permissions: undefined,

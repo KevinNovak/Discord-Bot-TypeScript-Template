@@ -4,14 +4,14 @@ import {
 } from 'discord-api-types/v10';
 import { CommandInteraction, MessageEmbed, PermissionString } from 'discord.js';
 
-import { EventData } from '../models/internal-models.js';
-import { Lang } from '../services/index.js';
-import { InteractionUtils } from '../utils/index.js';
-import { Command, CommandDeferType } from './index.js';
+import { EventData } from '../../models/internal-models.js';
+import { Lang } from '../../services/lang.js';
+import { InteractionUtils } from '../../utils/interaction-utils.js';
+import { Command, CommandDeferType } from '../index.js';
 
 export class HelpCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
-        name: Lang.getCom('commands.help'),
+        name: Lang.getCom('chat-commands.help'),
         description: Lang.getRef('commandDescs.help', Lang.Default),
         dm_permission: true,
         default_member_permissions: undefined,
