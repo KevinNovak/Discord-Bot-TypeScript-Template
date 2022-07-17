@@ -9,7 +9,7 @@ import { Command, CommandDeferType } from '../index.js';
 
 export class TestCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
-        name: Lang.getCom('chat-commands.test'),
+        name: Lang.getCom('chatCommands.test'),
         description: Lang.getRef('commandDescs.test', Lang.Default),
         dm_permission: true,
         default_member_permissions: undefined,

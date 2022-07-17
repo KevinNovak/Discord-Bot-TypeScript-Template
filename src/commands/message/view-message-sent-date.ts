@@ -14,7 +14,7 @@ import { Command, CommandDeferType } from '../command.js';
 export class ViewMessageSentDate implements Command {
     public metadata: RESTPostAPIContextMenuApplicationCommandsJSONBody = {
         type: ApplicationCommandType.Message,
-        name: Lang.getCom('context-commands.viewMessageSentDate'),
+        name: Lang.getCom('contextCommands.viewMessageSentDate'),
         default_member_permissions: undefined,
     };
     public cooldown = new RateLimiter(1, 5000);

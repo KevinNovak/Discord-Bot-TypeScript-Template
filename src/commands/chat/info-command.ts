@@ -22,7 +22,7 @@ let TsConfig = require('../../../tsconfig.json');
 
 export class InfoCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
-        name: Lang.getCom('chat-commands.info'),
+        name: Lang.getCom('chatCommands.info'),
         description: Lang.getRef('commandDescs.info', Lang.Default),
         dm_permission: true,
         default_member_permissions: undefined,

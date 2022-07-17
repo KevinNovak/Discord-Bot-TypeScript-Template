@@ -7,7 +7,7 @@
                 "fields": [
                     {
                         "name": "Important {{REF:fields.commands}}",
-                        "value": ["**/{{COM:chat-commands.help}}** - {{REF:commandDescs.help}}"]
+                        "value": ["**/{{COM:chatCommands.help}}** - {{REF:commandDescs.help}}"]
                     },
                     {
                         "name": "{{REF:fields.links}}",
@@ -18,8 +18,8 @@
             "commands": {
                 "title": "{{COM:bot.name}} - Commands",
                 "description": [
-                    "**/{{COM:chat-commands.test}}** - {{REF:commandDescs.test}}",
-                    "**/{{COM:chat-commands.info}}** - {{REF:commandDescs.info}}"
+                    "**/{{COM:chatCommands.test}}** - {{REF:commandDescs.test}}",
+                    "**/{{COM:chatCommands.info}}** - {{REF:commandDescs.info}}"
                 ],
                 "fields": [
                     {

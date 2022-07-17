@@ -14,7 +14,7 @@ import { Command, CommandDeferType } from '../command.js';
 export class ViewJoinDate implements Command {
     public metadata: RESTPostAPIContextMenuApplicationCommandsJSONBody = {
         type: ApplicationCommandType.User,
-        name: Lang.getCom('context-commands.viewJoinDate'),
+        name: Lang.getCom('contextCommands.viewJoinDate'),
         default_member_permissions: undefined,
     };
     public cooldown = new RateLimiter(1, 5000);

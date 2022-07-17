@@ -11,7 +11,7 @@ import { Command, CommandDeferType } from '../index.js';
 
 export class HelpCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
-        name: Lang.getCom('chat-commands.help'),
+        name: Lang.getCom('chatCommands.help'),
         description: Lang.getRef('commandDescs.help', Lang.Default),
         dm_permission: true,
         default_member_permissions: undefined,
