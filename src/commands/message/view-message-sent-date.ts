@@ -4,7 +4,7 @@ import {
 } from 'discord-api-types/v10';
 import { MessageContextMenuInteraction, PermissionString } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 import { EventData } from '../../models/internal-models.js';
 import { Lang } from '../../services/lang.js';
@@ -26,7 +26,7 @@ export class ViewMessageSentDate implements Command {
         await InteractionUtils.send(
             intr,
             Lang.getEmbed('displayEmbeds.viewMessageSentDate', data.lang(), {
-                DATE: moment(message.createdTimestamp).format('MMMM Do YYYY'),
+                DATE: DateTime.fromJSDate(message.createdAt).toLocaleString(DateTime.DATE_HUGE),
             })
         );
     }

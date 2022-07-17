@@ -4,7 +4,7 @@ import {
 } from 'discord-api-types/v10';
 import { PermissionString, UserContextMenuInteraction } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 import { EventData } from '../../models/internal-models.js';
 import { Lang } from '../../services/lang.js';
@@ -27,7 +27,7 @@ export class ViewJoinDate implements Command {
             intr,
             Lang.getEmbed('displayEmbeds.viewJoinDate', data.lang(), {
                 MEMBER: member.toString(),
-                DATE: moment(member.joinedTimestamp).format('MMMM Do YYYY'),
+                DATE: DateTime.fromJSDate(member.joinedAt).toLocaleString(DateTime.DATE_HUGE),
             })
         );
     }
