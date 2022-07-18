@@ -3,16 +3,16 @@
         "name": "My Bot",
         "author": "My Name"
     },
+    "chatCommands": {
+        "help": "help",
+        "info": "info",
+        "test": "test"
+    },
     "userCommands": {
         "viewDateJoined": "View Date Joined"
     },
     "messageCommands": {
         "viewDateSent": "View Date Sent"
-    },
-    "chatCommands": {
-        "help": "help",
-        "info": "info",
-        "test": "test"
     },
     "arguments": {
         "option": "option"
