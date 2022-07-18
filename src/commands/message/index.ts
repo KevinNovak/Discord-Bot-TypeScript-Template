@@ -1,1 +1,1 @@
-export { ViewDateSent } from './view-sent-date.js';
+export { ViewDateSent } from './view-date-sent.js';
