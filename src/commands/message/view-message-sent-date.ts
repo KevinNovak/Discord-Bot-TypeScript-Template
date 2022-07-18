@@ -2,7 +2,7 @@ import {
     ApplicationCommandType,
     RESTPostAPIContextMenuApplicationCommandsJSONBody,
 } from 'discord-api-types/v10';
-import { MessageContextMenuInteraction, PermissionString } from 'discord.js';
+import { Message, MessageContextMenuInteraction, PermissionString } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 import { DateTime } from 'luxon';
 
@@ -16,6 +16,7 @@ export class ViewMessageSentDate implements Command {
         type: ApplicationCommandType.Message,
         name: Lang.getCom('contextCommands.viewMessageSentDate'),
         default_member_permissions: undefined,
+        dm_permission: true,
     };
     public cooldown = new RateLimiter(1, 5000);
     public deferType = CommandDeferType.PUBLIC;

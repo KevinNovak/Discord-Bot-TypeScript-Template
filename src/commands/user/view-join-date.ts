@@ -16,6 +16,7 @@ export class ViewJoinDate implements Command {
         type: ApplicationCommandType.User,
         name: Lang.getCom('contextCommands.viewJoinDate'),
         default_member_permissions: undefined,
+        dm_permission: true,
     };
     public cooldown = new RateLimiter(1, 5000);
     public deferType = CommandDeferType.PUBLIC;
