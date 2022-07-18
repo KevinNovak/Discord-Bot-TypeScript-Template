@@ -9,13 +9,12 @@ import { createRequire } from 'node:module';
 import os from 'node:os';
 import typescript from 'typescript';
 
-import { LangCode } from '../../enums/lang-code.js';
-import { Language } from '../../models/enum-helpers/language.js';
+import { LangCode } from '../../enums/index.js';
+import { Language } from '../../models/enum-helpers/index.js';
 import { EventData } from '../../models/internal-models.js';
-import { Lang } from '../../services/lang.js';
-import { InteractionUtils } from '../../utils/interaction-utils.js';
-import { ShardUtils } from '../../utils/shard-utils.js';
-import { Command, CommandDeferType } from '../command.js';
+import { Lang } from '../../services/index.js';
+import { InteractionUtils, ShardUtils } from '../../utils/index.js';
+import { Command, CommandDeferType } from '../index.js';
 
 const require = createRequire(import.meta.url);
 let Config = require('../../../config/config.json');

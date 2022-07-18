@@ -6,8 +6,8 @@ import {
 import { CommandInteraction, MessageEmbed, PermissionString } from 'discord.js';
 
 import { EventData } from '../../models/internal-models.js';
-import { Lang } from '../../services/lang.js';
-import { InteractionUtils } from '../../utils/interaction-utils.js';
+import { Lang } from '../../services/index.js';
+import { InteractionUtils } from '../../utils/index.js';
 import { Command, CommandDeferType } from '../index.js';
 
 export class HelpCommand implements Command {
