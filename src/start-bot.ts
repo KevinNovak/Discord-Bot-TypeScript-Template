@@ -42,6 +42,7 @@ async function start(): Promise<void> {
 
     // Commands
     let commands: Command[] = [
+        // Chat Commands
         new HelpCommand(),
         new InfoCommand(),
         new TestCommand(),
