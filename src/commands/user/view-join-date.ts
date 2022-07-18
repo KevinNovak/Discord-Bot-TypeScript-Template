@@ -2,7 +2,7 @@ import {
     ApplicationCommandType,
     RESTPostAPIContextMenuApplicationCommandsJSONBody,
 } from 'discord-api-types/v10';
-import { PermissionString, UserContextMenuInteraction } from 'discord.js';
+import { DMChannel, PermissionString, UserContextMenuInteraction } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 import { DateTime } from 'luxon';
 
@@ -23,12 +23,17 @@ export class ViewJoinDate implements Command {
     public requireClientPerms: PermissionString[] = [];
 
     public async execute(intr: UserContextMenuInteraction, data: EventData): Promise<void> {
-        let member = await intr.guild.members.fetch(intr.targetUser.id);
+        let joinDate: Date;
+        if (!(intr.channel instanceof DMChannel)) {
+            let member = await intr.guild.members.fetch(intr.targetUser.id);
+            joinDate = member.joinedAt;
+        } else joinDate = intr.targetUser.createdAt;
+
         await InteractionUtils.send(
             intr,
             Lang.getEmbed('displayEmbeds.viewJoinDate', data.lang(), {
-                MEMBER: member.toString(),
-                DATE: DateTime.fromJSDate(member.joinedAt).toLocaleString(DateTime.DATE_HUGE),
+                TARGET: intr.targetUser.toString(),
+                DATE: DateTime.fromJSDate(joinDate).toLocaleString(DateTime.DATE_HUGE),
             })
         );
     }

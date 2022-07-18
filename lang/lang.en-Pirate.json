@@ -42,7 +42,7 @@
                 "description": "Test command works!"
             },
             "viewJoinDate": {
-                "description": "{{MEMBER}} joined on {{DATE}}!"
+                "description": "{{TARGET}}'s maiden voyage was on {{DATE}}!"
             },
             "viewMessageSentDate": {
                 "description": "This message was sent on {{DATE}}!"
