@@ -3,8 +3,10 @@
         "name": "My Bot",
         "author": "My Name"
     },
-    "contextCommands": {
-        "viewJoinDate": "View join date!",
+    "userCommands": {
+        "viewJoinDate": "View join date!"
+    },
+    "messageCommands": {
         "viewMessageSentDate": "View message sent date!"
     },
     "chatCommands": {

@@ -14,7 +14,7 @@ import { Command, CommandDeferType } from '../command.js';
 export class ViewMessageSentDate implements Command {
     public metadata: RESTPostAPIContextMenuApplicationCommandsJSONBody = {
         type: ApplicationCommandType.Message,
-        name: Lang.getCom('contextCommands.viewMessageSentDate'),
+        name: Lang.getCom('messageCommands.viewMessageSentDate'),
         default_member_permissions: undefined,
         dm_permission: true,
     };
