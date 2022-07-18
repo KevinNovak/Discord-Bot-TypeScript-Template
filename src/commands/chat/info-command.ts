@@ -1,5 +1,6 @@
 import {
     ApplicationCommandOptionType,
+    ApplicationCommandType,
     RESTPostAPIChatInputApplicationCommandsJSONBody,
 } from 'discord-api-types/v10';
 import djs, { CommandInteraction, MessageEmbed, PermissionString } from 'discord.js';
@@ -22,6 +23,7 @@ let TsConfig = require('../../../tsconfig.json');
 
 export class InfoCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
+        type: ApplicationCommandType.ChatInput,
         name: Lang.getCom('chatCommands.info'),
         description: Lang.getRef('commandDescs.info', Lang.Default),
         dm_permission: true,

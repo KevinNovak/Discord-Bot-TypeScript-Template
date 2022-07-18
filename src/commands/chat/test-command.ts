@@ -1,4 +1,7 @@
-import { RESTPostAPIChatInputApplicationCommandsJSONBody } from 'discord-api-types/v10';
+import {
+    ApplicationCommandType,
+    RESTPostAPIChatInputApplicationCommandsJSONBody,
+} from 'discord-api-types/v10';
 import { CommandInteraction, PermissionString } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
@@ -9,6 +12,7 @@ import { Command, CommandDeferType } from '../index.js';
 
 export class TestCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
+        type: ApplicationCommandType.ChatInput,
         name: Lang.getCom('chatCommands.test'),
         description: Lang.getRef('commandDescs.test', Lang.Default),
         dm_permission: true,
