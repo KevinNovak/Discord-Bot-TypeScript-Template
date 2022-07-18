@@ -4,10 +4,10 @@
         "author": "My Name"
     },
     "userCommands": {
-        "viewJoinDate": "View join date!"
+        "viewDateJoined": "View Date Joined"
     },
     "messageCommands": {
-        "viewMessageSentDate": "View message sent date!"
+        "viewDateSent": "View Date Sent"
     },
     "chatCommands": {
         "help": "help",

@@ -44,7 +44,7 @@
             "viewJoinDate": {
                 "description": "{{TARGET}}'s maiden voyage was on {{DATE}}!"
             },
-            "viewMessageSentDate": {
+            "viewSentDate": {
                 "description": "This message was sent on {{DATE}}!"
             },
             "about": {
