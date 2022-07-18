@@ -22,11 +22,12 @@ export class ViewMessageSentDate implements Command {
     public requireClientPerms: PermissionString[] = [];
 
     public async execute(intr: MessageContextMenuInteraction, data: EventData): Promise<void> {
-        let message = await intr.channel.messages.fetch(intr.targetMessage.id);
         await InteractionUtils.send(
             intr,
             Lang.getEmbed('displayEmbeds.viewMessageSentDate', data.lang(), {
-                DATE: DateTime.fromJSDate(message.createdAt).toLocaleString(DateTime.DATE_HUGE),
+                DATE: DateTime.fromJSDate((intr.targetMessage as Message).createdAt).toLocaleString(
+                    DateTime.DATE_HUGE
+                ),
             })
         );
     }
