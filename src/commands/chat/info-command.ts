@@ -1,5 +1,6 @@
 import {
     ApplicationCommandOptionType,
+    ApplicationCommandType,
     RESTPostAPIChatInputApplicationCommandsJSONBody,
 } from 'discord-api-types/v10';
 import djs, { CommandInteraction, MessageEmbed, PermissionString } from 'discord.js';
@@ -8,20 +9,22 @@ import { createRequire } from 'node:module';
 import os from 'node:os';
 import typescript from 'typescript';
 
-import { LangCode } from '../enums/lang-code.js';
-import { Language } from '../models/enum-helpers/language.js';
-import { EventData } from '../models/internal-models.js';
-import { Lang } from '../services/index.js';
-import { InteractionUtils, ShardUtils } from '../utils/index.js';
-import { Command, CommandDeferType } from './index.js';
+import { LangCode } from '../../enums/lang-code.js';
+import { Language } from '../../models/enum-helpers/language.js';
+import { EventData } from '../../models/internal-models.js';
+import { Lang } from '../../services/lang.js';
+import { InteractionUtils } from '../../utils/interaction-utils.js';
+import { ShardUtils } from '../../utils/shard-utils.js';
+import { Command, CommandDeferType } from '../command.js';
 
 const require = createRequire(import.meta.url);
-let Config = require('../../config/config.json');
-let TsConfig = require('../../tsconfig.json');
+let Config = require('../../../config/config.json');
+let TsConfig = require('../../../tsconfig.json');
 
 export class InfoCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
-        name: Lang.getCom('commands.info'),
+        type: ApplicationCommandType.ChatInput,
+        name: Lang.getCom('chatCommands.info'),
         description: Lang.getRef('commandDescs.info', Lang.Default),
         dm_permission: true,
         default_member_permissions: undefined,

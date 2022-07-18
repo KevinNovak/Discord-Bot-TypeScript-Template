@@ -7,7 +7,7 @@
                 "fields": [
                     {
                         "name": "Important {{REF:fields.commands}}",
-                        "value": ["**/{{COM:commands.help}}** - {{REF:commandDescs.help}}"]
+                        "value": ["**/{{COM:chatCommands.help}}** - {{REF:commandDescs.help}}"]
                     },
                     {
                         "name": "{{REF:fields.links}}",
@@ -18,8 +18,8 @@
             "commands": {
                 "title": "{{COM:bot.name}} - Commands",
                 "description": [
-                    "**/{{COM:commands.test}}** - {{REF:commandDescs.test}}",
-                    "**/{{COM:commands.info}}** - {{REF:commandDescs.info}}"
+                    "**/{{COM:chatCommands.test}}** - {{REF:commandDescs.test}}",
+                    "**/{{COM:chatCommands.info}}** - {{REF:commandDescs.info}}"
                 ],
                 "fields": [
                     {
@@ -40,6 +40,12 @@
             },
             "test": {
                 "description": "Test command works!"
+            },
+            "viewDateJoined": {
+                "description": "{{TARGET}} joined on {{DATE}}!"
+            },
+            "viewDateSent": {
+                "description": "This message was sent on {{DATE}}!"
             },
             "about": {
                 "title": "{{COM:bot.name}} - About",
