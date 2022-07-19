@@ -68,6 +68,11 @@ export class Bot {
             (messageReaction: MessageReaction | PartialMessageReaction, user: User | PartialUser) =>
                 this.onReaction(messageReaction, user)
         );
+        this.client.on(
+            Constants.Events.MESSAGE_REACTION_REMOVE,
+            (messageReaction: MessageReaction | PartialMessageReaction, user: User | PartialUser) =>
+                this.onReaction(messageReaction, user, true)
+        );
         this.client.on(Constants.Events.RATE_LIMIT, (rateLimitData: RateLimitData) =>
             this.onRateLimit(rateLimitData)
         );
@@ -167,7 +172,8 @@ export class Bot {
 
     private async onReaction(
         msgReaction: MessageReaction | PartialMessageReaction,
-        reactor: User | PartialUser
+        reactor: User | PartialUser,
+        isNonReaction: boolean = false
     ): Promise<void> {
         if (
             !this.ready ||
@@ -190,7 +196,8 @@ export class Bot {
             await this.reactionHandler.process(
                 msgReaction,
                 msgReaction.message as Message,
-                reactor
+                reactor,
+                isNonReaction
             );
         } catch (error) {
             Logger.error(Logs.error.reaction, error);
