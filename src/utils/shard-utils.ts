@@ -1,12 +1,11 @@
 import { ShardClientUtil, ShardingManager, Util } from 'discord.js';
 
+import { DiscordLimits } from '../constants/index.js';
 import { MathUtils } from './index.js';
-
-const MAX_SERVERS_PER_SHARD = 2500;
 
 export class ShardUtils {
     public static async requiredShardCount(token: string): Promise<number> {
-        return await this.recommendedShardCount(token, MAX_SERVERS_PER_SHARD);
+        return await this.recommendedShardCount(token, DiscordLimits.GUILDS_PER_SHARD);
     }
 
     public static async recommendedShardCount(
