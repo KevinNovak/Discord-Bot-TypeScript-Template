@@ -41,10 +41,10 @@
             "test": {
                 "description": "Test command works!"
             },
-            "viewJoinDate": {
-                "description": "{{TARGET}}'s maiden voyage was on {{DATE}}!"
+            "viewDateJoined": {
+                "description": "{{TARGET}} joined on {{DATE}}!"
             },
-            "viewSentDate": {
+            "viewDateSent": {
                 "description": "This message was sent on {{DATE}}!"
             },
             "about": {
