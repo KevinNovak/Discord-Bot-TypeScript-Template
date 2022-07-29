@@ -177,12 +177,9 @@
             "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features."
         },
         "commandDescs": {
-            "dev": "View developer info.",
             "help": "View help menu and list of commands.",
             "info": "View bot info.",
-            "link": "Get links to invite, support, etc.",
-            "test": "Run the test command.",
-            "translate": "View translation info."
+            "test": "Run the test command."
         },
         "lists": {
             "languageItem": "**{{LANGUAGE_NAME}}** (`{{LANGUAGE_KEYWORD}}`)"
