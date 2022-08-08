@@ -172,6 +172,10 @@
             "startupInProcess": {
                 "description": "{{COM:bot.name}} is still starting up. Try again later.",
                 "color": "{{COM:colors.warning}}"
+            },
+            "notImplemented": {
+                "description": "This feature has not been implemented yet!",
+                "color": "{{COM:colors.warning}}"
             }
         },
         "metaRegexes": {
