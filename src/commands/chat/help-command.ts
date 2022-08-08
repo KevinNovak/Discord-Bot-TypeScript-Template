@@ -25,12 +25,12 @@ export class HelpCommand implements Command {
                 type: ApplicationCommandOptionType.String,
                 choices: [
                     {
-                        name: 'commands',
-                        value: 'commands',
+                        name: 'Commands',
+                        value: 'COMMANDS',
                     },
                     {
-                        name: 'permissions',
-                        value: 'permissions',
+                        name: 'Permissions',
+                        value: 'PERMISSIONS',
                     },
                 ],
             },
@@ -43,11 +43,11 @@ export class HelpCommand implements Command {
 
         let embed: MessageEmbed;
         switch (option) {
-            case 'commands': {
+            case 'COMMANDS': {
                 embed = Lang.getEmbed('displayEmbeds.commands', data.lang());
                 break;
             }
-            case 'permissions': {
+            case 'PERMISSIONS': {
                 embed = Lang.getEmbed('displayEmbeds.permissions', data.lang());
                 break;
             }

@@ -35,16 +35,16 @@ export class InfoCommand implements Command {
                 type: ApplicationCommandOptionType.String,
                 choices: [
                     {
-                        name: 'about',
-                        value: 'about',
+                        name: 'About',
+                        value: 'ABOUT',
                     },
                     {
-                        name: 'translate',
-                        value: 'translate',
+                        name: 'Translate',
+                        value: 'TRANSLATE',
                     },
                     {
-                        name: 'dev',
-                        value: 'dev',
+                        name: 'Dev',
+                        value: 'DEV',
                     },
                 ],
             },
@@ -58,18 +58,18 @@ export class InfoCommand implements Command {
 
         let embed: MessageEmbed;
         switch (option) {
-            case 'about': {
+            case 'ABOUT': {
                 embed = Lang.getEmbed('displayEmbeds.about', data.lang());
                 break;
             }
-            case 'translate': {
+            case 'TRANSLATE': {
                 embed = Lang.getEmbed('displayEmbeds.translate', data.lang());
                 for (let langCode of Object.values(LangCode)) {
                     embed.addField(Language.displayName(langCode), Language.translators(langCode));
                 }
                 break;
             }
-            case 'dev': {
+            case 'DEV': {
                 if (!Config.developers.includes(intr.user.id)) {
                     await InteractionUtils.send(
                         intr,
