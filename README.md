@@ -50,6 +50,7 @@ A `/help` command to get help on different areas of the bot, like commands or pe
 
 ![](https://i.imgur.com/0WrN9mZ.png)
 ![](https://i.imgur.com/asaAi8o.png)
+![](https://i.imgur.com/h9jXDiW.png)
 
 ### Info Command
 

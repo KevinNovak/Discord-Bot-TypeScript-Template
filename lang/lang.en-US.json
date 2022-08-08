@@ -45,6 +45,12 @@
                     "",
                     "**How do I restrict who can run the commands?**",
                     "Slash command permissions can be configured in the Server Settings. See \"{{COM:chatCommands.help}} {{COM:arguments.option}}:Permissions\" for more information."
+                ],
+                "fields": [
+                    {
+                        "name": "{{REF:fields.links}}",
+                        "value": ["{{REF:links.docsEmbed}}", "{{REF:links.supportEmbed}}"]
+                    }
                 ]
             },
             "test": {
@@ -186,7 +192,7 @@
             "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features."
         },
         "commandDescs": {
-            "help": "View help menu and list of commands.",
+            "help": "Get help menu and list of commands.",
             "info": "View bot info.",
             "test": "Run the test command."
         },
