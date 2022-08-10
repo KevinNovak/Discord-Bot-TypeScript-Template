@@ -9,7 +9,7 @@ import { createRequire } from 'node:module';
 import os from 'node:os';
 import typescript from 'typescript';
 
-import { LangCode } from '../../enums/index.js';
+import { InfoOption, LangCode } from '../../enums/index.js';
 import { Language } from '../../models/enum-helpers/index.js';
 import { EventData } from '../../models/internal-models.js';
 import { Lang } from '../../services/index.js';
@@ -35,16 +35,16 @@ export class InfoCommand implements Command {
                 type: ApplicationCommandOptionType.String,
                 choices: [
                     {
-                        name: 'About',
-                        value: 'ABOUT',
+                        name: Lang.getRef('infoOptions.about', Lang.Default),
+                        value: InfoOption.ABOUT,
                     },
                     {
-                        name: 'Translate',
-                        value: 'TRANSLATE',
+                        name: Lang.getRef('infoOptions.translate', Lang.Default),
+                        value: InfoOption.TRANSLATE,
                     },
                     {
-                        name: 'Dev',
-                        value: 'DEV',
+                        name: Lang.getRef('infoOptions.dev', Lang.Default),
+                        value: InfoOption.DEV,
                     },
                 ],
             },
@@ -58,18 +58,18 @@ export class InfoCommand implements Command {
 
         let embed: MessageEmbed;
         switch (option) {
-            case 'ABOUT': {
+            case InfoOption.ABOUT: {
                 embed = Lang.getEmbed('displayEmbeds.about', data.lang());
                 break;
             }
-            case 'TRANSLATE': {
+            case InfoOption.TRANSLATE: {
                 embed = Lang.getEmbed('displayEmbeds.translate', data.lang());
                 for (let langCode of Object.values(LangCode)) {
                     embed.addField(Language.displayName(langCode), Language.translators(langCode));
                 }
                 break;
             }
-            case 'DEV': {
+            case InfoOption.DEV: {
                 if (!Config.developers.includes(intr.user.id)) {
                     await InteractionUtils.send(
                         intr,

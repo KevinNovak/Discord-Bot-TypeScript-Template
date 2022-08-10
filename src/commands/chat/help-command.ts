@@ -5,6 +5,7 @@ import {
 } from 'discord-api-types/v10';
 import { CommandInteraction, MessageEmbed, PermissionString } from 'discord.js';
 
+import { HelpOption } from '../../enums/index.js';
 import { EventData } from '../../models/internal-models.js';
 import { Lang } from '../../services/index.js';
 import { InteractionUtils } from '../../utils/index.js';
@@ -25,16 +26,16 @@ export class HelpCommand implements Command {
                 type: ApplicationCommandOptionType.String,
                 choices: [
                     {
-                        name: 'Commands',
-                        value: 'COMMANDS',
+                        name: Lang.getRef('helpOptions.commands', Lang.Default),
+                        value: HelpOption.COMMANDS,
                     },
                     {
-                        name: 'Permissions',
-                        value: 'PERMISSIONS',
+                        name: Lang.getRef('helpOptions.permissions', Lang.Default),
+                        value: HelpOption.PERMISSIONS,
                     },
                     {
-                        name: 'FAQ',
-                        value: 'FAQ',
+                        name: Lang.getRef('helpOptions.faq', Lang.Default),
+                        value: HelpOption.FAQ,
                     },
                 ],
             },
@@ -47,15 +48,15 @@ export class HelpCommand implements Command {
 
         let embed: MessageEmbed;
         switch (option) {
-            case 'COMMANDS': {
+            case HelpOption.COMMANDS: {
                 embed = Lang.getEmbed('displayEmbeds.commands', data.lang());
                 break;
             }
-            case 'PERMISSIONS': {
+            case HelpOption.PERMISSIONS: {
                 embed = Lang.getEmbed('displayEmbeds.permissions', data.lang());
                 break;
             }
-            case 'FAQ': {
+            case HelpOption.FAQ: {
                 embed = Lang.getEmbed('displayEmbeds.faq', data.lang());
                 break;
             }

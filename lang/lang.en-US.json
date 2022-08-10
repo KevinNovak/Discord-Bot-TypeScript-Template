@@ -252,6 +252,16 @@
             "VIEW_CHANNEL": "View Channel(s)",
             "VIEW_GUILD_INSIGHTS": "View Server Insights"
         },
+        "helpOptions": {
+            "commands": "Commands",
+            "permissions": "Permissions",
+            "faq": "FAQ"
+        },
+        "infoOptions": {
+            "about": "About",
+            "translate": "Translate",
+            "dev": "Dev"
+        },
         "other": {
             "na": "N/A"
         },
