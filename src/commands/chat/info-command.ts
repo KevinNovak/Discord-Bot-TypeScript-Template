@@ -65,7 +65,12 @@ export class InfoCommand implements Command {
             case InfoOption.TRANSLATE: {
                 embed = Lang.getEmbed('displayEmbeds.translate', data.lang());
                 for (let langCode of Object.values(LangCode)) {
-                    embed.addField(Language.displayName(langCode), Language.translators(langCode));
+                    embed.addFields([
+                        {
+                            name: Language.displayName(langCode),
+                            value: Language.translators(langCode),
+                        },
+                    ]);
                 }
                 break;
             }
