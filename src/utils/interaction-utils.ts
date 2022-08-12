@@ -7,6 +7,7 @@ import {
     Message,
     MessageComponentInteraction,
     MessageEmbed,
+    ModalSubmitInteraction,
     WebhookEditMessageOptions,
 } from 'discord.js';
 
@@ -23,7 +24,7 @@ const IGNORED_ERRORS = [
 
 export class InteractionUtils {
     public static async deferReply(
-        intr: BaseCommandInteraction | MessageComponentInteraction,
+        intr: BaseCommandInteraction | MessageComponentInteraction | ModalSubmitInteraction,
         hidden: boolean = false
     ): Promise<void> {
         try {
@@ -39,7 +40,9 @@ export class InteractionUtils {
         }
     }
 
-    public static async deferUpdate(intr: MessageComponentInteraction): Promise<void> {
+    public static async deferUpdate(
+        intr: MessageComponentInteraction | ModalSubmitInteraction
+    ): Promise<void> {
         try {
             return await intr.deferUpdate();
         } catch (error) {
@@ -52,7 +55,7 @@ export class InteractionUtils {
     }
 
     public static async send(
-        intr: BaseCommandInteraction | MessageComponentInteraction,
+        intr: BaseCommandInteraction | MessageComponentInteraction | ModalSubmitInteraction,
         content: string | MessageEmbed | InteractionReplyOptions,
         hidden: boolean = false
     ): Promise<Message> {
@@ -85,7 +88,7 @@ export class InteractionUtils {
     }
 
     public static async editReply(
-        intr: BaseCommandInteraction | MessageComponentInteraction,
+        intr: BaseCommandInteraction | MessageComponentInteraction | ModalSubmitInteraction,
         content: string | MessageEmbed | WebhookEditMessageOptions
     ): Promise<Message> {
         try {
@@ -106,7 +109,7 @@ export class InteractionUtils {
     }
 
     public static async update(
-        intr: MessageComponentInteraction,
+        intr: MessageComponentInteraction | ModalSubmitInteraction,
         content: string | MessageEmbed | InteractionUpdateOptions
     ): Promise<Message> {
         try {
