@@ -114,9 +114,11 @@ export class ClientUtils {
                 return await guild.roles.fetch(discordId);
             }
 
-            let search = input.toLowerCase();
-            return (await guild.roles.fetch()).find(role =>
-                role.name.toLowerCase().includes(search)
+            let search = input.trim().toLowerCase().replace(/^@/, '');
+            let roles = await guild.roles.fetch();
+            return (
+                roles.find(role => role.name.toLowerCase() === search) ??
+                roles.find(role => role.name.toLowerCase().includes(search))
             );
         } catch (error) {
             if (
@@ -145,11 +147,14 @@ export class ClientUtils {
                 }
             }
 
-            let search = input.toLowerCase().replaceAll(' ', '-');
-            return [...(await guild.channels.fetch()).values()]
+            let search = input.trim().toLowerCase().replace(/^#/, '').replaceAll(' ', '-');
+            let channels = [...(await guild.channels.fetch()).values()]
                 .filter(channel => channel instanceof NewsChannel || channel instanceof TextChannel)
-                .map(channel => channel as NewsChannel | TextChannel)
-                .find(channel => channel.name.toLowerCase().includes(search));
+                .map(channel => channel as NewsChannel | TextChannel);
+            return (
+                channels.find(channel => channel.name.toLowerCase() === search) ??
+                channels.find(channel => channel.name.toLowerCase().includes(search))
+            );
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
@@ -165,25 +170,28 @@ export class ClientUtils {
     public static async findVoiceChannel(
         guild: Guild,
         input: string
-    ): Promise<StageChannel | VoiceChannel> {
+    ): Promise<VoiceChannel | StageChannel> {
         try {
             let discordId = RegexUtils.discordId(input);
             if (discordId) {
                 let channel = await guild.channels.fetch(discordId);
-                if (channel instanceof StageChannel || channel instanceof VoiceChannel) {
+                if (channel instanceof VoiceChannel || channel instanceof StageChannel) {
                     return channel;
                 } else {
                     return;
                 }
             }
 
-            let search = input.toLowerCase();
-            return [...(await guild.channels.fetch()).values()]
+            let search = input.trim().toLowerCase().replace(/^#/, '');
+            let channels = [...(await guild.channels.fetch()).values()]
                 .filter(
-                    channel => channel instanceof StageChannel || channel instanceof VoiceChannel
+                    channel => channel instanceof VoiceChannel || channel instanceof StageChannel
                 )
-                .map(channel => channel as StageChannel | VoiceChannel)
-                .find(channel => channel.name.toLowerCase().includes(search));
+                .map(channel => channel as VoiceChannel | StageChannel);
+            return (
+                channels.find(channel => channel.name.toLowerCase() === search) ??
+                channels.find(channel => channel.name.toLowerCase().includes(search))
+            );
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
