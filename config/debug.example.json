@@ -2,7 +2,7 @@
     "override": {
         "shardMode": {
             "enabled": false,
-            "value": "process"
+            "value": "worker"
         }
     },
     "dummyMode": {

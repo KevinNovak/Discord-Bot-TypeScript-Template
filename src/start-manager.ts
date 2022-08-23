@@ -53,7 +53,7 @@ async function start(): Promise<void> {
 
     let shardManager = new ShardingManager('dist/start-bot.js', {
         token: Config.client.token,
-        mode: Debug.override.shardMode.enabled ? Debug.override.shardMode.value : 'worker',
+        mode: Debug.override.shardMode.enabled ? Debug.override.shardMode.value : 'process',
         respawn: true,
         totalShards,
         shardList,
