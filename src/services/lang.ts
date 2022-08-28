@@ -1,3 +1,4 @@
+import { LocalizationMap } from 'discord-api-types/v10.js';
 import { MessageEmbed } from 'discord.js';
 import { Linguini, TypeMapper, TypeMappers, Utils } from 'linguini';
 import path, { dirname } from 'node:path';
@@ -40,6 +41,17 @@ export class Lang {
             this.linguini.getRef(location, langCode, variables) ??
             this.linguini.getRef(location, this.Default, variables)
         );
+    }
+
+    public static getRefLocalizationMap(
+        location: string,
+        variables?: { [name: string]: string }
+    ): LocalizationMap {
+        let obj = {};
+        for (let langCode of Object.values(LangCode)) {
+            obj[langCode] = this.getRef(location, langCode, variables);
+        }
+        return obj;
     }
 
     public static getCom(location: string, variables?: { [name: string]: string }): string {
