@@ -200,6 +200,10 @@
             "info": "View bot info.",
             "test": "Run the test command."
         },
+        "argDescs": {
+            "helpOption": "Option.",
+            "infoOption": "Option."
+        },
         "lists": {
             "languageItem": "**{{LANGUAGE_NAME}}** (`{{LANGUAGE_KEYWORD}}`)"
         },

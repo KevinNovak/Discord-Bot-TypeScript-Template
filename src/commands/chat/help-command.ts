@@ -21,7 +21,7 @@ export class HelpCommand implements Command {
         options: [
             {
                 name: Lang.getCom('arguments.option'),
-                description: 'Option.',
+                description: Lang.getRef('argDescs.helpOption', Lang.Default),
                 required: true,
                 type: ApplicationCommandOptionType.String,
                 choices: [

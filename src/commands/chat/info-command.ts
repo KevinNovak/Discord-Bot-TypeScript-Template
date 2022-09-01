@@ -30,7 +30,7 @@ export class InfoCommand implements Command {
         options: [
             {
                 name: Lang.getCom('arguments.option'),
-                description: 'Option.',
+                description: Lang.getRef('argDescs.infoOption', Lang.Default),
                 required: true,
                 type: ApplicationCommandOptionType.String,
                 choices: [
