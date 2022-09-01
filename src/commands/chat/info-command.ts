@@ -23,13 +23,13 @@ let TsConfig = require('../../../tsconfig.json');
 export class InfoCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
         type: ApplicationCommandType.ChatInput,
-        name: Lang.getCom('chatCommands.info'),
+        name: Lang.getRef('chatCommands.info', Lang.Default),
         description: Lang.getRef('commandDescs.info', Lang.Default),
         dm_permission: true,
         default_member_permissions: undefined,
         options: [
             {
-                name: Lang.getCom('arguments.option'),
+                name: Lang.getRef('arguments.option', Lang.Default),
                 description: 'Option.',
                 required: true,
                 type: ApplicationCommandOptionType.String,
@@ -54,7 +54,7 @@ export class InfoCommand implements Command {
     public requireClientPerms: PermissionString[] = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
-        let option = intr.options.getString(Lang.getCom('arguments.option'));
+        let option = intr.options.getString(Lang.getRef('arguments.option', Lang.Default));
 
         let embed: MessageEmbed;
         switch (option) {

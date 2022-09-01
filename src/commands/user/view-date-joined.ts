@@ -14,7 +14,7 @@ import { Command, CommandDeferType } from '../index.js';
 export class ViewDateJoined implements Command {
     public metadata: RESTPostAPIContextMenuApplicationCommandsJSONBody = {
         type: ApplicationCommandType.User,
-        name: Lang.getCom('userCommands.viewDateJoined'),
+        name: Lang.getRef('userCommands.viewDateJoined', Lang.Default),
         default_member_permissions: undefined,
         dm_permission: true,
     };

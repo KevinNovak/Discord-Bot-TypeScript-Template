@@ -3,20 +3,6 @@
         "name": "My Bot",
         "author": "My Name"
     },
-    "chatCommands": {
-        "help": "help",
-        "info": "info",
-        "test": "test"
-    },
-    "userCommands": {
-        "viewDateJoined": "View Date Joined"
-    },
-    "messageCommands": {
-        "viewDateSent": "View Date Sent"
-    },
-    "arguments": {
-        "option": "option"
-    },
     "emojis": {
         "yes": "✅",
         "no": "❌"

@@ -13,7 +13,7 @@ import { Command, CommandDeferType } from '../index.js';
 export class TestCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
         type: ApplicationCommandType.ChatInput,
-        name: Lang.getCom('chatCommands.test'),
+        name: Lang.getRef('chatCommands.test', Lang.Default),
         description: Lang.getRef('commandDescs.test', Lang.Default),
         dm_permission: true,
         default_member_permissions: undefined,

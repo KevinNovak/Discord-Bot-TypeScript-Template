@@ -195,6 +195,20 @@
         "bot": {
             "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features."
         },
+        "chatCommands": {
+            "help": "help",
+            "info": "info",
+            "test": "test"
+        },
+        "userCommands": {
+            "viewDateJoined": "View Date Joined"
+        },
+        "messageCommands": {
+            "viewDateSent": "View Date Sent"
+        },
+        "arguments": {
+            "option": "option"
+        },
         "commandDescs": {
             "help": "Get help with commands, permissions, FAQ, etc.",
             "info": "View bot info.",
