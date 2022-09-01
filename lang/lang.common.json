@@ -17,6 +17,10 @@
     "arguments": {
         "option": "option"
     },
+    "emojis": {
+        "yes": "✅",
+        "no": "❌"
+    },
     "colors": {
         "default": "#0099ff",
         "success": "#00ff83",
