@@ -15,6 +15,7 @@ export class ViewDateSent implements Command {
     public metadata: RESTPostAPIContextMenuApplicationCommandsJSONBody = {
         type: ApplicationCommandType.Message,
         name: Lang.getRef('messageCommands.viewDateSent', Lang.Default),
+        name_localizations: Lang.getRefLocalizationMap('messageCommands.viewDateSent'),
         default_member_permissions: undefined,
         dm_permission: true,
     };

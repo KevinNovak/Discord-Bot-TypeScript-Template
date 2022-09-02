@@ -15,26 +15,33 @@ export class HelpCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
         type: ApplicationCommandType.ChatInput,
         name: Lang.getRef('chatCommands.help', Lang.Default),
+        name_localizations: Lang.getRefLocalizationMap('chatCommands.help'),
         description: Lang.getRef('commandDescs.help', Lang.Default),
+        description_localizations: Lang.getRefLocalizationMap('commandDescs.help'),
         dm_permission: true,
         default_member_permissions: undefined,
         options: [
             {
                 name: Lang.getRef('arguments.option', Lang.Default),
+                name_localizations: Lang.getRefLocalizationMap('arguments.option'),
                 description: Lang.getRef('argDescs.helpOption', Lang.Default),
+                description_localizations: Lang.getRefLocalizationMap('argDescs.helpOption'),
                 required: true,
                 type: ApplicationCommandOptionType.String,
                 choices: [
                     {
                         name: Lang.getRef('helpOptions.commands', Lang.Default),
+                        name_localizations: Lang.getRefLocalizationMap('helpOptions.commands'),
                         value: HelpOption.COMMANDS,
                     },
                     {
                         name: Lang.getRef('helpOptions.permissions', Lang.Default),
+                        name_localizations: Lang.getRefLocalizationMap('helpOptions.permissions'),
                         value: HelpOption.PERMISSIONS,
                     },
                     {
                         name: Lang.getRef('helpOptions.faq', Lang.Default),
+                        name_localizations: Lang.getRefLocalizationMap('helpOptions.faq'),
                         value: HelpOption.FAQ,
                     },
                 ],

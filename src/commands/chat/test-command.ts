@@ -14,7 +14,9 @@ export class TestCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
         type: ApplicationCommandType.ChatInput,
         name: Lang.getRef('chatCommands.test', Lang.Default),
+        name_localizations: Lang.getRefLocalizationMap('chatCommands.test'),
         description: Lang.getRef('commandDescs.test', Lang.Default),
+        description_localizations: Lang.getRefLocalizationMap('commandDescs.test'),
         dm_permission: true,
         default_member_permissions: undefined,
     };
