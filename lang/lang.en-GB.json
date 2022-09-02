@@ -179,7 +179,7 @@
             }
         },
         "metaRegexes": {
-            "language": "/\\b({{REF:meta.language}}|en US|English)\\b/i"
+            "language": "/\\b({{REF:meta.language}}|en GB)\\b/i"
         },
         "channelRegexes": {
             "bot": "/bot|command|cmd/i"
@@ -187,13 +187,27 @@
     },
     "refs": {
         "meta": {
-            "language": "en-Pirate",
-            "languageDisplay": "Pirate",
-            "locale": "en-US",
+            "language": "en-GB",
+            "languageDisplay": "English, UK",
+            "locale": "en-GB",
             "translators": "[TranslatorName#1234](https://github.com/)"
         },
         "bot": {
             "description": "{{REF:links.templateEmbed}} helps give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features."
+        },
+        "chatCommands": {
+            "help": "help",
+            "info": "info",
+            "test": "test"
+        },
+        "userCommands": {
+            "viewDateJoined": "View Date Joined"
+        },
+        "messageCommands": {
+            "viewDateSent": "View Date Sent"
+        },
+        "arguments": {
+            "option": "option"
         },
         "commandDescs": {
             "help": "Get help with commands, permissions, FAQ, etc.",

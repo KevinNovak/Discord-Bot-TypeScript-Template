@@ -23,27 +23,34 @@ let TsConfig = require('../../../tsconfig.json');
 export class InfoCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
         type: ApplicationCommandType.ChatInput,
-        name: Lang.getCom('chatCommands.info'),
+        name: Lang.getRef('chatCommands.info', Lang.Default),
+        name_localizations: Lang.getRefLocalizationMap('chatCommands.info'),
         description: Lang.getRef('commandDescs.info', Lang.Default),
+        description_localizations: Lang.getRefLocalizationMap('commandDescs.info'),
         dm_permission: true,
         default_member_permissions: undefined,
         options: [
             {
-                name: Lang.getCom('arguments.option'),
+                name: Lang.getRef('arguments.option', Lang.Default),
+                name_localizations: Lang.getRefLocalizationMap('arguments.option'),
                 description: Lang.getRef('argDescs.infoOption', Lang.Default),
+                description_localizations: Lang.getRefLocalizationMap('argDescs.infoOption'),
                 required: true,
                 type: ApplicationCommandOptionType.String,
                 choices: [
                     {
                         name: Lang.getRef('infoOptions.about', Lang.Default),
+                        name_localizations: Lang.getRefLocalizationMap('infoOptions.about'),
                         value: InfoOption.ABOUT,
                     },
                     {
                         name: Lang.getRef('infoOptions.translate', Lang.Default),
+                        name_localizations: Lang.getRefLocalizationMap('infoOptions.translate'),
                         value: InfoOption.TRANSLATE,
                     },
                     {
                         name: Lang.getRef('infoOptions.dev', Lang.Default),
+                        name_localizations: Lang.getRefLocalizationMap('infoOptions.dev'),
                         value: InfoOption.DEV,
                     },
                 ],
@@ -54,7 +61,7 @@ export class InfoCommand implements Command {
     public requireClientPerms: PermissionString[] = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
-        let option = intr.options.getString(Lang.getCom('arguments.option'));
+        let option = intr.options.getString(Lang.getRef('arguments.option', Lang.Default));
 
         let embed: MessageEmbed;
         switch (option) {
