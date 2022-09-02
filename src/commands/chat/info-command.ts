@@ -1,5 +1,4 @@
 import {
-    ApplicationCommandOptionType,
     ApplicationCommandType,
     RESTPostAPIChatInputApplicationCommandsJSONBody,
 } from 'discord-api-types/v10';
@@ -9,6 +8,7 @@ import { createRequire } from 'node:module';
 import os from 'node:os';
 import typescript from 'typescript';
 
+import { ChatArgs } from '../../constants/index.js';
 import { InfoOption, LangCode } from '../../enums/index.js';
 import { Language } from '../../models/enum-helpers/index.js';
 import { EventData } from '../../models/internal-models.js';
@@ -31,29 +31,8 @@ export class InfoCommand implements Command {
         default_member_permissions: undefined,
         options: [
             {
-                name: Lang.getRef('arguments.option', Lang.Default),
-                name_localizations: Lang.getRefLocalizationMap('arguments.option'),
-                description: Lang.getRef('argDescs.infoOption', Lang.Default),
-                description_localizations: Lang.getRefLocalizationMap('argDescs.infoOption'),
+                ...ChatArgs.INFO_OPTION,
                 required: true,
-                type: ApplicationCommandOptionType.String,
-                choices: [
-                    {
-                        name: Lang.getRef('infoOptions.about', Lang.Default),
-                        name_localizations: Lang.getRefLocalizationMap('infoOptions.about'),
-                        value: InfoOption.ABOUT,
-                    },
-                    {
-                        name: Lang.getRef('infoOptions.translate', Lang.Default),
-                        name_localizations: Lang.getRefLocalizationMap('infoOptions.translate'),
-                        value: InfoOption.TRANSLATE,
-                    },
-                    {
-                        name: Lang.getRef('infoOptions.dev', Lang.Default),
-                        name_localizations: Lang.getRefLocalizationMap('infoOptions.dev'),
-                        value: InfoOption.DEV,
-                    },
-                ],
             },
         ],
     };
