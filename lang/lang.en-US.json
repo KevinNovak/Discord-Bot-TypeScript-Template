@@ -7,7 +7,7 @@
                 "fields": [
                     {
                         "name": "Important {{REF:fields.commands}}",
-                        "value": ["**/{{COM:chatCommands.help}}** - {{REF:commandDescs.help}}"]
+                        "value": ["**/{{REF:chatCommands.help}}** - {{REF:commandDescs.help}}"]
                     },
                     {
                         "name": "{{REF:fields.links}}",
@@ -18,8 +18,8 @@
             "commands": {
                 "title": "{{COM:bot.name}} - Commands",
                 "description": [
-                    "**/{{COM:chatCommands.test}}** - {{REF:commandDescs.test}}",
-                    "**/{{COM:chatCommands.info}}** - {{REF:commandDescs.info}}"
+                    "**/{{REF:chatCommands.test}}** - {{REF:commandDescs.test}}",
+                    "**/{{REF:chatCommands.info}}** - {{REF:commandDescs.info}}"
                 ],
                 "fields": [
                     {
@@ -44,7 +44,7 @@
                     "Frequently Asked Questions about {{COM:bot.name}}.",
                     "",
                     "**How do I restrict who can run the commands?**",
-                    "Slash command permissions can be configured in the Server Settings. See \"/{{COM:chatCommands.help}} {{COM:arguments.option}}:Permissions\" for more information."
+                    "Slash command permissions can be configured in the Server Settings. See \"/{{REF:chatCommands.help}} {{REF:arguments.option}}:Permissions\" for more information."
                 ],
                 "fields": [
                     {
