@@ -2,6 +2,7 @@
 # Custom
 # =====================================================
 /dist
+/temp
 /**/config/**/*.json
 !/**/config/**/*.example.json
 

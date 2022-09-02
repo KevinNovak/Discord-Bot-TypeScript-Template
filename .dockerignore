@@ -5,6 +5,7 @@
 /docs
 /misc
 /node_modules
+/temp
 
 # Files
 /npm-debug.log
