@@ -14,27 +14,34 @@ import { Command, CommandDeferType } from '../index.js';
 export class HelpCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
         type: ApplicationCommandType.ChatInput,
-        name: Lang.getCom('chatCommands.help'),
+        name: Lang.getRef('chatCommands.help', Lang.Default),
+        name_localizations: Lang.getRefLocalizationMap('chatCommands.help'),
         description: Lang.getRef('commandDescs.help', Lang.Default),
+        description_localizations: Lang.getRefLocalizationMap('commandDescs.help'),
         dm_permission: true,
         default_member_permissions: undefined,
         options: [
             {
-                name: Lang.getCom('arguments.option'),
+                name: Lang.getRef('arguments.option', Lang.Default),
+                name_localizations: Lang.getRefLocalizationMap('arguments.option'),
                 description: Lang.getRef('argDescs.helpOption', Lang.Default),
+                description_localizations: Lang.getRefLocalizationMap('argDescs.helpOption'),
                 required: true,
                 type: ApplicationCommandOptionType.String,
                 choices: [
                     {
                         name: Lang.getRef('helpOptions.commands', Lang.Default),
+                        name_localizations: Lang.getRefLocalizationMap('helpOptions.commands'),
                         value: HelpOption.COMMANDS,
                     },
                     {
                         name: Lang.getRef('helpOptions.permissions', Lang.Default),
+                        name_localizations: Lang.getRefLocalizationMap('helpOptions.permissions'),
                         value: HelpOption.PERMISSIONS,
                     },
                     {
                         name: Lang.getRef('helpOptions.faq', Lang.Default),
+                        name_localizations: Lang.getRefLocalizationMap('helpOptions.faq'),
                         value: HelpOption.FAQ,
                     },
                 ],
@@ -44,7 +51,7 @@ export class HelpCommand implements Command {
     public deferType = CommandDeferType.PUBLIC;
     public requireClientPerms: PermissionString[] = [];
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
-        let option = intr.options.getString(Lang.getCom('arguments.option'));
+        let option = intr.options.getString(Lang.getRef('arguments.option', Lang.Default));
 
         let embed: MessageEmbed;
         switch (option) {
