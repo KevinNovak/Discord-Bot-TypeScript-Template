@@ -53,7 +53,7 @@ export class Language {
         enabled: boolean,
         limit: number = Number.MAX_VALUE
     ): Locale[] {
-        let langCodes = enabled ? this.Enabled : Object.values(Locale);
+        let langCodes = enabled ? this.Enabled : Object.values(Locale).sort();
         let search = input.toLowerCase();
         let found = new Set<Locale>();
         // Exact match
