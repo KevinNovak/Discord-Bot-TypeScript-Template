@@ -47,12 +47,5 @@
         "url": "https://disforge.com/api/botstats/<BOT_ID>",
         "authorization": "<TOKEN>",
         "body": "{\"servers\":{{SERVER_COUNT}}}"
-    },
-    {
-        "name": "discordlist.space",
-        "enabled": false,
-        "url": "https://api.discordlist.space/v2/bots/<BOT_ID>",
-        "authorization": "<TOKEN>",
-        "body": "{\"serverCount\":{{SERVER_COUNT}}}"
     }
 ]
