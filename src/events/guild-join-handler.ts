@@ -1,6 +1,7 @@
 import { Guild } from 'discord.js';
 import { createRequire } from 'node:module';
 
+import { Language } from '../models/enum-helpers/index.js';
 import { Lang, Logger } from '../services/index.js';
 import { ClientUtils, MessageUtils } from '../utils/index.js';
 import { EventHandler } from './index.js';
@@ -20,8 +21,8 @@ export class GuildJoinHandler implements EventHandler {
         // let data = new EventData();
 
         // Send welcome message to the server's notify channel
-        // TODO: Replace "Lang.Default" here with the server's language
-        let guildLang = Lang.Default;
+        // TODO: Replace "Language.Default" here with the server's language
+        let guildLang = Language.Default;
         let notifyChannel = await ClientUtils.findNotifyChannel(guild, guildLang);
         if (notifyChannel) {
             await MessageUtils.send(
@@ -34,8 +35,8 @@ export class GuildJoinHandler implements EventHandler {
         }
 
         // Send welcome message to owner
-        // TODO: Replace "Lang.Default" here with the owner's language
-        let ownerLang = Lang.Default;
+        // TODO: Replace "Language.Default" here with the owner's language
+        let ownerLang = Language.Default;
         let owner = await guild.fetchOwner();
         if (owner) {
             await MessageUtils.send(

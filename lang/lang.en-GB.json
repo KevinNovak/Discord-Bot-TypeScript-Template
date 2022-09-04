@@ -178,18 +178,12 @@
                 "color": "{{COM:colors.warning}}"
             }
         },
-        "metaRegexes": {
-            "language": "/\\b({{REF:meta.language}}|en GB)\\b/i"
-        },
         "channelRegexes": {
             "bot": "/bot|command|cmd/i"
         }
     },
     "refs": {
         "meta": {
-            "language": "en-GB",
-            "languageDisplay": "English, UK",
-            "locale": "en-GB",
             "translators": "[TranslatorName#1234](https://github.com/)"
         },
         "bot": {
