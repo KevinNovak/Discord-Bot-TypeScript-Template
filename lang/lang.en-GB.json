@@ -212,9 +212,6 @@
             "helpOption": "Option.",
             "infoOption": "Option."
         },
-        "lists": {
-            "languageItem": "**{{LANGUAGE_NAME}}** (`{{LANGUAGE_KEYWORD}}`)"
-        },
         "fields": {
             "commands": "Commands",
             "links": "Links"
