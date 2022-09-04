@@ -4,7 +4,7 @@ import { Linguini, TypeMapper, TypeMappers, Utils } from 'linguini';
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { Language } from '../models/enum-helpers/language.js';
+import { Language } from '../models/enum-helpers/index.js';
 
 export class Lang {
     private static linguini = new Linguini(
