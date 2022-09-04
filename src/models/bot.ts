@@ -1,4 +1,5 @@
 import {
+    AutocompleteInteraction,
     BaseCommandInteraction,
     ButtonInteraction,
     Client,
@@ -150,7 +151,7 @@ export class Bot {
             return;
         }
 
-        if (intr instanceof BaseCommandInteraction) {
+        if (intr instanceof BaseCommandInteraction || intr instanceof AutocompleteInteraction) {
             try {
                 await this.commandHandler.process(intr);
             } catch (error) {
