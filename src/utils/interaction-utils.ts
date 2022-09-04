@@ -91,10 +91,10 @@ export class InteractionUtils {
 
     public static async respond(
         intr: AutocompleteInteraction,
-        content: ApplicationCommandOptionChoiceData[] = []
+        choices: ApplicationCommandOptionChoiceData[] = []
     ): Promise<void> {
         try {
-            return await intr.respond(content);
+            return await intr.respond(choices);
         } catch (error) {
             if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
                 return;
