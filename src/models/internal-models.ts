@@ -1,5 +1,6 @@
-import { LangCode } from '../enums/index.js';
-import { Lang } from '../services/index.js';
+import { Locale } from 'discord-api-types/v10';
+
+import { Language } from './enum-helpers/index.js';
 
 // This class is used to store and pass data along in events
 export class EventData {
@@ -7,8 +8,8 @@ export class EventData {
         // TODO: Pass in event data (e.g. server and user data) from constructor
     }
 
-    public lang(): LangCode {
+    public lang(): Locale {
         // TODO: Calculate language based on event data
-        return Lang.Default;
+        return Language.Default;
     }
 }

@@ -1,8 +1,6 @@
+import { Locale } from 'discord-api-types/v10';
 import { Guild } from 'discord.js';
 import { Duration } from 'luxon'; // TODO: Missing types
-
-import { LangCode } from '../enums/index.js';
-import { Language } from '../models/enum-helpers/index.js';
 
 export class FormatUtils {
     public static roleMention(guild: Guild, discordId: string): string {
@@ -25,11 +23,11 @@ export class FormatUtils {
         return `<@!${discordId}>`;
     }
 
-    public static duration(milliseconds: number, langCode: LangCode): string {
+    public static duration(milliseconds: number, langCode: Locale): string {
         return Duration.fromObject(
             Object.fromEntries(
                 Object.entries(
-                    Duration.fromMillis(milliseconds, { locale: Language.locale(langCode) })
+                    Duration.fromMillis(milliseconds, { locale: langCode })
                         .shiftTo(
                             'year',
                             'quarter',

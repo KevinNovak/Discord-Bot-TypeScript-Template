@@ -9,7 +9,7 @@ import os from 'node:os';
 import typescript from 'typescript';
 
 import { ChatArgs } from '../../constants/index.js';
-import { InfoOption, LangCode } from '../../enums/index.js';
+import { InfoOption } from '../../enums/index.js';
 import { Language } from '../../models/enum-helpers/index.js';
 import { EventData } from '../../models/internal-models.js';
 import { Lang } from '../../services/index.js';
@@ -23,9 +23,9 @@ let TsConfig = require('../../../tsconfig.json');
 export class InfoCommand implements Command {
     public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
         type: ApplicationCommandType.ChatInput,
-        name: Lang.getRef('chatCommands.info', Lang.Default),
+        name: Lang.getRef('chatCommands.info', Language.Default),
         name_localizations: Lang.getRefLocalizationMap('chatCommands.info'),
-        description: Lang.getRef('commandDescs.info', Lang.Default),
+        description: Lang.getRef('commandDescs.info', Language.Default),
         description_localizations: Lang.getRefLocalizationMap('commandDescs.info'),
         dm_permission: true,
         default_member_permissions: undefined,
@@ -40,7 +40,7 @@ export class InfoCommand implements Command {
     public requireClientPerms: PermissionString[] = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
-        let option = intr.options.getString(Lang.getRef('arguments.option', Lang.Default));
+        let option = intr.options.getString(Lang.getRef('arguments.option', Language.Default));
 
         let embed: MessageEmbed;
         switch (option) {
@@ -50,11 +50,11 @@ export class InfoCommand implements Command {
             }
             case InfoOption.TRANSLATE: {
                 embed = Lang.getEmbed('displayEmbeds.translate', data.lang());
-                for (let langCode of Object.values(LangCode)) {
+                for (let langCode of Language.Enabled) {
                     embed.addFields([
                         {
-                            name: Language.displayName(langCode),
-                            value: Language.translators(langCode),
+                            name: Language.Data[langCode].nativeName,
+                            value: Lang.getRef('meta.translators', langCode),
                         },
                     ]);
                 }
