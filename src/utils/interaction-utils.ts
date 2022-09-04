@@ -1,5 +1,7 @@
 import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/v9';
 import {
+    ApplicationCommandOptionChoiceData,
+    AutocompleteInteraction,
     BaseCommandInteraction,
     DiscordAPIError,
     InteractionReplyOptions,
@@ -78,6 +80,21 @@ export class InteractionUtils {
                     fetchReply: true,
                 })) as Message;
             }
+        } catch (error) {
+            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+                return;
+            } else {
+                throw error;
+            }
+        }
+    }
+
+    public static async respond(
+        intr: AutocompleteInteraction,
+        choices: ApplicationCommandOptionChoiceData[] = []
+    ): Promise<void> {
+        try {
+            return await intr.respond(choices);
         } catch (error) {
             if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
                 return;

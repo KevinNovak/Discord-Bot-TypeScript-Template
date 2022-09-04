@@ -1,4 +1,10 @@
-import { BaseCommandInteraction, NewsChannel, TextChannel, ThreadChannel } from 'discord.js';
+import {
+    AutocompleteInteraction,
+    BaseCommandInteraction,
+    NewsChannel,
+    TextChannel,
+    ThreadChannel,
+} from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 import { createRequire } from 'node:module';
 
@@ -20,15 +26,9 @@ export class CommandHandler implements EventHandler {
 
     constructor(public commands: Command[]) {}
 
-    public async process(intr: BaseCommandInteraction): Promise<void> {
+    public async process(intr: BaseCommandInteraction | AutocompleteInteraction): Promise<void> {
         // Don't respond to self, or other bots
         if (intr.user.id === intr.client.user?.id || intr.user.bot) {
-            return;
-        }
-
-        // Check if user is rate limited
-        let limited = this.rateLimiter.take(intr.user.id);
-        if (limited) {
             return;
         }
 
@@ -40,6 +40,54 @@ export class CommandHandler implements EventHandler {
                     .replaceAll('{INTERACTION_ID}', intr.id)
                     .replaceAll('{COMMAND_NAME}', intr.commandName)
             );
+            return;
+        }
+
+        if (intr instanceof AutocompleteInteraction) {
+            let option = intr.options.getFocused(true);
+
+            if (!command.autocomplete) {
+                Logger.error(
+                    Logs.error.autocompleteNotFound
+                        .replaceAll('{INTERACTION_ID}', intr.id)
+                        .replaceAll('{COMMAND_NAME}', intr.commandName)
+                        .replaceAll('{OPTION_NAME}', option.name)
+                );
+                return;
+            }
+
+            try {
+                await command.autocomplete(intr, option);
+            } catch (error) {
+                Logger.error(
+                    intr.channel instanceof TextChannel ||
+                        intr.channel instanceof NewsChannel ||
+                        intr.channel instanceof ThreadChannel
+                        ? Logs.error.autocompleteGuild
+                              .replaceAll('{INTERACTION_ID}', intr.id)
+                              .replaceAll('{COMMAND_NAME}', command.metadata.name)
+                              .replaceAll('{OPTION_NAME}', option.name)
+                              .replaceAll('{USER_TAG}', intr.user.tag)
+                              .replaceAll('{USER_ID}', intr.user.id)
+                              .replaceAll('{CHANNEL_NAME}', intr.channel.name)
+                              .replaceAll('{CHANNEL_ID}', intr.channel.id)
+                              .replaceAll('{GUILD_NAME}', intr.guild?.name)
+                              .replaceAll('{GUILD_ID}', intr.guild?.id)
+                        : Logs.error.autocompleteOther
+                              .replaceAll('{INTERACTION_ID}', intr.id)
+                              .replaceAll('{COMMAND_NAME}', command.metadata.name)
+                              .replaceAll('{OPTION_NAME}', option.name)
+                              .replaceAll('{USER_TAG}', intr.user.tag)
+                              .replaceAll('{USER_ID}', intr.user.id),
+                    error
+                );
+            }
+            return;
+        }
+
+        // Check if user is rate limited
+        let limited = this.rateLimiter.take(intr.user.id);
+        if (limited) {
             return;
         }
 
