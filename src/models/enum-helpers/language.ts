@@ -57,9 +57,10 @@ export class Language {
         let search = input.toLowerCase();
         let found = new Set<Locale>();
         // Exact match
-        langCodes
-            .filter(langCode => langCode.toLowerCase() === search)
-            .forEach(langCode => found.add(langCode));
+        if (found.size < limit)
+            langCodes
+                .filter(langCode => langCode.toLowerCase() === search)
+                .forEach(langCode => found.add(langCode));
         if (found.size < limit)
             langCodes
                 .filter(langCode => this.Data[langCode].nativeName.toLowerCase() === search)
