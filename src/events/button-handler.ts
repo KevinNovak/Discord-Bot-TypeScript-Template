@@ -63,8 +63,7 @@ export class ButtonHandler implements EventHandler {
             return;
         }
 
-        // TODO: Get data from database
-        let data = new EventData();
+        let data = await new EventData().initialize(intr.guild);
 
         // Execute the button
         await button.execute(intr, msg, data);

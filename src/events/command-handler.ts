@@ -109,8 +109,7 @@ export class CommandHandler implements EventHandler {
             return;
         }
 
-        // TODO: Get data from database
-        let data = new EventData();
+        let data = await new EventData().initialize(intr.guild);
 
         try {
             // Check if interaction passes command checks
