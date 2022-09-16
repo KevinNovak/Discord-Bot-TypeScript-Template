@@ -5,7 +5,7 @@ import { Language } from './enum-helpers/index.js';
 
 // This class is used to store and pass data along in events
 export class EventData {
-    private guildPrimaryLocale: Locale;
+    private guildPrimaryLocale?: Locale;
 
     public async initialize(guild?: Guild): Promise<EventData> {
         if (guild) {
