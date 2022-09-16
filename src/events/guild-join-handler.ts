@@ -17,6 +17,7 @@ export class GuildJoinHandler implements EventHandler {
                 .replaceAll('{GUILD_ID}', guild.id)
         );
 
+        // Get data from database
         let data = await new EventData().initialize(guild);
 
         // Send welcome message to the server's notify channel

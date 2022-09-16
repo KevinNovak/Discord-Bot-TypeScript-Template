@@ -48,6 +48,7 @@ export class ReactionHandler implements EventHandler {
             return;
         }
 
+        // Get data from database
         let data = await new EventData().initialize(msg.guild);
 
         // Execute the reaction

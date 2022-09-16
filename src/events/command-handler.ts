@@ -109,6 +109,7 @@ export class CommandHandler implements EventHandler {
             return;
         }
 
+        // Get data from database
         let data = await new EventData().initialize(intr.guild);
 
         try {

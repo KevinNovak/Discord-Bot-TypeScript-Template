@@ -41,6 +41,7 @@ export class TriggerHandler {
             return;
         }
 
+        // Get data from database
         let data = await new EventData().initialize(msg.guild);
 
         // Execute triggers
