@@ -27,7 +27,7 @@ export class ViewDateSent implements Command {
     public async execute(intr: MessageContextMenuInteraction, data: EventData): Promise<void> {
         await InteractionUtils.send(
             intr,
-            Lang.getEmbed('displayEmbeds.viewDateSent', data.lang(), {
+            Lang.getEmbed('displayEmbeds.viewDateSent', data.lang, {
                 DATE: DateTime.fromJSDate((intr.targetMessage as Message).createdAt).toLocaleString(
                     DateTime.DATE_HUGE
                 ),

@@ -36,15 +36,15 @@ export class HelpCommand implements Command {
         let embed: MessageEmbed;
         switch (option) {
             case HelpOption.COMMANDS: {
-                embed = Lang.getEmbed('displayEmbeds.commands', data.lang());
+                embed = Lang.getEmbed('displayEmbeds.commands', data.lang);
                 break;
             }
             case HelpOption.PERMISSIONS: {
-                embed = Lang.getEmbed('displayEmbeds.permissions', data.lang());
+                embed = Lang.getEmbed('displayEmbeds.permissions', data.lang);
                 break;
             }
             case HelpOption.FAQ: {
-                embed = Lang.getEmbed('displayEmbeds.faq', data.lang());
+                embed = Lang.getEmbed('displayEmbeds.faq', data.lang);
                 break;
             }
             default: {

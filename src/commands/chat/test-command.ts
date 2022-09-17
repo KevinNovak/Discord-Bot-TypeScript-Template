@@ -26,6 +26,6 @@ export class TestCommand implements Command {
     public requireClientPerms: PermissionString[] = [];
 
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
-        await InteractionUtils.send(intr, Lang.getEmbed('displayEmbeds.test', data.lang()));
+        await InteractionUtils.send(intr, Lang.getEmbed('displayEmbeds.test', data.lang));
     }
 }

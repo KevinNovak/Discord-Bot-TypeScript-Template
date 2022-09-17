@@ -33,7 +33,7 @@ export class ViewDateJoined implements Command {
 
         await InteractionUtils.send(
             intr,
-            Lang.getEmbed('displayEmbeds.viewDateJoined', data.lang(), {
+            Lang.getEmbed('displayEmbeds.viewDateJoined', data.lang, {
                 TARGET: intr.targetUser.toString(),
                 DATE: DateTime.fromJSDate(joinDate).toLocaleString(DateTime.DATE_HUGE),
             })
