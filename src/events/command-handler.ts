@@ -154,9 +154,9 @@ export class CommandHandler implements EventHandler {
         try {
             await InteractionUtils.send(
                 intr,
-                Lang.getEmbed('errorEmbeds.command', data.lang(), {
+                Lang.getEmbed('errorEmbeds.command', data.lang, {
                     ERROR_CODE: intr.id,
-                    GUILD_ID: intr.guild?.id ?? Lang.getRef('other.na', data.lang()),
+                    GUILD_ID: intr.guild?.id ?? Lang.getRef('other.na', data.lang),
                     SHARD_ID: (intr.guild?.shardId ?? 0).toString(),
                 })
             );

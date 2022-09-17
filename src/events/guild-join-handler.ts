@@ -27,11 +27,11 @@ export class GuildJoinHandler implements EventHandler {
         });
 
         // Send welcome message to the server's notify channel
-        let notifyChannel = await ClientUtils.findNotifyChannel(guild, data.langGuild());
+        let notifyChannel = await ClientUtils.findNotifyChannel(guild, data.langGuild);
         if (notifyChannel) {
             await MessageUtils.send(
                 notifyChannel,
-                Lang.getEmbed('displayEmbeds.welcome', data.langGuild()).setAuthor({
+                Lang.getEmbed('displayEmbeds.welcome', data.langGuild).setAuthor({
                     name: guild.name,
                     iconURL: guild.iconURL(),
                 })
@@ -42,7 +42,7 @@ export class GuildJoinHandler implements EventHandler {
         if (owner) {
             await MessageUtils.send(
                 owner.user,
-                Lang.getEmbed('displayEmbeds.welcome', data.lang()).setAuthor({
+                Lang.getEmbed('displayEmbeds.welcome', data.lang).setAuthor({
                     name: guild.name,
                     iconURL: guild.iconURL(),
                 })

@@ -17,9 +17,9 @@ export class CommandUtils {
             if (limited) {
                 await InteractionUtils.send(
                     intr,
-                    Lang.getEmbed('validationEmbeds.cooldownHit', data.lang(), {
+                    Lang.getEmbed('validationEmbeds.cooldownHit', data.lang, {
                         AMOUNT: command.cooldown.amount.toLocaleString(),
-                        INTERVAL: FormatUtils.duration(command.cooldown.interval, data.lang()),
+                        INTERVAL: FormatUtils.duration(command.cooldown.interval, data.lang),
                     })
                 );
                 return false;
@@ -32,9 +32,9 @@ export class CommandUtils {
         ) {
             await InteractionUtils.send(
                 intr,
-                Lang.getEmbed('validationEmbeds.missingClientPerms', data.lang(), {
+                Lang.getEmbed('validationEmbeds.missingClientPerms', data.lang, {
                     PERMISSIONS: command.requireClientPerms
-                        .map(perm => `**${Permission.Data[perm].displayName(data.lang())}**`)
+                        .map(perm => `**${Permission.Data[perm].displayName(data.lang)}**`)
                         .join(', '),
                 })
             );
