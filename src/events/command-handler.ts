@@ -112,6 +112,7 @@ export class CommandHandler implements EventHandler {
         // Get data from database
         let data = await this.eventDataService.create({
             user: intr.user,
+            channel: intr.channel,
             guild: intr.guild,
         });
 

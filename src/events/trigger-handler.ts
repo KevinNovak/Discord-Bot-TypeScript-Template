@@ -42,7 +42,11 @@ export class TriggerHandler {
         }
 
         // Get data from database
-        let data = await this.eventDataService.create({ user: msg.author, guild: msg.guild });
+        let data = await this.eventDataService.create({
+            user: msg.author,
+            channel: msg.channel,
+            guild: msg.guild,
+        });
 
         // Execute triggers
         for (let trigger of triggers) {
