@@ -110,7 +110,10 @@ export class CommandHandler implements EventHandler {
         }
 
         // Get data from database
-        let data = await this.eventDataService.create({ guild: intr.guild });
+        let data = await this.eventDataService.create({
+            user: intr.user,
+            guild: intr.guild,
+        });
 
         try {
             // Check if interaction passes command checks

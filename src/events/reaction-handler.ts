@@ -49,7 +49,10 @@ export class ReactionHandler implements EventHandler {
         }
 
         // Get data from database
-        let data = await this.eventDataService.create({ guild: msg.guild });
+        let data = await this.eventDataService.create({
+            user: reactor,
+            guild: msg.guild,
+        });
 
         // Execute the reaction
         await reaction.execute(msgReaction, msg, reactor, data);

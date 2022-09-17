@@ -18,16 +18,20 @@ export class GuildJoinHandler implements EventHandler {
                 .replaceAll('{GUILD_ID}', guild.id)
         );
 
+        let owner = await guild.fetchOwner();
+
         // Get data from database
-        let data = await this.eventDataService.create({ guild });
+        let data = await this.eventDataService.create({
+            user: owner?.user,
+            guild,
+        });
 
         // Send welcome message to the server's notify channel
-        let guildLang = data.lang();
-        let notifyChannel = await ClientUtils.findNotifyChannel(guild, guildLang);
+        let notifyChannel = await ClientUtils.findNotifyChannel(guild, data.lang());
         if (notifyChannel) {
             await MessageUtils.send(
                 notifyChannel,
-                Lang.getEmbed('displayEmbeds.welcome', guildLang).setAuthor({
+                Lang.getEmbed('displayEmbeds.welcome', data.lang()).setAuthor({
                     name: guild.name,
                     iconURL: guild.iconURL(),
                 })
@@ -35,12 +39,10 @@ export class GuildJoinHandler implements EventHandler {
         }
 
         // Send welcome message to owner
-        let ownerLang = data.lang();
-        let owner = await guild.fetchOwner();
         if (owner) {
             await MessageUtils.send(
                 owner.user,
-                Lang.getEmbed('displayEmbeds.welcome', ownerLang).setAuthor({
+                Lang.getEmbed('displayEmbeds.welcome', data.lang()).setAuthor({
                     name: guild.name,
                     iconURL: guild.iconURL(),
                 })
