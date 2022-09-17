@@ -10,7 +10,7 @@ import { createRequire } from 'node:module';
 
 import { Command, CommandDeferType } from '../commands/index.js';
 import { EventData } from '../models/internal-models.js';
-import { Lang, Logger } from '../services/index.js';
+import { EventDataService, Lang, Logger } from '../services/index.js';
 import { CommandUtils, InteractionUtils } from '../utils/index.js';
 import { EventHandler } from './index.js';
 
@@ -24,7 +24,7 @@ export class CommandHandler implements EventHandler {
         Config.rateLimiting.commands.interval * 1000
     );
 
-    constructor(public commands: Command[]) {}
+    constructor(public commands: Command[], private eventDataService: EventDataService) {}
 
     public async process(intr: BaseCommandInteraction | AutocompleteInteraction): Promise<void> {
         // Don't respond to self, or other bots
@@ -110,7 +110,11 @@ export class CommandHandler implements EventHandler {
         }
 
         // Get data from database
-        let data = await new EventData().initialize(intr.guild);
+        let data = await this.eventDataService.create({
+            user: intr.user,
+            channel: intr.channel,
+            guild: intr.guild,
+        });
 
         try {
             // Check if interaction passes command checks

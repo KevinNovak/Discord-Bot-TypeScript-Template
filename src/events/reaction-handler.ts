@@ -2,8 +2,8 @@ import { Message, MessageReaction, User } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 import { createRequire } from 'node:module';
 
-import { EventData } from '../models/internal-models.js';
 import { Reaction } from '../reactions/index.js';
+import { EventDataService } from '../services/index.js';
 import { EventHandler } from './index.js';
 
 const require = createRequire(import.meta.url);
@@ -15,7 +15,7 @@ export class ReactionHandler implements EventHandler {
         Config.rateLimiting.reactions.interval * 1000
     );
 
-    constructor(private reactions: Reaction[]) {}
+    constructor(private reactions: Reaction[], private eventDataService: EventDataService) {}
 
     public async process(msgReaction: MessageReaction, msg: Message, reactor: User): Promise<void> {
         // Don't respond to self, or other bots
@@ -49,7 +49,11 @@ export class ReactionHandler implements EventHandler {
         }
 
         // Get data from database
-        let data = await new EventData().initialize(msg.guild);
+        let data = await this.eventDataService.create({
+            user: reactor,
+            channel: msg.channel,
+            guild: msg.guild,
+        });
 
         // Execute the reaction
         await reaction.execute(msgReaction, msg, reactor, data);
