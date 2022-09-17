@@ -12,8 +12,10 @@ export class EventDataService {
             guild?: Guild;
         } = {}
     ): Promise<EventData> {
-        // User language
-        let langUser =
+        // TODO: Retrieve any data you want to pass along in events
+
+        // Event language
+        let lang =
             options.guild?.preferredLocale &&
             Language.Enabled.includes(options.guild.preferredLocale as Locale)
                 ? (options.guild.preferredLocale as Locale)
@@ -26,8 +28,6 @@ export class EventDataService {
                 ? (options.guild.preferredLocale as Locale)
                 : Language.Default;
 
-        // TODO: Retrieve any data you want to pass along in events
-
-        return new EventData(langUser, langGuild);
+        return new EventData(lang, langGuild);
     }
 }
