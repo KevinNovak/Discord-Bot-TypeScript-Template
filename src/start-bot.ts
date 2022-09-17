@@ -20,7 +20,12 @@ import { CustomClient } from './extensions/index.js';
 import { Job } from './jobs/index.js';
 import { Bot } from './models/bot.js';
 import { Reaction } from './reactions/index.js';
-import { CommandRegistrationService, JobService, Logger } from './services/index.js';
+import {
+    CommandRegistrationService,
+    EventDataService,
+    JobService,
+    Logger,
+} from './services/index.js';
 import { Trigger } from './triggers/index.js';
 
 const require = createRequire(import.meta.url);
@@ -28,6 +33,9 @@ let Config = require('../config/config.json');
 let Logs = require('../lang/logs.json');
 
 async function start(): Promise<void> {
+    // Services
+    let eventDataService = new EventDataService();
+
     // Client
     let client = new CustomClient({
         intents: Config.client.intents,
@@ -69,13 +77,13 @@ async function start(): Promise<void> {
     ];
 
     // Event handlers
-    let guildJoinHandler = new GuildJoinHandler();
+    let guildJoinHandler = new GuildJoinHandler(eventDataService);
     let guildLeaveHandler = new GuildLeaveHandler();
-    let commandHandler = new CommandHandler(commands);
-    let buttonHandler = new ButtonHandler(buttons);
-    let triggerHandler = new TriggerHandler(triggers);
+    let commandHandler = new CommandHandler(commands, eventDataService);
+    let buttonHandler = new ButtonHandler(buttons, eventDataService);
+    let triggerHandler = new TriggerHandler(triggers, eventDataService);
     let messageHandler = new MessageHandler(triggerHandler);
-    let reactionHandler = new ReactionHandler(reactions);
+    let reactionHandler = new ReactionHandler(reactions, eventDataService);
 
     // Jobs
     let jobs: Job[] = [

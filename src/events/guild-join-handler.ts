@@ -1,8 +1,7 @@
 import { Guild } from 'discord.js';
 import { createRequire } from 'node:module';
 
-import { EventData } from '../models/internal-models.js';
-import { Lang, Logger } from '../services/index.js';
+import { EventDataService, Lang, Logger } from '../services/index.js';
 import { ClientUtils, MessageUtils } from '../utils/index.js';
 import { EventHandler } from './index.js';
 
@@ -10,6 +9,8 @@ const require = createRequire(import.meta.url);
 let Logs = require('../../lang/logs.json');
 
 export class GuildJoinHandler implements EventHandler {
+    constructor(private eventDataService: EventDataService) {}
+
     public async process(guild: Guild): Promise<void> {
         Logger.info(
             Logs.info.guildJoined
@@ -18,7 +19,7 @@ export class GuildJoinHandler implements EventHandler {
         );
 
         // Get data from database
-        let data = await new EventData().initialize(guild);
+        let data = await this.eventDataService.create({ guild });
 
         // Send welcome message to the server's notify channel
         let guildLang = data.lang();
