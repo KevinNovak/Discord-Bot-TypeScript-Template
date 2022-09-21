@@ -1,5 +1,6 @@
 import {
     AutocompleteInteraction,
+    BaseCommandInteraction,
     CommandInteraction,
     NewsChannel,
     TextChannel,
@@ -26,17 +27,20 @@ export class CommandHandler implements EventHandler {
 
     constructor(public commands: Command[], private eventDataService: EventDataService) {}
 
-    public async process(intr: CommandInteraction | AutocompleteInteraction): Promise<void> {
+    public async process(intr: BaseCommandInteraction | AutocompleteInteraction): Promise<void> {
         // Don't respond to self, or other bots
         if (intr.user.id === intr.client.user?.id || intr.user.bot) {
             return;
         }
 
-        let commandParts = [
-            intr.commandName,
-            intr.options.getSubcommandGroup(false),
-            intr.options.getSubcommand(false),
-        ].filter(Boolean);
+        let commandParts =
+            intr instanceof CommandInteraction || intr instanceof AutocompleteInteraction
+                ? [
+                      intr.commandName,
+                      intr.options.getSubcommandGroup(false),
+                      intr.options.getSubcommand(false),
+                  ].filter(Boolean)
+                : [intr.commandName];
         let commandName = commandParts.join(' ');
 
         // Try to find the command the user wants
@@ -157,7 +161,7 @@ export class CommandHandler implements EventHandler {
         }
     }
 
-    private async sendError(intr: CommandInteraction, data: EventData): Promise<void> {
+    private async sendError(intr: BaseCommandInteraction, data: EventData): Promise<void> {
         try {
             await InteractionUtils.send(
                 intr,

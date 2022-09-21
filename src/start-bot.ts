@@ -4,7 +4,12 @@ import { createRequire } from 'node:module';
 
 import { Button } from './buttons/index.js';
 import { HelpCommand, InfoCommand, TestCommand } from './commands/chat/index.js';
-import { Command, CommandMetadata } from './commands/index.js';
+import {
+    ChatCommandMetadata,
+    Command,
+    MessageCommandMetadata,
+    UserCommandMetadata,
+} from './commands/index.js';
 import { ViewDateSent } from './commands/message/index.js';
 import { ViewDateJoined } from './commands/user/index.js';
 import {
@@ -54,10 +59,13 @@ async function start(): Promise<void> {
         new HelpCommand(),
         new InfoCommand(),
         new TestCommand(),
-        // User Context Commands
-        new ViewDateJoined(),
+
         // Message Context Commands
         new ViewDateSent(),
+
+        // User Context Commands
+        new ViewDateJoined(),
+
         // TODO: Add new commands here
     ];
 
@@ -108,9 +116,11 @@ async function start(): Promise<void> {
         try {
             let rest = new REST({ version: '10' }).setToken(Config.client.token);
             let commandRegistrationService = new CommandRegistrationService(rest);
-            let localCmds = Object.values(CommandMetadata).sort((a, b) =>
-                a.name > b.name ? 1 : -1
-            );
+            let localCmds = [
+                ...Object.values(ChatCommandMetadata).sort((a, b) => (a.name > b.name ? 1 : -1)),
+                ...Object.values(MessageCommandMetadata).sort((a, b) => (a.name > b.name ? 1 : -1)),
+                ...Object.values(UserCommandMetadata).sort((a, b) => (a.name > b.name ? 1 : -1)),
+            ];
             await commandRegistrationService.process(localCmds, process.argv);
         } catch (error) {
             Logger.error(Logs.error.commandAction, error);
