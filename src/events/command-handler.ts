@@ -1,6 +1,7 @@
 import {
     AutocompleteInteraction,
     BaseCommandInteraction,
+    CommandInteraction,
     NewsChannel,
     TextChannel,
     ThreadChannel,
@@ -32,13 +33,23 @@ export class CommandHandler implements EventHandler {
             return;
         }
 
+        let commandParts =
+            intr instanceof CommandInteraction || intr instanceof AutocompleteInteraction
+                ? [
+                      intr.commandName,
+                      intr.options.getSubcommandGroup(false),
+                      intr.options.getSubcommand(false),
+                  ].filter(Boolean)
+                : [intr.commandName];
+        let commandName = commandParts.join(' ');
+
         // Try to find the command the user wants
-        let command = this.commands.find(command => command.metadata.name === intr.commandName);
+        let command = CommandUtils.findCommand(this.commands, commandParts);
         if (!command) {
             Logger.error(
                 Logs.error.commandNotFound
                     .replaceAll('{INTERACTION_ID}', intr.id)
-                    .replaceAll('{COMMAND_NAME}', intr.commandName)
+                    .replaceAll('{COMMAND_NAME}', commandName)
             );
             return;
         }
@@ -50,7 +61,7 @@ export class CommandHandler implements EventHandler {
                 Logger.error(
                     Logs.error.autocompleteNotFound
                         .replaceAll('{INTERACTION_ID}', intr.id)
-                        .replaceAll('{COMMAND_NAME}', intr.commandName)
+                        .replaceAll('{COMMAND_NAME}', commandName)
                         .replaceAll('{OPTION_NAME}', option.name)
                 );
                 return;
@@ -65,7 +76,7 @@ export class CommandHandler implements EventHandler {
                         intr.channel instanceof ThreadChannel
                         ? Logs.error.autocompleteGuild
                               .replaceAll('{INTERACTION_ID}', intr.id)
-                              .replaceAll('{COMMAND_NAME}', command.metadata.name)
+                              .replaceAll('{COMMAND_NAME}', commandName)
                               .replaceAll('{OPTION_NAME}', option.name)
                               .replaceAll('{USER_TAG}', intr.user.tag)
                               .replaceAll('{USER_ID}', intr.user.id)
@@ -75,7 +86,7 @@ export class CommandHandler implements EventHandler {
                               .replaceAll('{GUILD_ID}', intr.guild?.id)
                         : Logs.error.autocompleteOther
                               .replaceAll('{INTERACTION_ID}', intr.id)
-                              .replaceAll('{COMMAND_NAME}', command.metadata.name)
+                              .replaceAll('{COMMAND_NAME}', commandName)
                               .replaceAll('{OPTION_NAME}', option.name)
                               .replaceAll('{USER_TAG}', intr.user.tag)
                               .replaceAll('{USER_ID}', intr.user.id),
@@ -133,7 +144,7 @@ export class CommandHandler implements EventHandler {
                     intr.channel instanceof ThreadChannel
                     ? Logs.error.commandGuild
                           .replaceAll('{INTERACTION_ID}', intr.id)
-                          .replaceAll('{COMMAND_NAME}', command.metadata.name)
+                          .replaceAll('{COMMAND_NAME}', commandName)
                           .replaceAll('{USER_TAG}', intr.user.tag)
                           .replaceAll('{USER_ID}', intr.user.id)
                           .replaceAll('{CHANNEL_NAME}', intr.channel.name)
@@ -142,7 +153,7 @@ export class CommandHandler implements EventHandler {
                           .replaceAll('{GUILD_ID}', intr.guild?.id)
                     : Logs.error.commandOther
                           .replaceAll('{INTERACTION_ID}', intr.id)
-                          .replaceAll('{COMMAND_NAME}', command.metadata.name)
+                          .replaceAll('{COMMAND_NAME}', commandName)
                           .replaceAll('{USER_TAG}', intr.user.tag)
                           .replaceAll('{USER_ID}', intr.user.id),
                 error

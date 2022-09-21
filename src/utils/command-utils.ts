@@ -7,6 +7,27 @@ import { Lang } from '../services/index.js';
 import { FormatUtils, InteractionUtils } from './index.js';
 
 export class CommandUtils {
+    public static findCommand(commands: Command[], commandParts: string[]): Command {
+        let found = [...commands];
+        let closestMatch: Command;
+        for (let [index, commandPart] of commandParts.entries()) {
+            found = found.filter(command => command.names[index] === commandPart);
+            if (found.length === 0) {
+                return closestMatch;
+            }
+
+            if (found.length === 1) {
+                return found[0];
+            }
+
+            let exactMatch = found.find(command => command.names.length === index + 1);
+            if (exactMatch) {
+                closestMatch = exactMatch;
+            }
+        }
+        return closestMatch;
+    }
+
     public static async runChecks(
         command: Command,
         intr: BaseCommandInteraction,
