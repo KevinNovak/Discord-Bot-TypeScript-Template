@@ -1,14 +1,9 @@
-import {
-    ApplicationCommandType,
-    RESTPostAPIChatInputApplicationCommandsJSONBody,
-} from 'discord-api-types/v10';
 import djs, { CommandInteraction, MessageEmbed, PermissionString } from 'discord.js';
 import fileSize from 'filesize';
 import { createRequire } from 'node:module';
 import os from 'node:os';
 import typescript from 'typescript';
 
-import { ChatArgs } from '../../constants/index.js';
 import { InfoOption } from '../../enums/index.js';
 import { Language } from '../../models/enum-helpers/index.js';
 import { EventData } from '../../models/internal-models.js';
@@ -21,21 +16,7 @@ let Config = require('../../../config/config.json');
 let TsConfig = require('../../../tsconfig.json');
 
 export class InfoCommand implements Command {
-    public metadata: RESTPostAPIChatInputApplicationCommandsJSONBody = {
-        type: ApplicationCommandType.ChatInput,
-        name: Lang.getRef('chatCommands.info', Language.Default),
-        name_localizations: Lang.getRefLocalizationMap('chatCommands.info'),
-        description: Lang.getRef('commandDescs.info', Language.Default),
-        description_localizations: Lang.getRefLocalizationMap('commandDescs.info'),
-        dm_permission: true,
-        default_member_permissions: undefined,
-        options: [
-            {
-                ...ChatArgs.INFO_OPTION,
-                required: true,
-            },
-        ],
-    };
+    public names = [Lang.getRef('chatCommands.info', Language.Default)];
     public deferType = CommandDeferType.PUBLIC;
     public requireClientPerms: PermissionString[] = [];
 
