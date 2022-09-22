@@ -1,10 +1,10 @@
 import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/v9';
 import {
     DiscordAPIError,
+    EmbedBuilder,
     EmojiResolvable,
     Message,
     MessageEditOptions,
-    MessageEmbed,
     MessageOptions,
     MessageReaction,
     StartThreadOptions,
@@ -27,13 +27,13 @@ const IGNORED_ERRORS = [
 export class MessageUtils {
     public static async send(
         target: User | TextBasedChannel,
-        content: string | MessageEmbed | MessageOptions
+        content: string | EmbedBuilder | MessageOptions
     ): Promise<Message> {
         try {
             let options: MessageOptions =
                 typeof content === 'string'
                     ? { content }
-                    : content instanceof MessageEmbed
+                    : content instanceof EmbedBuilder
                     ? { embeds: [content] }
                     : content;
             return await target.send(options);
@@ -48,13 +48,13 @@ export class MessageUtils {
 
     public static async reply(
         msg: Message,
-        content: string | MessageEmbed | MessageOptions
+        content: string | EmbedBuilder | MessageOptions
     ): Promise<Message> {
         try {
             let options: MessageOptions =
                 typeof content === 'string'
                     ? { content }
-                    : content instanceof MessageEmbed
+                    : content instanceof EmbedBuilder
                     ? { embeds: [content] }
                     : content;
             return await msg.reply(options);
@@ -69,13 +69,13 @@ export class MessageUtils {
 
     public static async edit(
         msg: Message,
-        content: string | MessageEmbed | MessageEditOptions
+        content: string | EmbedBuilder | MessageEditOptions
     ): Promise<Message> {
         try {
             let options: MessageEditOptions =
                 typeof content === 'string'
                     ? { content }
-                    : content instanceof MessageEmbed
+                    : content instanceof EmbedBuilder
                     ? { embeds: [content] }
                     : content;
             return await msg.edit(options);

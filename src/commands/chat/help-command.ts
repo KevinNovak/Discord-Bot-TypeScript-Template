@@ -1,4 +1,4 @@
-import { CommandInteraction, MessageEmbed, PermissionString } from 'discord.js';
+import { CommandInteraction, EmbedBuilder, PermissionString } from 'discord.js';
 
 import { HelpOption } from '../../enums/index.js';
 import { Language } from '../../models/enum-helpers/index.js';
@@ -14,7 +14,7 @@ export class HelpCommand implements Command {
     public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
         let option = intr.options.getString(Lang.getRef('arguments.option', Language.Default));
 
-        let embed: MessageEmbed;
+        let embed: EmbedBuilder;
         switch (option) {
             case HelpOption.COMMANDS: {
                 embed = Lang.getEmbed('displayEmbeds.commands', data.lang);

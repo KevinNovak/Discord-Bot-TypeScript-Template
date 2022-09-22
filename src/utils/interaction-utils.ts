@@ -4,11 +4,11 @@ import {
     AutocompleteInteraction,
     BaseCommandInteraction,
     DiscordAPIError,
+    EmbedBuilder,
     InteractionReplyOptions,
     InteractionUpdateOptions,
     Message,
     MessageComponentInteraction,
-    MessageEmbed,
     ModalSubmitInteraction,
     WebhookEditMessageOptions,
 } from 'discord.js';
@@ -58,14 +58,14 @@ export class InteractionUtils {
 
     public static async send(
         intr: BaseCommandInteraction | MessageComponentInteraction | ModalSubmitInteraction,
-        content: string | MessageEmbed | InteractionReplyOptions,
+        content: string | EmbedBuilder | InteractionReplyOptions,
         hidden: boolean = false
     ): Promise<Message> {
         try {
             let options: InteractionReplyOptions =
                 typeof content === 'string'
                     ? { content }
-                    : content instanceof MessageEmbed
+                    : content instanceof EmbedBuilder
                     ? { embeds: [content] }
                     : content;
             if (intr.deferred || intr.replied) {
@@ -106,13 +106,13 @@ export class InteractionUtils {
 
     public static async editReply(
         intr: BaseCommandInteraction | MessageComponentInteraction | ModalSubmitInteraction,
-        content: string | MessageEmbed | WebhookEditMessageOptions
+        content: string | EmbedBuilder | WebhookEditMessageOptions
     ): Promise<Message> {
         try {
             let options: WebhookEditMessageOptions =
                 typeof content === 'string'
                     ? { content }
-                    : content instanceof MessageEmbed
+                    : content instanceof EmbedBuilder
                     ? { embeds: [content] }
                     : content;
             return (await intr.editReply(options)) as Message;
@@ -127,13 +127,13 @@ export class InteractionUtils {
 
     public static async update(
         intr: MessageComponentInteraction | ModalSubmitInteraction,
-        content: string | MessageEmbed | InteractionUpdateOptions
+        content: string | EmbedBuilder | InteractionUpdateOptions
     ): Promise<Message> {
         try {
             let options: InteractionUpdateOptions =
                 typeof content === 'string'
                     ? { content }
-                    : content instanceof MessageEmbed
+                    : content instanceof EmbedBuilder
                     ? { embeds: [content] }
                     : content;
             return (await intr.update({
