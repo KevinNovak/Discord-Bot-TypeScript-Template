@@ -3,7 +3,7 @@ import {
     BaseCommandInteraction,
     ButtonInteraction,
     Client,
-    Constants,
+    Events,
     Guild,
     Interaction,
     Message,
@@ -52,24 +52,20 @@ export class Bot {
     }
 
     private registerListeners(): void {
-        this.client.on(Constants.Events.CLIENT_READY, () => this.onReady());
-        this.client.on(
-            Constants.Events.SHARD_READY,
-            (shardId: number, unavailableGuilds: Set<string>) =>
-                this.onShardReady(shardId, unavailableGuilds)
+        this.client.on(Events.ClientReady, () => this.onReady());
+        this.client.on(Events.ShardReady, (shardId: number, unavailableGuilds: Set<string>) =>
+            this.onShardReady(shardId, unavailableGuilds)
         );
-        this.client.on(Constants.Events.GUILD_CREATE, (guild: Guild) => this.onGuildJoin(guild));
-        this.client.on(Constants.Events.GUILD_DELETE, (guild: Guild) => this.onGuildLeave(guild));
-        this.client.on(Constants.Events.MESSAGE_CREATE, (msg: Message) => this.onMessage(msg));
-        this.client.on(Constants.Events.INTERACTION_CREATE, (intr: Interaction) =>
-            this.onInteraction(intr)
-        );
+        this.client.on(Events.GuildCreate, (guild: Guild) => this.onGuildJoin(guild));
+        this.client.on(Events.GuildDelete, (guild: Guild) => this.onGuildLeave(guild));
+        this.client.on(Events.MessageCreate, (msg: Message) => this.onMessage(msg));
+        this.client.on(Events.InteractionCreate, (intr: Interaction) => this.onInteraction(intr));
         this.client.on(
-            Constants.Events.MESSAGE_REACTION_ADD,
+            Events.MessageReactionAdd,
             (messageReaction: MessageReaction | PartialMessageReaction, user: User | PartialUser) =>
                 this.onReaction(messageReaction, user)
         );
-        this.client.on(Constants.Events.RATE_LIMIT, (rateLimitData: RateLimitData) =>
+        this.client.on(Events.RateLimit, (rateLimitData: RateLimitData) =>
             this.onRateLimit(rateLimitData)
         );
     }
