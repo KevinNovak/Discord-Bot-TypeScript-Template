@@ -156,7 +156,7 @@ export class Bot {
             }
         } else if (intr instanceof ButtonInteraction) {
             try {
-                await this.buttonHandler.process(intr, intr.message as Message);
+                await this.buttonHandler.process(intr);
             } catch (error) {
                 Logger.error(Logs.error.button, error);
             }

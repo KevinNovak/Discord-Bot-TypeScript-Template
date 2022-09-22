@@ -1,4 +1,4 @@
-import { Message, MessageContextMenuInteraction, PermissionString } from 'discord.js';
+import { MessageContextMenuCommandInteraction, PermissionString } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 import { DateTime } from 'luxon';
 
@@ -14,11 +14,14 @@ export class ViewDateSent implements Command {
     public deferType = CommandDeferType.PUBLIC;
     public requireClientPerms: PermissionString[] = [];
 
-    public async execute(intr: MessageContextMenuInteraction, data: EventData): Promise<void> {
+    public async execute(
+        intr: MessageContextMenuCommandInteraction,
+        data: EventData
+    ): Promise<void> {
         await InteractionUtils.send(
             intr,
             Lang.getEmbed('displayEmbeds.viewDateSent', data.lang, {
-                DATE: DateTime.fromJSDate((intr.targetMessage as Message).createdAt).toLocaleString(
+                DATE: DateTime.fromJSDate(intr.targetMessage.createdAt).toLocaleString(
                     DateTime.DATE_HUGE
                 ),
             })
