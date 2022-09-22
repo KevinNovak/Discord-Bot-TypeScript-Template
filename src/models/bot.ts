@@ -11,6 +11,7 @@ import {
     PartialMessageReaction,
     PartialUser,
     RateLimitData,
+    RESTEvents,
     User,
 } from 'discord.js';
 import { createRequire } from 'node:module';
@@ -65,7 +66,7 @@ export class Bot {
             (messageReaction: MessageReaction | PartialMessageReaction, user: User | PartialUser) =>
                 this.onReaction(messageReaction, user)
         );
-        this.client.on(Events.RateLimit, (rateLimitData: RateLimitData) =>
+        this.client.rest.on(RESTEvents.RateLimited, (rateLimitData: RateLimitData) =>
             this.onRateLimit(rateLimitData)
         );
     }
