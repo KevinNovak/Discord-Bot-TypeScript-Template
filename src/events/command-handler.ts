@@ -1,7 +1,7 @@
 import {
     AutocompleteInteraction,
     BaseCommandInteraction,
-    CommandInteraction,
+    ChatInputCommandInteraction,
     NewsChannel,
     TextChannel,
     ThreadChannel,
@@ -34,7 +34,7 @@ export class CommandHandler implements EventHandler {
         }
 
         let commandParts =
-            intr instanceof CommandInteraction || intr instanceof AutocompleteInteraction
+            intr instanceof ChatInputCommandInteraction || intr instanceof AutocompleteInteraction
                 ? [
                       intr.commandName,
                       intr.options.getSubcommandGroup(false),
