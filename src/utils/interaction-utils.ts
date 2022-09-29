@@ -6,6 +6,7 @@ import {
     DiscordAPIError,
     EmbedBuilder,
     InteractionReplyOptions,
+    InteractionResponse,
     InteractionUpdateOptions,
     Message,
     MessageComponentInteraction,
@@ -28,7 +29,7 @@ export class InteractionUtils {
     public static async deferReply(
         intr: CommandInteraction | MessageComponentInteraction | ModalSubmitInteraction,
         hidden: boolean = false
-    ): Promise<void> {
+    ): Promise<InteractionResponse> {
         try {
             return await intr.deferReply({
                 ephemeral: hidden,
@@ -48,7 +49,7 @@ export class InteractionUtils {
 
     public static async deferUpdate(
         intr: MessageComponentInteraction | ModalSubmitInteraction
-    ): Promise<void> {
+    ): Promise<InteractionResponse> {
         try {
             return await intr.deferUpdate();
         } catch (error) {
