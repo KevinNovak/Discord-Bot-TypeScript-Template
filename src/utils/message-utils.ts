@@ -1,11 +1,11 @@
 import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/v9';
 import {
+    BaseMessageOptions,
     DiscordAPIError,
     EmbedBuilder,
     EmojiResolvable,
     Message,
     MessageEditOptions,
-    MessageOptions,
     MessageReaction,
     StartThreadOptions,
     TextBasedChannel,
@@ -27,10 +27,10 @@ const IGNORED_ERRORS = [
 export class MessageUtils {
     public static async send(
         target: User | TextBasedChannel,
-        content: string | EmbedBuilder | MessageOptions
+        content: string | EmbedBuilder | BaseMessageOptions
     ): Promise<Message> {
         try {
-            let options: MessageOptions =
+            let options: BaseMessageOptions =
                 typeof content === 'string'
                     ? { content }
                     : content instanceof EmbedBuilder
@@ -52,10 +52,10 @@ export class MessageUtils {
 
     public static async reply(
         msg: Message,
-        content: string | EmbedBuilder | MessageOptions
+        content: string | EmbedBuilder | BaseMessageOptions
     ): Promise<Message> {
         try {
-            let options: MessageOptions =
+            let options: BaseMessageOptions =
                 typeof content === 'string'
                     ? { content }
                     : content instanceof EmbedBuilder
