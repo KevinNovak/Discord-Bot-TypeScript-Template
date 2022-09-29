@@ -1,4 +1,3 @@
-import { Locale } from 'discord-api-types/v10.js';
 import { Channel, Guild, PartialDMChannel, User } from 'discord.js';
 
 import { Language } from '../models/enum-helpers/language.js';
