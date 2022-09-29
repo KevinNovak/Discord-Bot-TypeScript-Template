@@ -2,7 +2,7 @@ import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/v9';
 import {
     ApplicationCommandOptionChoiceData,
     AutocompleteInteraction,
-    BaseCommandInteraction,
+    CommandInteraction,
     DiscordAPIError,
     EmbedBuilder,
     InteractionReplyOptions,
@@ -26,7 +26,7 @@ const IGNORED_ERRORS = [
 
 export class InteractionUtils {
     public static async deferReply(
-        intr: BaseCommandInteraction | MessageComponentInteraction | ModalSubmitInteraction,
+        intr: CommandInteraction | MessageComponentInteraction | ModalSubmitInteraction,
         hidden: boolean = false
     ): Promise<void> {
         try {
@@ -65,7 +65,7 @@ export class InteractionUtils {
     }
 
     public static async send(
-        intr: BaseCommandInteraction | MessageComponentInteraction | ModalSubmitInteraction,
+        intr: CommandInteraction | MessageComponentInteraction | ModalSubmitInteraction,
         content: string | EmbedBuilder | InteractionReplyOptions,
         hidden: boolean = false
     ): Promise<Message> {
@@ -121,7 +121,7 @@ export class InteractionUtils {
     }
 
     public static async editReply(
-        intr: BaseCommandInteraction | MessageComponentInteraction | ModalSubmitInteraction,
+        intr: CommandInteraction | MessageComponentInteraction | ModalSubmitInteraction,
         content: string | EmbedBuilder | WebhookEditMessageOptions
     ): Promise<Message> {
         try {
