@@ -1,4 +1,4 @@
-import { Locale } from 'discord-api-types/v10';
+import { Locale } from 'discord.js';
 
 // This class is used to store and pass data along in events
 export class EventData {

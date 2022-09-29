@@ -1,5 +1,4 @@
-import { Locale, LocalizationMap } from 'discord-api-types/v10';
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, Locale, LocalizationMap } from 'discord.js';
 import { Linguini, TypeMapper, TypeMappers, Utils } from 'linguini';
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';

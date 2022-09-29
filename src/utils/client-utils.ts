@@ -1,11 +1,11 @@
-import { Locale } from 'discord-api-types/v10';
-import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/v9';
 import {
     Channel,
     Client,
     DiscordAPIError,
+    RESTJSONErrorCodes as DiscordApiErrors,
     Guild,
     GuildMember,
+    Locale,
     NewsChannel,
     Role,
     StageChannel,

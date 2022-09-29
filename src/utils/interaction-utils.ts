@@ -1,9 +1,9 @@
-import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/v9';
 import {
     ApplicationCommandOptionChoiceData,
     AutocompleteInteraction,
     CommandInteraction,
     DiscordAPIError,
+    RESTJSONErrorCodes as DiscordApiErrors,
     EmbedBuilder,
     InteractionReplyOptions,
     InteractionResponse,

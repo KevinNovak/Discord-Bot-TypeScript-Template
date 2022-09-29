@@ -1,5 +1,4 @@
-import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/v9';
-import { DiscordAPIError, ThreadChannel } from 'discord.js';
+import { DiscordAPIError, RESTJSONErrorCodes as DiscordApiErrors, ThreadChannel } from 'discord.js';
 
 const IGNORED_ERRORS = [
     DiscordApiErrors.UnknownMessage,

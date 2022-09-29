@@ -1,7 +1,7 @@
-import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/v9';
 import {
     BaseMessageOptions,
     DiscordAPIError,
+    RESTJSONErrorCodes as DiscordApiErrors,
     EmbedBuilder,
     EmojiResolvable,
     Message,

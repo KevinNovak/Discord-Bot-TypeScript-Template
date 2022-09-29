@@ -2,7 +2,7 @@ import {
     ApplicationCommandType,
     RESTPostAPIChatInputApplicationCommandsJSONBody,
     RESTPostAPIContextMenuApplicationCommandsJSONBody,
-} from 'discord-api-types/v10';
+} from 'discord.js';
 
 import { Language } from '../models/enum-helpers/index.js';
 import { Lang } from '../services/index.js';

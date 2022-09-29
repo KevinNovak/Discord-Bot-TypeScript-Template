@@ -1,5 +1,4 @@
-import { Locale } from 'discord-api-types/v10';
-import { PermissionsString } from 'discord.js';
+import { Locale, PermissionsString } from 'discord.js';
 
 import { Lang } from '../../services/index.js';
 
