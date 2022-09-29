@@ -72,9 +72,9 @@ export class Logger {
                 .child({
                     message: obj.message,
                     code: obj.code,
-                    statusCode: obj.httpStatus,
+                    statusCode: obj.status,
                     method: obj.method,
-                    path: obj.path,
+                    url: obj.url,
                     stack: obj.stack,
                 })
                 .error(message);
