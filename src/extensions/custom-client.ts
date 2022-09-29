@@ -5,13 +5,15 @@ export class CustomClient extends Client {
         super(clientOptions);
     }
 
-    public setPresence(type: ActivityType, name: string, url: string): Presence {
+    public setPresence(
+        type: Exclude<ActivityType, ActivityType.Custom>,
+        name: string,
+        url: string
+    ): Presence {
         return this.user?.setPresence({
             activities: [
                 {
-                    // TODO: Discord.js won't accept all ActivityType's here
-                    // Need to find a solution to remove "any"
-                    type: type as any,
+                    type,
                     name,
                     url,
                 },

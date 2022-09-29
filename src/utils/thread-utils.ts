@@ -1,5 +1,4 @@
-import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/v9';
-import { DiscordAPIError, ThreadChannel } from 'discord.js';
+import { DiscordAPIError, RESTJSONErrorCodes as DiscordApiErrors, ThreadChannel } from 'discord.js';
 
 const IGNORED_ERRORS = [
     DiscordApiErrors.UnknownMessage,
@@ -20,7 +19,11 @@ export class ThreadUtils {
         try {
             return await thread.setArchived(archived);
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;
@@ -35,7 +38,11 @@ export class ThreadUtils {
         try {
             return await thread.setLocked(locked);
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;

@@ -1,5 +1,4 @@
-import { Locale } from 'discord-api-types/v10';
-import { PermissionString } from 'discord.js';
+import { Locale, PermissionsString } from 'discord.js';
 
 import { Lang } from '../../services/index.js';
 
@@ -9,221 +8,211 @@ interface PermissionData {
 
 export class Permission {
     public static Data: {
-        [key in PermissionString]: PermissionData;
+        [key in PermissionsString]: PermissionData;
     } = {
-        ADD_REACTIONS: {
+        AddReactions: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.ADD_REACTIONS', langCode);
+                return Lang.getRef('permissions.AddReactions', langCode);
             },
         },
-        ADMINISTRATOR: {
+        Administrator: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.ADMINISTRATOR', langCode);
+                return Lang.getRef('permissions.Administrator', langCode);
             },
         },
-        ATTACH_FILES: {
+        AttachFiles: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.ATTACH_FILES', langCode);
+                return Lang.getRef('permissions.AttachFiles', langCode);
             },
         },
-        BAN_MEMBERS: {
+        BanMembers: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.BAN_MEMBERS', langCode);
+                return Lang.getRef('permissions.BanMembers', langCode);
             },
         },
-        CHANGE_NICKNAME: {
+        ChangeNickname: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.CHANGE_NICKNAME', langCode);
+                return Lang.getRef('permissions.ChangeNickname', langCode);
             },
         },
-        CONNECT: {
+        Connect: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.CONNECT', langCode);
+                return Lang.getRef('permissions.Connect', langCode);
             },
         },
-        CREATE_INSTANT_INVITE: {
+        CreateInstantInvite: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.CREATE_INSTANT_INVITE', langCode);
+                return Lang.getRef('permissions.CreateInstantInvite', langCode);
             },
         },
-        CREATE_PRIVATE_THREADS: {
+        CreatePrivateThreads: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.CREATE_PRIVATE_THREADS', langCode);
+                return Lang.getRef('permissions.CreatePrivateThreads', langCode);
             },
         },
-        CREATE_PUBLIC_THREADS: {
+        CreatePublicThreads: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.CREATE_PUBLIC_THREADS', langCode);
+                return Lang.getRef('permissions.CreatePublicThreads', langCode);
             },
         },
-        DEAFEN_MEMBERS: {
+        DeafenMembers: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.DEAFEN_MEMBERS', langCode);
+                return Lang.getRef('permissions.DeafenMembers', langCode);
             },
         },
-        EMBED_LINKS: {
+        EmbedLinks: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.EMBED_LINKS', langCode);
+                return Lang.getRef('permissions.EmbedLinks', langCode);
             },
         },
-        KICK_MEMBERS: {
+        KickMembers: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.KICK_MEMBERS', langCode);
+                return Lang.getRef('permissions.KickMembers', langCode);
             },
         },
-        MANAGE_CHANNELS: {
+        ManageChannels: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.MANAGE_CHANNELS', langCode);
+                return Lang.getRef('permissions.ManageChannels', langCode);
             },
         },
-        MANAGE_EMOJIS_AND_STICKERS: {
+        ManageEmojisAndStickers: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.MANAGE_EMOJIS_AND_STICKERS', langCode);
+                return Lang.getRef('permissions.ManageEmojisAndStickers', langCode);
             },
         },
-        MANAGE_EVENTS: {
+        ManageEvents: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.MANAGE_EVENTS', langCode);
+                return Lang.getRef('permissions.ManageEvents', langCode);
             },
         },
-        MANAGE_GUILD: {
+        ManageGuild: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.MANAGE_GUILD', langCode);
+                return Lang.getRef('permissions.ManageGuild', langCode);
             },
         },
-        MANAGE_MESSAGES: {
+        ManageMessages: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.MANAGE_MESSAGES', langCode);
+                return Lang.getRef('permissions.ManageMessages', langCode);
             },
         },
-        MANAGE_NICKNAMES: {
+        ManageNicknames: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.MANAGE_NICKNAMES', langCode);
+                return Lang.getRef('permissions.ManageNicknames', langCode);
             },
         },
-        MANAGE_ROLES: {
+        ManageRoles: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.MANAGE_ROLES', langCode);
+                return Lang.getRef('permissions.ManageRoles', langCode);
             },
         },
-        MANAGE_THREADS: {
+        ManageThreads: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.MANAGE_THREADS', langCode);
+                return Lang.getRef('permissions.ManageThreads', langCode);
             },
         },
-        MANAGE_WEBHOOKS: {
+        ManageWebhooks: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.MANAGE_WEBHOOKS', langCode);
+                return Lang.getRef('permissions.ManageWebhooks', langCode);
             },
         },
-        MENTION_EVERYONE: {
+        MentionEveryone: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.MENTION_EVERYONE', langCode);
+                return Lang.getRef('permissions.MentionEveryone', langCode);
             },
         },
-        MODERATE_MEMBERS: {
+        ModerateMembers: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.MODERATE_MEMBERS', langCode);
+                return Lang.getRef('permissions.ModerateMembers', langCode);
             },
         },
-        MOVE_MEMBERS: {
+        MoveMembers: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.MOVE_MEMBERS', langCode);
+                return Lang.getRef('permissions.MoveMembers', langCode);
             },
         },
-        MUTE_MEMBERS: {
+        MuteMembers: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.MUTE_MEMBERS', langCode);
+                return Lang.getRef('permissions.MuteMembers', langCode);
             },
         },
-        PRIORITY_SPEAKER: {
+        PrioritySpeaker: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.PRIORITY_SPEAKER', langCode);
+                return Lang.getRef('permissions.PrioritySpeaker', langCode);
             },
         },
-        READ_MESSAGE_HISTORY: {
+        ReadMessageHistory: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.READ_MESSAGE_HISTORY', langCode);
+                return Lang.getRef('permissions.ReadMessageHistory', langCode);
             },
         },
-        REQUEST_TO_SPEAK: {
+        RequestToSpeak: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.REQUEST_TO_SPEAK', langCode);
+                return Lang.getRef('permissions.RequestToSpeak', langCode);
             },
         },
-        SEND_MESSAGES: {
+        SendMessages: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.SEND_MESSAGES', langCode);
+                return Lang.getRef('permissions.SendMessages', langCode);
             },
         },
-        SEND_MESSAGES_IN_THREADS: {
+        SendMessagesInThreads: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.SEND_MESSAGES_IN_THREADS', langCode);
+                return Lang.getRef('permissions.SendMessagesInThreads', langCode);
             },
         },
-        SEND_TTS_MESSAGES: {
+        SendTTSMessages: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.SEND_TTS_MESSAGES', langCode);
+                return Lang.getRef('permissions.SendTTSMessages', langCode);
             },
         },
-        SPEAK: {
+        Speak: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.SPEAK', langCode);
+                return Lang.getRef('permissions.Speak', langCode);
             },
         },
-        START_EMBEDDED_ACTIVITIES: {
+        Stream: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.START_EMBEDDED_ACTIVITIES', langCode);
+                return Lang.getRef('permissions.Stream', langCode);
             },
         },
-        STREAM: {
+        UseApplicationCommands: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.STREAM', langCode);
+                return Lang.getRef('permissions.UseApplicationCommands', langCode);
             },
         },
-        USE_APPLICATION_COMMANDS: {
+        UseEmbeddedActivities: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.USE_APPLICATION_COMMANDS', langCode);
+                return Lang.getRef('permissions.UseEmbeddedActivities', langCode);
             },
         },
-        USE_EXTERNAL_EMOJIS: {
+        UseExternalEmojis: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.USE_EXTERNAL_EMOJIS', langCode);
+                return Lang.getRef('permissions.UseExternalEmojis', langCode);
             },
         },
-        USE_EXTERNAL_STICKERS: {
+        UseExternalStickers: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.USE_EXTERNAL_STICKERS', langCode);
+                return Lang.getRef('permissions.UseExternalStickers', langCode);
             },
         },
-        USE_PRIVATE_THREADS: {
+        UseVAD: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.USE_PRIVATE_THREADS', langCode);
+                return Lang.getRef('permissions.UseVAD', langCode);
             },
         },
-        USE_PUBLIC_THREADS: {
+        ViewAuditLog: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.USE_PUBLIC_THREADS', langCode);
+                return Lang.getRef('permissions.ViewAuditLog', langCode);
             },
         },
-        USE_VAD: {
+        ViewChannel: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.USE_VAD', langCode);
+                return Lang.getRef('permissions.ViewChannel', langCode);
             },
         },
-        VIEW_AUDIT_LOG: {
+        ViewGuildInsights: {
             displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.VIEW_AUDIT_LOG', langCode);
-            },
-        },
-        VIEW_CHANNEL: {
-            displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.VIEW_CHANNEL', langCode);
-            },
-        },
-        VIEW_GUILD_INSIGHTS: {
-            displayName(langCode: Locale): string {
-                return Lang.getRef('permissions.VIEW_GUILD_INSIGHTS', langCode);
+                return Lang.getRef('permissions.ViewGuildInsights', langCode);
             },
         },
     };

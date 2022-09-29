@@ -1,4 +1,4 @@
-import { ButtonInteraction, Message } from 'discord.js';
+import { ButtonInteraction } from 'discord.js';
 
 import { EventData } from '../models/internal-models.js';
 
@@ -7,7 +7,7 @@ export interface Button {
     deferType: ButtonDeferType;
     requireGuild: boolean;
     requireEmbedAuthorTag: boolean;
-    execute(intr: ButtonInteraction, msg: Message, data: EventData): Promise<void>;
+    execute(intr: ButtonInteraction, data: EventData): Promise<void>;
 }
 
 export enum ButtonDeferType {

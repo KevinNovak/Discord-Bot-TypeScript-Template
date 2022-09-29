@@ -1,4 +1,4 @@
-import { ButtonInteraction, Message } from 'discord.js';
+import { ButtonInteraction } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 import { createRequire } from 'node:module';
 
@@ -18,7 +18,7 @@ export class ButtonHandler implements EventHandler {
 
     constructor(private buttons: Button[], private eventDataService: EventDataService) {}
 
-    public async process(intr: ButtonInteraction, msg: Message): Promise<void> {
+    public async process(intr: ButtonInteraction): Promise<void> {
         // Don't respond to self, or other bots
         if (intr.user.id === intr.client.user?.id || intr.user.bot) {
             return;
@@ -41,7 +41,10 @@ export class ButtonHandler implements EventHandler {
         }
 
         // Check if the embeds author equals the users tag
-        if (button.requireEmbedAuthorTag && msg.embeds[0]?.author?.name !== intr.user.tag) {
+        if (
+            button.requireEmbedAuthorTag &&
+            intr.message.embeds[0]?.author?.name !== intr.user.tag
+        ) {
             return;
         }
 
@@ -71,7 +74,7 @@ export class ButtonHandler implements EventHandler {
         });
 
         // Execute the button
-        await button.execute(intr, msg, data);
+        await button.execute(intr, data);
     }
 
     private findButton(id: string): Button {

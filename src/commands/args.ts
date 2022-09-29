@@ -1,7 +1,4 @@
-import {
-    APIApplicationCommandBasicOption,
-    ApplicationCommandOptionType,
-} from 'discord-api-types/v10';
+import { APIApplicationCommandBasicOption, ApplicationCommandOptionType } from 'discord.js';
 
 import { HelpOption, InfoOption } from '../enums/index.js';
 import { Language } from '../models/enum-helpers/index.js';

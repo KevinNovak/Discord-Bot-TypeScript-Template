@@ -1,4 +1,4 @@
-import djs, { CommandInteraction, MessageEmbed, PermissionString } from 'discord.js';
+import djs, { ChatInputCommandInteraction, EmbedBuilder, PermissionsString } from 'discord.js';
 import fileSize from 'filesize';
 import { createRequire } from 'node:module';
 import os from 'node:os';
@@ -18,12 +18,12 @@ let TsConfig = require('../../../tsconfig.json');
 export class InfoCommand implements Command {
     public names = [Lang.getRef('chatCommands.info', Language.Default)];
     public deferType = CommandDeferType.PUBLIC;
-    public requireClientPerms: PermissionString[] = [];
+    public requireClientPerms: PermissionsString[] = [];
 
-    public async execute(intr: CommandInteraction, data: EventData): Promise<void> {
+    public async execute(intr: ChatInputCommandInteraction, data: EventData): Promise<void> {
         let option = intr.options.getString(Lang.getRef('arguments.option', Language.Default));
 
-        let embed: MessageEmbed;
+        let embed: EmbedBuilder;
         switch (option) {
             case InfoOption.ABOUT: {
                 embed = Lang.getEmbed('displayEmbeds.about', data.lang);
