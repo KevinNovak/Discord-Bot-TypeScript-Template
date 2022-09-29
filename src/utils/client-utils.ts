@@ -1,7 +1,7 @@
 import { Locale } from 'discord-api-types/v10';
 import { RESTJSONErrorCodes as DiscordApiErrors } from 'discord-api-types/v9';
 import {
-    AnyChannel,
+    Channel,
     Client,
     DiscordAPIError,
     Guild,
@@ -41,7 +41,7 @@ export class ClientUtils {
         }
     }
 
-    public static async getChannel(client: Client, discordId: string): Promise<AnyChannel> {
+    public static async getChannel(client: Client, discordId: string): Promise<Channel> {
         discordId = RegexUtils.discordId(discordId);
         if (!discordId) {
             return;

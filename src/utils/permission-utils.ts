@@ -1,13 +1,7 @@
-import {
-    AnyChannel,
-    DMChannel,
-    GuildChannel,
-    PermissionFlagsBits,
-    ThreadChannel,
-} from 'discord.js';
+import { Channel, DMChannel, GuildChannel, PermissionFlagsBits, ThreadChannel } from 'discord.js';
 
 export class PermissionUtils {
-    public static canSend(channel: AnyChannel, embedLinks: boolean = false): boolean {
+    public static canSend(channel: Channel, embedLinks: boolean = false): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (channel instanceof GuildChannel || channel instanceof ThreadChannel) {
@@ -30,7 +24,7 @@ export class PermissionUtils {
         }
     }
 
-    public static canMention(channel: AnyChannel): boolean {
+    public static canMention(channel: Channel): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (channel instanceof GuildChannel || channel instanceof ThreadChannel) {
@@ -51,7 +45,7 @@ export class PermissionUtils {
         }
     }
 
-    public static canReact(channel: AnyChannel, removeOthers: boolean = false): boolean {
+    public static canReact(channel: Channel, removeOthers: boolean = false): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (channel instanceof GuildChannel || channel instanceof ThreadChannel) {
@@ -77,7 +71,7 @@ export class PermissionUtils {
         }
     }
 
-    public static canPin(channel: AnyChannel, findOld: boolean = false): boolean {
+    public static canPin(channel: Channel, findOld: boolean = false): boolean {
         if (channel instanceof DMChannel) {
             return true;
         } else if (channel instanceof GuildChannel || channel instanceof ThreadChannel) {
@@ -101,7 +95,7 @@ export class PermissionUtils {
     }
 
     public static canCreateThreads(
-        channel: AnyChannel,
+        channel: Channel,
         manageThreads: boolean = false,
         findOld: boolean = false
     ): boolean {
