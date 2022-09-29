@@ -1,4 +1,4 @@
-import { EmbedBuilder, Locale, LocalizationMap } from 'discord.js';
+import { EmbedBuilder, Locale, LocalizationMap, resolveColor } from 'discord.js';
 import { Linguini, TypeMapper, TypeMappers, Utils } from 'linguini';
 import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -77,6 +77,7 @@ export class Lang {
                 iconURL: jsonValue.footer?.icon,
             },
             timestamp: jsonValue.timestamp ? Date.now() : undefined,
-        }).setColor(jsonValue.color ?? Lang.getCom('colors.default'));
+            color: resolveColor(jsonValue.color ?? Lang.getCom('colors.default')),
+        });
     };
 }
