@@ -1,4 +1,10 @@
-import { AnyChannel, DMChannel, GuildChannel, Permissions, ThreadChannel } from 'discord.js';
+import {
+    AnyChannel,
+    DMChannel,
+    GuildChannel,
+    PermissionFlagsBits,
+    ThreadChannel,
+} from 'discord.js';
 
 export class PermissionUtils {
     public static canSend(channel: AnyChannel, embedLinks: boolean = false): boolean {
@@ -15,9 +21,9 @@ export class PermissionUtils {
             // SEND_MESSAGES - Needed to send messages
             // EMBED_LINKS - Needed to send embedded links
             return channelPerms.has([
-                Permissions.FLAGS.VIEW_CHANNEL,
-                Permissions.FLAGS.SEND_MESSAGES,
-                ...(embedLinks ? [Permissions.FLAGS.EMBED_LINKS] : []),
+                PermissionFlagsBits.ViewChannel,
+                PermissionFlagsBits.SendMessages,
+                ...(embedLinks ? [PermissionFlagsBits.EmbedLinks] : []),
             ]);
         } else {
             return false;
@@ -37,8 +43,8 @@ export class PermissionUtils {
             // VIEW_CHANNEL - Needed to view the channel
             // MENTION_EVERYONE - Needed to mention @everyone, @here, and all roles
             return channelPerms.has([
-                Permissions.FLAGS.VIEW_CHANNEL,
-                Permissions.FLAGS.MENTION_EVERYONE,
+                PermissionFlagsBits.ViewChannel,
+                PermissionFlagsBits.MentionEveryone,
             ]);
         } else {
             return false;
@@ -61,10 +67,10 @@ export class PermissionUtils {
             //    https://discordjs.guide/popular-topics/permissions-extended.html#implicit-permissions
             // MANAGE_MESSAGES - Needed to remove others reactions
             return channelPerms.has([
-                Permissions.FLAGS.VIEW_CHANNEL,
-                Permissions.FLAGS.ADD_REACTIONS,
-                Permissions.FLAGS.READ_MESSAGE_HISTORY,
-                ...(removeOthers ? [Permissions.FLAGS.MANAGE_MESSAGES] : []),
+                PermissionFlagsBits.ViewChannel,
+                PermissionFlagsBits.AddReactions,
+                PermissionFlagsBits.ReadMessageHistory,
+                ...(removeOthers ? [PermissionFlagsBits.ManageMessages] : []),
             ]);
         } else {
             return false;
@@ -85,9 +91,9 @@ export class PermissionUtils {
             // MANAGE_MESSAGES - Needed to pin messages
             // READ_MESSAGE_HISTORY - Needed to find old pins
             return channelPerms.has([
-                Permissions.FLAGS.VIEW_CHANNEL,
-                Permissions.FLAGS.MANAGE_MESSAGES,
-                ...(findOld ? [Permissions.FLAGS.READ_MESSAGE_HISTORY] : []),
+                PermissionFlagsBits.ViewChannel,
+                PermissionFlagsBits.ManageMessages,
+                ...(findOld ? [PermissionFlagsBits.ReadMessageHistory] : []),
             ]);
         } else {
             return false;
@@ -113,10 +119,10 @@ export class PermissionUtils {
             // MANAGE_THREADS - Needed to rename, delete, archive, unarchive, slow mode threads
             // READ_MESSAGE_HISTORY - Needed to find old threads
             return channelPerms.has([
-                Permissions.FLAGS.VIEW_CHANNEL,
-                Permissions.FLAGS.CREATE_PUBLIC_THREADS,
-                ...(manageThreads ? [Permissions.FLAGS.MANAGE_THREADS] : []),
-                ...(findOld ? [Permissions.FLAGS.READ_MESSAGE_HISTORY] : []),
+                PermissionFlagsBits.ViewChannel,
+                PermissionFlagsBits.CreatePublicThreads,
+                ...(manageThreads ? [PermissionFlagsBits.ManageThreads] : []),
+                ...(findOld ? [PermissionFlagsBits.ReadMessageHistory] : []),
             ]);
         } else {
             return false;
