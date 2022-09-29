@@ -21,7 +21,7 @@ export interface ShardInfo {
 export class SetShardPresencesRequest {
     @IsDefined()
     @IsEnum(ActivityType)
-    type: Exclude<ActivityType, ActivityType.Custom>;
+    type: string;
 
     @IsDefined()
     @IsString()
