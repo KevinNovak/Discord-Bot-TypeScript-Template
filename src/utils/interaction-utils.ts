@@ -77,16 +77,16 @@ export class InteractionUtils {
                     ? { embeds: [content] }
                     : content;
             if (intr.deferred || intr.replied) {
-                return (await intr.followUp({
+                return await intr.followUp({
                     ...options,
                     ephemeral: hidden,
-                })) as Message;
+                });
             } else {
-                return (await intr.reply({
+                return await intr.reply({
                     ...options,
                     ephemeral: hidden,
                     fetchReply: true,
-                })) as Message;
+                });
             }
         } catch (error) {
             if (
@@ -131,7 +131,7 @@ export class InteractionUtils {
                     : content instanceof EmbedBuilder
                     ? { embeds: [content] }
                     : content;
-            return (await intr.editReply(options)) as Message;
+            return await intr.editReply(options);
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
