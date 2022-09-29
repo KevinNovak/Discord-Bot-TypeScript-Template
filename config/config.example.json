@@ -4,13 +4,13 @@
         "id": "<DISCORD_BOT_ID>",
         "token": "<DISCORD_BOT_TOKEN>",
         "intents": [
-            "GUILDS",
-            "GUILD_MESSAGES",
-            "GUILD_MESSAGE_REACTIONS",
-            "DIRECT_MESSAGES",
-            "DIRECT_MESSAGE_REACTIONS"
+            "Guilds",
+            "GuildMessages",
+            "GuildMessageReactions",
+            "DirectMessages",
+            "DirectMessageReactions"
         ],
-        "partials": ["MESSAGE", "CHANNEL", "REACTION"],
+        "partials": ["Message", "Channel", "Reaction"],
         "caches": {
             "BaseGuildEmojiManager": 0,
             "GuildBanManager": 0,
