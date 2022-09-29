@@ -1,4 +1,4 @@
-import { ShardClientUtil, ShardingManager, Util } from 'discord.js';
+import { fetchRecommendedShardCount, ShardClientUtil, ShardingManager } from 'discord.js';
 
 import { DiscordLimits } from '../constants/index.js';
 import { MathUtils } from './index.js';
@@ -13,7 +13,7 @@ export class ShardUtils {
         serversPerShard: number
     ): Promise<number> {
         return Math.ceil(
-            await Util.fetchRecommendedShards(token, { guildsPerShard: serversPerShard })
+            await fetchRecommendedShardCount(token, { guildsPerShard: serversPerShard })
         );
     }
 
