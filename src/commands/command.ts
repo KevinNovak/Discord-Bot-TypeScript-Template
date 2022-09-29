@@ -2,7 +2,7 @@ import {
     AutocompleteFocusedOption,
     AutocompleteInteraction,
     BaseCommandInteraction,
-    PermissionString,
+    PermissionsString,
 } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 
@@ -12,7 +12,7 @@ export interface Command {
     names: string[];
     cooldown?: RateLimiter;
     deferType: CommandDeferType;
-    requireClientPerms: PermissionString[];
+    requireClientPerms: PermissionsString[];
     autocomplete?(intr: AutocompleteInteraction, option: AutocompleteFocusedOption): Promise<void>;
     execute(intr: BaseCommandInteraction, data: EventData): Promise<void>;
 }

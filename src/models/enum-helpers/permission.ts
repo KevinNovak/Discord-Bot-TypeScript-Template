@@ -1,5 +1,5 @@
 import { Locale } from 'discord-api-types/v10';
-import { PermissionString } from 'discord.js';
+import { PermissionsString } from 'discord.js';
 
 import { Lang } from '../../services/index.js';
 
@@ -9,7 +9,7 @@ interface PermissionData {
 
 export class Permission {
     public static Data: {
-        [key in PermissionString]: PermissionData;
+        [key in PermissionsString]: PermissionData;
     } = {
         ADD_REACTIONS: {
             displayName(langCode: Locale): string {

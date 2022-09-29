@@ -1,4 +1,4 @@
-import { MessageContextMenuCommandInteraction, PermissionString } from 'discord.js';
+import { MessageContextMenuCommandInteraction, PermissionsString } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 import { DateTime } from 'luxon';
 
@@ -12,7 +12,7 @@ export class ViewDateSent implements Command {
     public names = [Lang.getRef('messageCommands.viewDateSent', Language.Default)];
     public cooldown = new RateLimiter(1, 5000);
     public deferType = CommandDeferType.PUBLIC;
-    public requireClientPerms: PermissionString[] = [];
+    public requireClientPerms: PermissionsString[] = [];
 
     public async execute(
         intr: MessageContextMenuCommandInteraction,
