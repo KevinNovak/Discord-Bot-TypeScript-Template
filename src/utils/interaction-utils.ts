@@ -147,7 +147,7 @@ export class InteractionUtils {
     }
 
     public static async update(
-        intr: MessageComponentInteraction | ModalSubmitInteraction,
+        intr: MessageComponentInteraction,
         content: string | EmbedBuilder | InteractionUpdateOptions
     ): Promise<Message> {
         try {
@@ -157,10 +157,10 @@ export class InteractionUtils {
                     : content instanceof EmbedBuilder
                     ? { embeds: [content] }
                     : content;
-            return (await intr.update({
+            return await intr.update({
                 ...options,
                 fetchReply: true,
-            })) as Message;
+            });
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
