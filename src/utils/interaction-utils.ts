@@ -34,7 +34,11 @@ export class InteractionUtils {
                 ephemeral: hidden,
             });
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;
@@ -48,7 +52,11 @@ export class InteractionUtils {
         try {
             return await intr.deferUpdate();
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;
@@ -81,7 +89,11 @@ export class InteractionUtils {
                 })) as Message;
             }
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;
@@ -96,7 +108,11 @@ export class InteractionUtils {
         try {
             return await intr.respond(choices);
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;
@@ -117,7 +133,11 @@ export class InteractionUtils {
                     : content;
             return (await intr.editReply(options)) as Message;
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;
@@ -141,7 +161,11 @@ export class InteractionUtils {
                 fetchReply: true,
             })) as Message;
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;

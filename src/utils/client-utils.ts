@@ -31,6 +31,7 @@ export class ClientUtils {
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
                 [DiscordApiErrors.UnknownGuild].includes(error.code)
             ) {
                 return;
@@ -51,6 +52,7 @@ export class ClientUtils {
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
                 [DiscordApiErrors.UnknownChannel].includes(error.code)
             ) {
                 return;
@@ -71,6 +73,7 @@ export class ClientUtils {
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
                 [DiscordApiErrors.UnknownUser].includes(error.code)
             ) {
                 return;
@@ -98,6 +101,7 @@ export class ClientUtils {
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
                 [DiscordApiErrors.UnknownMember, DiscordApiErrors.UnknownUser].includes(error.code)
             ) {
                 return;
@@ -123,6 +127,7 @@ export class ClientUtils {
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
                 [DiscordApiErrors.UnknownRole].includes(error.code)
             ) {
                 return;
@@ -158,6 +163,7 @@ export class ClientUtils {
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
                 [DiscordApiErrors.UnknownChannel].includes(error.code)
             ) {
                 return;
@@ -195,6 +201,7 @@ export class ClientUtils {
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
                 [DiscordApiErrors.UnknownChannel].includes(error.code)
             ) {
                 return;

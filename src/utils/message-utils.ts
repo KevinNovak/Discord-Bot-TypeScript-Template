@@ -38,7 +38,11 @@ export class MessageUtils {
                     : content;
             return await target.send(options);
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;
@@ -59,7 +63,11 @@ export class MessageUtils {
                     : content;
             return await msg.reply(options);
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;
@@ -80,7 +88,11 @@ export class MessageUtils {
                     : content;
             return await msg.edit(options);
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;
@@ -92,7 +104,11 @@ export class MessageUtils {
         try {
             return await msg.react(emoji);
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;
@@ -104,7 +120,11 @@ export class MessageUtils {
         try {
             return pinned ? await msg.pin() : await msg.unpin();
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;
@@ -119,7 +139,11 @@ export class MessageUtils {
         try {
             return await msg.startThread(options);
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;
@@ -131,7 +155,11 @@ export class MessageUtils {
         try {
             return await msg.delete();
         } catch (error) {
-            if (error instanceof DiscordAPIError && IGNORED_ERRORS.includes(error.code)) {
+            if (
+                error instanceof DiscordAPIError &&
+                typeof error.code == 'number' &&
+                IGNORED_ERRORS.includes(error.code)
+            ) {
                 return;
             } else {
                 throw error;
