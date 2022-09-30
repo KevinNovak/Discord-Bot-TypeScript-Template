@@ -1,5 +1,5 @@
 import { REST } from '@discordjs/rest';
-import { Options } from 'discord.js';
+import { Options, Partials } from 'discord.js';
 import { createRequire } from 'node:module';
 
 import { Button } from './buttons/index.js';
@@ -44,7 +44,7 @@ async function start(): Promise<void> {
     // Client
     let client = new CustomClient({
         intents: Config.client.intents,
-        partials: Config.client.partials,
+        partials: (Config.client.partials as string[]).map(partial => Partials[partial]),
         makeCache: Options.cacheWithLimits({
             // Keep default caching behavior
             ...Options.DefaultMakeCacheSettings,
