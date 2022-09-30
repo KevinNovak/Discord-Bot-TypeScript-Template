@@ -56,8 +56,7 @@ export class InfoCommand implements Command {
                     try {
                         serverCount = await ShardUtils.serverCount(intr.client.shard);
                     } catch (error) {
-                        // SHARDING_IN_PROCESS: Shards are still being spawned.
-                        if (error.name.includes('SHARDING_IN_PROCESS')) {
+                        if (error.name.includes('ShardingInProcess')) {
                             await InteractionUtils.send(
                                 intr,
                                 Lang.getEmbed('errorEmbeds.startupInProcess', data.lang)
