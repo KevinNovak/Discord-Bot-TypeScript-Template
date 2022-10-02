@@ -17,6 +17,7 @@ import {
 import { createRequire } from 'node:module';
 
 import {
+    AutocompleteHandler,
     ButtonHandler,
     CommandHandler,
     GuildJoinHandler,
@@ -42,6 +43,7 @@ export class Bot {
         private guildLeaveHandler: GuildLeaveHandler,
         private messageHandler: MessageHandler,
         private commandHandler: CommandHandler,
+        private autocompleteHandler: AutocompleteHandler,
         private buttonHandler: ButtonHandler,
         private reactionHandler: ReactionHandler,
         private jobService: JobService
@@ -148,11 +150,17 @@ export class Bot {
             return;
         }
 
-        if (intr instanceof CommandInteraction || intr instanceof AutocompleteInteraction) {
+        if (intr instanceof CommandInteraction) {
             try {
                 await this.commandHandler.process(intr);
             } catch (error) {
                 Logger.error(Logs.error.command, error);
+            }
+        } else if (intr instanceof AutocompleteInteraction) {
+            try {
+                await this.autocompleteHandler.process(intr);
+            } catch (error) {
+                Logger.error(Logs.error.autocomplete, error);
             }
         } else if (intr instanceof ButtonInteraction) {
             try {

@@ -1,5 +1,4 @@
 import {
-    AutocompleteInteraction,
     ChatInputCommandInteraction,
     CommandInteraction,
     NewsChannel,
@@ -27,14 +26,14 @@ export class CommandHandler implements EventHandler {
 
     constructor(public commands: Command[], private eventDataService: EventDataService) {}
 
-    public async process(intr: CommandInteraction | AutocompleteInteraction): Promise<void> {
+    public async process(intr: CommandInteraction): Promise<void> {
         // Don't respond to self, or other bots
         if (intr.user.id === intr.client.user?.id || intr.user.bot) {
             return;
         }
 
         let commandParts =
-            intr instanceof ChatInputCommandInteraction || intr instanceof AutocompleteInteraction
+            intr instanceof ChatInputCommandInteraction
                 ? [
                       intr.commandName,
                       intr.options.getSubcommandGroup(false),
@@ -51,48 +50,6 @@ export class CommandHandler implements EventHandler {
                     .replaceAll('{INTERACTION_ID}', intr.id)
                     .replaceAll('{COMMAND_NAME}', commandName)
             );
-            return;
-        }
-
-        if (intr instanceof AutocompleteInteraction) {
-            let option = intr.options.getFocused(true);
-
-            if (!command.autocomplete) {
-                Logger.error(
-                    Logs.error.autocompleteNotFound
-                        .replaceAll('{INTERACTION_ID}', intr.id)
-                        .replaceAll('{COMMAND_NAME}', commandName)
-                        .replaceAll('{OPTION_NAME}', option.name)
-                );
-                return;
-            }
-
-            try {
-                await command.autocomplete(intr, option);
-            } catch (error) {
-                Logger.error(
-                    intr.channel instanceof TextChannel ||
-                        intr.channel instanceof NewsChannel ||
-                        intr.channel instanceof ThreadChannel
-                        ? Logs.error.autocompleteGuild
-                              .replaceAll('{INTERACTION_ID}', intr.id)
-                              .replaceAll('{COMMAND_NAME}', commandName)
-                              .replaceAll('{OPTION_NAME}', option.name)
-                              .replaceAll('{USER_TAG}', intr.user.tag)
-                              .replaceAll('{USER_ID}', intr.user.id)
-                              .replaceAll('{CHANNEL_NAME}', intr.channel.name)
-                              .replaceAll('{CHANNEL_ID}', intr.channel.id)
-                              .replaceAll('{GUILD_NAME}', intr.guild?.name)
-                              .replaceAll('{GUILD_ID}', intr.guild?.id)
-                        : Logs.error.autocompleteOther
-                              .replaceAll('{INTERACTION_ID}', intr.id)
-                              .replaceAll('{COMMAND_NAME}', commandName)
-                              .replaceAll('{OPTION_NAME}', option.name)
-                              .replaceAll('{USER_TAG}', intr.user.tag)
-                              .replaceAll('{USER_ID}', intr.user.id),
-                    error
-                );
-            }
             return;
         }
 
@@ -125,6 +82,7 @@ export class CommandHandler implements EventHandler {
             user: intr.user,
             channel: intr.channel,
             guild: intr.guild,
+            args: intr instanceof ChatInputCommandInteraction ? intr.options : undefined,
         });
 
         try {
