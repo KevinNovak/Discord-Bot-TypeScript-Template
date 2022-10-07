@@ -17,8 +17,8 @@ export class Lang {
         variables?: { [name: string]: string }
     ): EmbedBuilder {
         return (
-            this.linguini.get(location, langCode, this.messageEmbedTm, variables) ??
-            this.linguini.get(location, Language.Default, this.messageEmbedTm, variables)
+            this.linguini.get(location, langCode, this.embedTm, variables) ??
+            this.linguini.get(location, Language.Default, this.embedTm, variables)
         );
     }
 
@@ -55,7 +55,7 @@ export class Lang {
         return this.linguini.getCom(location, variables);
     }
 
-    private static messageEmbedTm: TypeMapper<EmbedBuilder> = (jsonValue: any) => {
+    private static embedTm: TypeMapper<EmbedBuilder> = (jsonValue: any) => {
         return new EmbedBuilder({
             author: jsonValue.author,
             title: Utils.join(jsonValue.title, '\n'),
