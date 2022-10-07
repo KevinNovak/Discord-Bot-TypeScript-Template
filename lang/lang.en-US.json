@@ -269,6 +269,10 @@
             "translate": "Translate",
             "dev": "Dev"
         },
+        "yesNo": {
+            "yes": "Yes",
+            "no": "No"
+        },
         "other": {
             "na": "N/A"
         },
