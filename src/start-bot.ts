@@ -2,7 +2,6 @@ import { REST } from '@discordjs/rest';
 import { Options, Partials } from 'discord.js';
 import { createRequire } from 'node:module';
 
-import { Autocomplete } from './autocompletes/index.js';
 import { Button } from './buttons/index.js';
 import { HelpCommand, InfoCommand, TestCommand } from './commands/chat/index.js';
 import {
@@ -14,7 +13,6 @@ import {
 import { ViewDateSent } from './commands/message/index.js';
 import { ViewDateJoined } from './commands/user/index.js';
 import {
-    AutocompleteHandler,
     ButtonHandler,
     CommandHandler,
     GuildJoinHandler,
@@ -71,11 +69,6 @@ async function start(): Promise<void> {
         // TODO: Add new commands here
     ];
 
-    // Autocompletes
-    let autocompletes: Autocomplete[] = [
-        // TODO: Add new autocompletes here
-    ];
-
     // Buttons
     let buttons: Button[] = [
         // TODO: Add new buttons here
@@ -95,7 +88,6 @@ async function start(): Promise<void> {
     let guildJoinHandler = new GuildJoinHandler(eventDataService);
     let guildLeaveHandler = new GuildLeaveHandler();
     let commandHandler = new CommandHandler(commands, eventDataService);
-    let autocompleteHandler = new AutocompleteHandler(autocompletes, eventDataService);
     let buttonHandler = new ButtonHandler(buttons, eventDataService);
     let triggerHandler = new TriggerHandler(triggers, eventDataService);
     let messageHandler = new MessageHandler(triggerHandler);
@@ -114,7 +106,6 @@ async function start(): Promise<void> {
         guildLeaveHandler,
         messageHandler,
         commandHandler,
-        autocompleteHandler,
         buttonHandler,
         reactionHandler,
         new JobService(jobs)
