@@ -273,6 +273,10 @@
             "yes": "Yes",
             "no": "No"
         },
+        "boolean": {
+            "true": "True",
+            "false": "False"
+        },
         "other": {
             "na": "N/A"
         },
