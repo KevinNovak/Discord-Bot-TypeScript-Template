@@ -5,7 +5,16 @@
     },
     "emojis": {
         "yes": "✅",
-        "no": "❌"
+        "no": "❌",
+        "enabled": "🟢",
+        "disabled": "🔴",
+        "info": "ℹ️",
+        "warning": "⚠️",
+        "previous": "◀️",
+        "next": "▶️",
+        "first": "⏪",
+        "last": "⏩",
+        "refresh": "🔄"
     },
     "colors": {
         "default": "#0099ff",
