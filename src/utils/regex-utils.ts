@@ -9,11 +9,11 @@ export class RegexUtils {
     }
 
     public static escapeRegex(input: string): string {
-        return input.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+        return input?.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
     }
 
     public static discordId(input: string): string {
-        return input.match(/\b\d{17,20}\b/)?.[0];
+        return input?.match(/\b\d{17,20}\b/)?.[0];
     }
 
     public static tag(input: string): { username: string; tag: string; discriminator: string } {
