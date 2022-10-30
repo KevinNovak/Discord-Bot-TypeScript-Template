@@ -21,10 +21,14 @@ export class InfoCommand implements Command {
     public requireClientPerms: PermissionsString[] = [];
 
     public async execute(intr: ChatInputCommandInteraction, data: EventData): Promise<void> {
-        let option = intr.options.getString(Lang.getRef('arguments.option', Language.Default));
+        let args = {
+            option: intr.options.getString(
+                Lang.getRef('arguments.option', Language.Default)
+            ) as InfoOption,
+        };
 
         let embed: EmbedBuilder;
-        switch (option) {
+        switch (args.option) {
             case InfoOption.ABOUT: {
                 embed = Lang.getEmbed('displayEmbeds.about', data.lang);
                 break;
