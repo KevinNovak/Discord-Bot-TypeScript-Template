@@ -1,4 +1,5 @@
 import {
+    ApplicationCommand,
     Channel,
     Client,
     DiscordAPIError,
@@ -81,6 +82,11 @@ export class ClientUtils {
                 throw error;
             }
         }
+    }
+
+    public static async findAppCommand(client: Client, name: string): Promise<ApplicationCommand> {
+        let commands = await client.application.commands.fetch();
+        return commands.find(command => command.name === name);
     }
 
     public static async findMember(guild: Guild, input: string): Promise<GuildMember> {
