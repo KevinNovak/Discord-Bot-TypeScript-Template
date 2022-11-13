@@ -1,8 +1,9 @@
 import { Guild } from 'discord.js';
 import { createRequire } from 'node:module';
 
+import { Language } from '../models/enum-helpers/index.js';
 import { EventDataService, Lang, Logger } from '../services/index.js';
-import { ClientUtils, MessageUtils } from '../utils/index.js';
+import { ClientUtils, FormatUtils, MessageUtils } from '../utils/index.js';
 import { EventHandler } from './index.js';
 
 const require = createRequire(import.meta.url);
@@ -31,7 +32,14 @@ export class GuildJoinHandler implements EventHandler {
         if (notifyChannel) {
             await MessageUtils.send(
                 notifyChannel,
-                Lang.getEmbed('displayEmbeds.welcome', data.langGuild).setAuthor({
+                Lang.getEmbed('displayEmbeds.welcome', data.langGuild, {
+                    CMD_LINK_HELP: FormatUtils.commandMention(
+                        await ClientUtils.findAppCommand(
+                            guild.client,
+                            Lang.getRef('chatCommands.help', Language.Default)
+                        )
+                    ),
+                }).setAuthor({
                     name: guild.name,
                     iconURL: guild.iconURL(),
                 })
@@ -42,7 +50,14 @@ export class GuildJoinHandler implements EventHandler {
         if (owner) {
             await MessageUtils.send(
                 owner.user,
-                Lang.getEmbed('displayEmbeds.welcome', data.lang).setAuthor({
+                Lang.getEmbed('displayEmbeds.welcome', data.lang, {
+                    CMD_LINK_HELP: FormatUtils.commandMention(
+                        await ClientUtils.findAppCommand(
+                            guild.client,
+                            Lang.getRef('chatCommands.help', Language.Default)
+                        )
+                    ),
+                }).setAuthor({
                     name: guild.name,
                     iconURL: guild.iconURL(),
                 })

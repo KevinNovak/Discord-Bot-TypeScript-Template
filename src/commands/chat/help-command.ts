@@ -4,7 +4,7 @@ import { HelpOption } from '../../enums/index.js';
 import { Language } from '../../models/enum-helpers/index.js';
 import { EventData } from '../../models/internal-models.js';
 import { Lang } from '../../services/index.js';
-import { InteractionUtils } from '../../utils/index.js';
+import { ClientUtils, FormatUtils, InteractionUtils } from '../../utils/index.js';
 import { Command, CommandDeferType } from '../index.js';
 
 export class HelpCommand implements Command {
@@ -21,7 +21,20 @@ export class HelpCommand implements Command {
         let embed: EmbedBuilder;
         switch (args.option) {
             case HelpOption.COMMANDS: {
-                embed = Lang.getEmbed('displayEmbeds.commands', data.lang);
+                embed = Lang.getEmbed('displayEmbeds.commands', data.lang, {
+                    CMD_LINK_TEST: FormatUtils.commandMention(
+                        await ClientUtils.findAppCommand(
+                            intr.client,
+                            Lang.getRef('chatCommands.test', Language.Default)
+                        )
+                    ),
+                    CMD_LINK_INFO: FormatUtils.commandMention(
+                        await ClientUtils.findAppCommand(
+                            intr.client,
+                            Lang.getRef('chatCommands.info', Language.Default)
+                        )
+                    ),
+                });
                 break;
             }
             case HelpOption.PERMISSIONS: {
@@ -29,7 +42,14 @@ export class HelpCommand implements Command {
                 break;
             }
             case HelpOption.FAQ: {
-                embed = Lang.getEmbed('displayEmbeds.faq', data.lang);
+                embed = Lang.getEmbed('displayEmbeds.faq', data.lang, {
+                    CMD_LINK_HELP: FormatUtils.commandMention(
+                        await ClientUtils.findAppCommand(
+                            intr.client,
+                            Lang.getRef('chatCommands.help', Language.Default)
+                        )
+                    ),
+                });
                 break;
             }
             default: {
