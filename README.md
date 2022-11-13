@@ -48,9 +48,9 @@ This bot has a few example commands which can be modified as needed.
 
 A `/help` command to get help on different areas of the bot, like commands or permissions:
 
-![](https://i.imgur.com/0WrN9mZ.png)
-![](https://i.imgur.com/asaAi8o.png)
-![](https://i.imgur.com/h9jXDiW.png)
+![](https://i.imgur.com/HKDtdWL.png)
+![](https://i.imgur.com/M67wCJK.png)
+![](https://i.imgur.com/N86WW9s.png)
 
 ### Info Command
 
@@ -69,7 +69,7 @@ A generic command, `/test`, which can be copied to create additional commands.
 
 A welcome message is sent to the server and owner when the bot is added.
 
-![](https://i.imgur.com/APzT9pp.png)
+![](https://i.imgur.com/75UrFXf.png)
 
 ## Setup
 
