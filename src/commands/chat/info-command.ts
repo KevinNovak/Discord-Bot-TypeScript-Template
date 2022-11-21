@@ -80,9 +80,11 @@ export class InfoCommand implements Command {
                     TS_VERSION: `v${typescript.version}`,
                     ES_VERSION: TsConfig.compilerOptions.target,
                     DJS_VERSION: `v${djs.version}`,
-                    SHARD_COUNT: shardCount.toLocaleString(),
-                    SERVER_COUNT: serverCount.toLocaleString(),
-                    SERVER_COUNT_PER_SHARD: Math.round(serverCount / shardCount).toLocaleString(),
+                    SHARD_COUNT: shardCount.toLocaleString(data.lang),
+                    SERVER_COUNT: serverCount.toLocaleString(data.lang),
+                    SERVER_COUNT_PER_SHARD: Math.round(serverCount / shardCount).toLocaleString(
+                        data.lang
+                    ),
                     RSS_SIZE: fileSize(memory.rss),
                     RSS_SIZE_PER_SERVER:
                         serverCount > 0

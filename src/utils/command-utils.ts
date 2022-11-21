@@ -39,7 +39,7 @@ export class CommandUtils {
                 await InteractionUtils.send(
                     intr,
                     Lang.getEmbed('validationEmbeds.cooldownHit', data.lang, {
-                        AMOUNT: command.cooldown.amount.toLocaleString(),
+                        AMOUNT: command.cooldown.amount.toLocaleString(data.lang),
                         INTERVAL: FormatUtils.duration(command.cooldown.interval, data.lang),
                     })
                 );
