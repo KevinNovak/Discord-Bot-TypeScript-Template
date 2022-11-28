@@ -125,6 +125,8 @@ async function start(): Promise<void> {
         } catch (error) {
             Logger.error(Logs.error.commandAction, error);
         }
+        // Wait for any final logs to be written.
+        await new Promise(resolve => setTimeout(resolve, 1000));
         process.exit();
     }
 
