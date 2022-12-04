@@ -19,6 +19,15 @@ import { Lang } from '../services/index.js';
 import { PermissionUtils, RegexUtils } from './index.js';
 
 const FETCH_MEMBER_LIMIT = 20;
+const IGNORED_ERRORS = [
+    DiscordApiErrors.UnknownMessage,
+    DiscordApiErrors.UnknownChannel,
+    DiscordApiErrors.UnknownGuild,
+    DiscordApiErrors.UnknownMember,
+    DiscordApiErrors.UnknownUser,
+    DiscordApiErrors.UnknownInteraction,
+    DiscordApiErrors.MissingAccess,
+];
 
 export class ClientUtils {
     public static async getGuild(client: Client, discordId: string): Promise<Guild> {
@@ -33,7 +42,7 @@ export class ClientUtils {
             if (
                 error instanceof DiscordAPIError &&
                 typeof error.code == 'number' &&
-                [DiscordApiErrors.UnknownGuild].includes(error.code)
+                IGNORED_ERRORS.includes(error.code)
             ) {
                 return;
             } else {
@@ -54,7 +63,7 @@ export class ClientUtils {
             if (
                 error instanceof DiscordAPIError &&
                 typeof error.code == 'number' &&
-                [DiscordApiErrors.UnknownChannel].includes(error.code)
+                IGNORED_ERRORS.includes(error.code)
             ) {
                 return;
             } else {
@@ -75,7 +84,7 @@ export class ClientUtils {
             if (
                 error instanceof DiscordAPIError &&
                 typeof error.code == 'number' &&
-                [DiscordApiErrors.UnknownUser].includes(error.code)
+                IGNORED_ERRORS.includes(error.code)
             ) {
                 return;
             } else {
@@ -108,7 +117,7 @@ export class ClientUtils {
             if (
                 error instanceof DiscordAPIError &&
                 typeof error.code == 'number' &&
-                [DiscordApiErrors.UnknownMember, DiscordApiErrors.UnknownUser].includes(error.code)
+                IGNORED_ERRORS.includes(error.code)
             ) {
                 return;
             } else {
@@ -134,7 +143,7 @@ export class ClientUtils {
             if (
                 error instanceof DiscordAPIError &&
                 typeof error.code == 'number' &&
-                [DiscordApiErrors.UnknownRole].includes(error.code)
+                IGNORED_ERRORS.includes(error.code)
             ) {
                 return;
             } else {
@@ -170,7 +179,7 @@ export class ClientUtils {
             if (
                 error instanceof DiscordAPIError &&
                 typeof error.code == 'number' &&
-                [DiscordApiErrors.UnknownChannel].includes(error.code)
+                IGNORED_ERRORS.includes(error.code)
             ) {
                 return;
             } else {
@@ -208,7 +217,7 @@ export class ClientUtils {
             if (
                 error instanceof DiscordAPIError &&
                 typeof error.code == 'number' &&
-                [DiscordApiErrors.UnknownChannel].includes(error.code)
+                IGNORED_ERRORS.includes(error.code)
             ) {
                 return;
             } else {
