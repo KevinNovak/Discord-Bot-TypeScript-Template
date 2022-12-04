@@ -16,7 +16,7 @@ COPY . .
 RUN npm run build
 
 # Expose ports
-EXPOSE 8080
+EXPOSE 3001
 
 # Run the application
 CMD [ "node", "dist/start-manager.js" ]

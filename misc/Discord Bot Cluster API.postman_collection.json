@@ -129,7 +129,7 @@
 	"variable": [
 		{
 			"key": "BASE_URL",
-			"value": "localhost:8080"
+			"value": "localhost:3001"
 		}
 	]
 }

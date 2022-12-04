@@ -25,7 +25,7 @@
         }
     },
     "api": {
-        "port": 8080,
+        "port": 3001,
         "secret": "00000000-0000-0000-0000-000000000000"
     },
     "sharding": {
@@ -36,7 +36,7 @@
     "clustering": {
         "enabled": false,
         "shardCount": 16,
-        "callbackUrl": "http://localhost:8080/",
+        "callbackUrl": "http://localhost:3001/",
         "masterApi": {
             "url": "http://localhost:5000/",
             "token": "00000000-0000-0000-0000-000000000000"
