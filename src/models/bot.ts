@@ -128,12 +128,12 @@ export class Bot {
             return;
         }
 
-        msg = await PartialUtils.fillMessage(msg);
-        if (!msg) {
-            return;
-        }
-
         try {
+            msg = await PartialUtils.fillMessage(msg);
+            if (!msg) {
+                return;
+            }
+
             await this.messageHandler.process(msg);
         } catch (error) {
             Logger.error(Logs.error.message, error);
@@ -174,17 +174,17 @@ export class Bot {
             return;
         }
 
-        msgReaction = await PartialUtils.fillReaction(msgReaction);
-        if (!msgReaction) {
-            return;
-        }
-
-        reactor = await PartialUtils.fillUser(reactor);
-        if (!reactor) {
-            return;
-        }
-
         try {
+            msgReaction = await PartialUtils.fillReaction(msgReaction);
+            if (!msgReaction) {
+                return;
+            }
+
+            reactor = await PartialUtils.fillUser(reactor);
+            if (!reactor) {
+                return;
+            }
+
             await this.reactionHandler.process(
                 msgReaction,
                 msgReaction.message as Message,
