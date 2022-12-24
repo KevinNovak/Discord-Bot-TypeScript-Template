@@ -109,11 +109,13 @@ export class PermissionUtils {
             }
 
             // VIEW_CHANNEL - Needed to view the channel
+            // SEND_MESSAGES_IN_THREADS - Needed to send messages in threads
             // CREATE_PUBLIC_THREADS - Needed to create public threads
             // MANAGE_THREADS - Needed to rename, delete, archive, unarchive, slow mode threads
             // READ_MESSAGE_HISTORY - Needed to find old threads
             return channelPerms.has([
                 PermissionFlagsBits.ViewChannel,
+                PermissionFlagsBits.SendMessagesInThreads,
                 PermissionFlagsBits.CreatePublicThreads,
                 ...(manageThreads ? [PermissionFlagsBits.ManageThreads] : []),
                 ...(findOld ? [PermissionFlagsBits.ReadMessageHistory] : []),
