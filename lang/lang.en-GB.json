@@ -7,7 +7,7 @@
                 "fields": [
                     {
                         "name": "Important {{REF:fields.commands}}",
-                        "value": ["**/{{REF:chatCommands.help}}** - {{REF:commandDescs.help}}"]
+                        "value": ["{{CMD_LINK_HELP}} - {{REF:commandDescs.help}}"]
                     },
                     {
                         "name": "{{REF:fields.links}}",
@@ -15,38 +15,36 @@
                     }
                 ]
             },
-            "commands": {
-                "title": "{{COM:bot.name}} - Commands",
+            "helpContactSupport": {
+                "title": "Help - {{REF:helpOptions.contactSupport}}",
                 "description": [
-                    "**/{{REF:chatCommands.test}}** - {{REF:commandDescs.test}}",
-                    "**/{{REF:chatCommands.info}}** - {{REF:commandDescs.info}}"
+                    "Have a question or feedback? Join our support server at the link below!"
                 ],
                 "fields": [
                     {
                         "name": "{{REF:fields.links}}",
-                        "value": ["{{REF:links.docsEmbed}}", "{{REF:links.supportEmbed}}"]
+                        "value": ["{{REF:links.supportEmbed}}"]
                     }
                 ]
             },
-            "permissions": {
-                "title": "{{COM:bot.name}} - Permissions",
-                "description": "Want to restrict commands to certain roles, users, or channels? Set up permissions under the bot's **Integration** page in the Server Settings (or simply right-click the bot and select **Manage Integration**).",
+            "helpCommands": {
+                "title": "Help - {{REF:helpOptions.commands}}",
                 "fields": [
                     {
-                        "name": "{{REF:fields.links}}",
-                        "value": ["{{REF:links.docsEmbed}}", "{{REF:links.supportEmbed}}"]
-                    }
-                ]
-            },
-            "faq": {
-                "title": "{{COM:bot.name}} - FAQ",
-                "description": [
-                    "Frequently Asked Questions about {{COM:bot.name}}.",
-                    "",
-                    "**How do I restrict who can run the commands?**",
-                    "Slash command permissions can be configured in the Server Settings. See \"/{{REF:chatCommands.help}} {{REF:arguments.option}}:{{REF:helpOptions.permissions}}\" for more information."
-                ],
-                "fields": [
+                        "name": "Commands",
+                        "value": [
+                            "To see the available commands, just type `/` and select the bot from the left side. You can then scroll through all available commands. Some commands may be hidden if you don't have permission to view them.",
+                            "",
+                            "{{CMD_LINK_TEST}} - {{REF:commandDescs.test}}",
+                            "{{CMD_LINK_INFO}} - {{REF:commandDescs.info}}"
+                        ]
+                    },
+                    {
+                        "name": "Command Permissions",
+                        "value": [
+                            "Want to restrict commands to certain roles, users, or channels? Set up permissions in the bot's integration page by going to **Server Settings** > **Integrations**, and then **Manage** for this bot."
+                        ]
+                    },
                     {
                         "name": "{{REF:fields.links}}",
                         "value": ["{{REF:links.docsEmbed}}", "{{REF:links.supportEmbed}}"]
@@ -204,7 +202,7 @@
             "option": "option"
         },
         "commandDescs": {
-            "help": "Get help with commands, permissions, FAQ, etc.",
+            "help": "Find help or contact support.",
             "info": "View bot info.",
             "test": "Run the test command."
         },
@@ -260,9 +258,12 @@
             "ViewGuildInsights": "View Server Insights"
         },
         "helpOptions": {
-            "commands": "Commands",
-            "permissions": "Permissions",
-            "faq": "FAQ"
+            "contactSupport": "Contact Support",
+            "commands": "Commands"
+        },
+        "helpOptionDescs": {
+            "contactSupport": "❓ {{REF:helpOptions.contactSupport}} ❓",
+            "commands": "{{REF:helpOptions.commands}} -- What commands are there? How do I restrict who is allowed to use commands?"
         },
         "infoOptions": {
             "about": "About",
@@ -272,6 +273,10 @@
         "yesNo": {
             "yes": "Yes",
             "no": "No"
+        },
+        "boolean": {
+            "true": "True",
+            "false": "False"
         },
         "other": {
             "na": "N/A"

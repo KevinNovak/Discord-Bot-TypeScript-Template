@@ -20,8 +20,12 @@ export class HelpCommand implements Command {
 
         let embed: EmbedBuilder;
         switch (args.option) {
+            case HelpOption.CONTACT_SUPPORT: {
+                embed = Lang.getEmbed('displayEmbeds.helpContactSupport', data.lang);
+                break;
+            }
             case HelpOption.COMMANDS: {
-                embed = Lang.getEmbed('displayEmbeds.commands', data.lang, {
+                embed = Lang.getEmbed('displayEmbeds.helpCommands', data.lang, {
                     CMD_LINK_TEST: FormatUtils.commandMention(
                         await ClientUtils.findAppCommand(
                             intr.client,
@@ -32,21 +36,6 @@ export class HelpCommand implements Command {
                         await ClientUtils.findAppCommand(
                             intr.client,
                             Lang.getRef('chatCommands.info', Language.Default)
-                        )
-                    ),
-                });
-                break;
-            }
-            case HelpOption.PERMISSIONS: {
-                embed = Lang.getEmbed('displayEmbeds.permissions', data.lang);
-                break;
-            }
-            case HelpOption.FAQ: {
-                embed = Lang.getEmbed('displayEmbeds.faq', data.lang, {
-                    CMD_LINK_HELP: FormatUtils.commandMention(
-                        await ClientUtils.findAppCommand(
-                            intr.client,
-                            Lang.getRef('chatCommands.help', Language.Default)
                         )
                     ),
                 });

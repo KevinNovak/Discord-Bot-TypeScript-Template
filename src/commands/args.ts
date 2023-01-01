@@ -13,19 +13,14 @@ export class Args {
         type: ApplicationCommandOptionType.String,
         choices: [
             {
-                name: Lang.getRef('helpOptions.commands', Language.Default),
-                name_localizations: Lang.getRefLocalizationMap('helpOptions.commands'),
+                name: Lang.getRef('helpOptionDescs.contactSupport', Language.Default),
+                name_localizations: Lang.getRefLocalizationMap('helpOptionDescs.contactSupport'),
+                value: HelpOption.CONTACT_SUPPORT,
+            },
+            {
+                name: Lang.getRef('helpOptionDescs.commands', Language.Default),
+                name_localizations: Lang.getRefLocalizationMap('helpOptionDescs.commands'),
                 value: HelpOption.COMMANDS,
-            },
-            {
-                name: Lang.getRef('helpOptions.permissions', Language.Default),
-                name_localizations: Lang.getRefLocalizationMap('helpOptions.permissions'),
-                value: HelpOption.PERMISSIONS,
-            },
-            {
-                name: Lang.getRef('helpOptions.faq', Language.Default),
-                name_localizations: Lang.getRefLocalizationMap('helpOptions.faq'),
-                value: HelpOption.FAQ,
             },
         ],
     };
