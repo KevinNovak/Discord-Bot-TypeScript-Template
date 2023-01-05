@@ -1,5 +1,6 @@
 import { ApplicationCommand, Guild, Locale } from 'discord.js';
-import { Duration } from 'luxon'; // TODO: Missing types
+import { filesize } from 'filesize';
+import { Duration } from 'luxon';
 
 export class FormatUtils {
     public static roleMention(guild: Guild, discordId: string): string {
@@ -48,5 +49,9 @@ export class FormatUtils {
                 ).filter(([_, value]) => !!value) // Remove units that are 0
             )
         ).toHuman({ maximumFractionDigits: 0 });
+    }
+
+    public static fileSize(bytes: number): string {
+        return filesize(bytes, { output: 'string', pad: true, round: 2 }).toString();
     }
 }
