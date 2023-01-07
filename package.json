@@ -26,6 +26,10 @@
         "commands:rename": "npm run build && node --enable-source-maps dist/start-bot.js commands rename",
         "commands:delete": "npm run build && node --enable-source-maps dist/start-bot.js commands delete",
         "commands:clear": "npm run build && node --enable-source-maps dist/start-bot.js commands clear",
+        "dev": "tsc-watch --onSuccess \"npm run watch\"",
+        "dev:manager": "tsc-watch --onSuccess \"npm run watch:manager\"",
+        "watch": "nodemon --watch './**/*.{ts}' --exec ts-node src/start-bot.ts",
+        "watch:manager": "nodemon --watch './**/*.{ts}' --exec ts-node src/manager-bot.ts",
         "start": "npm run start:bot",
         "start:bot": "npm run build && node --enable-source-maps dist/start-bot.js",
         "start:manager": "npm run build && node --enable-source-maps dist/start-manager.js",
@@ -64,7 +68,10 @@
         "eslint": "^8.31.0",
         "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-unicorn": "^45.0.2",
+        "nodemon": "^2.0.20",
         "prettier": "^2.8.1",
+        "ts-node": "^10.9.1",
+        "tsc-watch": "^6.0.0",
         "typescript": "^4.9.4"
     }
 }
