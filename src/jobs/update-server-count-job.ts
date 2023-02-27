@@ -1,11 +1,11 @@
 import { ActivityType, ShardingManager } from 'discord.js';
 import { createRequire } from 'node:module';
 
+import { Job } from './index.js';
 import { CustomClient } from '../extensions/index.js';
 import { BotSite } from '../models/config-models.js';
 import { HttpService, Lang, Logger } from '../services/index.js';
 import { ShardUtils } from '../utils/index.js';
-import { Job } from './index.js';
 
 const require = createRequire(import.meta.url);
 let BotSites: BotSite[] = require('../../config/bot-sites.json');

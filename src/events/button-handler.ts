@@ -2,10 +2,10 @@ import { ButtonInteraction } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 import { createRequire } from 'node:module';
 
+import { EventHandler } from './index.js';
 import { Button, ButtonDeferType } from '../buttons/index.js';
 import { EventDataService } from '../services/index.js';
 import { InteractionUtils } from '../utils/index.js';
-import { EventHandler } from './index.js';
 
 const require = createRequire(import.meta.url);
 let Config = require('../../config/config.json');
