@@ -11,7 +11,7 @@ import {
     Message,
     MessageComponentInteraction,
     ModalSubmitInteraction,
-    WebhookEditMessageOptions,
+    WebhookMessageEditOptions,
 } from 'discord.js';
 
 const IGNORED_ERRORS = [
@@ -123,10 +123,10 @@ export class InteractionUtils {
 
     public static async editReply(
         intr: CommandInteraction | MessageComponentInteraction | ModalSubmitInteraction,
-        content: string | EmbedBuilder | WebhookEditMessageOptions
+        content: string | EmbedBuilder | WebhookMessageEditOptions
     ): Promise<Message> {
         try {
-            let options: WebhookEditMessageOptions =
+            let options: WebhookMessageEditOptions =
                 typeof content === 'string'
                     ? { content }
                     : content instanceof EmbedBuilder
