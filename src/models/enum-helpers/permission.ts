@@ -215,5 +215,25 @@ export class Permission {
                 return Lang.getRef('permissions.ViewGuildInsights', langCode);
             },
         },
+        ManageGuildExpressions: {
+      displayName(langCode: Locale): string {
+        return Lang.getRef('permissions.ManageGuildExpressions', langCode);
+      },
+    },
+        ViewCreatorMonetizationAnalytics: {
+          displayName(langCode: Locale): string {
+            return Lang.getRef('permissions.ViewCreatorMonetizationAnalytics', langCode);
+          },
+        },
+        UseSoundboard: {
+          displayName(langCode: Locale): string {
+            return Lang.getRef('permissions.UseSoundboard', langCode);
+          },
+        },
+        UseExternalSounds: {
+          displayName(langCode: Locale): string {
+            return Lang.getRef('permissions.UseExternalSounds', langCode);
+          },
+        },
     };
 }
