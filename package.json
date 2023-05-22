@@ -47,7 +47,7 @@
         "luxon": "3.3.0",
         "node-fetch": "3.3.1",
         "node-schedule": "2.1.1",
-        "pino": "8.12.1",
+        "pino": "8.14.1",
         "pino-pretty": "10.0.0",
         "pm2": "^5.3.0",
         "reflect-metadata": "^0.1.13",
@@ -56,14 +56,14 @@
     "devDependencies": {
         "@types/express": "4.17.17",
         "@types/luxon": "3.3.0",
-        "@types/node": "^18.16.3",
+        "@types/node": "^20.2.3",
         "@types/node-schedule": "2.1.0",
         "@types/remove-markdown": "0.3.1",
-        "@typescript-eslint/eslint-plugin": "^5.59.2",
-        "@typescript-eslint/parser": "^5.59.2",
-        "eslint": "^8.39.0",
+        "@typescript-eslint/eslint-plugin": "^5.59.6",
+        "@typescript-eslint/parser": "^5.59.6",
+        "eslint": "^8.41.0",
         "eslint-plugin-import": "^2.27.5",
-        "eslint-plugin-unicorn": "^46.0.0",
+        "eslint-plugin-unicorn": "^47.0.0",
         "prettier": "^2.8.8",
         "typescript": "^5.0.4"
     }
