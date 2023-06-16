@@ -101,6 +101,34 @@ export class InteractionUtils {
             }
         }
     }
+    
+      public static async sendEphemeral(
+    intr: CommandInteraction | MessageComponentInteraction | ModalSubmitInteraction,
+    content: string | EmbedBuilder | InteractionReplyOptions,
+  ): Promise<Message> {
+    try {
+      let options: InteractionReplyOptions =
+        typeof content === 'string' ? { content } : content instanceof EmbedBuilder ? { embeds: [content] } : content;
+      if (intr.deferred || intr.replied) {
+        return await intr.followUp({
+          ...options,
+          ephemeral: true,
+        });
+      } else {
+        return await intr.reply({
+          ...options,
+          ephemeral: true,
+          fetchReply: true,
+        });
+      }
+    } catch (error) {
+      if (error instanceof DiscordAPIError && typeof error.code == 'number' && IGNORED_ERRORS.includes(error.code)) {
+        return;
+      } else {
+        throw error;
+      }
+    }
+  }
 
     public static async respond(
         intr: AutocompleteInteraction,
