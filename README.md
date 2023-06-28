@@ -11,9 +11,9 @@
 
 This template was created to give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features. Developers can simply copy this repo, follow the [setup instructions](#setup) below, and have a working bot with many [boilerplate features](#features) already included!
 
-For help using this template, feel free to [join our support server](https://discord.gg/Vyf6fEWbVr)!
+For help using this template, feel free to [join our support server](https://discord.gg/c9kQktCbsE)!
 
-[![Discord Shield](https://discord.com/api/guilds/660711235766976553/widget.png?style=shield)](https://discord.gg/Vyf6fEWbVr)
+[![Discord Shield](https://discord.com/api/guilds/660711235766976553/widget.png?style=shield)](https://discord.gg/c9kQktCbsE)
 
 ## Features
 
@@ -126,4 +126,4 @@ A list of Discord bots using this template.
 | [Skylink-IF](https://top.gg/bot/929527099922993162)                    | ![](https://top.gg/api/widget/servers/929527099922993162.svg) |
 | [Topcoder TC-101](https://github.com/topcoder-platform/tc-discord-bot) |                                                               |
 
-Don't see your bot listed? [Contact us](https://discord.gg/Vyf6fEWbVr) to have your bot added!
+Don't see your bot listed? [Contact us](https://discord.gg/c9kQktCbsE) to have your bot added!
