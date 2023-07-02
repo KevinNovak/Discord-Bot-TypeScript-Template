@@ -12,9 +12,12 @@
         ],
         "partials": ["Message", "Channel", "Reaction"],
         "caches": {
+            "AutoModerationRuleManager": 0,
             "BaseGuildEmojiManager": 0,
+            "GuildEmojiManager": 0,
             "GuildBanManager": 0,
             "GuildInviteManager": 0,
+            "GuildScheduledEventManager": 0,
             "GuildStickerManager": 0,
             "MessageManager": 0,
             "PresenceManager": 0,
