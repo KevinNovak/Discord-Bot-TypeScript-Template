@@ -19,7 +19,7 @@ Do not provide any age-restricted content (as defined in Discord's safety polici
 -   Illegal, dangerous, and regulated goods such as firearms, tactical gear, alcohol, or drug use
 -   Gambling-adjacent or addictive behavior
 
-Content submitted to the bot through the use of commands arguments, text inputs, image inputs, or otherwise must adhere the above conditions. Violating these conditions may result in your account being reported to Discord Inc for further action.
+Content submitted to the bot through the use of commands arguments, text inputs, image inputs, or otherwise must adhere to the above conditions. Violating these conditions may result in your account being reported to Discord Inc for further action.
 
 ## Affiliation
 
