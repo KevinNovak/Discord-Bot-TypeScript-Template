@@ -12,7 +12,14 @@ Through inviting or interacting with the bot it may collect specific data as des
 
 The bot may not be used by individuals under the minimal age described in Discord's Terms of Service.
 
-Features, such as those which are marked as "NSFW" (Not safe for work) may not be used by individuals under the age of maturity in their country. Doing so will be seen as a violation of these terms.
+Do not provide any age-restricted content (as defined in Discord's safety policies) to the bot. Age-restricted content includes but is not limited to content and discussion related to:
+
+-   Sexually explicit material such as pornography or sexually explicit text
+-   Violent content
+-   Illegal, dangerous, and regulated goods such as firearms, tactical gear, alcohol, or drug use
+-   Gambling-adjacent or addictive behavior
+
+Content submitted to the bot through the use of commands arguments, text inputs, image inputs, or otherwise must adhere the above conditions. Violating these conditions may result in your account being reported to Discord Inc for further action.
 
 ## Affiliation
 
