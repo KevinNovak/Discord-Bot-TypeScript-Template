@@ -70,6 +70,7 @@
                         "value": [
                             "{{REF:links.sourceEmbed}}",
                             "{{REF:links.docsEmbed}}",
+                            "{{REF:links.termsEmbed}}",
                             "{{REF:links.voteEmbed}}",
                             "{{REF:links.donateEmbed}}",
                             "{{REF:links.supportEmbed}}",
@@ -294,6 +295,7 @@
             "sourceEmbed": "[View Source Code]({{COM:links.source}})",
             "supportEmbed": "[Join Support Server]({{COM:links.support}})",
             "templateEmbed": "[Discord Bot TypeScript Template]({{COM:links.template}})",
+            "termsEmbed": "[View Terms of Service]({{COM:links.terms}})",
             "voteEmbed": "[Vote for {{COM:bot.name}}!]({{COM:links.vote}})"
         }
     }

@@ -58,9 +58,9 @@ A `/help` command to get help on different areas of the bot or to contact suppor
 
 A `/info` command to get information about the bot, links to different resources, or developer information.
 
-![](https://i.imgur.com/jHp9rSG.png)
+![](https://i.imgur.com/0kKOaWM.png)
 
-![](https://i.imgur.com/cOyCg49.png)
+![](https://i.imgur.com/HNI4hwg.png)
 
 ### Test Command
 
