@@ -1,10 +1,24 @@
 import { APIApplicationCommandBasicOption, ApplicationCommandOptionType } from 'discord.js';
 
-import { HelpOption, InfoOption } from '../enums/index.js';
+import { DevCommandName, HelpOption, InfoOption } from '../enums/index.js';
 import { Language } from '../models/enum-helpers/index.js';
 import { Lang } from '../services/index.js';
 
 export class Args {
+    public static readonly DEV_COMMAND: APIApplicationCommandBasicOption = {
+        name: Lang.getRef('arguments.command', Language.Default),
+        name_localizations: Lang.getRefLocalizationMap('arguments.command'),
+        description: Lang.getRef('argDescs.devCommand', Language.Default),
+        description_localizations: Lang.getRefLocalizationMap('argDescs.devCommand'),
+        type: ApplicationCommandOptionType.String,
+        choices: [
+            {
+                name: Lang.getRef('devCommandNames.info', Language.Default),
+                name_localizations: Lang.getRefLocalizationMap('devCommandNames.info'),
+                value: DevCommandName.INFO,
+            },
+        ],
+    };
     public static readonly HELP_OPTION: APIApplicationCommandBasicOption = {
         name: Lang.getRef('arguments.option', Language.Default),
         name_localizations: Lang.getRefLocalizationMap('arguments.option'),
@@ -40,11 +54,6 @@ export class Args {
                 name: Lang.getRef('infoOptions.translate', Language.Default),
                 name_localizations: Lang.getRefLocalizationMap('infoOptions.translate'),
                 value: InfoOption.TRANSLATE,
-            },
-            {
-                name: Lang.getRef('infoOptions.dev', Language.Default),
-                name_localizations: Lang.getRefLocalizationMap('infoOptions.dev'),
-                value: InfoOption.DEV,
             },
         ],
     };
