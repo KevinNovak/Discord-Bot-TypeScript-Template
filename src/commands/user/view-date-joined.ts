@@ -11,7 +11,7 @@ import { Command, CommandDeferType } from '../index.js';
 export class ViewDateJoined implements Command {
     public names = [Lang.getRef('userCommands.viewDateJoined', Language.Default)];
     public cooldown = new RateLimiter(1, 5000);
-    public deferType = CommandDeferType.PUBLIC;
+    public deferType = CommandDeferType.HIDDEN;
     public requireClientPerms: PermissionsString[] = [];
 
     public async execute(intr: UserContextMenuCommandInteraction, data: EventData): Promise<void> {
