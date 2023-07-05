@@ -9,7 +9,7 @@ import { Command, CommandDeferType } from '../index.js';
 
 export class InfoCommand implements Command {
     public names = [Lang.getRef('chatCommands.info', Language.Default)];
-    public deferType = CommandDeferType.PUBLIC;
+    public deferType = CommandDeferType.HIDDEN;
     public requireClientPerms: PermissionsString[] = [];
 
     public async execute(intr: ChatInputCommandInteraction, data: EventData): Promise<void> {
