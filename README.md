@@ -56,17 +56,21 @@ A `/help` command to get help on different areas of the bot or to contact suppor
 
 ### Info Command
 
-A `/info` command to get information about the bot, links to different resources, or developer information.
+A `/info` command to get information about the bot or links to different resources.
 
 ![](https://i.imgur.com/0kKOaWM.png)
-
-![](https://i.imgur.com/HNI4hwg.png)
 
 ### Test Command
 
 A generic command, `/test`, which can be copied to create additional commands.
 
 ![](https://i.imgur.com/lqjkNKM.png)
+
+### Dev Command
+
+A `/dev` command which can only be run by the bot developer. Shows developer information, but can be extended to perform developer-only actions.
+
+![](https://i.imgur.com/2o1vEno.png)
 
 ### Welcome Message
 
