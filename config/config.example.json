@@ -48,7 +48,9 @@
     "jobs": {
         "updateServerCount": {
             "schedule": "0 */10 * * * *",
-            "log": false
+            "log": false,
+            "runOnce": false,
+            "initialDelaySecs": 0
         }
     },
     "rateLimiting": {
