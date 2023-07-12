@@ -12,7 +12,7 @@ let BotSites: BotSite[] = require('../../config/bot-sites.json');
 let Config = require('../../config/config.json');
 let Logs = require('../../lang/logs.json');
 
-export class UpdateServerCountJob implements Job {
+export class UpdateServerCountJob extends Job {
     public name = 'Update Server Count';
     public schedule: string = Config.jobs.updateServerCount.schedule;
     public log: boolean = Config.jobs.updateServerCount.log;
@@ -22,6 +22,7 @@ export class UpdateServerCountJob implements Job {
     private botSites: BotSite[];
 
     constructor(private shardManager: ShardingManager, private httpService: HttpService) {
+        super();
         this.botSites = BotSites.filter(botSite => botSite.enabled);
     }
 
