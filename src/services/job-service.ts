@@ -1,6 +1,6 @@
 import parser from 'cron-parser';
 import { DateTime } from 'luxon';
-import schedule, { RecurrenceSpecDateRange } from 'node-schedule';
+import schedule from 'node-schedule';
 import { createRequire } from 'node:module';
 
 import { Logger } from './index.js';
@@ -14,7 +14,7 @@ export class JobService {
 
     public start(): void {
         for (let job of this.jobs) {
-            let jobSchedule: Date | string | RecurrenceSpecDateRange = job.runOnce
+            let jobSchedule = job.runOnce
                 ? parser
                       .parseExpression(job.schedule, {
                           currentDate: DateTime.now()
