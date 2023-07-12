@@ -17,7 +17,7 @@ export class UpdateServerCountJob extends Job {
     public schedule: string = Config.jobs.updateServerCount.schedule;
     public log: boolean = Config.jobs.updateServerCount.log;
     public runOnce: boolean = Config.jobs.updateServerCount.runOnce;
-    public initialDelaySeconds: number = Config.jobs.updateServerCount.initialDelaySeconds;
+    public initialDelaySecs: number = Config.jobs.updateServerCount.initialDelaySecs;
 
     private botSites: BotSite[];
 

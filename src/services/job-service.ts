@@ -18,13 +18,13 @@ export class JobService {
                 ? parser
                       .parseExpression(job.schedule, {
                           currentDate: DateTime.now()
-                              .plus({ seconds: job.initialDelaySeconds })
+                              .plus({ seconds: job.initialDelaySecs })
                               .toJSDate(),
                       })
                       .next()
                       .toDate()
                 : {
-                      start: DateTime.now().plus({ seconds: job.initialDelaySeconds }).toJSDate(),
+                      start: DateTime.now().plus({ seconds: job.initialDelaySecs }).toJSDate(),
                       rule: job.schedule,
                   };
 

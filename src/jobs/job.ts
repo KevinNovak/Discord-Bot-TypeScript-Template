@@ -3,6 +3,6 @@ export abstract class Job {
     abstract log: boolean;
     abstract schedule: string;
     runOnce = false;
-    initialDelaySeconds = 0;
+    initialDelaySecs = 0;
     abstract run(): Promise<void>;
 }

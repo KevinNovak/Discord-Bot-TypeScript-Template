@@ -50,7 +50,7 @@
             "schedule": "0 */10 * * * *",
             "log": false,
             "runOnce": false,
-            "initialDelaySeconds": 0
+            "initialDelaySecs": 0
         }
     },
     "rateLimiting": {
