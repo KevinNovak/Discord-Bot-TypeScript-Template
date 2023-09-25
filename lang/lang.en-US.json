@@ -54,6 +54,9 @@
             "test": {
                 "description": "Test command works!"
             },
+            "star": {
+                "description": "Updated!"
+            },
             "viewDateJoined": {
                 "description": "{{TARGET}} joined on {{DATE}}!"
             },
@@ -192,13 +195,14 @@
             "dev": "dev",
             "help": "help",
             "info": "info",
-            "test": "test"
+            "test": "test",
+            "star": "star"
         },
         "userCommands": {
             "viewDateJoined": "View Date Joined"
         },
         "messageCommands": {
-            "viewDateSent": "View Date Sent"
+            "viewDateSent": "View Date Sent",
         },
         "arguments": {
             "command": "command",
@@ -208,7 +212,8 @@
             "dev": "Developer use only.",
             "help": "Find help or contact support.",
             "info": "View bot info.",
-            "test": "Run the test command."
+            "test": "Run the test command.",
+            "star": "Update the shooting star list."
         },
         "argDescs": {
             "devCommand": "Command.",
