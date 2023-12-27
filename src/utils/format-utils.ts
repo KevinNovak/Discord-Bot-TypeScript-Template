@@ -52,6 +52,6 @@ export class FormatUtils {
     }
 
     public static fileSize(bytes: number): string {
-        return filesize(bytes, { output: 'string', pad: true, round: 2 }) as string;
+        return filesize(bytes, { output: 'string', pad: true, round: 2 });
     }
 }
