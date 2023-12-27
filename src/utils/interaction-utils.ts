@@ -75,8 +75,8 @@ export class InteractionUtils {
                 typeof content === 'string'
                     ? { content }
                     : content instanceof EmbedBuilder
-                    ? { embeds: [content] }
-                    : content;
+                      ? { embeds: [content] }
+                      : content;
             if (intr.deferred || intr.replied) {
                 return await intr.followUp({
                     ...options,
@@ -130,8 +130,8 @@ export class InteractionUtils {
                 typeof content === 'string'
                     ? { content }
                     : content instanceof EmbedBuilder
-                    ? { embeds: [content] }
-                    : content;
+                      ? { embeds: [content] }
+                      : content;
             return await intr.editReply(options);
         } catch (error) {
             if (
@@ -155,8 +155,8 @@ export class InteractionUtils {
                 typeof content === 'string'
                     ? { content }
                     : content instanceof EmbedBuilder
-                    ? { embeds: [content] }
-                    : content;
+                      ? { embeds: [content] }
+                      : content;
             return await intr.update({
                 ...options,
                 fetchReply: true,

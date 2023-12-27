@@ -16,7 +16,10 @@ export class ButtonHandler implements EventHandler {
         Config.rateLimiting.buttons.interval * 1000
     );
 
-    constructor(private buttons: Button[], private eventDataService: EventDataService) {}
+    constructor(
+        private buttons: Button[],
+        private eventDataService: EventDataService
+    ) {}
 
     public async process(intr: ButtonInteraction): Promise<void> {
         // Don't respond to self, or other bots

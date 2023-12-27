@@ -34,8 +34,8 @@ export class MessageUtils {
                 typeof content === 'string'
                     ? { content }
                     : content instanceof EmbedBuilder
-                    ? { embeds: [content] }
-                    : content;
+                      ? { embeds: [content] }
+                      : content;
             return await target.send(options);
         } catch (error) {
             if (
@@ -59,8 +59,8 @@ export class MessageUtils {
                 typeof content === 'string'
                     ? { content }
                     : content instanceof EmbedBuilder
-                    ? { embeds: [content] }
-                    : content;
+                      ? { embeds: [content] }
+                      : content;
             return await msg.reply(options);
         } catch (error) {
             if (
@@ -84,8 +84,8 @@ export class MessageUtils {
                 typeof content === 'string'
                     ? { content }
                     : content instanceof EmbedBuilder
-                    ? { embeds: [content] }
-                    : content;
+                      ? { embeds: [content] }
+                      : content;
             return await msg.edit(options);
         } catch (error) {
             if (

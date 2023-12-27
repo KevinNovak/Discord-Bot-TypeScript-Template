@@ -14,7 +14,10 @@ export class TriggerHandler {
         Config.rateLimiting.triggers.interval * 1000
     );
 
-    constructor(private triggers: Trigger[], private eventDataService: EventDataService) {}
+    constructor(
+        private triggers: Trigger[],
+        private eventDataService: EventDataService
+    ) {}
 
     public async process(msg: Message): Promise<void> {
         // Check if user is rate limited
