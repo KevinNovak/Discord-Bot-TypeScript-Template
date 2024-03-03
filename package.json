@@ -32,7 +32,11 @@
         "start:pm2": "npm run build && npm run pm2:start",
         "pm2:start": "pm2 start process.json",
         "pm2:stop": "pm2 stop process.json",
-        "pm2:delete": "pm2 delete process.json"
+        "pm2:delete": "pm2 delete process.json",
+        "dev": "tsc-watch --onSuccess \"yarn watch\"",
+        "dev:manager": "tsc-watch --onSuccess \"yarn watch:manager\"",
+        "watch": "nodemon --watch './**/*.{ts}' --exec ts-node src/start-bot.ts",
+        "watch:manager": "nodemon --watch './**/*.{ts}' --exec ts-node src/manager-bot.ts"
     },
     "dependencies": {
         "@discordjs/rest": "2.2.0",
@@ -65,7 +69,10 @@
         "eslint": "^8.56.0",
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-unicorn": "^50.0.1",
+        "nodemon": "^3.1.0",
         "prettier": "^3.1.1",
+        "ts-node": "^10.9.2",
+        "tsc-watch": "^6.0.4",
         "typescript": "^5.3.3"
     }
 }
