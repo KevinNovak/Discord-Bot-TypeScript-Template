@@ -12,7 +12,7 @@ import {
     PartialUser,
     RateLimitData,
     RESTEvents,
-    User,
+    User, VoiceState,
 } from 'discord.js';
 import { createRequire } from 'node:module';
 
@@ -23,6 +23,7 @@ import {
     GuildLeaveHandler,
     MessageHandler,
     ReactionHandler,
+    VoiceStateUpdateHandler,
 } from '../events/index.js';
 import { JobService, Logger } from '../services/index.js';
 import { PartialUtils } from '../utils/index.js';
@@ -44,7 +45,8 @@ export class Bot {
         private commandHandler: CommandHandler,
         private buttonHandler: ButtonHandler,
         private reactionHandler: ReactionHandler,
-        private jobService: JobService
+        private voiceStateUpdateHandler: VoiceStateUpdateHandler,
+        private jobService: JobService,
     ) {}
 
     public async start(): Promise<void> {
@@ -59,6 +61,12 @@ export class Bot {
         );
         this.client.on(Events.GuildCreate, (guild: Guild) => this.onGuildJoin(guild));
         this.client.on(Events.GuildDelete, (guild: Guild) => this.onGuildLeave(guild));
+        this.client.on(Events.VoiceServerUpdate, (oldState: VoiceState, newState: VoiceState) =>
+            this.onVoiceStateUpdate(oldState, newState)
+        );
+        this.client.on(Events.VoiceStateUpdate, (oldState: VoiceState, newState: VoiceState) =>
+            this.onVoiceStateUpdate(oldState, newState)
+        );
         this.client.on(Events.MessageCreate, (msg: Message) => this.onMessage(msg));
         this.client.on(Events.InteractionCreate, (intr: Interaction) => this.onInteraction(intr));
         this.client.on(
@@ -117,6 +125,20 @@ export class Bot {
             await this.guildLeaveHandler.process(guild);
         } catch (error) {
             Logger.error(Logs.error.guildLeave, error);
+        }
+    }
+
+    private async onVoiceStateUpdate(oldState: VoiceState, newState: VoiceState): Promise<void> {
+        Logger.info('Voice state update')
+        Logger.info(Logs.info.voiceStateUpdate);
+        if (!this.ready || Debug.dummyMode.enabled) {
+            return;
+        }
+
+        try {
+            await this.voiceStateUpdateHandler.process(oldState, newState);
+        } catch (error) {
+            Logger.error(Logs.error.voiceStateUpdate, error);
         }
     }
 
