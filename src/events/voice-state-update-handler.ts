@@ -44,9 +44,10 @@ export class VoiceStateUpdateHandler {
             Logger.warn(`No channel association found for channel ID ${newState.channelId}`);
             return;
         }
+        const voiceChannelAt = `<#${voiceChannel.id}>`;
         await MessageUtils.send(
             associatedTextChannel,
-            `${newState.member.user.username} has joined the voice channel.`
+            `${newState.member.user.username} has joined ${voiceChannelAt}.`
         );
     }
 
