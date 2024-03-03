@@ -13,11 +13,22 @@ export class VoiceStateUpdateHandler {
     }
 
     public async process(oldState: VoiceState, newState: VoiceState): Promise<void> {
+        let oldVoiceChannelId = oldState.channelId;
         let newVoiceChannelId = newState.channelId;
+
         Logger.info(`Voice state update: ${oldState.channelId} -> ${newVoiceChannelId}`);
-        // It will be null -> null on leaving (so return)
-        // And null -> channel ID on joining
-        if (oldState.channelId === newState.channelId) return;
+
+        // This is a mute/unmute style event
+        if (oldVoiceChannelId === newVoiceChannelId) {
+            return;
+        }
+        // Leave event, since we know the new channel isn't equal
+        // newChannel being null means they left and it being populated means they joined
+        // a different voice channel
+        if (oldVoiceChannelId !== null) {
+            Logger.info(`User left voice channel: ${oldVoiceChannelId}`);
+            return;
+        }
 
         const guild = newState.guild;
 
