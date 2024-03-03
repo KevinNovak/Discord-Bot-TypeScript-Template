@@ -104,7 +104,7 @@ async function start(): Promise<void> {
 
     // Bot
     let bot = new Bot(
-        Config.client.token,
+        config.discord.token,
         client,
         guildJoinHandler,
         guildLeaveHandler,
@@ -119,7 +119,7 @@ async function start(): Promise<void> {
     // Register
     if (process.argv[2] == 'commands') {
         try {
-            let rest = new REST({ version: '10' }).setToken(Config.client.token);
+            let rest = new REST({ version: '10' }).setToken(config.discord.token);
             let commandRegistrationService = new CommandRegistrationService(rest);
             let localCmds = [
                 ...Object.values(ChatCommandMetadata).sort((a, b) => (a.name > b.name ? 1 : -1)),
