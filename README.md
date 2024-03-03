@@ -5,13 +5,11 @@
 [![Stars](https://img.shields.io/github/stars/KevinNovak/Discord-Bot-TypeScript-Template.svg)](https://github.com/KevinNovak/Discord-Bot-TypeScript-Template/stargazers)
 [![Pull Requests](https://img.shields.io/badge/Pull%20Requests-Welcome!-brightgreen)](https://github.com/KevinNovak/Discord-Bot-TypeScript-Template/pulls)
 
-**Discord bot** - A discord.js bot template written with TypeScript.
+**Discord bot** - A discord.js bot written with TypeScript.
 
 ## Introduction
 
-This template was created to give developers a starting point for new Discord bots, so that much of the initial setup can be avoided and developers can instead focus on meaningful bot features. Developers can simply copy this repo, follow the [setup instructions](#setup) below, and have a working bot with many [boilerplate features](#features) already included!
-
-For help using this template, feel free to [join our support server](https://discord.gg/c9kQktCbsE)!
+Follow the [setup instructions](#setup) below, and have a working bot with many [boilerplate features](#features) included!
 
 [![Discord Shield](https://discord.com/api/guilds/660711235766976553/widget.png?style=shield)](https://discord.gg/c9kQktCbsE)
 
