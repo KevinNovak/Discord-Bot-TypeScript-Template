@@ -44,6 +44,7 @@ async function start(): Promise<void> {
 
     // Client
     let client = new CustomClient({
+        /** https://discord-api-types.dev/api/discord-api-types-v10/enum/GatewayIntentBits#Index */
         intents: Config.client.intents,
         partials: (Config.client.partials as string[]).map(partial => Partials[partial]),
         makeCache: Options.cacheWithLimits({
