@@ -12,6 +12,7 @@ import {
 } from './commands/index.js';
 import { ViewDateSent } from './commands/message/index.js';
 import { ViewDateJoined } from './commands/user/index.js';
+import { config } from './config.js';
 import {
     ButtonHandler,
     CommandHandler,
