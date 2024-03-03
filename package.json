@@ -1,14 +1,14 @@
 {
-    "name": "my-bot",
+    "name": "zutebot",
     "version": "1.0.0",
-    "author": "Kevin Novak",
-    "description": "A discord.js bot template written with TypeScript",
-    "license": "MIT",
+    "author": "kvenn",
+    "description": "A discord.js bot written with TypeScript",
     "private": true,
     "engines": {
-        "node": ">=16.11.0"
+        "node": "20.x"
     },
     "type": "module",
+    "main": "dist/start-bot.js",
     "exports": [
         "./dist/start-bot.js",
         "./dist/start-manager.js"
@@ -33,8 +33,8 @@
         "pm2:start": "pm2 start process.json",
         "pm2:stop": "pm2 stop process.json",
         "pm2:delete": "pm2 delete process.json",
-        "dev": "tsc-watch --onSuccess \"yarn watch\"",
-        "dev:manager": "tsc-watch --onSuccess \"yarn watch:manager\"",
+        "dev": "tsc-watch --onSuccess \"npm run watch\"",
+        "dev:manager": "tsc-watch --onSuccess \"npm run watch:manager\"",
         "watch": "nodemon --watch './**/*.{ts}' --exec ts-node src/start-bot.ts",
         "watch:manager": "nodemon --watch './**/*.{ts}' --exec ts-node src/manager-bot.ts"
     },
