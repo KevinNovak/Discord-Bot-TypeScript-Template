@@ -244,4 +244,10 @@ export class ClientUtils {
                 Lang.getRegex('channelRegexes.bot', langCode).test(channel.name)
         ) as TextChannel | NewsChannel;
     }
+
+    public static async getVoiceChannels(guild: Guild): Promise<VoiceChannel[]> {
+        return [...(await guild.channels.fetch()).values()].filter(
+            channel => channel instanceof VoiceChannel
+        ) as VoiceChannel[];
+    }
 }
