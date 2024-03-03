@@ -1,4 +1,4 @@
-# Discord Bot TypeScript Template
+# ZuteBot
 
 [![discord.js](https://img.shields.io/github/package-json/dependency-version/KevinNovak/Discord-Bot-TypeScript-Template/discord.js)](https://discord.js.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org/licenses/MIT)
@@ -109,19 +109,42 @@ You can run the bot in multiple modes:
 1. Normal Mode
     - Type `npm start`.
     - Starts a single instance of the bot.
-2. Manager Mode
+2. Live Update Mode
+    - Type `npm run watch`.
+    - Starts a single instance of the bot and watches for file changes to restart the bot.
+3. Manager Mode
     - Type `npm run start:manager`.
     - Starts a shard manager which will spawn multiple bot shards.
-3. PM2 Mode
+4. PM2 Mode
     - Type `npm run start:pm2`.
     - Similar to Manager Mode but uses [PM2](https://pm2.keymetrics.io/) to manage processes.
+
+## Adding Event Handlers
+
+1. Add the required intent to config.json (if not already present).
+2. Create the "handler" file in the `src/events` folder.
+3. Add the handler to the `src/events/index.ts` file.
+4. Initialize and pass handler in the `src/start-bot.ts` file.
+
+## Patterns
+
+### EventDataService
+
+* This is the "context" passed to all handlers.
+* You can add getter functions to query a database, for example.
+
+### i18n with [Linguini](https://github.com/KevinNovak/Linguini)
+
+* This bot uses Linguini, an i18n library made by the same author.
+* It's not great, so I won't be using it anymore.
+* `Lang.*` to get the things nested under `data` in `lang.*.json` 
 
 ## Bots Using This Template
 
 A list of Discord bots using this template.
 
 | Bot                                                                    | Servers                                                       |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------- |
+|------------------------------------------------------------------------|---------------------------------------------------------------|
 | [Birthday Bot](https://top.gg/bot/656621136808902656)                  | ![](https://top.gg/api/widget/servers/656621136808902656.svg) |
 | [QOTD Bot](https://top.gg/bot/713586207119900693)                      | ![](https://top.gg/api/widget/servers/713586207119900693.svg) |
 | [Friend Time](https://top.gg/bot/471091072546766849)                   | ![](https://top.gg/api/widget/servers/471091072546766849.svg) |

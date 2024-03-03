@@ -20,6 +20,7 @@ import {
     MessageHandler,
     ReactionHandler,
     TriggerHandler,
+    VoiceStateUpdateHandler,
 } from './events/index.js';
 import { CustomClient } from './extensions/index.js';
 import { Job } from './jobs/index.js';
@@ -93,6 +94,7 @@ async function start(): Promise<void> {
     let triggerHandler = new TriggerHandler(triggers, eventDataService);
     let messageHandler = new MessageHandler(triggerHandler);
     let reactionHandler = new ReactionHandler(reactions, eventDataService);
+    let voiceStateUpdateHandler = new VoiceStateUpdateHandler(eventDataService);
 
     // Jobs
     let jobs: Job[] = [
@@ -109,6 +111,7 @@ async function start(): Promise<void> {
         commandHandler,
         buttonHandler,
         reactionHandler,
+        voiceStateUpdateHandler,
         new JobService(jobs)
     );
 
