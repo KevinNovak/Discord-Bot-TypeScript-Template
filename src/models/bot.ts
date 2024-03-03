@@ -62,9 +62,6 @@ export class Bot {
         );
         this.client.on(Events.GuildCreate, (guild: Guild) => this.onGuildJoin(guild));
         this.client.on(Events.GuildDelete, (guild: Guild) => this.onGuildLeave(guild));
-        // this.client.on(Events.VoiceServerUpdate, (oldState: VoiceState, newState: VoiceState) =>
-        //     this.onVoiceStateUpdate(oldState, newState)
-        // );
         this.client.on(Events.VoiceStateUpdate, (oldState: VoiceState, newState: VoiceState) =>
             this.onVoiceStateUpdate(oldState, newState)
         );
@@ -130,8 +127,6 @@ export class Bot {
     }
 
     private async onVoiceStateUpdate(oldState: VoiceState, newState: VoiceState): Promise<void> {
-        Logger.info('Voice state update');
-        Logger.info(Logs.info.voiceStateUpdate);
         if (!this.ready || Debug.dummyMode.enabled) {
             return;
         }
