@@ -124,7 +124,20 @@ You can run the bot in multiple modes:
 1. Add the required intent to config.json (if not already present).
 2. Create the "handler" file in the `src/events` folder.
 3. Add the handler to the `src/events/index.ts` file.
-4. 
+4. Initialize and pass handler in the `src/start-bot.ts` file.
+
+## Patterns
+
+### EventDataService
+
+* This is the "context" passed to all handlers.
+* You can add getter functions to query a database, for example.
+
+### i18n with [Linguini](https://github.com/KevinNovak/Linguini)
+
+* This bot uses Linguini, an i18n library made by the same author.
+* It's not great, so I won't be using it anymore.
+* `Lang.*` to get the things nested under `data` in `lang.*.json` 
 
 ## Bots Using This Template
 
