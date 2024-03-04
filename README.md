@@ -126,10 +126,13 @@ You can run the bot in multiple modes:
 2. Live Update Mode
     - Type `npm run watch`.
     - Starts a single instance of the bot and watches for file changes to restart the bot.
-3. Manager Mode
+3. Debugging
+    - I have the config set on IntelliJ but on VSCode it might be something like:
+    - `node -r dotenv/config --no-warnings=ExperimentalWarning --loader ts-node/esm src/start-bot.ts`
+4. Manager Mode
     - Type `npm run start:manager`.
     - Starts a shard manager which will spawn multiple bot shards.
-4. PM2 Mode
+5. PM2 Mode
     - Type `npm run start:pm2`.
     - Similar to Manager Mode but uses [PM2](https://pm2.keymetrics.io/) to manage processes.
 
