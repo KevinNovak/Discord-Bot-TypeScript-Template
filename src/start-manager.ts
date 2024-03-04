@@ -1,4 +1,5 @@
 import { ShardingManager } from 'discord.js';
+import dotenv from 'dotenv-safe';
 import { createRequire } from 'node:module';
 import 'reflect-metadata';
 
@@ -9,7 +10,9 @@ import { Api } from './models/api.js';
 import { Manager } from './models/manager.js';
 import { HttpService, JobService, Logger, MasterApiService } from './services/index.js';
 import { MathUtils, ShardUtils } from './utils/index.js';
+import 'global-agent/bootstrap.js';
 
+dotenv.config();
 const require = createRequire(import.meta.url);
 let Config = require('../config/config.json');
 let Debug = require('../config/debug.json');
