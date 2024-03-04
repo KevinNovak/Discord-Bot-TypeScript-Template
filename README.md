@@ -82,6 +82,8 @@ A welcome message is sent to the server and owner when the bot is added.
     - Navigate to the `config` folder of this project.
     - Copy all files ending in `.example.json` and remove the `.example` from the copied file names.
         - Ex: `config.example.json` should be copied and renamed as `config.json`.
+    - Copy .env.example and remove the .example from the copied file name.
+        - Ex: `.env.example` should be copied and renamed as `.env`.
 2. Obtain a bot token.
     - You'll need to create a new bot in your [Discord Developer Portal](https://discord.com/developers/applications/).
         - See [here](https://www.writebots.com/discord-bot-token/) for detailed instructions.
@@ -90,7 +92,7 @@ A welcome message is sent to the server and owner when the bot is added.
     - Open the `config/config.json` file.
     - You'll need to edit the following values:
         - `client.id` - Your discord bot's [user ID](https://techswift.org/2020/04/22/how-to-find-your-user-id-on-discord/).
-        - `client.token` - Your discord bot's token.
+    - Add the real values to the .env file (token is most important)
 4. Install packages.
     - Navigate into the downloaded source files and type `npm install`.
 5. Register commands.
@@ -99,6 +101,20 @@ A welcome message is sent to the server and owner when the bot is added.
         - Run this script any time you change a command name, structure, or add/remove commands.
         - This is so Discord knows what your commands look like.
         - It may take up to an hour for command changes to appear.
+
+## Linting and styles
+
+* Set your project to automatically apply ESLint on save
+* Set up prettier to format your code on save
+* Configure your IDE to add imports with .js at the end automatically
+  * Alt for this project: https://stackoverflow.com/a/76678279/1759443
+
+## Testing Locally
+
+[You can't](https://stackoverflow.com/a/71057844/1759443).
+
+But actually I just click the run button and that seems to stop the heroku instance. Or just test in prod.
+
 
 ## Start Scripts
 
