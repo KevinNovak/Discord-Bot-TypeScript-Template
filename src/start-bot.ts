@@ -1,5 +1,6 @@
 import { REST } from '@discordjs/rest';
 import { Options, Partials } from 'discord.js';
+import dotenv from 'dotenv-safe';
 import { createRequire } from 'node:module';
 
 import { Button } from './buttons/index.js';
@@ -34,6 +35,9 @@ import {
     Logger,
 } from './services/index.js';
 import { Trigger } from './triggers/index.js';
+import 'global-agent/bootstrap.js';
+
+dotenv.config();
 
 const require = createRequire(import.meta.url);
 let Config = require('../config/config.json');
