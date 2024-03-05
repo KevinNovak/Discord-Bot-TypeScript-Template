@@ -47,8 +47,7 @@ export class VoiceStateUpdateHandler {
         const voiceChannelAt = `<#${voiceChannel.id}>`;
         await MessageUtils.send(
             associatedTextChannel,
-            `📣📣📣📣📣📣📣📣📣📣📣📣📣📣📣📣📣📣📣📣📣
-            ${newState.member.user.username} has joined ${voiceChannelAt}.`
+            `📣 ${newState.member.user.username} has joined ${voiceChannelAt} 📣`
         );
     }
 
