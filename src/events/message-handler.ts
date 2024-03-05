@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { Message } from 'discord.js';
+import stream from 'node:stream';
 
 import { EventHandler, TriggerHandler } from './index.js';
 import { Logger } from '../services/index.js';
@@ -13,6 +14,15 @@ export class MessageHandler implements EventHandler {
         // Don't respond to system messages or self
         if (msg.system || msg.author.id === msg.client.user?.id) {
             return;
+        }
+
+        // If Harrison or Quinn messages a strong CSV, upload it to their personal servers
+        if (msg.attachments.size > 0) {
+            try {
+                handleStrongCSVUpload(msg);
+            } catch (err) {
+                Logger.error('Error handling strong CSV upload', err);
+            }
         }
 
         const urlRegex = /https:\/\/www\.xbox\.com\/play\/media\/(.+)/;
@@ -49,6 +59,52 @@ export class MessageHandler implements EventHandler {
         await this.triggerHandler.process(msg);
     }
 }
+
+/**
+ * Uploads a strong CSV export to Harrison or Quinn's personal servers.
+ * @param msg Discord Message
+ */
+const handleStrongCSVUpload = async (msg: Message): Promise<void> => {
+    for (const attachment of msg.attachments.values()) {
+        if (!attachment.url.endsWith('strong.csv')) {
+            return;
+        }
+
+        if (msg.author.displayName !== 'nanasparty' && msg.author.displayName !== 'qshannn') {
+            return;
+        }
+
+        const response = await axios({
+            method: 'get',
+            url: attachment.url,
+            responseType: 'stream',
+        });
+
+        const passThrough = new stream.PassThrough();
+        response.data.pipe(passThrough);
+
+        const url =
+            msg.author.displayName === 'nanasparty'
+                ? 'https://lifts.hborg.org/upload-lifts'
+                : 'https://lifts.quinn.io/upload-lifts';
+
+        const uploadResponse = await axios.post(url, passThrough, {
+            headers: {
+                'Content-Type': 'text/csv',
+            },
+            maxContentLength: Infinity,
+            maxBodyLength: Infinity,
+        });
+
+        stream.finished(uploadResponse.data, err => {
+            if (err) {
+                Logger.error(`Error uploading CSV file to ${url}`, err);
+            } else {
+                Logger.info(`CSV file uploaded successfully to ${url}`);
+            }
+        });
+    }
+};
 
 // const getProxyConfig = (): AxiosProxyConfig => {
 //     const password = config.proxy.password;
