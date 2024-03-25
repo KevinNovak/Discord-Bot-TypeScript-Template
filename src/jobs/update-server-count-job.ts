@@ -31,6 +31,7 @@ export class UpdateServerCountJob extends Job {
 
     public async run(): Promise<void> {
         let serverCount = await ShardUtils.serverCount(this.shardManager);
+        let shardCount = ShardUtils.shardIds(this.shardManager).length.toString();
 
         let type = ActivityType.Streaming;
         let name = `to ${serverCount.toLocaleString()} servers`;
@@ -51,7 +52,9 @@ export class UpdateServerCountJob extends Job {
         for (let botSite of this.botSites) {
             try {
                 let body = JSON.parse(
-                    botSite.body.replaceAll('{{SERVER_COUNT}}', serverCount.toString())
+                    botSite.body
+                        .replaceAll('{{SERVER_COUNT}}', serverCount.toString())
+                        .replaceAll('{{SHARD_COUNT}}', shardCount)
                 );
                 let res = await this.httpService.post(botSite.url, botSite.authorization, body);
 
