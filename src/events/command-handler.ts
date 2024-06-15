@@ -26,10 +26,7 @@ export class CommandHandler implements EventHandler {
         Config.rateLimiting.commands.interval * 1000
     );
 
-    constructor(
-        public commands: Command[],
-        private eventDataService: EventDataService
-    ) {}
+    constructor(public commands: Command[], private eventDataService: EventDataService) {}
 
     public async process(intr: CommandInteraction | AutocompleteInteraction): Promise<void> {
         // Don't respond to self, or other bots
@@ -144,6 +141,12 @@ export class CommandHandler implements EventHandler {
         } catch (error) {
             await this.sendError(intr, data);
 
+            let args = intr.options.data
+                .map(option => {
+                    return `${option.name}: ${option.value}`;
+                })
+                .join(', ');
+
             // Log command error
             Logger.error(
                 intr.channel instanceof TextChannel ||
@@ -158,11 +161,13 @@ export class CommandHandler implements EventHandler {
                           .replaceAll('{CHANNEL_ID}', intr.channel.id)
                           .replaceAll('{GUILD_NAME}', intr.guild?.name)
                           .replaceAll('{GUILD_ID}', intr.guild?.id)
+                          .replaceAll('{ARGUMENTS}', args)
                     : Logs.error.commandOther
                           .replaceAll('{INTERACTION_ID}', intr.id)
                           .replaceAll('{COMMAND_NAME}', commandName)
                           .replaceAll('{USER_TAG}', intr.user.tag)
-                          .replaceAll('{USER_ID}', intr.user.id),
+                          .replaceAll('{USER_ID}', intr.user.id)
+                          .replaceAll('{ARGUMENTS}', args),
                 error
             );
         }
