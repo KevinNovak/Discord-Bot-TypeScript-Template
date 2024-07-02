@@ -60,11 +60,11 @@
         "@types/node": "^20.11.28",
         "@types/node-schedule": "2.1.6",
         "@types/remove-markdown": "0.3.4",
-        "@typescript-eslint/eslint-plugin": "^7.2.0",
-        "@typescript-eslint/parser": "^7.2.0",
+        "@typescript-eslint/eslint-plugin": "^7.15.0",
+        "@typescript-eslint/parser": "^7.15.0",
         "eslint": "^8.57.0",
         "eslint-plugin-import": "^2.29.1",
-        "eslint-plugin-unicorn": "^51.0.1",
+        "eslint-plugin-unicorn": "^54.0.0",
         "prettier": "^3.2.5",
         "typescript": "^5.4.2"
     }
