@@ -168,8 +168,9 @@ export class ClientUtils {
             }
 
             let search = input.trim().toLowerCase().replace(/^#/, '').replaceAll(' ', '-');
-            let channels = [...(await guild.channels.fetch()).values()]
-                .filter(channel => channel instanceof NewsChannel || channel instanceof TextChannel)
+            let channels = [...(await guild.channels.fetch()).values()].filter(
+                channel => channel instanceof NewsChannel || channel instanceof TextChannel
+            );
             return (
                 channels.find(channel => channel.name.toLowerCase() === search) ??
                 channels.find(channel => channel.name.toLowerCase().includes(search))
@@ -203,10 +204,9 @@ export class ClientUtils {
             }
 
             let search = input.trim().toLowerCase().replace(/^#/, '');
-            let channels = [...(await guild.channels.fetch()).values()]
-                .filter(
-                    channel => channel instanceof VoiceChannel || channel instanceof StageChannel
-                )
+            let channels = [...(await guild.channels.fetch()).values()].filter(
+                channel => channel instanceof VoiceChannel || channel instanceof StageChannel
+            );
             return (
                 channels.find(channel => channel.name.toLowerCase() === search) ??
                 channels.find(channel => channel.name.toLowerCase().includes(search))

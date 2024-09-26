@@ -30,11 +30,19 @@ export class Logger {
     private static shardId: number;
 
     public static info(message: string, obj?: any): void {
-        obj ? logger.info(obj, message) : logger.info(message);
+        if (obj) {
+            logger.info(obj, message);
+        } else {
+            logger.info(message);
+        }
     }
 
     public static warn(message: string, obj?: any): void {
-        obj ? logger.warn(obj, message) : logger.warn(message);
+        if (obj) {
+            logger.warn(obj, message);
+        } else {
+            logger.warn(message);
+        }
     }
 
     public static async error(message: string, obj?: any): Promise<void> {
