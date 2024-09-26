@@ -38,6 +38,7 @@
             "error",
             {
                 "argsIgnorePattern": "^_",
+                "caughtErrorsIgnorePattern": "^_",
                 "varsIgnorePattern": "^_"
             }
         ],
