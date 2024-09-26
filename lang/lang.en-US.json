@@ -260,6 +260,7 @@
             "Stream": "Video",
             "UseApplicationCommands": "Use Application Commands",
             "UseEmbeddedActivities": "Use Activities",
+            "UseExternalApps": "Use External Apps",
             "UseExternalEmojis": "Use External Emoji",
             "UseExternalSounds": "Use External Sounds",
             "UseExternalStickers": "Use External Stickers",

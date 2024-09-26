@@ -7,8 +7,8 @@ import {
     Message,
     MessageEditOptions,
     MessageReaction,
+    SendableChannels,
     StartThreadOptions,
-    TextBasedChannel,
     ThreadChannel,
     User,
 } from 'discord.js';
@@ -26,7 +26,7 @@ const IGNORED_ERRORS = [
 
 export class MessageUtils {
     public static async send(
-        target: User | TextBasedChannel,
+        target: User | SendableChannels,
         content: string | EmbedBuilder | BaseMessageOptions
     ): Promise<Message> {
         try {

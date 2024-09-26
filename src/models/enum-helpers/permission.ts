@@ -210,6 +210,11 @@ export class Permission {
                 return Lang.getRef('permissions.UseEmbeddedActivities', langCode);
             },
         },
+        UseExternalApps: {
+            displayName(langCode: Locale): string {
+                return Lang.getRef('permissions.UseExternalApps', langCode);
+            },
+        },
         UseExternalEmojis: {
             displayName(langCode: Locale): string {
                 return Lang.getRef('permissions.UseExternalEmojis', langCode);
