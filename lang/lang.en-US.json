@@ -192,7 +192,9 @@
             "dev": "dev",
             "help": "help",
             "info": "info",
-            "test": "test"
+            "test": "test",
+            "echo": "echo",
+            "select": "select"
         },
         "userCommands": {
             "viewDateJoined": "View Date Joined"
@@ -208,7 +210,9 @@
             "dev": "Developer use only.",
             "help": "Find help or contact support.",
             "info": "View bot info.",
-            "test": "Run the test command."
+            "test": "Run the test command.",
+            "echo": "Echo a message.",
+            "select": "Select from menu."
         },
         "argDescs": {
             "devCommand": "Command.",

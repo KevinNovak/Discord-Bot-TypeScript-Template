@@ -3,7 +3,8 @@ import { Options, Partials } from 'discord.js';
 import { createRequire } from 'node:module';
 
 import { Button } from './buttons/index.js';
-import { DevCommand, HelpCommand, InfoCommand, TestCommand } from './commands/chat/index.js';
+import { EchoModal, Modal } from './modals/index.js';
+import { DevCommand, EchoCommand, HelpCommand, InfoCommand, TestCommand,SelectMenuCommand } from './commands/chat/index.js';
 import {
     ChatCommandMetadata,
     Command,
@@ -14,12 +15,14 @@ import { ViewDateSent } from './commands/message/index.js';
 import { ViewDateJoined } from './commands/user/index.js';
 import {
     ButtonHandler,
+    ModalHandler,
     CommandHandler,
     GuildJoinHandler,
     GuildLeaveHandler,
     MessageHandler,
     ReactionHandler,
     TriggerHandler,
+    SelectMenuHandler,
 } from './events/index.js';
 import { CustomClient } from './extensions/index.js';
 import { Job } from './jobs/index.js';
@@ -32,6 +35,8 @@ import {
     Logger,
 } from './services/index.js';
 import { Trigger } from './triggers/index.js';
+import { SelectMenu } from './select-menus/index.js';
+import { DemoSelectMenu } from './select-menus/demo-select-menu.js';
 
 const require = createRequire(import.meta.url);
 let Config = require('../config/config.json');
@@ -60,6 +65,8 @@ async function start(): Promise<void> {
         new HelpCommand(),
         new InfoCommand(),
         new TestCommand(),
+        new EchoCommand(),
+        new SelectMenuCommand(),
 
         // Message Context Commands
         new ViewDateSent(),
@@ -73,6 +80,18 @@ async function start(): Promise<void> {
     // Buttons
     let buttons: Button[] = [
         // TODO: Add new buttons here
+    ];
+
+    // Modals
+    let modals: Modal[] = [
+        new EchoModal(),
+        // TODO: Add new modals here
+    ];
+
+    // Select Menus
+    let selectMenus: SelectMenu[] = [
+        new DemoSelectMenu(),
+        // TODO: Add new select menus here
     ];
 
     // Reactions
@@ -90,6 +109,8 @@ async function start(): Promise<void> {
     let guildLeaveHandler = new GuildLeaveHandler();
     let commandHandler = new CommandHandler(commands, eventDataService);
     let buttonHandler = new ButtonHandler(buttons, eventDataService);
+    let modalHandler = new ModalHandler(modals, eventDataService);
+    let selectMenuHandler = new SelectMenuHandler(selectMenus, eventDataService);
     let triggerHandler = new TriggerHandler(triggers, eventDataService);
     let messageHandler = new MessageHandler(triggerHandler);
     let reactionHandler = new ReactionHandler(reactions, eventDataService);
@@ -108,6 +129,8 @@ async function start(): Promise<void> {
         messageHandler,
         commandHandler,
         buttonHandler,
+        modalHandler,
+        selectMenuHandler,
         reactionHandler,
         new JobService(jobs)
     );
