@@ -5,6 +5,7 @@
 /temp
 /**/config/**/*.json
 !/**/config/**/*.example.json
+.idea
 
 # =====================================================
 # Node.js

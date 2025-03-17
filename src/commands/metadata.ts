@@ -69,6 +69,24 @@ export const ChatCommandMetadata: {
         dm_permission: true,
         default_member_permissions: undefined,
     },
+    ECHO: {
+        type: ApplicationCommandType.ChatInput,
+        name: Lang.getRef('chatCommands.echo', Language.Default),
+        name_localizations: Lang.getRefLocalizationMap('chatCommands.echo'),
+        description: Lang.getRef('commandDescs.echo', Language.Default),
+        description_localizations: Lang.getRefLocalizationMap('commandDescs.echo'),
+        dm_permission: true,
+        default_member_permissions: undefined,
+    },
+    SELECT: {
+        type: ApplicationCommandType.ChatInput,
+        name: Lang.getRef('chatCommands.select', Language.Default),
+        name_localizations: Lang.getRefLocalizationMap('chatCommands.select'),
+        description: Lang.getRef('commandDescs.select', Language.Default),
+        description_localizations: Lang.getRefLocalizationMap('commandDescs.select'),
+        dm_permission: true,
+        default_member_permissions: undefined,
+    },
 };
 
 export const MessageCommandMetadata: {
