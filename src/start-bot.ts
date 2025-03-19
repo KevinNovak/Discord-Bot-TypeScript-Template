@@ -2,9 +2,9 @@ import { REST } from '@discordjs/rest';
 import { Options, Partials } from 'discord.js';
 import { createRequire } from 'node:module';
 
-import { Button, CancelConfessionButton, ChangeLanguageAcceptButton, ConfirmConfessionSubmitButton, GlobalConfessionButton, GuildConfessionButton, RulesAcceptButton, RulesDeclineButton, WriteConfessionButton } from './buttons/index.js';
-import { Modal, writeConfessModal } from './modals/index.js';
-import { DevCommand, HelpCommand, InfoCommand, ConfessionCommand } from './commands/chat/index.js';
+import { Button } from './buttons/index.js';
+import { EchoModal, Modal } from './modals/index.js';
+import { DevCommand, EchoCommand, HelpCommand, InfoCommand, TestCommand,SelectMenuCommand } from './commands/chat/index.js';
 import {
     ChatCommandMetadata,
     Command,
@@ -35,7 +35,8 @@ import {
     Logger,
 } from './services/index.js';
 import { Trigger } from './triggers/index.js';
-import { LanguageSelectMenu, SelectMenu, ThemeSelectMenu } from './select-menus/index.js';
+import { SelectMenu } from './select-menus/index.js';
+import { DemoSelectMenu } from './select-menus/demo-select-menu.js';
 
 const require = createRequire(import.meta.url);
 let Config = require('../config/config.json');
@@ -63,7 +64,9 @@ async function start(): Promise<void> {
         new DevCommand(),
         new HelpCommand(),
         new InfoCommand(),
-        new ConfessionCommand(),
+        new TestCommand(),
+        new EchoCommand(),
+        new SelectMenuCommand(),
 
         // Message Context Commands
         new ViewDateSent(),
@@ -77,26 +80,17 @@ async function start(): Promise<void> {
     // Buttons
     let buttons: Button[] = [
         // TODO: Add new buttons here
-        new RulesAcceptButton(),
-        new RulesDeclineButton(),
-        new GuildConfessionButton(),
-        new GlobalConfessionButton(),
-        new CancelConfessionButton(),
-        new WriteConfessionButton(),
-        new ChangeLanguageAcceptButton(),
-        new ConfirmConfessionSubmitButton(),
     ];
 
     // Modals
     let modals: Modal[] = [
-        new writeConfessModal(),
+        new EchoModal(),
         // TODO: Add new modals here
     ];
 
     // Select Menus
     let selectMenus: SelectMenu[] = [
-        new LanguageSelectMenu(),
-        new ThemeSelectMenu(),
+        new DemoSelectMenu(),
         // TODO: Add new select menus here
     ];
 

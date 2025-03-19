@@ -87,15 +87,6 @@ export const ChatCommandMetadata: {
         dm_permission: true,
         default_member_permissions: undefined,
     },
-    CONFESSION: {
-        type: ApplicationCommandType.ChatInput,
-        name: Lang.getRef('chatCommands.confession', Language.Default),
-        name_localizations: Lang.getRefLocalizationMap('chatCommands.confession'),
-        description: Lang.getRef('commandDescs.confession', Language.Default),
-        description_localizations: Lang.getRefLocalizationMap('commandDescs.confession'),
-        dm_permission: true,
-        default_member_permissions: undefined,
-    },
 };
 
 export const MessageCommandMetadata: {

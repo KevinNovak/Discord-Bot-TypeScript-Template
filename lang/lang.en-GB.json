@@ -194,7 +194,7 @@
             "info": "info",
             "test": "test",
             "echo": "echo",
-            "select": "select"
+            "select": "selectmenu"
         },
         "userCommands": {
             "viewDateJoined": "View Date Joined"

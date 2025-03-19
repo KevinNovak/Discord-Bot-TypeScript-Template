@@ -8,7 +8,7 @@
         "editor.formatOnSave": true
     },
     "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features",
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.formatOnSave": true
     },
     "cSpell.enabled": true,

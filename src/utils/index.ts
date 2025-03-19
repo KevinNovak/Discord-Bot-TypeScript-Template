@@ -11,8 +11,3 @@ export { RegexUtils } from './regex-utils.js';
 export { ShardUtils } from './shard-utils.js';
 export { StringUtils } from './string-utils.js';
 export { ThreadUtils } from './thread-utils.js';
-export { LanguagesListUtils } from './languages-list-utils.js';
-export { ThemesListUtils } from './themes-list-utils.js';
-export { SensitiveDataMasker } from './mask-sensitive-data.js';
-export { SpamDetector } from './spam-detector.js'
-export { PerspectiveAPI } from './perspective-api.js';

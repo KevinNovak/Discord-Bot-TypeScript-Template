@@ -7,7 +7,7 @@ interface LanguageData {
 
 export class Language {
     public static Default = Locale.EnglishUS;
-    public static Enabled: Locale[] = [Locale.EnglishUS]; //TODO: ADD LANGUAGES
+    public static Enabled: Locale[] = [Locale.EnglishUS, Locale.EnglishGB];
 
     // See https://discord.com/developers/docs/reference#locales
     public static Data: {
