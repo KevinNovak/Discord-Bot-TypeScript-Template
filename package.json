@@ -32,7 +32,10 @@
         "start:pm2": "npm run build && npm run pm2:start",
         "pm2:start": "pm2 start process.json",
         "pm2:stop": "pm2 stop process.json",
-        "pm2:delete": "pm2 delete process.json"
+        "pm2:delete": "pm2 delete process.json",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:coverage": "vitest run --coverage"
     },
     "dependencies": {
         "@discordjs/rest": "2.4.0",
@@ -66,6 +69,7 @@
         "eslint-plugin-import": "^2.31.0",
         "eslint-plugin-unicorn": "^57.0.0",
         "prettier": "^3.5.1",
-        "typescript": "^5.7.3"
+        "typescript": "^5.7.3",
+        "vitest": "^3.0.8"
     }
 }
