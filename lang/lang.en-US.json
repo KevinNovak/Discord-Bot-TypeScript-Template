@@ -51,6 +51,131 @@
                     }
                 ]
             },
+            "rules": {
+                "title": "Welcome to {{COM:bot.name}}!",
+                "description": [
+                    "Thank you for using {{COM:bot.name}}! To get started, you need to accept the bot's rules and guidelines. Please read the following information carefully.",
+                    "",
+                    "Rules and Guidelines:",
+                    "1. Please do not abuse the messaging system. Moderation is light, but we strictly prohibit extreme content such as violence, hate speech, pedophilia, or any other extreme topics.",
+                    "2. We are strict about attachments. No NSFW (Not Safe For Work) content is tolerated. Any user found sharing such content will be banned immediately.",
+                    "3. Do not share personal information. Protect your privacy and that of others by not disclosing sensitive data such as addresses, phone numbers, or login credentials.",
+                    "4. If you notice any violations of the rules, please report them to the moderation team using the report button.",
+                    "5. Spamming, advertising, or posting messages unrelated to a confession is not allowed.",
+                    "",
+                    "By continuing to use {{COM:bot.name}}, you agree to these rules and guidelines."
+                ],
+                "fields": [
+                    {
+                        "name": "{{REF:fields.links}}",
+                        "value": ["{{REF:links.supportEmbed}}"]
+                    }
+                ]
+            },
+            "rules-accepted": {
+                "title": "{{COM:bot.name}} - Rules Accepted",
+                "description": [
+                    "You have accepted the rules and guidelines, you are now free to use the bot's features.\nPlease use the command again to start using the bot."
+                ],
+                "fields": [
+                    {
+                        "name": "{{REF:fields.links}}",
+                        "value": ["{{REF:links.supportEmbed}}"]
+                    }
+                ]
+            },
+            "rules-decline": {
+                "title": "{{COM:bot.name}} - Rules Declined",
+                "description": [
+                    "You have declined the rules and guidelines, you will not be able to use the bot's features.\nPlease use the command again to accept the rules and start using the bot."
+                ],
+                "fields": [
+                    {
+                        "name": "{{REF:fields.links}}",
+                        "value": ["{{REF:links.supportEmbed}}"]
+                    }
+                ]
+            },
+            "confession-type": {
+                "title": "Choose your confession type",
+                "description": [
+                    "How would you like to submit your confession?",
+                    "",
+                    "🌍 **Global Confession**: Your confession will be visible to everyone on Discord. It remains completely anonymous and includes likes, reactions, and other engagement features.",
+                    "",
+                    "👥 **Guild-Only Confession**: Your confession will only be visible within the current guild. It does not include likes or reactions, only attachments. The message will be **immediately posted in the current channel**.",
+                    "",
+                    "Please select the type of confession you want to make."
+                ]
+            },
+            "confession-lang": {
+                "title": "{{TYPE}} | Choose your confession language",
+                "description": [
+                    "💬 Before submitting your confession, please choose the language you wish to use."
+                ]
+            },
+            "confession-cancel": {
+                "title": "Confession Cancelled",
+                "description": [
+                    "You have cancelled the confession process. If you would like to submit a confession, please use the command again."
+                ],
+                "color": "{{COM:colors.cancel}}"
+            },
+            "confession-write": {
+                "title": "Write your confession",
+                "description": [
+                    "*️⃣ Type: {{TYPE}}\n *️⃣ Language: {{LANGUAGE}}",
+                    "",
+                    "📝 Please write your confession below. **You can include images, videos, audios after the writing.**"
+                ]
+            },
+            "confession-theme": {
+                "title": "Choose your confession theme",
+                "description": [
+                    "🎨 **Theme**: Choose a theme for your confession. This will help others find your confession and engage with it.",
+                    "",
+                    "Please select the theme you want to use."
+                ]
+            },
+            "confession-content": {
+                "title": "Confession Content",
+                "description": [
+                    "📝 **Content**: {{CONTENT}}"
+                ]
+            },
+            "confesson-detected-spam" : {
+                "title": "Spam Detected",
+                "description": [
+                    "⛔ Your confession contains spam and cannot be submitted. Please edit your confession and try again.\n\n**Reasons:** ${{REASONS}}"
+                ],
+                "color": "{{COM:colors.warning}}"
+            },
+            "confession-vulgar-content": {
+                "title": "Vulgar Content Detected",
+                "description": [
+                    ":warning: Your confession has been detected as excessively vulgar and cannot be submitted. We don't want to limit your expression, and vulgar language is allowed, but this particular message is too extreme. Please edit your confession and try again."
+                ],
+                "color": "{{COM:colors.warning}}"
+            },
+            "confession-review": {
+                "title": "Review your confession",
+                "description": [
+                    "*️⃣ **Type**: {{TYPE}}",
+                    "",
+                    "🎨 **Theme**: {{THEME}} {{THEME_EMOJI}}",
+                    "",
+                    "🌐 **Language**: {{LANGUAGE}} {{LANGUAGE_FLAG}}",
+                    "",
+                    "Please review your confession before submitting it."
+                ]
+            },
+            "confession-sent": {
+                "title": "Confession Sent",
+                "description": [
+                    "Your confession has been sent successfully!"
+                ],
+                "color": "{{COM:colors.success}}"
+            },
             "test": {
                 "description": "Test command works!"
             },
@@ -182,6 +307,14 @@
         }
     },
     "refs": {
+        "confession-types": {
+            "global": "Global Confession",
+            "guild": "Guild-Only Confession"
+        },
+        "confession-other-messages": {
+            "masked": "❗ Your confession contains sensitive data and has been masked. Please don't include any sensitive data in your confession.",
+            "other-languages": "**🌐 Your confession has been detected as being in {{DLFULLNAME}} {{DLFLAG}}.**\nIf you want to use this language, click the button below. Otherwise, you can continue with {{SLFULLNAME}} {{SLFLAG}}.\n"
+        },
         "meta": {
             "translators": "[TranslatorName#1234](https://github.com/)"
         },
@@ -194,6 +327,7 @@
             "info": "info",
             "test": "test",
             "echo": "echo",
+            "confession": "confession",
             "select": "select"
         },
         "userCommands": {
@@ -212,6 +346,7 @@
             "info": "View bot info.",
             "test": "Run the test command.",
             "echo": "Echo a message.",
+            "confession": "Confess your sins, secrets or anything else you want to get off your chest.",
             "select": "Select from menu."
         },
         "argDescs": {

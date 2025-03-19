@@ -1,5 +1,8 @@
 {
     "developers": ["<YOUR_DISCORD_ID>"],
+    "perspective": {
+        "KEYS": ["",""]
+    },
     "client": {
         "id": "<DISCORD_BOT_ID>",
         "token": "<DISCORD_BOT_TOKEN>",

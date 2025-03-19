@@ -16,6 +16,9 @@ export class Lang {
         langCode: Locale,
         variables?: { [name: string]: string }
     ): EmbedBuilder {
+        if (!Language.Enabled.includes(langCode)) {
+            langCode = Language.Default;
+        }
         return (
             this.linguini.get(location, langCode, this.embedTm, variables) ??
             this.linguini.get(location, Language.Default, this.embedTm, variables)
@@ -23,6 +26,9 @@ export class Lang {
     }
 
     public static getRegex(location: string, langCode: Locale): RegExp {
+        if (!Language.Enabled.includes(langCode)) {
+            langCode = Language.Default;
+        }
         return (
             this.linguini.get(location, langCode, TypeMappers.RegExp) ??
             this.linguini.get(location, Language.Default, TypeMappers.RegExp)
@@ -34,6 +40,9 @@ export class Lang {
         langCode: Locale,
         variables?: { [name: string]: string }
     ): string {
+        if (!Language.Enabled.includes(langCode)) {
+            langCode = Language.Default;
+        }
         return (
             this.linguini.getRef(location, langCode, variables) ??
             this.linguini.getRef(location, Language.Default, variables)
