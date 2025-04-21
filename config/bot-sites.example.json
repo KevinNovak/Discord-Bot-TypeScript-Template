@@ -30,7 +30,7 @@
     {
         "name": "discords.com",
         "enabled": false,
-        "url": "https://discords.com/bots/api/bot/<BOT_ID>",
+        "url": "https://discords.com/bots/api/bot/<BOT_ID>/setservers",
         "authorization": "<TOKEN>",
         "body": "{\"server_count\":{{SERVER_COUNT}}}"
     },
