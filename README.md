@@ -19,26 +19,26 @@ For help using this template, feel free to [join our support server](https://dis
 
 ### Built-In Bot Features:
 
--   Basic command structure.
--   Rate limits and command cooldowns.
--   Welcome message when joining a server.
--   Shows server count in bot status.
--   Posts server count to popular bot list websites.
--   Support for multiple languages.
+- Basic command structure.
+- Rate limits and command cooldowns.
+- Welcome message when joining a server.
+- Shows server count in bot status.
+- Posts server count to popular bot list websites.
+- Support for multiple languages.
 
 ### Developer Friendly:
 
--   Written with TypeScript.
--   Uses the [discord.js](https://discord.js.org/) framework.
--   Built-in debugging setup for VSCode.
--   Written with [ESM](https://nodejs.org/api/esm.html#introduction) for future compatibility with packages.
--   Support for running with the [PM2](https://pm2.keymetrics.io/) process manger.
--   Support for running with [Docker](https://www.docker.com/).
+- Written with TypeScript.
+- Uses the [discord.js](https://discord.js.org/) framework.
+- Built-in debugging setup for VSCode.
+- Written with [ESM](https://nodejs.org/api/esm.html#introduction) for future compatibility with packages.
+- Support for running with the [PM2](https://pm2.keymetrics.io/) process manger.
+- Support for running with [Docker](https://www.docker.com/).
 
 ### Scales as Your Bot Grows:
 
--   Supports [sharding](https://discordjs.guide/sharding/) which is required when your bot is in 2500+ servers.
--   Supports [clustering](https://github.com/KevinNovak/Discord-Bot-TypeScript-Template-Master-Api) which allows you to run your bot on multiple machines.
+- Supports [sharding](https://discordjs.guide/sharding/) which is required when your bot is in 2500+ servers.
+- Supports [clustering](https://github.com/KevinNovak/Discord-Bot-TypeScript-Template-Master-Api) which allows you to run your bot on multiple machines.
 
 ## Commands
 

@@ -6,4 +6,4 @@
     },
     "include": ["src/**/*", "tests/**/*", "vitest.config.ts"],
     "exclude": ["node_modules", "dist"]
-} 
+}
