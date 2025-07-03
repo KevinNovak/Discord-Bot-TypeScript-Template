@@ -1,4 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { RegexUtils } from '../../src/utils/index.js';
 
 // Mock any configs that might be loaded

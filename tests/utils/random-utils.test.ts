@@ -1,4 +1,5 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
 import { RandomUtils } from '../../src/utils/index.js';
 
 // Mock any configs that might be loaded

@@ -2,7 +2,7 @@
     "root": true,
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "project": "./tsconfig.json"
+        "project": ["./tsconfig.json", "./tsconfig.test.json"]
     },
     "plugins": ["@typescript-eslint", "import", "unicorn"],
     "extends": [
@@ -54,6 +54,7 @@
                 "propertyDeclaration": true
             }
         ],
+        "@typescript-eslint/unbound-method": "off",
         "import/extensions": ["error", "ignorePackages"],
         "import/no-extraneous-dependencies": "error",
         "import/no-unresolved": "off",

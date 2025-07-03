@@ -1,4 +1,5 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import { MathUtils } from '../../src/utils/index.js';
 
 describe('MathUtils', () => {
