@@ -1,11 +1,10 @@
 import { Request, Response, Router } from 'express';
-import router from 'express-promise-router';
 
 import { Controller } from './index.js';
 
 export class RootController implements Controller {
     public path = '/';
-    public router: Router = router();
+    public router: Router = Router();
 
     public register(): void {
         this.router.get('/', (req, res) => this.get(req, res));

@@ -1,6 +1,5 @@
 import { ShardingManager } from 'discord.js';
 import { Request, Response, Router } from 'express';
-import router from 'express-promise-router';
 import { createRequire } from 'node:module';
 
 import { Controller } from './index.js';
@@ -11,7 +10,7 @@ let Config = require('../../config/config.json');
 
 export class GuildsController implements Controller {
     public path = '/guilds';
-    public router: Router = router();
+    public router: Router = Router();
     public authToken: string = Config.api.secret;
 
     constructor(private shardManager: ShardingManager) {}
