@@ -10,6 +10,7 @@ import {
     InteractionUpdateOptions,
     Message,
     MessageComponentInteraction,
+    MessageFlags,
     ModalSubmitInteraction,
     WebhookMessageEditOptions,
 } from 'discord.js';
@@ -32,7 +33,7 @@ export class InteractionUtils {
     ): Promise<InteractionResponse> {
         try {
             return await intr.deferReply({
-                ephemeral: hidden,
+                flags: hidden ? MessageFlags.Ephemeral : undefined,
             });
         } catch (error) {
             if (
@@ -80,12 +81,12 @@ export class InteractionUtils {
             if (intr.deferred || intr.replied) {
                 return await intr.followUp({
                     ...options,
-                    ephemeral: hidden,
+                    flags: hidden ? MessageFlags.Ephemeral : undefined,
                 });
             } else {
                 return await intr.reply({
                     ...options,
-                    ephemeral: hidden,
+                    flags: hidden ? MessageFlags.Ephemeral : undefined,
                     fetchReply: true,
                 });
             }
