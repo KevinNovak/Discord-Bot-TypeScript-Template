@@ -1,4 +1,4 @@
-import parser from 'cron-parser';
+import { CronExpressionParser } from 'cron-parser';
 import { DateTime } from 'luxon';
 import schedule from 'node-schedule';
 import { createRequire } from 'node:module';
@@ -15,12 +15,11 @@ export class JobService {
     public start(): void {
         for (let job of this.jobs) {
             let jobSchedule = job.runOnce
-                ? parser
-                      .parseExpression(job.schedule, {
-                          currentDate: DateTime.now()
-                              .plus({ seconds: job.initialDelaySecs })
-                              .toJSDate(),
-                      })
+                ? CronExpressionParser.parse(job.schedule, {
+                      currentDate: DateTime.now()
+                          .plus({ seconds: job.initialDelaySecs })
+                          .toJSDate(),
+                  })
                       .next()
                       .toDate()
                 : {
