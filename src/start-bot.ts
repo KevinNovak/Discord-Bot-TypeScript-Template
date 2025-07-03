@@ -51,6 +51,7 @@ async function start(): Promise<void> {
             // Override specific options from config
             ...Config.client.caches,
         }),
+        enforceNonce: true,
     });
 
     // Commands
