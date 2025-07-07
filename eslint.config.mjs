@@ -26,6 +26,7 @@ var customConfig = defineConfig([
                     allowExpressions: true,
                 },
             ],
+            '@typescript-eslint/no-deprecated': 'warn',
             '@typescript-eslint/no-explicit-any': 'off',
             '@typescript-eslint/no-floating-promises': 'off',
             '@typescript-eslint/no-inferrable-types': [
