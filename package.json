@@ -54,7 +54,8 @@
         "pino-pretty": "13.0.0",
         "pm2": "^6.0.8",
         "reflect-metadata": "^0.2.2",
-        "remove-markdown": "0.6.2"
+        "remove-markdown": "0.6.2",
+        "vitest-mock-extended": "^3.1.0"
     },
     "devDependencies": {
         "@eslint/js": "^9.30.1",

@@ -4,9 +4,11 @@ import { Command } from '../../src/commands/index.js';
 import { CommandUtils } from '../../src/utils/command-utils.js';
 import {
     createMockCommand,
-    createMockCommandInteraction,
-    createMockGuildChannel,
-} from '../helpers/discord-mocks.js';
+    interactionBuilder,
+    textChannelBuilder,
+    userBuilder,
+    clientUserBuilder,
+} from '../builders/discord-builders.js';
 
 // Mock dependencies
 vi.mock('../../src/utils/index.js', () => ({
@@ -95,16 +97,16 @@ describe('CommandUtils', () => {
                 };
             };
 
-            // Create a mock interaction using helper
-            mockInteraction = createMockCommandInteraction({
-                user: { id: '123456789012345678' },
-                client: { user: { id: '987654321098765432' } },
-                channel: createMockGuildChannel({
-                    permissionsFor: vi.fn().mockReturnValue({
-                        has: vi.fn().mockReturnValue(true),
-                    }),
-                }),
-            });
+            // Create a mock interaction using the new builder
+            const user = userBuilder().withId('123456789012345678').build();
+            const clientUser = clientUserBuilder().withId('987654321098765432').build();
+            const channel = textChannelBuilder().botHasPerms().build();
+            
+            mockInteraction = interactionBuilder()
+                .withUser(user)
+                .withClientUser(clientUser)
+                .withChannel(channel)
+                .build();
 
             // Create mock event data
             mockEventData = { lang: 'en-US' };
@@ -146,12 +148,19 @@ describe('CommandUtils', () => {
             // Mock the imported InteractionUtils.send function
             const { InteractionUtils } = await import('../../src/utils/index.js');
 
-            // Create a GuildChannel mock with failing permission check
-            mockInteraction.channel = createMockGuildChannel({
-                permissionsFor: vi.fn().mockReturnValue({
-                    has: vi.fn().mockReturnValue(false),
-                }),
-            });
+            // Create a new interaction with a channel that has missing permissions
+            const user = userBuilder().withId('123456789012345678').build();
+            const clientUser = clientUserBuilder().withId('987654321098765432').build();
+            const channelWithNoPerms = textChannelBuilder()
+                .botMissingPerms()
+                .asGuildChannel()
+                .build();
+            
+            mockInteraction = interactionBuilder()
+                .withUser(user)
+                .withClientUser(clientUser)
+                .withChannel(channelWithNoPerms)
+                .build();
 
             // Set up command for test
             mockCommand.cooldown.take.mockReturnValue(false);
