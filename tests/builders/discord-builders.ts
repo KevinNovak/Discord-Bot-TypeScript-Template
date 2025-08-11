@@ -5,16 +5,19 @@ import {
     ClientUser,
     Collection,
     CommandInteraction,
+    DMChannel,
     Guild,
     GuildChannel,
     GuildMember,
     GuildMemberRoleManager,
     Message,
+    MessageContextMenuCommandInteraction,
     Role,
     RoleResolvable,
     TextChannel,
     ThreadChannel,
     User,
+    UserContextMenuCommandInteraction,
 } from 'discord.js';
 import { RateLimiter } from 'discord.js-rate-limiter';
 import { vi } from 'vitest';
@@ -30,6 +33,7 @@ export interface UserBuilder {
     withId(id: string): UserBuilder;
     withUsername(name: string): UserBuilder;
     isBot(flag?: boolean): UserBuilder;
+    withCreatedTimestamp(timestamp: number | null): UserBuilder;
     withOverrides(overrides: Partial<User>): UserBuilder;
     build(): DeepMockProxy<User>;
 }
@@ -43,12 +47,25 @@ export function userBuilder(): UserBuilder {
     mockProp(user, 'discriminator', '0');
     mockProp(user, 'bot', false);
     user.send.mockResolvedValue({} as Message<false>);
+    
+    // Set up toString method to return Discord mention format
+    Object.defineProperty(user, 'toString', {
+        value: vi.fn(() => `<@${user.id}>`),
+        writable: true,
+        configurable: true,
+    });
     const api: UserBuilder = {
         withId: id => {
             mockProp(user, 'id', id);
             mockProp(user, 'username', `username-${id}`);
             mockProp(user, 'globalName', `globalName-${id}`);
             mockProp(user, 'displayName', user.globalName ?? user.username);
+            // Update toString to use new ID
+            Object.defineProperty(user, 'toString', {
+                value: vi.fn(() => `<@${id}>`),
+                writable: true,
+                configurable: true,
+            });
             return api;
         },
         withUsername: name => {
@@ -57,6 +74,28 @@ export function userBuilder(): UserBuilder {
         },
         isBot: flag => {
             mockProp(user, 'bot', flag ?? true);
+            return api;
+        },
+        withCreatedTimestamp: (t: number | null) => {
+            if (t !== null) {
+                mockProp(user, 'createdTimestamp', t);
+                Object.defineProperty(user, 'createdAt', {
+                    value: new Date(t),
+                    writable: true,
+                    configurable: true,
+                });
+            } else {
+                Object.defineProperty(user, 'createdTimestamp', {
+                    value: null,
+                    writable: true,
+                    configurable: true,
+                });
+                Object.defineProperty(user, 'createdAt', {
+                    value: null,
+                    writable: true,
+                    configurable: true,
+                });
+            }
             return api;
         },
         withOverrides: o => {
@@ -232,6 +271,19 @@ export function guildMemberBuilder(userId: string = 'user123'): GuildMemberBuild
         },
         withJoinedTimestamp: (timestamp: number | null) => {
             mockProp(member, 'joinedTimestamp', timestamp);
+            if (timestamp !== null) {
+                Object.defineProperty(member, 'joinedAt', {
+                    value: new Date(timestamp),
+                    writable: true,
+                    configurable: true,
+                });
+            } else {
+                Object.defineProperty(member, 'joinedAt', {
+                    value: null,
+                    writable: true,
+                    configurable: true,
+                });
+            }
             return api;
         },
         withHasRole: (roleId?: string, hasRole: boolean = true) => {
@@ -329,6 +381,49 @@ export function textChannelBuilder(): TextChannelBuilder {
 }
 
 // -----------------------------------------------------------------------------
+// DMChannel Builder
+// -----------------------------------------------------------------------------
+export interface DMChannelBuilder {
+    withId(id: string): DMChannelBuilder;
+    withRecipient(user: DeepMockProxy<User>): DMChannelBuilder;
+    withOverrides(overrides: Partial<DMChannel>): DMChannelBuilder;
+    build(): DeepMockProxy<DMChannel>;
+}
+
+export function dmChannelBuilder(): DMChannelBuilder {
+    const channel = mockDeep<DMChannel>();
+    mockProp(channel, 'id', 'dmchannel123');
+    mockProp(channel, 'type', ChannelType.DM);
+    
+    // Set up a default recipient
+    const defaultRecipient = userBuilder().withId('dmrecipient123').build();
+    mockProp(channel, 'recipient', defaultRecipient);
+    
+    // Set up channel methods
+    channel.send.mockResolvedValue({} as Message<false>);
+    
+    // Ensure instanceof check works for DMChannel
+    Object.setPrototypeOf(channel, DMChannel.prototype);
+    
+    const api: DMChannelBuilder = {
+        withId: (id: string) => {
+            mockProp(channel, 'id', id);
+            return api;
+        },
+        withRecipient: (user: DeepMockProxy<User>) => {
+            mockProp(channel, 'recipient', user);
+            return api;
+        },
+        withOverrides: (overrides: Partial<DMChannel>) => {
+            Object.assign(channel, overrides);
+            return api;
+        },
+        build: () => channel,
+    };
+    return api;
+}
+
+// -----------------------------------------------------------------------------
 // Role Builder
 // -----------------------------------------------------------------------------
 export interface RoleBuilder {
@@ -370,6 +465,7 @@ export interface MessageBuilder {
     withChannel(channel: DeepMockProxy<TextChannel>): MessageBuilder;
     withOverrides(overrides: Partial<Message>): MessageBuilder;
     withGuild(guild: DeepMockProxy<Guild>): MessageBuilder;
+    withCreatedTimestamp(timestamp: number | null): MessageBuilder;
     build(): DeepMockProxy<Message>;
 }
 
@@ -409,6 +505,28 @@ export function messageBuilder(): MessageBuilder {
         },
         withGuild: (guild: DeepMockProxy<Guild>) => {
             mockProp(message, 'guild', guild);
+            return api;
+        },
+        withCreatedTimestamp: (timestamp: number | null) => {
+            if (timestamp !== null) {
+                mockProp(message, 'createdTimestamp', timestamp);
+                Object.defineProperty(message, 'createdAt', {
+                    value: new Date(timestamp),
+                    writable: true,
+                    configurable: true,
+                });
+            } else {
+                Object.defineProperty(message, 'createdTimestamp', {
+                    value: null,
+                    writable: true,
+                    configurable: true,
+                });
+                Object.defineProperty(message, 'createdAt', {
+                    value: null,
+                    writable: true,
+                    configurable: true,
+                });
+            }
             return api;
         },
         build: () => message,
@@ -556,6 +674,148 @@ export function createMockRateLimiter(
     rateLimiter.take.mockReturnValue(false);
     Object.assign(rateLimiter, overrides);
     return rateLimiter;
+}
+
+// export function createMockDate(timestamp: number): DeepMockProxy<Date> {
+//     const date = mockDeep<Date>();
+//     const realDate = new Date(timestamp);
+    
+//     // Mock the most commonly used Date methods
+//     date.getTime.mockReturnValue(timestamp);
+//     return date;
+// }
+
+// -----------------------------------------------------------------------------
+// MessageContextMenuCommandInteraction Builder
+// -----------------------------------------------------------------------------
+export interface MessageContextMenuInteractionBuilder {
+    withUser(user: DeepMockProxy<User>): MessageContextMenuInteractionBuilder;
+    withChannel(channel: DeepMockProxy<TextChannel>): MessageContextMenuInteractionBuilder;
+    withClientUser(bot: DeepMockProxy<ClientUser>): MessageContextMenuInteractionBuilder;
+    withTargetMessage(message: DeepMockProxy<Message>): MessageContextMenuInteractionBuilder;
+    withGuild(guild: DeepMockProxy<Guild>): MessageContextMenuInteractionBuilder;
+    withOverrides(overrides: Partial<MessageContextMenuCommandInteraction>): MessageContextMenuInteractionBuilder;
+    build(): DeepMockProxy<MessageContextMenuCommandInteraction>;
+}
+
+export function messageContextMenuInteractionBuilder(): MessageContextMenuInteractionBuilder {
+    const interaction = mockDeep<MessageContextMenuCommandInteraction>();
+    const user = userBuilder().build();
+    mockProp(interaction, 'user', user);
+    const client = mockDeep<Client<true>>();
+    const clientUser = mockDeep<ClientUser>();
+    mockProp(clientUser, 'id', '987654321098765432');
+    mockProp(client, 'user', clientUser);
+    mockProp(interaction, 'client', client);
+    const channel = textChannelBuilder().build();
+    mockProp(interaction, 'channel', channel);
+    const targetMessage = messageBuilder().build();
+    mockProp(interaction, 'targetMessage', targetMessage);
+    
+    // Set up interaction methods
+    interaction.reply.mockResolvedValue({} as any);
+    interaction.editReply.mockResolvedValue({} as any);
+    interaction.deferReply.mockResolvedValue({} as any);
+    interaction.followUp.mockResolvedValue({} as any);
+    
+    const api: MessageContextMenuInteractionBuilder = {
+        withUser: u => {
+            mockProp(interaction, 'user', u);
+            return api;
+        },
+        withChannel: ch => {
+            mockProp(interaction, 'channel', ch);
+            return api;
+        },
+        withClientUser: cu => {
+            const cl = interaction.client as DeepMockProxy<Client<true>>;
+            mockProp(cl, 'user', cu);
+            return api;
+        },
+        withTargetMessage: msg => {
+            mockProp(interaction, 'targetMessage', msg);
+            return api;
+        },
+        withGuild: g => {
+            mockProp(interaction, 'guild', g);
+            return api;
+        },
+        withOverrides: o => {
+            Object.assign(interaction, o);
+            return api;
+        },
+        build: () => interaction,
+    };
+    return api;
+}
+
+// -----------------------------------------------------------------------------
+// UserContextMenuCommandInteraction Builder
+// -----------------------------------------------------------------------------
+export interface UserContextMenuInteractionBuilder {
+    withUser(user: DeepMockProxy<User>): UserContextMenuInteractionBuilder;
+    withChannel(channel: DeepMockProxy<TextChannel>): UserContextMenuInteractionBuilder;
+    withClientUser(bot: DeepMockProxy<ClientUser>): UserContextMenuInteractionBuilder;
+    withTargetUser(user: DeepMockProxy<User>): UserContextMenuInteractionBuilder;
+    withGuild(guild: DeepMockProxy<Guild>): UserContextMenuInteractionBuilder;
+    withMember(member: DeepMockProxy<GuildMember>): UserContextMenuInteractionBuilder;
+    withOverrides(overrides: Partial<UserContextMenuCommandInteraction>): UserContextMenuInteractionBuilder;
+    build(): DeepMockProxy<UserContextMenuCommandInteraction>;
+}
+
+export function userContextMenuInteractionBuilder(): UserContextMenuInteractionBuilder {
+    const interaction = mockDeep<UserContextMenuCommandInteraction>();
+    const user = userBuilder().build();
+    mockProp(interaction, 'user', user);
+    const client = mockDeep<Client<true>>();
+    const clientUser = mockDeep<ClientUser>();
+    mockProp(clientUser, 'id', '987654321098765432');
+    mockProp(client, 'user', clientUser);
+    mockProp(interaction, 'client', client);
+    const channel = textChannelBuilder().build();
+    mockProp(interaction, 'channel', channel);
+    const targetUser = userBuilder().withId('target123').build();
+    mockProp(interaction, 'targetUser', targetUser);
+    
+    // Set up interaction methods
+    interaction.reply.mockResolvedValue({} as any);
+    interaction.editReply.mockResolvedValue({} as any);
+    interaction.deferReply.mockResolvedValue({} as any);
+    interaction.followUp.mockResolvedValue({} as any);
+    
+    const api: UserContextMenuInteractionBuilder = {
+        withUser: u => {
+            mockProp(interaction, 'user', u);
+            return api;
+        },
+        withChannel: ch => {
+            mockProp(interaction, 'channel', ch);
+            return api;
+        },
+        withClientUser: cu => {
+            const cl = interaction.client as DeepMockProxy<Client<true>>;
+            mockProp(cl, 'user', cu);
+            return api;
+        },
+        withTargetUser: tu => {
+            mockProp(interaction, 'targetUser', tu);
+            return api;
+        },
+        withGuild: g => {
+            mockProp(interaction, 'guild', g);
+            return api;
+        },
+        withMember: m => {
+            mockProp(interaction, 'member', m);
+            return api;
+        },
+        withOverrides: o => {
+            Object.assign(interaction, o);
+            return api;
+        },
+        build: () => interaction,
+    };
+    return api;
 }
 
 // -----------------------------------------------------------------------------
