@@ -47,7 +47,7 @@ export function userBuilder(): UserBuilder {
     mockProp(user, 'discriminator', '0');
     mockProp(user, 'bot', false);
     user.send.mockResolvedValue({} as Message<false>);
-    
+
     // Set up toString method to return Discord mention format
     Object.defineProperty(user, 'toString', {
         value: vi.fn(() => `<@${user.id}>`),
@@ -394,17 +394,17 @@ export function dmChannelBuilder(): DMChannelBuilder {
     const channel = mockDeep<DMChannel>();
     mockProp(channel, 'id', 'dmchannel123');
     mockProp(channel, 'type', ChannelType.DM);
-    
+
     // Set up a default recipient
     const defaultRecipient = userBuilder().withId('dmrecipient123').build();
     mockProp(channel, 'recipient', defaultRecipient);
-    
+
     // Set up channel methods
     channel.send.mockResolvedValue({} as Message<false>);
-    
+
     // Ensure instanceof check works for DMChannel
     Object.setPrototypeOf(channel, DMChannel.prototype);
-    
+
     const api: DMChannelBuilder = {
         withId: (id: string) => {
             mockProp(channel, 'id', id);
@@ -679,7 +679,7 @@ export function createMockRateLimiter(
 // export function createMockDate(timestamp: number): DeepMockProxy<Date> {
 //     const date = mockDeep<Date>();
 //     const realDate = new Date(timestamp);
-    
+
 //     // Mock the most commonly used Date methods
 //     date.getTime.mockReturnValue(timestamp);
 //     return date;
@@ -694,7 +694,9 @@ export interface MessageContextMenuInteractionBuilder {
     withClientUser(bot: DeepMockProxy<ClientUser>): MessageContextMenuInteractionBuilder;
     withTargetMessage(message: DeepMockProxy<Message>): MessageContextMenuInteractionBuilder;
     withGuild(guild: DeepMockProxy<Guild>): MessageContextMenuInteractionBuilder;
-    withOverrides(overrides: Partial<MessageContextMenuCommandInteraction>): MessageContextMenuInteractionBuilder;
+    withOverrides(
+        overrides: Partial<MessageContextMenuCommandInteraction>
+    ): MessageContextMenuInteractionBuilder;
     build(): DeepMockProxy<MessageContextMenuCommandInteraction>;
 }
 
@@ -711,13 +713,13 @@ export function messageContextMenuInteractionBuilder(): MessageContextMenuIntera
     mockProp(interaction, 'channel', channel);
     const targetMessage = messageBuilder().build();
     mockProp(interaction, 'targetMessage', targetMessage);
-    
+
     // Set up interaction methods
     interaction.reply.mockResolvedValue({} as any);
     interaction.editReply.mockResolvedValue({} as any);
     interaction.deferReply.mockResolvedValue({} as any);
     interaction.followUp.mockResolvedValue({} as any);
-    
+
     const api: MessageContextMenuInteractionBuilder = {
         withUser: u => {
             mockProp(interaction, 'user', u);
@@ -759,7 +761,9 @@ export interface UserContextMenuInteractionBuilder {
     withTargetUser(user: DeepMockProxy<User>): UserContextMenuInteractionBuilder;
     withGuild(guild: DeepMockProxy<Guild>): UserContextMenuInteractionBuilder;
     withMember(member: DeepMockProxy<GuildMember>): UserContextMenuInteractionBuilder;
-    withOverrides(overrides: Partial<UserContextMenuCommandInteraction>): UserContextMenuInteractionBuilder;
+    withOverrides(
+        overrides: Partial<UserContextMenuCommandInteraction>
+    ): UserContextMenuInteractionBuilder;
     build(): DeepMockProxy<UserContextMenuCommandInteraction>;
 }
 
@@ -776,13 +780,13 @@ export function userContextMenuInteractionBuilder(): UserContextMenuInteractionB
     mockProp(interaction, 'channel', channel);
     const targetUser = userBuilder().withId('target123').build();
     mockProp(interaction, 'targetUser', targetUser);
-    
+
     // Set up interaction methods
     interaction.reply.mockResolvedValue({} as any);
     interaction.editReply.mockResolvedValue({} as any);
     interaction.deferReply.mockResolvedValue({} as any);
     interaction.followUp.mockResolvedValue({} as any);
-    
+
     const api: UserContextMenuInteractionBuilder = {
         withUser: u => {
             mockProp(interaction, 'user', u);

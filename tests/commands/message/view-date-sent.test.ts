@@ -4,7 +4,10 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { ViewDateSent } from '../../../src/commands/message/view-date-sent.js';
 import { EventData } from '../../../src/models/internal-models.js';
 import { InteractionUtils } from '../../../src/utils/index.js';
-import { messageBuilder, messageContextMenuInteractionBuilder } from '../../builders/discord-builders.js';
+import {
+    messageBuilder,
+    messageContextMenuInteractionBuilder,
+} from '../../builders/discord-builders.js';
 
 // Mock dependencies
 vi.mock('../../../src/utils/index.js', () => ({

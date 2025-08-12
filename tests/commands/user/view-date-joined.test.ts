@@ -4,7 +4,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { ViewDateJoined } from '../../../src/commands/user/view-date-joined.js';
 import { EventData } from '../../../src/models/internal-models.js';
 import { InteractionUtils } from '../../../src/utils/index.js';
-import { dmChannelBuilder, guildMemberBuilder, textChannelBuilder, userBuilder, userContextMenuInteractionBuilder } from '../../builders/discord-builders.js';
+import {
+    dmChannelBuilder,
+    guildMemberBuilder,
+    textChannelBuilder,
+    userBuilder,
+    userContextMenuInteractionBuilder,
+} from '../../builders/discord-builders.js';
 
 // Mock dependencies
 vi.mock('../../../src/utils/index.js', () => ({
@@ -97,7 +103,7 @@ describe('ViewDateJoined', () => {
 
             // Act
             await viewDateJoinedCommand.execute(interaction as any, mockEventData);
-            
+
             // Assert
             expect(InteractionUtils.send).toHaveBeenCalledTimes(1);
             expect(InteractionUtils.send).toHaveBeenCalledWith(

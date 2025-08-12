@@ -101,7 +101,7 @@ describe('CommandUtils', () => {
             const user = userBuilder().withId('123456789012345678').build();
             const clientUser = clientUserBuilder().withId('987654321098765432').build();
             const channel = textChannelBuilder().botHasPerms().build();
-            
+
             mockInteraction = interactionBuilder()
                 .withUser(user)
                 .withClientUser(clientUser)
@@ -155,7 +155,7 @@ describe('CommandUtils', () => {
                 .botMissingPerms()
                 .asGuildChannel()
                 .build();
-            
+
             mockInteraction = interactionBuilder()
                 .withUser(user)
                 .withClientUser(clientUser)
