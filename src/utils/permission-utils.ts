@@ -82,11 +82,11 @@ export class PermissionUtils {
             }
 
             // VIEW_CHANNEL - Needed to view the channel
-            // MANAGE_MESSAGES - Needed to pin messages
+            // PIN_MESSAGES - Needed to pin messages
             // READ_MESSAGE_HISTORY - Needed to find old pins
             return channelPerms.has([
                 PermissionFlagsBits.ViewChannel,
-                PermissionFlagsBits.ManageMessages,
+                PermissionFlagsBits.PinMessages,
                 ...(findOld ? [PermissionFlagsBits.ReadMessageHistory] : []),
             ]);
         } else {
