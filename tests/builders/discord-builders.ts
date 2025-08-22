@@ -333,7 +333,7 @@ export function textChannelBuilder(): TextChannelBuilder {
     mockProp(channel, 'type', ChannelType.GuildText);
     channel.guild = guildBuilderFactory().build();
     channel.send.mockResolvedValue({} as Message<true>);
-    channel.messages.fetchPinned.mockResolvedValue({
+    channel.messages.fetchPins.mockResolvedValue({
         size: 3,
         filter: vi.fn().mockReturnValue([]),
     } as any);

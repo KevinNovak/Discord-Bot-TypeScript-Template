@@ -3,11 +3,11 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { Command } from '../../src/commands/index.js';
 import { CommandUtils } from '../../src/utils/command-utils.js';
 import {
+    clientUserBuilder,
     createMockCommand,
     interactionBuilder,
     textChannelBuilder,
     userBuilder,
-    clientUserBuilder,
 } from '../builders/discord-builders.js';
 
 // Mock dependencies
