@@ -150,6 +150,11 @@ export class Permission {
                 return Lang.getRef('permissions.MuteMembers', langCode);
             },
         },
+        PinMessages: {
+            displayName(langCode: Locale): string {
+                return Lang.getRef('permissions.PinMessages', langCode);
+            },
+        },
         PrioritySpeaker: {
             displayName(langCode: Locale): string {
                 return Lang.getRef('permissions.PrioritySpeaker', langCode);
