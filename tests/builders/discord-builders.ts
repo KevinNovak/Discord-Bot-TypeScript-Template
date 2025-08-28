@@ -715,9 +715,7 @@ export function messageContextMenuInteractionBuilder(): MessageContextMenuIntera
     mockProp(interaction, 'targetMessage', targetMessage);
 
     // Set up interaction methods
-    interaction.reply.mockResolvedValue({} as any);
     interaction.editReply.mockResolvedValue({} as any);
-    interaction.deferReply.mockResolvedValue({} as any);
     interaction.followUp.mockResolvedValue({} as any);
 
     const api: MessageContextMenuInteractionBuilder = {
@@ -782,9 +780,7 @@ export function userContextMenuInteractionBuilder(): UserContextMenuInteractionB
     mockProp(interaction, 'targetUser', targetUser);
 
     // Set up interaction methods
-    interaction.reply.mockResolvedValue({} as any);
     interaction.editReply.mockResolvedValue({} as any);
-    interaction.deferReply.mockResolvedValue({} as any);
     interaction.followUp.mockResolvedValue({} as any);
 
     const api: UserContextMenuInteractionBuilder = {

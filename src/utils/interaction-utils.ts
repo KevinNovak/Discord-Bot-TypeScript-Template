@@ -84,11 +84,11 @@ export class InteractionUtils {
                     flags: hidden ? MessageFlags.Ephemeral : undefined,
                 });
             } else {
-                return await intr.reply({
+                await intr.reply({
                     ...options,
                     flags: hidden ? MessageFlags.Ephemeral : undefined,
-                    fetchReply: true,
                 });
+                return await intr.fetchReply();
             }
         } catch (error) {
             if (
@@ -158,10 +158,8 @@ export class InteractionUtils {
                     : content instanceof EmbedBuilder
                       ? { embeds: [content] }
                       : content;
-            return await intr.update({
-                ...options,
-                fetchReply: true,
-            });
+            await intr.update({ ...options });
+            return await intr.fetchReply();
         } catch (error) {
             if (
                 error instanceof DiscordAPIError &&
