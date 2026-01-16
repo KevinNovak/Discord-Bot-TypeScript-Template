@@ -91,7 +91,7 @@ A welcome message is sent to the server and owner when the bot is added.
 3. Modify the config file.
     - Open the `config/config.json` file.
     - You'll need to edit the following values:
-        - `client.id` - Your discord bot's [user ID](https://techswift.org/2020/04/22/how-to-find-your-user-id-on-discord/).
+        - `client.id` - Your discord bot's [user ID](https://discord.com/developers/docs/quick-start/getting-started#fetching-your-credentials).
         - `client.token` - Your discord bot's token.
 4. Install packages.
     - Navigate into the downloaded source files and type `npm install`.
