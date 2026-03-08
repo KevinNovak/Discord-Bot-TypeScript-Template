@@ -32,8 +32,7 @@
     "start:pm2": "npm run build && npm run pm2:start",
     "pm2:start": "pm2 start process.json",
     "pm2:stop": "pm2 stop process.json",
-    "pm2:delete": "pm2 delete process.json",
-    "preinstall": "node preinstall.js"
+    "pm2:delete": "pm2 delete process.json"
   },
   "dependencies": {
     "@discordjs/rest": "1.7.1",
