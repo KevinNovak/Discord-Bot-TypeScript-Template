@@ -1,7 +1,6 @@
 import djs, { ChatInputCommandInteraction, PermissionsString } from 'discord.js';
 import { createRequire } from 'node:module';
 import os from 'node:os';
-import typescript from 'typescript';
 
 import { DevCommandName } from '../../enums/index.js';
 import { Language } from '../../models/enum-helpers/index.js';
@@ -11,6 +10,7 @@ import { FormatUtils, InteractionUtils, ShardUtils } from '../../utils/index.js'
 import { Command, CommandDeferType } from '../index.js';
 
 const require = createRequire(import.meta.url);
+const typescriptVersion: string = require('typescript/package.json').version;
 let Config = require('../../../config/config.json');
 let TsConfig = require('../../../tsconfig.json');
 
@@ -58,7 +58,7 @@ export class DevCommand implements Command {
                     intr,
                     Lang.getEmbed('displayEmbeds.devInfo', data.lang, {
                         NODE_VERSION: process.version,
-                        TS_VERSION: `v${typescript.version}`,
+                        TS_VERSION: `v${typescriptVersion}`,
                         ES_VERSION: TsConfig.compilerOptions.target,
                         DJS_VERSION: `v${djs.version}`,
                         SHARD_COUNT: shardCount.toLocaleString(data.lang),
