@@ -4,7 +4,7 @@
         "enabled": false,
         "url": "https://top.gg/api/bots/<BOT_ID>/stats",
         "authorization": "<TOKEN>",
-        "body": "{\"server_count\":{{SERVER_COUNT}}}"
+        "body": "{\"server_count\":{{SERVER_COUNT}},\"shard_count\":{{SHARD_COUNT}}}"
     },
     {
         "name": "bots.ondiscord.xyz",
